@@ -1,0 +1,72 @@
+/************************/
+/* MATERIAL SETUP BELOW */
+/************************/
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss (imported above).
+// Available color palettes: https://material.io/design/color/
+$primary: mat-palette($mat-light-green, 900);
+$accent: mat-palette($mat-yellow, A700);
+
+// The warn palette is optional (defaults to red).
+$warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$theme: mat-light-theme($primary, $accent, $warn);
+
+// Include theme styles for core and each component used in your app.
+@include angular-material-theme($theme);
+
+
+
+
+/***********************/
+/* GLOBAL STYLES BELOW */
+/***********************/
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* REUSABLE CLASSES */
+
+/* This centers content inside */
+.center-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.fill-remaining-space {
+  /*This fills the remaining space, by using flexbox.
+ Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+
+/* SNACKBAR STYLES */
+.snackbar {
+  color: white;
+  margin-bottom: 8px!important;
+}
+
+.primarySnackbar {
+  background-color: mat-color($primary) !important;
+}
+
+.accentSnackbar {
+  background-color: mat-color($accent) !important;
+}
+
+.errorSnackbar {
+  background-color: mat-color($warn) !important;
+}

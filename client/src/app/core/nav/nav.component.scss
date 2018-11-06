@@ -1,0 +1,31 @@
+$nav-height: 60px;
+
+.sidenav-container {
+  height: calc(100% - #{$nav-height});
+}
+
+.sidenav {
+  width: 200px;
+  margin-top: $nav-height;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  height: $nav-height;
+}
+
+/deep/ mat-nav-list > a > div > mat-icon {
+  margin: 0 24px 0 8px;
+}
+
+
+/deep/ mat-nav-list > a > div{
+  font-size: 15px;
+}
+
+/deep/ mat-nav-list > h3 {
+  font-size: 17px;
+  margin: 0;
+  padding: 8px 24px;
+}
