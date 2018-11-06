@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OrganisationsRoutingModule } from './organisations-routing.module';
 import { OrganisationsComponent } from './organisations.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [OrganisationsComponent],
@@ -10,7 +11,8 @@ import { OrganisationsComponent } from './organisations.component';
   providers: [],
   imports: [
     CommonModule,
-    OrganisationsRoutingModule
+    OrganisationsRoutingModule,
+    SharedModule,
   ]
 })
 export class OrganisationsModule { }

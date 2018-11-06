@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SponsorsRoutingModule } from './sponsors-routing.module';
 import { SponsorsComponent } from './sponsors.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [SponsorsComponent],
@@ -10,7 +11,8 @@ import { SponsorsComponent } from './sponsors.component';
   providers: [],
   imports: [
     CommonModule,
-    SponsorsRoutingModule
+    SponsorsRoutingModule,
+    SharedModule,
   ]
 })
 export class SponsorsModule { }

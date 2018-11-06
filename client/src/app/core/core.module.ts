@@ -11,9 +11,11 @@ import {
   MatListModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [NavComponent],
+  declarations: [NavComponent, FooterComponent],
   exports: [NavComponent],
   providers: [AuthService],
   imports: [
@@ -24,7 +26,8 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    DragDropModule
   ]
 })
 export class CoreModule { }
