@@ -18,12 +18,48 @@
     <button mat-icon-button>
       <mat-icon>event</mat-icon>
     </button>
-    <button mat-icon-button>
+
+    <!--Content-->
+    <button mat-icon-button [matMenuTriggerFor]="contentMenu">
       <mat-icon>add</mat-icon>
     </button>
-    <button mat-icon-button>
+    <mat-menu #contentMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>library_books</mat-icon>
+        Nyhet
+      </button>
+      <button mat-menu-item>
+        <mat-icon>event_note</mat-icon>
+        Evenemang
+      </button>
+      <button mat-menu-item>
+        <mat-icon>business_center</mat-icon>
+        Näringsliv
+      </button>
+      <button mat-menu-item>
+        <mat-icon>work</mat-icon>
+        Jobbannons
+      </button>
+    </mat-menu>
+
+    <!--Profile-->
+    <button mat-icon-button [matMenuTriggerFor]="profileMenu">
       <mat-icon>person</mat-icon>
     </button>
+    <mat-menu #profileMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        Profilsida
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications</mat-icon>
+        Notifikationer
+      </button>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        Logga ut
+      </button>
+    </mat-menu>
   </span>
   </mat-toolbar>
 </header>

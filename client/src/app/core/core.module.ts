@@ -8,11 +8,11 @@ import {
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -24,12 +24,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     RouterModule,
     LayoutModule,
+
+    // Material
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    DragDropModule
+    MatMenuModule,
   ]
 })
 export class CoreModule { }
