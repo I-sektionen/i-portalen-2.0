@@ -14,12 +14,15 @@ import {
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DatabaseService } from './database/database.service';
+import { FirebaseModule } from './firebase/firebase.module';
 
 @NgModule({
   declarations: [NavComponent, FooterComponent],
   exports: [NavComponent],
-  providers: [AuthService],
+  providers: [AuthService, DatabaseService],
   imports: [
+    // Angular
     CommonModule,
     FlexLayoutModule,
     RouterModule,
@@ -32,6 +35,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+
+    // Custom
+    FirebaseModule,
   ]
 })
 export class CoreModule { }

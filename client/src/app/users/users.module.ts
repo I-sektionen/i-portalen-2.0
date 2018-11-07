@@ -2,14 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [UserLoginComponent, UserProfileComponent],
   exports: [],
   providers: [],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    ReactiveFormsModule,
+    UsersRoutingModule,
+
+    // Material
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ]
 })
 export class UsersModule { }

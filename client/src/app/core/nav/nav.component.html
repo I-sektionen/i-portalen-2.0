@@ -11,65 +11,70 @@
       <h1>I-Portalen</h1>
     </button>
     <span class="fill-remaining-space"></span>
-    <span>
-    <button mat-icon-button>
-      <mat-icon>event_available</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>event</mat-icon>
-    </button>
+    <span *ngIf="!(isLoggedIn | async)">
+      <button mat-button routerLink="login">
+        Logga in
+      </button>
+    </span>
+    <span *ngIf="isLoggedIn | async">
+      <button mat-icon-button>
+        <mat-icon>event_available</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>event</mat-icon>
+      </button>
 
-    <!--Content-->
-    <button mat-icon-button [matMenuTriggerFor]="contentMenu">
-      <mat-icon>add</mat-icon>
-    </button>
-    <mat-menu #contentMenu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>library_books</mat-icon>
-        Nyhet
+      <!--Content-->
+      <button mat-icon-button [matMenuTriggerFor]="contentMenu">
+        <mat-icon>add</mat-icon>
       </button>
-      <button mat-menu-item>
-        <mat-icon>event_note</mat-icon>
-        Evenemang
-      </button>
-      <button mat-menu-item>
-        <mat-icon>business_center</mat-icon>
-        Näringsliv
-      </button>
-      <button mat-menu-item>
-        <mat-icon>work</mat-icon>
-        Jobbannons
-      </button>
-    </mat-menu>
+      <mat-menu #contentMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>library_books</mat-icon>
+          Nyhet
+        </button>
+        <button mat-menu-item>
+          <mat-icon>event_note</mat-icon>
+          Evenemang
+        </button>
+        <button mat-menu-item>
+          <mat-icon>business_center</mat-icon>
+          Näringsliv
+        </button>
+        <button mat-menu-item>
+          <mat-icon>work</mat-icon>
+          Jobbannons
+        </button>
+      </mat-menu>
 
-    <!--Profile-->
-    <button mat-icon-button [matMenuTriggerFor]="profileMenu">
-      <mat-icon>person</mat-icon>
-    </button>
-    <mat-menu #profileMenu="matMenu">
-      <button mat-menu-item>
+      <!--Profile-->
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu">
         <mat-icon>person</mat-icon>
-        Profilsida
       </button>
-      <button mat-menu-item>
-        <mat-icon>notifications</mat-icon>
-        Notifikationer
-      </button>
-      <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        Logga ut
-      </button>
-    </mat-menu>
-  </span>
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item routerLink="profile">
+          <mat-icon>person</mat-icon>
+          Profilsida
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications</mat-icon>
+          Notifikationer
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logga ut
+        </button>
+      </mat-menu>
+    </span>
   </mat-toolbar>
 </header>
 
 <!-- Sidenav -->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" [fixedInViewport]="true"
-      [attr.role]="(isMobile$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isMobile$ | async) ? 'over' : 'side'"
-      [opened]="!(isMobile$ | async)">
+      [attr.role]="(isMobile | async) ? 'dialog' : 'navigation'"
+      [mode]="(isMobile | async) ? 'over' : 'side'"
+      [opened]="!(isMobile | async)">
     <mat-nav-list>
       <a mat-list-item routerLink="events">
         <mat-icon>event_note</mat-icon>
