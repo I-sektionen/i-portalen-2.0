@@ -55,6 +55,13 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <!-- Content here -->
-    <ng-content></ng-content>
+    <article>
+      <main>
+        <ng-content></ng-content>
+      </main>
+      <footer>
+        <app-footer></app-footer>
+      </footer>
+    </article>
   </mat-sidenav-content>
 </mat-sidenav-container>
