@@ -1,15 +1,17 @@
-<mat-toolbar color="primary">
-  <button
-    type="button"
-    mat-icon-button
-    (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <button mat-button routerLink="">
-    <h1>I-Portalen</h1>
-  </button>
-  <span class="fill-remaining-space"></span>
-  <span>
+<!-- Header -->
+<header>
+  <mat-toolbar color="primary">
+    <button
+      type="button"
+      mat-icon-button
+      (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-button routerLink="">
+      <h1>I-Portalen</h1>
+    </button>
+    <span class="fill-remaining-space"></span>
+    <span>
     <button mat-icon-button>
       <mat-icon>event_available</mat-icon>
     </button>
@@ -23,7 +25,10 @@
       <mat-icon>person</mat-icon>
     </button>
   </span>
-</mat-toolbar>
+  </mat-toolbar>
+</header>
+
+<!-- Sidenav -->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" [fixedInViewport]="true"
       [attr.role]="(isMobile$ | async) ? 'dialog' : 'navigation'"
@@ -54,11 +59,13 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- Content here -->
     <article>
+      <!-- Content -->
       <main>
         <ng-content></ng-content>
       </main>
+
+      <!--Footer-->
       <footer>
         <app-footer></app-footer>
       </footer>
