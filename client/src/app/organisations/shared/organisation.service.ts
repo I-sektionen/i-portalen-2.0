@@ -7,7 +7,29 @@ import { Organisation } from './organisation.model';
 })
 export class OrganisationService {
 
+  private readonly path = 'organisations'; // collection path
+
   constructor(
-    private databaseService: DatabaseService<Organisation>
+    private databaseService: DatabaseService<Organisation> // database service
   ) { }
+
+  insertOrganisation(organisation: Organisation) {
+    return this.databaseService.insert(this.path, organisation);
+  }
+
+  updateOrganisation(id, organisation: Organisation) {
+    return this.databaseService.update(this.path, id, organisation);
+  }
+
+  getOrganisation(id) {
+    return this.databaseService.get(this.path, id);
+  }
+
+  listOrganisations() {
+    return this.databaseService.list(this.path);
+  }
+
+  deleteOrganisation(id) {
+    return this.databaseService.delete(this.path, id);
+  }
 }
