@@ -2,6 +2,8 @@
 
 The official home for the new i-portalen 2.0 project
 
+Bleeding edge project status page: [HERE](https://github.com/I-sektionen/i-portalen-2.0/wiki/Project-Status)
+
 ## Links
 - [i-portalen](https://i-portalen.se)
 - [Wiki](https://github.com/I-sektionen/i-portalen-2.0/wiki)
