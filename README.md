@@ -1,8 +1,8 @@
 # i-portalen 2.0
 
-The official home for the new i-portalen 2.0 project
+The official home of the i-portalen 2.0 project.
 
-Bleeding edge project status page: [HERE](https://github.com/I-sektionen/i-portalen-2.0/wiki/Project-Status)
+The _bleeding edge_ project status page can be found [HERE](https://github.com/I-sektionen/i-portalen-2.0/wiki/Project-Status).
 
 ## Links
 - [i-portalen](https://i-portalen.se)
