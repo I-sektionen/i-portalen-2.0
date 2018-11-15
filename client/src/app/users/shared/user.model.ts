@@ -46,6 +46,7 @@ export interface User {
   phone?: string;
   rfid?: string;
   allergies?: string;
+  newspaper?: boolean;
 
   // Address
   address?: string;
