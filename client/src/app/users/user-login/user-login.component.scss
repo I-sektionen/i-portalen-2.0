@@ -1,14 +1,20 @@
 mat-card {
-  width: 100%;
+  width: 50%;
   max-width: 300px;
   padding: 16px;
-  margin-top: 200px;
+  margin-top: 0px;
+}
+mat-form-field {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 button {
-  width: 100%;
-  padding: 5px;
+  width: 80%;
+  padding: 1px;
   color: white;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 mat-form-field {

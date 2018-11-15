@@ -10,7 +10,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [UserLoginComponent, UserProfileComponent],
-  exports: [],
+  exports: [UserLoginComponent],
   providers: [],
   imports: [
     CommonModule,
