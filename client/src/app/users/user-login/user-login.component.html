@@ -1,6 +1,6 @@
-<div class="center-content">
-  <mat-card>
-    <form (ngSubmit)="login()" [formGroup]="loginForm">
+<div class="center-content" (click)="$event.stopPropagation();" (keydown.tab)="$event.stopPropagation() ">
+
+    <form (ngSubmit)="login()" [formGroup]="loginForm" >
 
       <!--Email-->
       <mat-form-field>
@@ -27,5 +27,5 @@
         </button>
       </div>
     </form>
-  </mat-card>
+
 </div>

@@ -12,11 +12,20 @@
     </button>
     <span class="fill-remaining-space"></span>
     <span *ngIf="!(isLoggedIn | async)">
-      <button mat-button routerLink="login">
-        Logga in
-      </button>
+      <!--<button mat-button routerLink="login">-->
+      <!--Logga in-->
+      <!--</button>-->
+    <mat-menu #appMenu="matMenu">
+      <app-user-login></app-user-login>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="appMenu">
+      Logga in
+      <mat-icon>account_circle</mat-icon>
+    </button>
     </span>
     <span *ngIf="isLoggedIn | async">
+
       <button mat-icon-button>
         <mat-icon>event_available</mat-icon>
       </button>
@@ -72,9 +81,9 @@
 <!-- Sidenav -->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" [fixedInViewport]="true"
-      [attr.role]="(isMobile | async) ? 'dialog' : 'navigation'"
-      [mode]="(isMobile | async) ? 'over' : 'side'"
-      [opened]="!(isMobile | async)">
+               [attr.role]="(isMobile | async) ? 'dialog' : 'navigation'"
+               [mode]="(isMobile | async) ? 'over' : 'side'"
+               [opened]="!(isMobile | async)">
     <mat-nav-list>
       <a mat-list-item routerLink="events">
         <mat-icon>event_note</mat-icon>
