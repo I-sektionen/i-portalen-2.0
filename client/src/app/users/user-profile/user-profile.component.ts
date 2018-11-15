@@ -3,6 +3,8 @@ import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs/index';
 import { User } from '../shared/user.model';
 
+
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -11,7 +13,6 @@ import { User } from '../shared/user.model';
 export class UserProfileComponent implements OnInit {
 
   userObservable: Observable<User>;
-
   constructor(
     private userService: UserService,
   ) { }
@@ -19,5 +20,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.userObservable = this.userService.user;
   }
+
 
 }

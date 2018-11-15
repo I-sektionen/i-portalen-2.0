@@ -6,6 +6,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [UserLoginComponent, UserProfileComponent],
@@ -21,6 +22,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSlideToggleModule
   ]
 })
 export class UsersModule { }

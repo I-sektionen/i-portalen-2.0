@@ -1,3 +1,31 @@
-<span *ngIf="userObservable | async as user">
-  {{ user.liu_id }}
-</span>
+<h2>LIU-ID</h2>
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Klass">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Nuvarande årskurs"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Allergier"></textarea>
+  </mat-form-field>
+
+  <mat-slide-toggle >Ipkuré</mat-slide-toggle>
+
+  <div *ngIf="true">
+    <p><mat-form-field id="adress">
+      <textarea  matInput placeholder="Adress"></textarea>
+    </mat-form-field></p>
+    <mat-form-field>
+      <textarea matInput placeholder="Postnummer"></textarea>
+    </mat-form-field>
+    <mat-form-field id="ort">
+      <textarea matInput placeholder="Ort" ></textarea>
+    </mat-form-field>
+  </div>
+
+</div>
+

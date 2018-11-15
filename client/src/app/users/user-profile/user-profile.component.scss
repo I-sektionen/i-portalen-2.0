@@ -1,0 +1,26 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  padding-left: 5px;
+}
+
+.example-container > * {
+  width: 100%;
+
+}
+h2 {
+  text-align: center;
+}
+
+#adress {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+
+#ort {
+  margin-right: 0;
+  margin-left: auto;
+}
