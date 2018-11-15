@@ -9,7 +9,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [UserLoginComponent, UserProfileComponent],
-  exports: [],
+  exports: [UserLoginComponent],
   providers: [],
   imports: [
     CommonModule,
