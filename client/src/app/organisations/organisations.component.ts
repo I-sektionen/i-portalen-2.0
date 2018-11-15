@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganisationsComponent implements OnInit {
 
+
+  organisations = ["org1", "org2", "org3", "org4","org5", "org6", "org7"];
+
   constructor() { }
 
   ngOnInit() {

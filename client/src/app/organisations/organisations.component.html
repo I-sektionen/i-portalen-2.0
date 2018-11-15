@@ -1,1 +1,6 @@
-<app-tree></app-tree>
+
+
+<div *ngfor = "let organisation of organisations" >
+  <app-card [name]="organisation"></app-card>
+</div>
+
