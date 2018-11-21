@@ -1,13 +1,33 @@
 <h2 *ngIf="user">{{user.liu_id}}</h2>
 <form [formGroup]="userInformation"></form>
 <div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Klass"  >
+  <table>
+  <mat-form-field class="shorter medshort">
+    <mat-select placeholder="Nuvarande årskurs">
+      <mat-option>--</mat-option>
+      <mat-option>1</mat-option>
+      <mat-option>2</mat-option>
+      <mat-option>3</mat-option>
+      <mat-option>4</mat-option>
+      <mat-option>5</mat-option>
+
+    </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Nuvarande årskurs">
+  <mat-form-field class="shorter">
+    <mat-select placeholder="Klass">
+      <mat-option>--</mat-option>
+      <mat-option>A</mat-option>
+      <mat-option>B</mat-option>
+      <mat-option>C</mat-option>
+      <mat-option>D</mat-option>
+      <mat-option>E</mat-option>
+      <mat-option>F</mat-option>
+      <mat-option>I</mat-option>
+
+    </mat-select>
   </mat-form-field>
+    </table>
 
   <mat-form-field>
     <input matInput placeholder="Allergier">
@@ -16,16 +36,19 @@
   <mat-form-field id="adress">
     <input  matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
   </mat-form-field>
-
-  <mat-form-field class="shorter">
+  <table>
+  <mat-form-field class="shorter medshort">
     <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
   </mat-form-field>
 
-  <mat-form-field id="ort" class="shorter">
+  <mat-form-field class="shorter">
     <input matInput placeholder="Ort" [formControl]="userInformation.controls['city']">
   </mat-form-field>
-
+  </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
+  <button mat-flat-button color="primary">Spara</button>
+
 </div>
+
 
