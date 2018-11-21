@@ -6,26 +6,26 @@
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Nuvarande årskurs"></textarea>
+    <input matInput placeholder="Nuvarande årskurs">
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Allergier"></textarea>
+    <input matInput placeholder="Allergier">
+  </mat-form-field>
+
+  <mat-form-field id="adress">
+    <input  matInput placeholder="Adress">
+  </mat-form-field>
+
+  <mat-form-field class="shorter">
+    <input matInput placeholder="Postnummer">
+  </mat-form-field>
+
+  <mat-form-field id="ort" class="shorter">
+    <input matInput placeholder="Ort" >
   </mat-form-field>
 
   <mat-slide-toggle >Ipkuré</mat-slide-toggle>
-
-  <div *ngIf="true">
-    <p><mat-form-field id="adress">
-      <textarea  matInput placeholder="Adress"></textarea>
-    </mat-form-field></p>
-    <mat-form-field>
-      <textarea matInput placeholder="Postnummer"></textarea>
-    </mat-form-field>
-    <mat-form-field id="ort">
-      <textarea matInput placeholder="Ort" ></textarea>
-    </mat-form-field>
-  </div>
 
 </div>
 

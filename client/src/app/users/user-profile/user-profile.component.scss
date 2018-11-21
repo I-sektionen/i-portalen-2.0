@@ -3,10 +3,13 @@
   flex-direction: column;
   max-width: 400px;
   padding-left: 5px;
+  text-align-all: center;
+  margin: auto;
 }
 
 .example-container > * {
   width: 100%;
+
 
 }
 h2 {
@@ -22,5 +25,8 @@ h2 {
 
 #ort {
   margin-right: 0;
-  margin-left: auto;
+  margin-left: 0;
+}
+.shorter {
+  max-width: 150px;
 }
