@@ -1,8 +1,8 @@
-<h2>LIU-ID</h2>
-
+<h2 *ngIf="user">{{user.liu_id}}</h2>
+<form [formGroup]="userInformation"></form>
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Klass">
+    <input matInput placeholder="Klass"  >
   </mat-form-field>
 
   <mat-form-field>
@@ -14,18 +14,18 @@
   </mat-form-field>
 
   <mat-form-field id="adress">
-    <input  matInput placeholder="Adress">
+    <input  matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
   </mat-form-field>
 
   <mat-form-field class="shorter">
-    <input matInput placeholder="Postnummer">
+    <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
   </mat-form-field>
 
   <mat-form-field id="ort" class="shorter">
-    <input matInput placeholder="Ort" >
+    <input matInput placeholder="Ort" [formControl]="userInformation.controls['city']">
   </mat-form-field>
 
-  <mat-slide-toggle >Ipkuré</mat-slide-toggle>
+  <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
 </div>
 
