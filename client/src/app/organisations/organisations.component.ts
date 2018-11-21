@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganisationsComponent implements OnInit {
 
-
-  organisations = ["org1", "org2", "org3", "org4","org5", "org6", "org7"];
+  //@input
+  organisations = ["Webgroup", "Alumni", "Näringslivsutskottet", "Styret","Clubmästeriet",
+    "Webgroup", "Alumni", "Näringslivsutskottet", "Styret","Clubmästeriet",
+    "Webgroup", "Alumni", "Näringslivsutskottet", "Styret","Clubmästeriet",
+    "Webgroup", "Alumni", "Näringslivsutskottet", "Styret","Clubmästeriet",
+    "Webgroup", "Alumni", "Näringslivsutskottet", "Styret","Clubmästeriet",
+    "Webgroup", "Alumni", "Näringslivsutskottet"]; //Här ska info hämtas från db istället
 
   constructor() { }
 

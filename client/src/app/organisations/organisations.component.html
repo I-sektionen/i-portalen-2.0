@@ -1,6 +1,23 @@
+<div class="org-head">
 
+<p style="text-align: center;">bild på I-sektionen logga</p>
 
-<div *ngfor = "let organisation of organisations" >
-  <app-card [name]="organisation"></app-card>
+    <button class="btn">Läs mer om sektionen</button>
 </div>
 
+<!-- Org search
+<div class="org-search-wrapper" style="float: right;">
+<input type="text" class="org-search">
+    <i class="material-icons" style="float: right; cursor: pointer; font-size: 35px">search</i>
+</div>
+-->
+
+<h2 style="text-align: center;">Utskott</h2>
+
+<hr> <!-- horisontell linje -->
+
+<div class="org-wrapper">
+
+<app-card *ngFor="let name of organisations" [orgName]="name"></app-card>
+
+</div>
