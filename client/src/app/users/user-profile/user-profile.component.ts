@@ -26,6 +26,7 @@ export class UserProfileComponent implements OnInit {
       'city':[''],
       'zip_code':[''],
       'allergies':[''],
+      'class':[''],
       'newspaper':[false],
     });
   }
@@ -48,6 +49,20 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'city': user.city});
       this.userInformation.patchValue({'zip_code': user.zip_code});
       this.userInformation.patchValue({'allergies': user.allergies});
+      this.userInformation.patchValue({'class': user.class});
     })
+  }
+
+  onSubmit(form) {
+    //const data = {this.user.address: form.value.address, desc: form.value.desc, alt: form.value.alt, header: form.value.header,
+     // firebase_url: this.url, id: this.formToComponent.getId(this.url).value};
+    console.log(form.value);
+    this.user.address = form.value.address;
+    this.user.city = form.value.city;
+    this.user.zip_code = form.value.zip_code;
+    this.user.newspaper = form.value.newspaper;
+    //this.user.allergies = form.value.allergies;
+
+    this.userService.updateUser(this.user);
   }
 }

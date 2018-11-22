@@ -1,33 +1,31 @@
 <h2 *ngIf="user">{{user.liu_id}}</h2>
-<form [formGroup]="userInformation"></form>
-<div class="example-container">
+<form class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <table>
-  <mat-form-field class="shorter medshort">
-    <mat-select placeholder="Nuvarande årskurs">
-      <mat-option>--</mat-option>
-      <mat-option>1</mat-option>
-      <mat-option>2</mat-option>
-      <mat-option>3</mat-option>
-      <mat-option>4</mat-option>
-      <mat-option>5</mat-option>
+    <mat-form-field class="shorter medshort">
+      <mat-select placeholder="Nuvarande årskurs">
+        <mat-option>--</mat-option>
+        <mat-option>1</mat-option>
+        <mat-option>2</mat-option>
+        <mat-option>3</mat-option>
+        <mat-option>4</mat-option>
+        <mat-option>5</mat-option>
 
-    </mat-select>
-  </mat-form-field>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field class="shorter">
-    <mat-select placeholder="Klass">
-      <mat-option>--</mat-option>
-      <mat-option>A</mat-option>
-      <mat-option>B</mat-option>
-      <mat-option>C</mat-option>
-      <mat-option>D</mat-option>
-      <mat-option>E</mat-option>
-      <mat-option>F</mat-option>
-      <mat-option>I</mat-option>
-
-    </mat-select>
-  </mat-form-field>
-    </table>
+    <mat-form-field class="shorter">
+      <mat-select placeholder="Klass">
+        <mat-option>--</mat-option>
+        <mat-option>A</mat-option>
+        <mat-option>B</mat-option>
+        <mat-option>C</mat-option>
+        <mat-option>D</mat-option>
+        <mat-option>E</mat-option>
+        <mat-option>F</mat-option>
+        <mat-option>I</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </table>
 
   <mat-form-field>
     <input matInput placeholder="Allergier">
@@ -37,18 +35,17 @@
     <input  matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
   </mat-form-field>
   <table>
-  <mat-form-field class="shorter medshort">
-    <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
-  </mat-form-field>
+    <mat-form-field class="shorter medshort">
+      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
+    </mat-form-field>
 
-  <mat-form-field class="shorter">
-    <input matInput placeholder="Ort" [formControl]="userInformation.controls['city']">
-  </mat-form-field>
+    <mat-form-field class="shorter">
+      <input matInput placeholder="Ort" [formControl]="userInformation.controls['city']">
+    </mat-form-field>
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
-  <button mat-flat-button color="primary">Spara</button>
-
-</div>
+  <button type="submit" mat-flat-button color="primary">Spara</button>
+</form>
 
 
