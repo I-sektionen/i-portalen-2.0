@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
-import { User } from '../shared/user.model';
+import {User} from '../shared/user.model';
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 
@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     //this.userObservable = this.userService.user;
-
+    //console.log(this.user.class);
     this.userService.user.subscribe(user =>
     {
 
@@ -61,7 +61,7 @@ export class UserProfileComponent implements OnInit {
    Object.keys(form.value).forEach(attribute =>
     {
       console.log("Fältet: " + form.value[attribute]);
-      if(form.value[attribute])
+      if(form.value[attribute] != null)
       {
         this.user[attribute] = form.value[attribute];
 

@@ -1,7 +1,7 @@
 <h2 *ngIf="user">{{user.liu_id}}</h2>
-<form class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
+<form *ngIf="user" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <table>
-    <mat-form-field class="shorter medshort" >
+    <mat-form-field  class="shorter medshort" >
       <mat-select placeholder="Nuvarande årskurs" [(value)]="user.current_year">
         <mat-option value="">--</mat-option>
         <mat-option value="1">1</mat-option>
