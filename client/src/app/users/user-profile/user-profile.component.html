@@ -28,7 +28,7 @@
   </table>
 
   <mat-form-field>
-    <input matInput placeholder="Allergier">
+    <input matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
   </mat-form-field>
 
   <mat-form-field id="adress">
