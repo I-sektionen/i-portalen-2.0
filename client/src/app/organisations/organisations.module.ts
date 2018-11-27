@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { OrganisationsRoutingModule } from './organisations-routing.module';
 import { OrganisationsComponent } from './organisations.component';
