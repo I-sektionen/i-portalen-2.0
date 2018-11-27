@@ -1,6 +1,6 @@
 <div class="org-head" style="background-size: cover; background-position: center; /*background-image: url('https://s3.eu-central-1.amazonaws.com/isektionen-bildbank/hero-images/corson.jpg');*/     background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('https://s3.eu-central-1.amazonaws.com/isektionen-bildbank/hero-images/corson.jpg');">
 
-<!--<p style="text-align: center;">bild på I-sektionen logga</p>-->
+  <!--<p style="text-align: center;">bild på I-sektionen logga</p>-->
   <!-- Bild på I-sektionens logga -->
   <div style="width: 200px; height: 200px; background-image: url('https://s3.eu-central-1.amazonaws.com/isektionen-bildbank/ie_cirkel_pms.png'); background-size: contain; margin-left: -100px; left: 50%; margin-top: 30px; position: relative;"></div>
 
@@ -11,26 +11,26 @@
 
 
 <div style="margin-top: -50px; z-index: 1000000; display: block; position: relative;">
-<mat-expansion-panel style="background-color: rgba(255,255,255,0.2); border: none; box-shadow: none;" [hideToggle] = "true" >
-  <mat-expansion-panel-header>
-    <div style="text-align: center; width: 100%">
+  <mat-expansion-panel style="background-color: rgba(255,255,255,0.2); border: none; box-shadow: none;" [hideToggle]="true">
+    <mat-expansion-panel-header>
+      <div style="text-align: center; width: 100%">
 
-      <p style="color: white;">Om Sektionen</p>
-      <i class="material-icons" style="color: white; font-size: 40px; margin-top: -15px;">
-        expand_more
-      </i>
+        <p style="color: white;">Om Sektionen</p>
+        <i class="material-icons" style="color: white; font-size: 40px; margin-top: -15px;">
+          expand_more
+        </i>
+      </div>
+    </mat-expansion-panel-header>
+    <div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
-  </mat-expansion-panel-header>
-<div>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
-</mat-expansion-panel>
+  </mat-expansion-panel>
 
 </div>
 
@@ -40,7 +40,5 @@
 <hr> <!-- horisontell linje -->
 
 <div class="org-wrapper">
-
-<app-card *ngFor="let name of organisations" [orgName]="name"></app-card>
-
+  <app-card *ngFor="let element of organisations" [orgLogoUrl]="element.org_logo_url" [orgName]="element.organisation"></app-card>
 </div>
