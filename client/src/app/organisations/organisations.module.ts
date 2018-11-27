@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
 
 import { OrganisationsRoutingModule } from './organisations-routing.module';
@@ -14,6 +15,7 @@ import { CardComponent } from './card/card.component';
     CommonModule,
     OrganisationsRoutingModule,
     SharedModule,
+    MatExpansionModule,
   ]
 })
 export class OrganisationsModule { }
