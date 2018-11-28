@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
-import { Observable } from 'rxjs';
-import {User} from '../shared/user.model';
+import { Observable } from 'rxjs/index';
+import { User } from '../shared/user.model';
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 
@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     //this.userObservable = this.userService.user;
-    //console.log(this.user.class);
+
     this.userService.user.subscribe(user =>
     {
 
@@ -43,8 +43,6 @@ export class UserProfileComponent implements OnInit {
      {
        this.userInformation.addControl(attribute, user[attribute]);
      })
-
-
 */
       this.userInformation.patchValue({'address': user.address});
       this.userInformation.patchValue({'newspaper': user.newspaper});
@@ -58,15 +56,12 @@ export class UserProfileComponent implements OnInit {
   onSubmit(form) {
     //const data = {this.user.address: form.value.address, desc: form.value.desc, alt: form.value.alt, header: form.value.header,
      // firebase_url: this.url, id: this.formToComponent.getId(this.url).value};
-   Object.keys(form.value).forEach(attribute =>
-    {
-      console.log("Fältet: " + form.value[attribute]);
-      if(form.value[attribute] != null)
-      {
-        this.user[attribute] = form.value[attribute];
-
-      }
-    });
+    console.log(form.value);
+    this.user.address = form.value.address;
+    this.user.city = form.value.city;
+    this.user.zip_code = form.value.zip_code;
+    this.user.newspaper = form.value.newspaper;
+    //this.user.allergies = form.value.allergies;
     this.userService.updateUser(this.user);
   }
 }
