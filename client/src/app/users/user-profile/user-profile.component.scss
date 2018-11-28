@@ -36,3 +36,11 @@ button{
   max-width: 200px;
   padding-right: 65px;
 }
+
+/* this is another solution for edit mode
+
+input[disabled], mat-select[disabled] {
+  color: aqua;
+}
+
+*/
