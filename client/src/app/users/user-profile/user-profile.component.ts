@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   userObservable: Observable<User>;
   user:User;
   userInformation: FormGroup;
+  editing = false;
 
   constructor(
     private userService: UserService,
@@ -28,6 +29,7 @@ export class UserProfileComponent implements OnInit {
       'allergies':[''],
       'newspaper':[false],
     });
+    this.userInformation.disable();
   }
 
   ngOnInit() {
@@ -43,17 +45,29 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+
   onSubmit(form) {
    Object.keys(form.value).forEach(attribute =>
     {
       if(form.value[attribute] != null)
       {
         this.user[attribute] = form.value[attribute];
-
       }
     });
 
     this.userService.updateUser(this.user);
     console.log("Dina uppgifter har uppdaterats!");
+  }
+
+  editFields()
+  {
+    this.editing = !this.editing;
+    if(this.editing)
+    {
+      this.userInformation.enable();
+    }
+    else {
+      this.userInformation.disable();
+    }
   }
 }

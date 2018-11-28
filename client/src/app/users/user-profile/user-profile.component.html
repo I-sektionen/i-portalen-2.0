@@ -1,9 +1,9 @@
 <h2 *ngIf="user">{{user.liu_id}}</h2>
 <!--Showed if user in edit mode, this i just a test solution -->
-<form *ngIf="user && true; else inputBlock" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
+<form *ngIf="user" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <table>
     <mat-form-field  class="shorter medshort" >
-      <mat-select placeholder="Nuvarande årskurs" [(value)]="user.current_year" >
+      <mat-select [disabled]="!editing" placeholder="Nuvarande årskurs" [(value)]="user.current_year" >
         <mat-option value="">--</mat-option>
         <mat-option value="1">1</mat-option>
         <mat-option value="2">2</mat-option>
@@ -15,7 +15,7 @@
     </mat-form-field>
 
     <mat-form-field class="shorter">
-      <mat-select placeholder="Klass" [(value)]="user.class">
+      <mat-select [disabled]="!editing" placeholder="Klass" [(value)]="user.class">
         <mat-option value="">--</mat-option>
         <mat-option value="A">A</mat-option>
         <mat-option value="B">B</mat-option>
@@ -30,11 +30,11 @@
   </table>
 
   <mat-form-field>
-    <input matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
+    <input  matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
   </mat-form-field>
 
   <mat-form-field id="adress">
-    <input  matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
+    <input matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
   </mat-form-field>
 
   <table>
@@ -48,7 +48,8 @@
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
-  <button type="submit" mat-flat-button color="primary">Spara</button>
+  <button *ngIf="editing" (click)="editFields()" type="submit" mat-flat-button color="primary">Spara</button>
+  <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
 </form>
 
 <!--Showed if user not in edit mode
