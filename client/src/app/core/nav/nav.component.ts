@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
+import {MatDialog} from '@angular/material';
+import {UserProfileComponent} from "../../users/user-profile/user-profile.component";
 
 @Component({
   selector: 'app-nav',
@@ -19,6 +21,7 @@ export class NavComponent implements OnInit {
   isLoggedIn: Observable<boolean>;
 
   constructor(
+    public dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
   ) { }
@@ -29,5 +32,15 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  openProfile(): void {
+    const dialogRef = this.dialog.open(UserProfileComponent, {
+      width: '480px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+    //^^ Can be used to react to dialog exit
   }
 }

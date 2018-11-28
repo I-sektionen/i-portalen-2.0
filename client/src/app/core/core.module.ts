@@ -9,7 +9,7 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatListModule,
-  MatMenuModule,
+  MatMenuModule, MatDialogModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
@@ -36,6 +36,7 @@ import {UsersModule} from "../users/users.module";
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatDialogModule,
 
     // Custom
     FirebaseModule,

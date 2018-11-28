@@ -61,7 +61,7 @@
         <mat-icon>person</mat-icon>
       </button>
       <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item routerLink="profile">
+        <button mat-menu-item (click)="openProfile()">
           <mat-icon>person</mat-icon>
           Profilsida
         </button>
