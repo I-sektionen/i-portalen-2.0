@@ -26,7 +26,6 @@ export class UserProfileComponent implements OnInit {
       'city':[''],
       'zip_code':[''],
       'allergies':[''],
-      'class':[''],
       'newspaper':[false],
     });
   }
@@ -60,7 +59,6 @@ export class UserProfileComponent implements OnInit {
      // firebase_url: this.url, id: this.formToComponent.getId(this.url).value};
    Object.keys(form.value).forEach(attribute =>
     {
-      console.log("Fältet: " + form.value[attribute]);
       if(form.value[attribute] != null)
       {
         this.user[attribute] = form.value[attribute];
