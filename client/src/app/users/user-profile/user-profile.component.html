@@ -1,6 +1,6 @@
 <h2 *ngIf="user">{{user.liu_id}}</h2>
 <!--Showed if user in edit mode, this i just a test solution -->
-<form *ngIf="user" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
+<form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <table>
     <mat-form-field  class="shorter medshort" >
       <mat-select [disabled]="!editing" placeholder="Nuvarande årskurs" [(value)]="user.current_year" >
