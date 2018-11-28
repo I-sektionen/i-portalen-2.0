@@ -31,20 +31,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.userObservable = this.userService.user;
-    //console.log(this.user.class);
     this.userService.user.subscribe(user =>
     {
-
       this.user = user;
-      /*let keys = Object.keys(user);
-     keys.forEach(attribute =>
-     {
-       this.userInformation.addControl(attribute, user[attribute]);
-     })
-
-
-*/
       this.userInformation.patchValue({'address': user.address});
       this.userInformation.patchValue({'newspaper': user.newspaper});
       this.userInformation.patchValue({'city': user.city});
@@ -55,8 +44,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   onSubmit(form) {
-    //const data = {this.user.address: form.value.address, desc: form.value.desc, alt: form.value.alt, header: form.value.header,
-     // firebase_url: this.url, id: this.formToComponent.getId(this.url).value};
    Object.keys(form.value).forEach(attribute =>
     {
       if(form.value[attribute] != null)
@@ -65,6 +52,8 @@ export class UserProfileComponent implements OnInit {
 
       }
     });
+
     this.userService.updateUser(this.user);
+    console.log("Dina uppgifter har uppdaterats!");
   }
 }
