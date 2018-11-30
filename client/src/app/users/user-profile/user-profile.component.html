@@ -35,15 +35,27 @@
 
   <mat-form-field id="adress">
     <input matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
+    <mat-error *ngIf="userInformation.controls['address'].touched &&
+    userInformation.controls['address'].hasError('required')">
+      Adress krävs.
+    </mat-error>
   </mat-form-field>
 
   <table>
     <mat-form-field class="shorter medshort">
       <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
+      <mat-error *ngIf="userInformation.controls['zip_code'].touched &&
+      userInformation.controls['zip_code'].hasError('required')">
+        Postnummer krävs.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="shorter">
       <input matInput placeholder="Ort" [formControl]="userInformation.controls['city']">
+      <mat-error *ngIf="userInformation.controls['city'].touched &&
+    userInformation.controls['city'].hasError('required')">
+        Ort krävs.
+      </mat-error>
     </mat-form-field>
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
@@ -52,6 +64,6 @@
     <button *ngIf="editing" (click)="editFields()" type="submit" mat-flat-button color="primary">Spara</button>
     <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
 
-    <button (click)="closeProfile()" type="submit" mat-flat-button color="secondary" id="close">Stäng</button>
+    <button (click)="closeProfile()" mat-flat-button color="warn" id="close">Stäng</button>
   </table>
 </form>

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
 import {User} from '../shared/user.model';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatDialogRef} from "@angular/material";
+
 
 @Component({
   selector: 'app-user-profile',
@@ -23,9 +24,9 @@ export class UserProfileComponent implements OnInit {
     public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
-      'address':[''],
-      'city':[''],
-      'zip_code':[''],
+      'address':['', Validators.required],
+      'city':['', Validators.required],
+      'zip_code':['', Validators.required],
       'allergies':[''],
       'newspaper':[false],
     });
@@ -55,9 +56,13 @@ export class UserProfileComponent implements OnInit {
         this.user[attribute] = form.value[attribute];
       }
     });
-
     this.userService.updateUser(this.user);
-    console.log("Dina uppgifter har uppdaterats!");
+/*    this.userService.updateUser(this.user).then((function () {
+      console.log("Dina uppgifter har uppdaterats");
+    })).catch(function() {
+      console.log("failed");
+    });*/
+
   }
 
   editFields()
