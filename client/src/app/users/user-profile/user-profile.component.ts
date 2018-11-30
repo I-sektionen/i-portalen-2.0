@@ -3,8 +3,7 @@ import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
 import {User} from '../shared/user.model';
 import {FormBuilder, FormGroup} from "@angular/forms";
-
-
+import {MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-user-profile',
@@ -21,6 +20,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
+    public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
       'address':[''],
@@ -30,6 +30,7 @@ export class UserProfileComponent implements OnInit {
       'newspaper':[false],
     });
     this.userInformation.disable();
+
   }
 
   ngOnInit() {
@@ -69,5 +70,9 @@ export class UserProfileComponent implements OnInit {
     else {
       this.userInformation.disable();
     }
+  }
+
+  closeProfile(): void {
+    this.dialogRef.close();
   }
 }

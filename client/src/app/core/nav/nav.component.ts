@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
 
   openProfile(): void {
     const dialogRef = this.dialog.open(UserProfileComponent, {
-      width: '480px',
+      width: 'flex',
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -29,7 +29,7 @@
     </mat-form-field>
   </table>
 
-  <mat-form-field>
+  <mat-form-field >
     <input  matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
   </mat-form-field>
 
@@ -48,63 +48,10 @@
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
-  <button *ngIf="editing" (click)="editFields()" type="submit" mat-flat-button color="primary">Spara</button>
-  <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
+  <table>
+    <button *ngIf="editing" (click)="editFields()" type="submit" mat-flat-button color="primary">Spara</button>
+    <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
+
+    <button (click)="closeProfile()" type="submit" mat-flat-button color="secondary" id="close">Stäng</button>
+  </table>
 </form>
-
-<!--Showed if user not in edit mode
-
-<ng-template #inputBlock>
-  <div *ngIf="user" class="example-container">
-    <table>
-      <mat-form-field  class="shorter medshort" >
-        <mat-select placeholder="Nuvarande årskurs" [(value)]="user.current_year" >
-          <mat-option value="">--</mat-option>
-          <mat-option value="1">1</mat-option>
-          <mat-option value="2">2</mat-option>
-          <mat-option value="3">3</mat-option>
-          <mat-option value="4">4</mat-option>
-          <mat-option value="5">5</mat-option>
-
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="shorter">
-        <mat-select placeholder="Klass" [(value)]="user.class">
-          <mat-option value="">--</mat-option>
-          <mat-option value="A">A</mat-option>
-          <mat-option value="B">B</mat-option>
-          <mat-option value="C">C</mat-option>
-          <mat-option value="D">D</mat-option>
-          <mat-option value="E">E</mat-option>
-          <mat-option value="F">F</mat-option>
-          <mat-option value="IA">IA</mat-option>
-          <mat-option value="IB">IB</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </table>
-
-    <mat-form-field>
-      <input matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
-    </mat-form-field>
-
-    <mat-form-field id="adress">
-      <input  matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
-    </mat-form-field>
-
-    <table>
-      <mat-form-field class="shorter medshort">
-        <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
-      </mat-form-field>
-
-      <mat-form-field class="shorter">
-        <input matInput placeholder="Ort" [formControl]="userInformation.controls['city']">
-      </mat-form-field>
-    </table>
-    <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
-
-    <button type="submit" mat-flat-button color="primary">Spara</button>
-  </div>
-</ng-template>
-
--->

@@ -37,6 +37,11 @@ button{
   padding-right: 65px;
 }
 
+#close {
+  margin-left: 255px;
+  margin-right: 0;
+}
+
 /* this is another solution for edit mode
 
 input[disabled], mat-select[disabled] {
@@ -44,6 +49,7 @@ input[disabled], mat-select[disabled] {
 }
 
 */
+
 
 ::ng-deep .disabled-fields .mat-form-field-underline {
   display: none;
@@ -56,3 +62,4 @@ input[disabled], mat-select[disabled] {
 //::ng-deep .disabled-fields .mat-form-field-label {
 // display:none!important;
 //}
+
