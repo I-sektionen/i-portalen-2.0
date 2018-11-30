@@ -3,7 +3,7 @@ import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
 import {User} from '../shared/user.model';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MatDialogRef} from "@angular/material";
+//import {MatDialogRef} from "@angular/material";
 
 
 @Component({
@@ -20,8 +20,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<UserProfileComponent>
+    private fb: FormBuilder
+    //public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
       'address':['', Validators.required],
@@ -49,25 +49,27 @@ export class UserProfileComponent implements OnInit {
 
 
   onSubmit(form) {
-   Object.keys(form.value).forEach(attribute =>
+    Object.keys(form.value).forEach(attribute =>
     {
       if(form.value[attribute] != null)
       {
         this.user[attribute] = form.value[attribute];
       }
     });
-    this.userService.updateUser(this.user);
-/*    this.userService.updateUser(this.user).then((function () {
+    //this.userService.updateUser(this.user);
+    this.editing = false;
+    this.userService.updateUser(this.user).then((function () {
       console.log("Dina uppgifter har uppdaterats");
+
     })).catch(function() {
       console.log("failed");
-    });*/
+    });
 
   }
 
   editFields()
   {
-    this.editing = !this.editing;
+    this.editing = true;
     if(this.editing)
     {
       this.userInformation.enable();
@@ -75,9 +77,5 @@ export class UserProfileComponent implements OnInit {
     else {
       this.userInformation.disable();
     }
-  }
-
-  closeProfile(): void {
-    this.dialogRef.close();
   }
 }
