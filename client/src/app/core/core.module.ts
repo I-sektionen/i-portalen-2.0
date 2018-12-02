@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DatabaseService } from './database/database.service';
 import { FirebaseModule } from './firebase/firebase.module';
+import {UsersModule} from "../users/users.module";
 
 @NgModule({
   declarations: [NavComponent, FooterComponent],
@@ -38,6 +39,7 @@ import { FirebaseModule } from './firebase/firebase.module';
 
     // Custom
     FirebaseModule,
+    UsersModule,
   ]
 })
 export class CoreModule { }

@@ -1,0 +1,74 @@
+.org-head{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  border: 1px solid green;
+}
+
+.btn{
+  position: absolute;
+  bottom:   0;
+  right:    0;
+  display:inline-block;
+  border: 1px solid grey;
+  border-radius: 10px;
+  background-color: inherit;
+  padding: 14px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn:hover{
+  background: #F3D200;
+  transform: scale(1.05);
+  transition: .5s;
+  transition-delay: 0.2s;
+}
+
+.org-wrapper{
+
+  /*border: 1px solid black;*/
+  padding: 10px;
+}
+
+.org-search{
+
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-size: 35px
+}
+
+.org-search:focus{
+
+  border-bottom: 1px solid green;
+  background-color: inherit;
+  font-size: 25px;
+}
+
+input[type=text] {
+  display: block;
+  margin: 0 0 0 auto;
+  width: 130px;
+  /*box-sizing: border-box;*/
+  border: none; /*2px solid #ccc;*/
+  border-radius: 4px;
+  font-size: 16px;
+  /*background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;*/
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+  background-color: #cccccc;
+}
+
+::ng-deep .mat-expansion-panel-body{
+
+  background-color: rgb(255,255,255);
+
+}
