@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-login',
@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserLoginComponent {
 
+  wrongCred = false;
   loginForm = new FormGroup({
     liu_id: new FormControl('',
       [Validators.required],
@@ -19,6 +20,7 @@ export class UserLoginComponent {
   });
 
   constructor(private authService: AuthService) {
+    this.onChanges();
   }
 
   get liu_id() {
@@ -30,6 +32,16 @@ export class UserLoginComponent {
   }
 
   login() {
-    this.authService.loginLiUIDAndPassword(this.liu_id.value, this.password.value);
+    this.authService.loginLiUIDAndPassword(this.liu_id.value, this.password.value)
+    .catch( (err) => {
+      this.wrongCred = true;
+    })
   }
+  onChanges(): void {
+this.loginForm.valueChanges.subscribe(val => {
+    this.wrongCred = false
+  });
 }
+}
+
+
