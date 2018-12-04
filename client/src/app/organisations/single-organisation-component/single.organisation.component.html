@@ -1,16 +1,20 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>
-        <h1 class="mat-display-3">Webgroup</h1>
-    </mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>
-        <mat-list>
-            <mat-list-item> Pepper </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item> Salt </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item> Paprika </mat-list-item>
-        </mat-list>
-    </mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-</mat-grid-list>
+<div class="card outer-wrap">
+    <h1 class="org-title">{{tiles[0].title}}</h1>
+    <div class="card">
+        <mat-grid-list cols="12" rowHeight="111px" gutterSize="10px">
+            <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+                <img src="{{tile.url}}" class="{{tile.class}}">
+                <p class="org-text">{{tile.text}}</p>
+                <mat-list>
+                    <mat-list-item *ngFor="let member of tile.members">
+                        <div class="org-members-list">
+                            <p style="float: left">{{member.name}}</p>
+                            <p style="float: right">{{member.role}}</p>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
