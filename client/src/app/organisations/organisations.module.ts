@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatGridListModule, MatListModule } from '@angular/material';
+import { MatGridListModule, MatListModule, MatCardModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 import { OrganisationsRoutingModule } from './organisations-routing.module';
 import { OrganisationsComponent } from './organisations.component';
@@ -20,7 +21,9 @@ import { CardComponent } from './card/card.component';
     SharedModule,
     MatExpansionModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule,
+    MatCardModule
   ]
 })
 export class OrganisationsModule { }

@@ -1,17 +1,36 @@
-.org-icon {
-    max-height: 100%
-}
-
-.org-header {
-    max-width: 100%;
-}
-
-.outer-wrap {
+.outer-wrap {    
+    display: flex;
+    flex-direction: column;
     margin: 20px;
 }
 
+.row {
+    margin: 20px;
+}
+
+.org-card {
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+.org-icon {
+    margin: auto;
+    max-width: 100%;
+    max-height: 200px;
+}
+
+.org-header {
+    width: 100%;
+    max-height: 200px;
+}
+
 .org-title {
-    margin-left: 30px;
+    /* padding: 20px 0 20px 40px; */
+   /*  text-align: center; */
+   
+   vertical-align: baseline;
+    text-align: center;
+    margin: 0;
     font-size: 50px;
 }
 

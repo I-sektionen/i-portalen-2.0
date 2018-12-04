@@ -1,6 +1,48 @@
-<div class="card outer-wrap">
-    <h1 class="org-title">{{tiles[0].title}}</h1>
-    <div class="card">
+<mat-card class="org-card outer-wrap">
+
+    <mat-card class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="32px" fxLayoutAlign="flex-start" style="max-height: 200px">
+
+        <!-- Organisation icon box -->
+        <div style="text-align: center" fxFlex="1 1 calc(33.3% - 32px)">
+            <img src="{{tiles[0].url}}" class="{{tiles[0].class}}">
+        </div>
+
+        <!-- Organisation title -->
+        <div style="vertical-align: middle" fxFlex="4 1 calc(33.3% - 32px)">
+            <h1 class="org-title">{{tiles[0].title}}</h1>
+        </div>
+
+        <!--       Organisation header
+        <div class="org-card" fxFlex="2 1 calc(33.3% - 32px)">
+            <img src="{{tiles[1].url}}" class="{{tiles[1].class}}">
+        </div> -->
+
+    </mat-card>
+    <div class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+
+        <!-- Organisation description -->
+        <mat-card fxFlex="2 1 calc(33.3% - 32px)">
+            <p class="org-text">{{tiles[2].text}}</p>
+        </mat-card>
+
+
+        <!-- Organisation member list -->
+        <mat-card fxFlex="1 1 calc(33.3% - 32px)">
+            <mat-list>
+                <mat-list-item *ngFor=" let member of tiles[3].members">
+                    <div class="org-members-list">
+                        <p style="float: left">{{member.name}}</p>
+                        <p style="float: right">{{member.role}}</p>
+                    </div>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+
+    </div>
+</mat-card>
+
+<!-- <div class="card">
         <mat-grid-list cols="12" rowHeight="111px" gutterSize="10px">
             <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
                 <img src="{{tile.url}}" class="{{tile.class}}">
@@ -16,5 +58,4 @@
                 </mat-list>
             </mat-grid-tile>
         </mat-grid-list>
-    </div>
-</div>
+    </div> -->
