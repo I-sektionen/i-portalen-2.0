@@ -18,12 +18,14 @@ export class UserProfileComponent implements OnInit {
   userInformation: FormGroup;
   editing = false;
 
+
   constructor(
     private userService: UserService,
     private fb: FormBuilder
     //public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
+      'class' : [''],
       'address':['', Validators.required],
       'city':['', Validators.required],
       'zip_code':['', Validators.required],

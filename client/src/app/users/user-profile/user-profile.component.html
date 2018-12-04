@@ -1,4 +1,4 @@
-<h2 *ngIf="user">{{user.liu_id}}</h2>
+<h2 *ngIf="user">{{user.first_name+' '+user.last_name | titlecase}}</h2>
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <table>
     <mat-form-field  class="shorter medshort" >
@@ -14,8 +14,8 @@
     </mat-form-field>
 
     <mat-form-field class="shorter">
-      <mat-select [disabled]="!editing" placeholder="Klass" [(value)]="user.class">
-        <mat-option value="">--</mat-option>
+      <mat-select [disabled]="!editing" placeholder="Klass" [(value)]="user.class"  [formControl]="userInformation.controls['class']" >
+        <mat-option value="" >--</mat-option>
         <mat-option value="A">A</mat-option>
         <mat-option value="B">B</mat-option>
         <mat-option value="C">C</mat-option>
@@ -60,7 +60,7 @@
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
   <table>
-    <button *ngIf="editing" type="submit" mat-flat-button color="primary">Spara</button>
+    <button *ngIf="editing" type="submit" mat-flat-button color="primary" >Spara</button>
     <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
 
     <button type="button" mat-dialog-close mat-flat-button color="warn" id="close">Stäng</button>
