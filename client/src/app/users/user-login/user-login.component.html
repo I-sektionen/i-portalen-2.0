@@ -1,6 +1,6 @@
 <div class="center-content" (click)="$event.stopPropagation();" (keydown.tab)="$event.stopPropagation() ">
-
-    <form (ngSubmit)="login()" [formGroup]="loginForm" >
+    <!--loginscreen==true -> login, loginscren==false -> reset password -->
+    <form (ngSubmit)="(loginScreen) ? login() : reset()" [formGroup]="loginForm" >
 
       <!--Email-->
       <mat-form-field>
@@ -11,7 +11,7 @@
       </mat-form-field>
 
       <!--Password-->
-      <mat-form-field>
+      <mat-form-field *ngIf="loginScreen">
         <input matInput placeholder="Lösenord" type="password" formControlName="password">
         <mat-error *ngIf="password.touched && password.hasError('required')">
           Lösenord krävs.
@@ -19,14 +19,14 @@
       </mat-form-field>
 
       <!--Forgot password-->
-      <a [routerLink]="['/new_password']" class="btn btn-link">Glömt lösenordet?</a>
+      <a routerLink="" (click)="loginScreen = !loginScreen" class="btn btn-link">{{(loginScreen) ? "Glömt lösenordet?" : "Logga in"}}</a>
 
       <!--Submit-->
       <div class="login-button-div">
         <button
           mat-raised-button
           color="primary">
-          Logga in
+          {{(loginScreen) ? "Logga in" : "Skicka återställningslänk"}}
         </button>
       </div>
     </form>
