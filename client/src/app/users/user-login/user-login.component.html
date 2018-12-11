@@ -11,12 +11,14 @@
       </mat-form-field>
 
       <!--Password-->
-      <mat-form-field>
-        <input matInput placeholder="Lösenord" type="password" formControlName="password">
-        <mat-error *ngIf="password.touched && password.hasError('required')">
-          Lösenord krävs.
-        </mat-error>
-      </mat-form-field>
+      <div *ngIf="showPasswordField">
+        <mat-form-field>
+          <input matInput placeholder="Lösenord" type="password" formControlName="password">
+          <mat-error *ngIf="password.touched && password.hasError('required')">
+            Lösenord krävs.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
       <!--Forgot password-->
       <a [routerLink]="['/new_password']" class="btn btn-link">Glömt lösenordet?</a>
