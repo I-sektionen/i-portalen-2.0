@@ -1,8 +1,17 @@
 <h2 *ngIf="user">{{user.first_name+' '+user.last_name | titlecase}}</h2>
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
+  <mat-form-field>
+    <mat-select placeholder="Kön" [formControl]="userInformation.controls['gender']">
+      <mat-option>--</mat-option>
+      <mat-option value="Dat Boi">Dat Boi
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
   <table>
     <mat-form-field  class="shorter medshort" >
-      <mat-select [disabled]="!editing" placeholder="Nuvarande årskurs" [(value)]="user.current_year" >
+      <mat-select  placeholder="Nuvarande årskurs" [formControl]="userInformation.controls['current_year']">
         <mat-option value="">--</mat-option>
         <mat-option value="1">1</mat-option>
         <mat-option value="2">2</mat-option>
@@ -14,7 +23,7 @@
     </mat-form-field>
 
     <mat-form-field class="shorter">
-      <mat-select [disabled]="!editing" placeholder="Klass" [(value)]="user.class"  [formControl]="userInformation.controls['class']" >
+      <mat-select placeholder="Klass"   [formControl]="userInformation.controls['class']" >
         <mat-option value="" >--</mat-option>
         <mat-option value="A">A</mat-option>
         <mat-option value="B">B</mat-option>
@@ -59,10 +68,10 @@
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
-  <table>
+  <div>
     <button *ngIf="editing" type="submit" mat-flat-button color="primary" >Spara</button>
     <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
 
     <button type="button" mat-dialog-close mat-flat-button color="warn" id="close">Stäng</button>
-  </table>
+  </div>
 </form>

@@ -31,6 +31,9 @@ export class UserProfileComponent implements OnInit {
       'zip_code':['', Validators.required],
       'allergies':[''],
       'newspaper':[false],
+      'gender':[''],
+      'current_year':[''],
+
     });
     this.userInformation.disable();
 
@@ -46,6 +49,8 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'zip_code': user.zip_code});
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
+      this.userInformation.patchValue({'gender': user.gender});
+      this.userInformation.patchValue({'current_year': user.current_year});
     })
   }
 
