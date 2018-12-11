@@ -24,10 +24,16 @@ export class AuthService {
     return this.firebaseAuthService.authUser;
   }
 
+  getUserEmail(liu_id: string) {
+    return `${liu_id}@student.liu.se`;
+  }
+
   loginLiUIDAndPassword(liu_id: string, password: string) {
-    const email = `${liu_id}@student.liu.se`;
-    console.log(email);
-    return this.firebaseAuthService.loginEmailAndPassword(email, password);
+    return this.firebaseAuthService.loginEmailAndPassword(this.getUserEmail(liu_id), password);
+  }
+
+  sendPasswordResetEmail(liu_id: string) {
+    return this.firebaseAuthService.sendPasswordResetEmail(this.getUserEmail(liu_id));
   }
 
   logout() {

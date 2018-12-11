@@ -36,6 +36,13 @@ export class FireAuthService {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
+  sendPasswordResetEmail(email) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
+  //.catch((err) => {
+  //       this.wrongCred = true;
+  //     });
+
   logout() {
     return this.auth.signOut();
   }

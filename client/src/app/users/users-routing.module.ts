@@ -13,10 +13,6 @@ const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent
   },
-  {
-    path: 'reset',
-    component: UserForgotPasswordComponent
-  }
 ];
 
 @NgModule({

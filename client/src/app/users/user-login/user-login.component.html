@@ -19,7 +19,7 @@
       </mat-form-field>
 
       <!--Forgot password-->
-      <a routerLink="" (click)="loginScreen = !loginScreen" class="btn btn-link">{{(loginScreen) ? "Glömt lösenordet?" : "Logga in"}}</a>
+      <a (click)="loginScreen = !loginScreen" class="">{{(loginScreen) ? "Glömt lösenordet?" : "Logga in"}}</a>
 
       <!--Submit-->
       <div class="login-button-div">

@@ -37,5 +37,6 @@ export class UserLoginComponent {
 
   reset() {
     console.log(this.liu_id);
+    this.authService.sendPasswordResetEmail(this.liu_id.value);
   }
 }
