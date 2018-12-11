@@ -17,7 +17,7 @@ import { FireAuthService } from './fire-auth/fire-auth.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
   ]
 })
 export class FirebaseModule { }

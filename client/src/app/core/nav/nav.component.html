@@ -10,6 +10,9 @@
     <button mat-button routerLink="">
       <h1>I-Portalen</h1>
     </button>
+    <button mat-icon-button routerLink="admin/redigera-texter">
+      <mat-icon>edit</mat-icon>
+    </button>
     <span class="fill-remaining-space"></span>
     <span *ngIf="!(isLoggedIn | async)">
       <button mat-button routerLink="login">

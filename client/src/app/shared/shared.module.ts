@@ -10,6 +10,7 @@ import { TreeComponent } from './tree/tree.component';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './table/table.component';
+import { GroupByPipe } from './pipes/group-by.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TableComponent } from './table/table.component';
     DashboardComponent,
     TreeComponent,
     AddressFormComponent,
-    TableComponent
+    TableComponent,
+    GroupByPipe,
   ],
   exports: [
     PageNotFoundComponent,
@@ -27,6 +29,7 @@ import { TableComponent } from './table/table.component';
     TreeComponent,
     AddressFormComponent,
     TableComponent,
+    GroupByPipe,
   ],
   providers: [],
   imports: [
