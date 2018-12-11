@@ -63,26 +63,26 @@ export class UserProfileComponent implements OnInit {
         this.user[attribute] = form.value[attribute];
       }
     });
-    //this.userService.updateUser(this.user);
-    this.editing = false;
+    this.editFields();
     this.userService.updateUser(this.user).then((function () {
       console.log("Dina uppgifter har uppdaterats");
-
     })).catch(function() {
       console.log("failed");
+      this.editFields();
     });
-
   }
 
-  editFields()
+   editFields()
   {
-    this.editing = true;
+    console.log("edit fields called");
     if(this.editing)
     {
-      this.userInformation.enable();
+      this.userInformation.disable();
+      this.editing = false;
     }
     else {
-      this.userInformation.disable();
+      this.userInformation.enable();
+      this.editing = true;
     }
   }
 }
