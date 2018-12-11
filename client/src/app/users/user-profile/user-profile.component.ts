@@ -51,6 +51,7 @@ export class UserProfileComponent implements OnInit {
 
 
   onSubmit(form) {
+    var success;
     Object.keys(form.value).forEach(attribute =>
     {
       if(form.value[attribute] != null)
@@ -59,25 +60,31 @@ export class UserProfileComponent implements OnInit {
       }
     });
     //this.userService.updateUser(this.user);
-    this.editing = false;
+
     this.userService.updateUser(this.user).then((function () {
       console.log("Dina uppgifter har uppdaterats");
 
     })).catch(function() {
       console.log("failed");
+      success = true;
     });
-
+    if(success)
+    {
+      this.editFields();
+    }
   }
 
   editFields()
   {
-    this.editing = true;
+
     if(this.editing)
     {
-      this.userInformation.enable();
+      this.userInformation.disable();
+      this.editing = false;
     }
     else {
-      this.userInformation.disable();
+      this.userInformation.enable();
+      this.editing = true;
     }
   }
 }
