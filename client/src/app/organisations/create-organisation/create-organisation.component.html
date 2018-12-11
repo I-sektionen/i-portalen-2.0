@@ -1,0 +1,16 @@
+<div class="center-content">
+  <mat-card>
+    <form [formGroup]="organisationForm" (ngSubmit)="submit()">
+      <mat-form-field>
+        <input matInput placeholder="Namn" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Ledare" formControlName="leader">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Beskrivning" formControlName="description"></textarea>
+      </mat-form-field>
+      <button mat-flat-button color="primary" type="submit">Skapa organisation</button>
+    </form>
+  </mat-card>
+</div>

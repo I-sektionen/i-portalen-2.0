@@ -1,0 +1,38 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  padding-left: 5px;
+  text-align-all: center;
+  margin: auto;
+}
+
+.example-container > * {
+  width: 100%;
+
+
+}
+h2 {
+  text-align: center;
+}
+
+#adress {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+
+.shorter {
+  max-width: 150px;
+}
+
+button{
+  margin: 30px 0;
+  max-width: 180px;
+}
+
+.medshort {
+  max-width: 200px;
+  padding-right: 65px;
+}

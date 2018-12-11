@@ -10,7 +10,6 @@ import {
   MatIconModule,
   MatListModule,
   MatMenuModule,
-  MatDialogModule,
   MatFormFieldModule,
   MatInputModule, MatCardModule,
 } from '@angular/material';
@@ -21,9 +20,9 @@ import { DatabaseService } from './database/database.service';
 import { FirebaseModule } from './firebase/firebase.module';
 import { TextComponent } from './text/text.component';
 import { TextService } from './text/text.service';
-import { TextEditComponent } from '../admin/text-edit/text-edit.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersModule } from '../users/users.module';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 
 @NgModule({
@@ -38,6 +37,7 @@ import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
     RouterModule,
     LayoutModule,
     ReactiveFormsModule,
+    MarkdownToHtmlModule,
 
     // Material
     MatToolbarModule,
@@ -53,7 +53,7 @@ import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
     // Custom
     FirebaseModule,
     SharedModule,
-    MarkdownToHtmlModule
+    UsersModule,
   ]
 })
 export class CoreModule { }
