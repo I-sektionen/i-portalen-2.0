@@ -14,9 +14,10 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {UserForgotPasswordComponent} from "./user-forgot-password/user-forgot-password.component";
 
 @NgModule({
-  declarations: [UserLoginComponent, UserProfileComponent],
+  declarations: [UserLoginComponent, UserProfileComponent, UserForgotPasswordComponent],
   exports: [UserLoginComponent],
   providers: [],
   imports: [
