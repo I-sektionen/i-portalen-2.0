@@ -2,9 +2,8 @@
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <mat-form-field>
     <mat-select placeholder="Kön" [formControl]="userInformation.controls['gender']">
-      <mat-option>--</mat-option>
-      <mat-option value="Dat Boi">Dat Boi
-      </mat-option>
+      <mat-option *ngFor="let Gen of Gender" [value]="Gen" ]>Gem</mat-option>
+
     </mat-select>
   </mat-form-field>
 
