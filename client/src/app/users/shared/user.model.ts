@@ -1,25 +1,25 @@
 export enum Gender {
-  Man = "Man",
-  Woman = "Kvinna",
-  Other = "Annat/icke-binär",
-  Unspecified = "Vill ej ange"
+  Man = 'Man',
+  Woman = 'Kvinna',
+  Other = 'Annat/Icke-binär',
+  Unspecified = 'Vill ej ange'
 }
 
 export enum Role {
-  Admin = "Admin",
-  Editor = "Editor",
-  Student = "Student"
+  Admin = 'Admin',
+  Editor = 'Editor',
+  Student = 'Student'
 }
 
 export enum Class {
-  A = "a-klassen",
-  B = "b-klassen",
-  C = "c-klassen",
-  D = "d-klassen",
-  E = "e-klassen",
-  F = "f-klassen",
-  IA = "ia-klassen",
-  IB = "ib-klassen"
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  E = 'E',
+  F = 'F',
+  IiA = 'IiA',
+  IiB = 'IiB'
 }
 
 export interface User {
