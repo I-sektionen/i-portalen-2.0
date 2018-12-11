@@ -2,6 +2,10 @@
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <mat-form-field>
     <mat-select placeholder="Kön" [formControl]="userInformation.controls['gender']">
+
+      <li *ngFor="let item of items; let i = index">
+        {{i}} {{item}}
+      </li>
       <mat-option>--</mat-option>
       <mat-option value="Dat Boi">Dat Boi
       </mat-option>
