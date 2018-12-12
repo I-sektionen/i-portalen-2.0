@@ -39,6 +39,17 @@
 
 <hr> <!-- horisontell linje -->
 
-<div class="org-wrapper">
-  <app-card *ngFor="let element of organisations" [orgLogoUrl]="element.org_logo_url" [orgName]="element.organisation"></app-card>
+<div class="org-wrapper" fxLayout="row wrap" fxLayoutGap="0px" fxLayoutAlign="center start"> <!-- margin i card css -->
+  <a *ngFor="let element of organisations" [routerLink]="['/organisations', element.organisation]">
+    <app-card
+              [orgLogoUrl]="element.org_logo_url"
+              [orgName]="element.organisation"
+              fxFlex="0 1 calc(10%)"
+
+    ></app-card>
+  </a>
 </div>
+
+<!-- <div class="org-wrapper">
+  <app-card *ngFor="let element of organisations" [orgLogoUrl]="element.org_logo_url" [orgName]="element.organisation"></app-card>
+</div> -->
