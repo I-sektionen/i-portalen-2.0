@@ -31,6 +31,9 @@ export class UserProfileComponent implements OnInit {
       'zip_code':['', Validators.required],
       'allergies':[''],
       'newspaper':[false],
+      'gender':[''],
+      'current_year':[''],
+
     });
     this.userInformation.disable();
 
@@ -46,6 +49,8 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'zip_code': user.zip_code});
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
+      this.userInformation.patchValue({'gender': user.gender});
+      this.userInformation.patchValue({'current_year': user.current_year});
     })
   }
 
@@ -58,26 +63,26 @@ export class UserProfileComponent implements OnInit {
         this.user[attribute] = form.value[attribute];
       }
     });
-    //this.userService.updateUser(this.user);
-    this.editing = false;
+    this.editFields();
     this.userService.updateUser(this.user).then((function () {
       console.log("Dina uppgifter har uppdaterats");
-
     })).catch(function() {
       console.log("failed");
+      this.editFields();
     });
-
   }
 
-  editFields()
+   editFields()
   {
-    this.editing = true;
+    console.log("edit fields called");
     if(this.editing)
     {
-      this.userInformation.enable();
+      this.userInformation.disable();
+      this.editing = false;
     }
     else {
-      this.userInformation.disable();
+      this.userInformation.enable();
+      this.editing = true;
     }
   }
 }
