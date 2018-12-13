@@ -51,4 +51,7 @@ export class UserService {
     return this.databaseService.update(this.path, this.uid, user);
   }
 
+  listUsers() {
+    return this.databaseService.list(this.path);
+  }
 }

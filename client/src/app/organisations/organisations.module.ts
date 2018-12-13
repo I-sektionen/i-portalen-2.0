@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { OrganisationsRoutingModule } from './organisations-routing.module';
 import { OrganisationsComponent } from './organisations.component';
 import { SharedModule } from '../shared/shared.module';
-import { CreateOrganisationComponent } from './create-organisation/create-organisation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
+import { UpsertOrganisationComponent } from './upsert-organisation/upsert-organisation.component';
 
 @NgModule({
-  declarations: [OrganisationsComponent, CreateOrganisationComponent],
-  exports: [CreateOrganisationComponent],
+  declarations: [OrganisationsComponent, UpsertOrganisationComponent],
+  exports: [UpsertOrganisationComponent],
   providers: [],
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatI
     // Custom
     OrganisationsRoutingModule,
     SharedModule,
+    DynamicFormsModule,
   ]
 })
 export class OrganisationsModule { }
