@@ -11,6 +11,7 @@ import { AddressFormComponent } from './address-form/address-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './table/table.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,10 @@ import { GroupByPipe } from './pipes/group-by.pipe';
     TreeComponent,
     AddressFormComponent,
     TableComponent,
+
+    // Pipes
     GroupByPipe,
+    SafePipe
   ],
   exports: [
     PageNotFoundComponent,
@@ -30,6 +34,7 @@ import { GroupByPipe } from './pipes/group-by.pipe';
     AddressFormComponent,
     TableComponent,
     GroupByPipe,
+    SafePipe,
   ],
   providers: [],
   imports: [

@@ -1,1 +1,1 @@
-<span [innerHTML]="(textObservable | async)?.value | MarkdownToHtml"></span>
+<span [innerHTML]="(textObservable | async)?.value | MarkdownToHtml | safe: 'html'"></span>

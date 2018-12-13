@@ -1,6 +1,6 @@
 <!-- Header -->
 <header>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="{{(isAdminPage | async) ? 'warn' : 'primary'}}">
     <button
       type="button"
       mat-icon-button

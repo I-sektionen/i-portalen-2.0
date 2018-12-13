@@ -34,7 +34,7 @@ export class TextEditComponent implements OnInit {
    });
   }
 
-  // checks if the text has been modified from last save
+  // checks if the text has been edited from last save
   isEdited(text: Text) {
     return this.form.get(text.id).value !== text.value;
   }
@@ -71,10 +71,11 @@ export class TextEditComponent implements OnInit {
 
   deleteText(text: Text) {
     // delete text from database
-    this.textService.deleteText(text.id);
-
-    // update form with lorem
-    text.value = this.textService.lorem;
-    this.form.get(text.id).setValue(this.textService.lorem);
+    this.textService.deleteText(text.id).then(() => {
+        // update form with lorem
+        text.value = this.textService.lorem;
+        this.form.get(text.id).setValue(this.textService.lorem);
+      }
+    );
   }
 }

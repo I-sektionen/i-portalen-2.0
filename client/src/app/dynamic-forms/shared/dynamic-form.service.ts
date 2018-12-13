@@ -9,8 +9,6 @@ import { map, take } from 'rxjs/operators';
 })
 export class DynamicFormService {
 
-  private readonly path = 'dynamic-forms';
-
   private usersSelectOptions: SelectOption[];
 
   constructor(

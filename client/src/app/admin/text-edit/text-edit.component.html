@@ -67,7 +67,7 @@
       </b>
       <div *ngIf="currentText">
         <mat-divider [inset]="true"></mat-divider>
-        <span [innerHTML]="currentText.value | MarkdownToHtml"></span>
+        <span [innerHTML]="currentText.value | MarkdownToHtml | safe: 'html'"></span>
         <mat-divider [inset]="true"></mat-divider>
       </div>
     </mat-card>
