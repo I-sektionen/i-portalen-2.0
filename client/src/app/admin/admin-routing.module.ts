@@ -12,11 +12,16 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
+        path: '',
+        redirectTo: 'redigera-texter',
+        pathMatch: 'full'
+      },
+      {
         path: 'redigera-texter',
         component: TextEditComponent,
       },
       {
-        path: 'skapa-organisation',
+        path: 'skapa-utskott',
         component: UpsertOrganisationComponent,
       },
     ]

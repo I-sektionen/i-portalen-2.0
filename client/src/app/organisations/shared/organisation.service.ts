@@ -9,6 +9,7 @@ import {
   TextAreaFormField
 } from '../../dynamic-forms/shared/dynamic-form.model';
 import { DynamicFormService } from '../../dynamic-forms/shared/dynamic-form.service';
+import { Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -47,18 +48,20 @@ export class OrganisationService implements DynamicForm {
       return [
         new InputFormField({
           order: 1,
-          width: 50,
           label: 'Namn',
           key: 'name',
           value: organisation ? organisation.name : '',
+          validators: [Validators.required],
+          width: 60,
         }),
         new DropdownFormField({
           order: 2,
-          width: 50,
           label: 'Ledare',
           key: 'leader',
           value: organisation ? organisation.leader : '',
+          validators: [Validators.required],
           selectOptions: usersSelectOptions,
+          width: 40,
         }),
         new TextAreaFormField({
           order: 3,

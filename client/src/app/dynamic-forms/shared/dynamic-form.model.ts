@@ -1,3 +1,5 @@
+import { ValidatorFn } from '@angular/forms';
+
 export interface SelectOption {
   key: string;
   value: any;
@@ -5,12 +7,12 @@ export interface SelectOption {
 
 interface Options<T> {
   // Default for all form fields
+  order: number;
   label: string;
   key: string;
   value?: T;
-  order: number;
   width?: number;
-  required?: boolean;
+  validators?: ValidatorFn[];
 
   // Specific for some form fields
   type?: string; // used by InputFormField
@@ -19,20 +21,20 @@ interface Options<T> {
 
 export class DynamicFormField<T> {
   controlType: string;
+  order: number;
   label: string;
   key: string;
   value: T;
-  order: number;
   width: number;
-  required: boolean;
+  validators: ValidatorFn[];
 
   constructor(options: Options<T>) {
+    this.order = options.order;
     this.label = options.label;
     this.key = options.key;
     this.value = options.value || null;
-    this.order = options.order === undefined ? 1 : options.order;
     this.width = options.width || 100;
-    this.required = !!options.required;
+    this.validators = options.validators || [];
   }
 }
 

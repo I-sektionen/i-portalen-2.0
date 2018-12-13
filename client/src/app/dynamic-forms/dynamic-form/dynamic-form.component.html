@@ -10,5 +10,5 @@
   <ng-content></ng-content>
 
   <!--Submit-->
-  <button mat-raised-button color="primary">Skapa</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid">Skapa</button>
 </form>

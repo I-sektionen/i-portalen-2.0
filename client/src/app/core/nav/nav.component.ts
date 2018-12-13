@@ -3,7 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import { TextService } from '../text/text.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, debounceTime } from 'rxjs/operators';
+import { UserService } from '../../users/shared/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -18,14 +20,23 @@ export class NavComponent implements OnInit {
     );
 
   isLoggedIn: Observable<boolean>;
+  isAdmin: Observable<boolean>;
+  isAdminPage: Observable<boolean>;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
+    this.isAdmin = this.userService.isAdmin;
+    this.isAdminPage = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map((event: NavigationEnd) => event.urlAfterRedirects.indexOf('admin') !== -1)
+    );
   }
 
   logout() {

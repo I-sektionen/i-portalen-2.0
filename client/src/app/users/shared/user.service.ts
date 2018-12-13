@@ -4,6 +4,7 @@ import { Role, User } from './user.model';
 import { DatabaseService } from '../../core/database/database.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { switchMap, map, tap } from 'rxjs/operators';
+import { QueryFn } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class UserService {
     return this.databaseService.update(this.path, this.uid, user);
   }
 
-  listUsers() {
-    return this.databaseService.list(this.path);
+  listUsers(queryFn?: QueryFn) {
+    return this.databaseService.list(this.path, queryFn);
   }
 }
