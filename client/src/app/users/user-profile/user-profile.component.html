@@ -1,8 +1,8 @@
-<h2 *ngIf="user">{{user.liu_id}}</h2>
+<h2 *ngIf="user">{{user.liuId}}</h2>
 <form *ngIf="user" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <table>
     <mat-form-field  class="shorter medshort" >
-      <mat-select placeholder="Nuvarande årskurs" [(value)]="user.current_year">
+      <mat-select placeholder="Nuvarande årskurs" [(value)]="user.currentYear">
         <mat-option value="">--</mat-option>
         <mat-option value="1">1</mat-option>
         <mat-option value="2">2</mat-option>
@@ -37,7 +37,7 @@
   </mat-form-field>
   <table>
     <mat-form-field class="shorter medshort">
-      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
+      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zipCode']">
     </mat-form-field>
 
     <mat-form-field class="shorter">

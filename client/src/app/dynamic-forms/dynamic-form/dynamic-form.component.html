@@ -2,7 +2,7 @@
 
   <!--Form Fields-->
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div class="form-field-div" *ngFor="let formField of formFields" fxFlex="{{formField.width}}">
+    <div *ngFor="let formField of formFields" fxFlex="{{formField.width}}">
       <app-form-field [formField]="formField" [form]="form"></app-form-field>
     </div>
   </div>

@@ -1,3 +1,20 @@
 mat-form-field {
   display: block;
+  margin: -8px 0;
+}
+
+button {
+  width: 100%;
+}
+
+.button-form-field {
+  margin-bottom: 16px;
+}
+
+span {
+  padding: 2px 0 0 10px;
+}
+
+mat-progress-spinner {
+  margin: 1px;
 }

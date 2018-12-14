@@ -27,11 +27,11 @@ export class DynamicFormService {
 
   async getUsersSelectOptions(): Promise<SelectOption[]> {
     if (!this.usersSelectOptions) {
-      return this.userService.listUsers(ref => ref.orderBy('liu_id')).pipe(
+      return this.userService.listUsers(ref => ref.orderBy('liuId')).pipe(
         take(2),
         map(users => {
           const usersSelectOptions = users.map(user => {
-            return {key: `${user.liu_id}`, value: user.id};
+            return {key: `${user.liuId}`, value: user.id};
           });
           this.usersSelectOptions = usersSelectOptions;
           return usersSelectOptions;

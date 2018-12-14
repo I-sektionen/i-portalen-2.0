@@ -26,21 +26,21 @@ export interface User {
   id?: string;
 
   // Core
-  liu_id: string;
+  liuId: string;
   active: boolean;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   gender: Gender;
   role: Role;
-  gdpr_accepted: string; // DATE/TIME
-  must_edit: boolean;
-  current_year: string;
-  start_year: string;
+  gdprAccepted: string; // DATE/TIME
+  mustEdit: boolean;
+  currentYear: string;
+  startYear: string;
 
   // Education
   class: Class;
-  bachelor_profile: string; // ID
-  master_profile: string; // ID
+  bachelorProfile: string; // ID
+  masterProfile: string; // ID
 
   // Voluntary fields
   phone?: string;
@@ -50,13 +50,13 @@ export interface User {
 
   // Address
   address?: string;
-  zip_code?: string;
+  zipCode?: string;
   city?: string;
 
   // Member of organisation
   organisation?: string;
-  organisation_role?: string;
-  organisation_contact?: string;
+  organisationRole?: string;
+  organisationContact?: string;
 
   // Traceability
   created: string; // DATE/TIME

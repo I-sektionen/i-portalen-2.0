@@ -20,5 +20,38 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <!--fileupload-->
+    <div *ngSwitchCase="'fileupload'" fxLayout="row wrap" fxLayoutGap="16px grid">
+
+      <!--Upload button-->
+      <div fxFlex="50">
+        <button mat-raised-button (click)="file.click()" type="button" color="{{formField.color}}">
+          Ladda upp {{formField.label | lowercase}}
+        </button>
+        <input #file type="file" accept="image/*" style="display:none;" (change)="uploadFile($event)">
+      </div>
+
+      <!--Upload feedback-->
+      <div fxFlex="50" fxFlexAlign="center">
+        <div fxLayout="row">
+          <mat-icon *ngIf="!uploading && form.get(formField.key).value" color="{{formField.color}}">
+            check_circle_outline
+          </mat-icon>
+          <mat-icon *ngIf="!uploading && !form.get(formField.key).value">
+            highlight_off
+          </mat-icon>
+          <mat-icon *ngIf="uploading">
+            <mat-progress-spinner
+              [diameter]="22"
+              [mode]="'determinate'"
+              color="{{formField.color}}"
+              [value]="uploadPercentage">
+            </mat-progress-spinner>
+          </mat-icon>
+          <span>{{fileName}}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
     this.userInformation = fb.group({
       'address':[''],
       'city':[''],
-      'zip_code':[''],
+      'zipCode':[''],
       'allergies':[''],
       'newspaper':[false],
     });
@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'address': user.address});
       this.userInformation.patchValue({'newspaper': user.newspaper});
       this.userInformation.patchValue({'city': user.city});
-      this.userInformation.patchValue({'zip_code': user.zip_code});
+      this.userInformation.patchValue({'zipCode': user.zipCode});
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
     })

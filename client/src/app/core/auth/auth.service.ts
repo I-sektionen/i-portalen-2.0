@@ -26,8 +26,8 @@ export class AuthService {
     return this.firebaseAuthService.authUser;
   }
 
-  loginLiUIDAndPassword(liu_id: string, password: string) {
-    const email = `${liu_id}@student.liu.se`;
+  loginLiUIDAndPassword(liuId: string, password: string) {
+    const email = `${liuId}@student.liu.se`;
     return this.firebaseAuthService.loginEmailAndPassword(email, password);
   }
 

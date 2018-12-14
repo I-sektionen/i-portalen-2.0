@@ -14,11 +14,10 @@ import { UserService } from '../../users/shared/user.service';
 })
 export class NavComponent implements OnInit {
 
-  isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      share(),
-    );
+  isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(result => result.matches),
+    share(),
+  );
 
   isLoggedIn: Observable<boolean>;
   isAdmin: Observable<boolean>;

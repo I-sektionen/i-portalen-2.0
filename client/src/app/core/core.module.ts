@@ -24,12 +24,13 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersModule } from '../users/users.module';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
+import { StorageService } from './storage/storage.service';
 
 @NgModule({
   declarations: [NavComponent, FooterComponent, TextComponent],
   entryComponents: [],
   exports: [NavComponent, TextComponent],
-  providers: [AuthService, DatabaseService, TextService],
+  providers: [AuthService, DatabaseService, StorageService, TextService],
   imports: [
     // Angular
     CommonModule,

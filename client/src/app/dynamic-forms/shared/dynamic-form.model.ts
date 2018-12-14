@@ -17,6 +17,9 @@ interface Options<T> {
   // Specific for some form fields
   type?: string; // used by InputFormField
   selectOptions?: SelectOption[]; // used by DropdownFormField
+  folder?: string; // Used by FileUploadFormField
+  fileName?: string;
+  color?: string;
 }
 
 export class DynamicFormField<T> {
@@ -64,6 +67,20 @@ export class DropdownFormField extends DynamicFormField<string> {
   constructor(options: Options<string>) {
     super(options);
     this.selectOptions = options['selectOptions'] || [];
+  }
+}
+
+export class FileUploadFormField extends DynamicFormField<string> {
+  controlType = 'fileupload';
+  folder: string;
+  fileName: string;
+  color: string;
+
+  constructor(options: Options<string>) {
+    super(options);
+    this.folder = options['folder'] || 'files';
+    this.fileName = options['fileName'];
+    this.color = options['color'] || '';
   }
 }
 
