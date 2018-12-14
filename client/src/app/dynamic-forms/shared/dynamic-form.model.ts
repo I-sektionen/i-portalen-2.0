@@ -20,6 +20,8 @@ interface Options<T> {
   folder?: string; // Used by FileUploadFormField
   fileName?: string;
   color?: string;
+  minDate?: Date;
+  maxDate?: Date;
 }
 
 export class DynamicFormField<T> {
@@ -78,7 +80,7 @@ export class RadioButtonFormField extends DynamicFormField<any> {
   constructor(options: Options<any>) {
     super(options);
     this.selectOptions = options['selectOptions'] || [];
-    this.color = options['color'] || '';
+    this.color = options['color'] || 'primary';
   }
 }
 
@@ -92,15 +94,19 @@ export class FileUploadFormField extends DynamicFormField<string> {
     super(options);
     this.folder = options['folder'] || 'files';
     this.fileName = options['fileName'];
-    this.color = options['color'] || '';
+    this.color = options['color'] || 'primary';
   }
 }
 
 export class DatePickerFormField extends DynamicFormField<string> {
   controlType = 'datepicker';
+  minDate: Date;
+  maxDate: Date;
 
   constructor(options: Options<any>) {
     super(options);
+    this.minDate = options['minDate'];
+    this.maxDate = options['maxDate'];
   }
 }
 

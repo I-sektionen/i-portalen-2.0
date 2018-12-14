@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatNativeDateModule,
+  MatProgressSpinnerModule,
   MatRadioModule,
   MatSelectModule
 } from '@angular/material';
@@ -27,6 +29,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     // Custom
     UsersModule,

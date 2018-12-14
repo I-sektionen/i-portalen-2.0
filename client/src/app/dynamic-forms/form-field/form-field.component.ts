@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { StorageService } from '../../core/storage/storage.service';
 import { AngularFireUploadTask } from '@angular/fire/storage';
 import { Subscription } from 'rxjs/index';
+import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-form-field',
@@ -22,7 +23,10 @@ export class FormFieldComponent implements OnDestroy{
 
   constructor(
     private storageService: StorageService,
-  ) { }
+    private dateAdapter: DateAdapter<Date>,
+  ) {
+    dateAdapter.setLocale('sv-sv');
+  }
 
   uploadFile(event) {
     const file = event.target.files[0];

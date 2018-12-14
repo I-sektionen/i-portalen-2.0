@@ -31,6 +31,14 @@
       </mat-radio-group>
     </div>
 
+    <!--datepicker-->
+    <mat-form-field *ngSwitchCase="'datepicker'">
+      <input matInput placeholder="{{formField.label}}" [formControlName]="formField.key"
+             [matDatepicker]="datepicker" [min]="formField.minDate" [max]="formField.maxDate">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+
     <!--fileupload-->
     <div *ngSwitchCase="'fileupload'" fxLayout="row wrap" fxLayoutGap="16px grid">
 

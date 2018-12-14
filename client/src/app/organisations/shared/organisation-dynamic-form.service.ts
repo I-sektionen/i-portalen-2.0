@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  DatePickerFormField,
   DropdownFormField, DynamicForm, DynamicFormField, FileUploadFormField,
   InputFormField, RadioButtonFormField, TextAreaFormField
 } from '../../dynamic-forms/shared/dynamic-form.model';
@@ -57,7 +58,6 @@ export class OrganisationDynamicFormService implements DynamicForm {
             {label: Area.Education, value: Area.Education},
             {label: Area.Social, value: Area.Social},
           ],
-          color: 'primary',
         }),
         new FileUploadFormField({
           order: 5,
@@ -67,7 +67,6 @@ export class OrganisationDynamicFormService implements DynamicForm {
           validators: [Validators.required],
           folder: this.imageFolder,
           fileName: organisation ? organisation.name : '',
-          color: 'primary',
         }),
         new FileUploadFormField({
           order: 6,
@@ -79,6 +78,13 @@ export class OrganisationDynamicFormService implements DynamicForm {
           fileName: organisation ? organisation.name : '',
           color: 'warn',
         }),
+        new DatePickerFormField({
+          order: 7,
+          label: 'Datum',
+          key: 'modified',
+          minDate: new Date(),
+          maxDate: new Date(),
+        })
       ];
     });
   }
