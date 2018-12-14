@@ -16,10 +16,20 @@
     <mat-form-field *ngSwitchCase="'dropdown'">
       <mat-select placeholder="Ledare" [formControlName]="formField.key">
         <mat-option *ngFor="let option of formField.selectOptions" [value]="option.value">
-          {{option.key}}
+          {{option.label}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <!--radiobutton-->
+    <div *ngSwitchCase="'radio'">
+      <mat-label>{{formField.label}}</mat-label><br>
+      <mat-radio-group *ngSwitchCase="'radio'" [formControlName]="formField.key">
+        <mat-radio-button *ngFor="let radio of formField.selectOptions" [value]="radio.value" color="{{formField.color}}">
+          {{radio.label}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
 
     <!--fileupload-->
     <div *ngSwitchCase="'fileupload'" fxLayout="row wrap" fxLayoutGap="16px grid">

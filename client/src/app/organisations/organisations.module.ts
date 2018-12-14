@@ -8,11 +8,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
 import { UpsertOrganisationComponent } from './upsert-organisation/upsert-organisation.component';
+import { OrganisationService } from './shared/organisation.service';
+import { OrganisationDynamicFormService } from './shared/organisation-dynamic-form.service';
 
 @NgModule({
   declarations: [OrganisationsComponent, UpsertOrganisationComponent],
   exports: [UpsertOrganisationComponent],
-  providers: [],
+  providers: [OrganisationService, OrganisationDynamicFormService],
   imports: [
     CommonModule,
     ReactiveFormsModule,

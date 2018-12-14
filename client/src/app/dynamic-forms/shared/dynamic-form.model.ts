@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 
 export interface SelectOption {
-  key: string;
+  label: any;
   value: any;
 }
 
@@ -60,13 +60,25 @@ export class TextAreaFormField extends DynamicFormField<string> {
   }
 }
 
-export class DropdownFormField extends DynamicFormField<string> {
+export class DropdownFormField extends DynamicFormField<any> {
   controlType = 'dropdown';
   selectOptions: SelectOption[];
 
-  constructor(options: Options<string>) {
+  constructor(options: Options<any>) {
     super(options);
     this.selectOptions = options['selectOptions'] || [];
+  }
+}
+
+export class RadioButtonFormField extends DynamicFormField<any> {
+  controlType = 'radio';
+  selectOptions: SelectOption[];
+  color: string;
+
+  constructor(options: Options<any>) {
+    super(options);
+    this.selectOptions = options['selectOptions'] || [];
+    this.color = options['color'] || '';
   }
 }
 
@@ -84,6 +96,14 @@ export class FileUploadFormField extends DynamicFormField<string> {
   }
 }
 
-export interface DynamicForm {
-  getDynamicFormFields(): Promise<DynamicFormField<any>[]>;
+export class DatePickerFormField extends DynamicFormField<string> {
+  controlType = 'datepicker';
+
+  constructor(options: Options<any>) {
+    super(options);
+  }
+}
+
+export abstract class DynamicForm {
+  async abstract getDynamicFormFields(): Promise<DynamicFormField<any>[]>;
 }

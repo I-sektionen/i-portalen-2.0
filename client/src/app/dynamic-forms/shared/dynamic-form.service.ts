@@ -31,7 +31,7 @@ export class DynamicFormService {
         take(2),
         map(users => {
           const usersSelectOptions = users.map(user => {
-            return {key: `${user.liuId}`, value: user.id};
+            return {label: `${user.liuId}`, value: user.id};
           });
           this.usersSelectOptions = usersSelectOptions;
           return usersSelectOptions;

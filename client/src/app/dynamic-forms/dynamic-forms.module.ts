@@ -4,6 +4,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule,
+  MatRadioModule,
   MatSelectModule
 } from '@angular/material';
 import { FormFieldComponent } from './form-field/form-field.component';
@@ -25,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSelectModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
 
     // Custom
     UsersModule,

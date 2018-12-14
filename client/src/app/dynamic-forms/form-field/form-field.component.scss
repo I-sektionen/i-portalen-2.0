@@ -7,14 +7,23 @@ button {
   width: 100%;
 }
 
-.button-form-field {
-  margin-bottom: 16px;
-}
-
 span {
   padding: 2px 0 0 10px;
 }
 
 mat-progress-spinner {
   margin: 1px;
+}
+
+mat-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+mat-radio-button {
+  margin: 8px;
+}
+
+mat-label {
+  color: rgba(0, 0, 0, 0.54);
 }

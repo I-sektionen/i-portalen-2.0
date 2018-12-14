@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrganisationService } from '../shared/organisation.service';
 import { DynamicFormField } from '../../dynamic-forms/shared/dynamic-form.model';
 import { Observable } from 'rxjs/index';
+import { OrganisationDynamicFormService } from '../shared/organisation-dynamic-form.service';
 
 @Component({
   selector: 'app-upsert-organisation',
@@ -13,11 +14,12 @@ export class UpsertOrganisationComponent implements OnInit {
   organisationFormFields: DynamicFormField<any>[];
 
   constructor(
-    private organisationService: OrganisationService,
+    private organisationDynamicFormService: OrganisationDynamicFormService,
+    private organisationService: OrganisationService
   ) { }
 
   ngOnInit() {
-    this.organisationService.getDynamicFormFields().then(formFields => {
+    this.organisationDynamicFormService.getDynamicFormFields().then(formFields => {
       this.organisationFormFields = formFields;
     });
   }
