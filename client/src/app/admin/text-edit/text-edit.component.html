@@ -1,5 +1,5 @@
-<div id="text-edit-div" fxLayout="row" fxLayoutGap="16px">
-  <div fxFlex="50">
+<div id="text-edit-div" fxLayout="row" fxLayoutGap="16px grid">
+  <div fxFlex="50" fxFlex.lt-md="100">
     <mat-card>
       <h1>Redigera texter</h1>
       <div *ngIf="texts">
@@ -57,7 +57,7 @@
       </div>
     </mat-card>
   </div>
-  <div fxFlex="50">
+  <div fxFlex="50" fxHide.lt-md>
     <mat-card>
       <p *ngIf="currentText">
         Redigerar <b>{{currentText.id}}</b>:

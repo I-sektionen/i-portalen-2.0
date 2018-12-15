@@ -1,0 +1,5 @@
+<div [ngSwitch]="collection">
+  <div *ngSwitchCase="'organisations'">
+    <app-upsert-organisation [organisation]="item"></app-upsert-organisation>
+  </div>
+</div>

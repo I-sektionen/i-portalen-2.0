@@ -7,7 +7,7 @@ import {
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatRadioModule,
-  MatSelectModule
+  MatSelectModule, MatToolbarModule
 } from '@angular/material';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { UsersModule } from '../users/users.module';
@@ -31,6 +31,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatToolbarModule,
 
     // Custom
     UsersModule,

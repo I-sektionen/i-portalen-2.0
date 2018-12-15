@@ -11,6 +11,8 @@ import { FormGroup } from '@angular/forms';
 export class DynamicFormComponent implements OnChanges {
 
   @Input() formFields: DynamicFormField<any>[];
+  @Input() editing: boolean;
+  @Input() title: string;
   @Output() ngSubmit: EventEmitter<any> = new EventEmitter<any>();
   form: FormGroup;
 

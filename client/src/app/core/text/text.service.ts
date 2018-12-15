@@ -58,6 +58,7 @@ export class TextService {
   }
 
   deleteText(id) {
+    delete this.texts[id]; // remove deleted text from local storage
     return this.firestoreService.delete(this.path, id);
   }
 }

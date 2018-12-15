@@ -11,7 +11,7 @@ import { DateAdapter } from '@angular/material';
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss']
 })
-export class FormFieldComponent implements OnDestroy{
+export class FormFieldComponent {
 
   @Input() formField: DynamicFormField<any>;
   @Input() form: FormGroup;
@@ -42,7 +42,7 @@ export class FormFieldComponent implements OnDestroy{
   }
 
   trackUploadProgress(uploadTask: AngularFireUploadTask) {
-    this.subscription = uploadTask.percentageChanges().subscribe(percentage => {
+    uploadTask.percentageChanges().subscribe(percentage => {
       this.uploadPercentage = percentage;
     });
   }
@@ -58,11 +58,5 @@ export class FormFieldComponent implements OnDestroy{
       this.uploadPercentage = 0;
       this.fileName = '';
     });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

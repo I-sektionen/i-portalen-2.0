@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { TextEditComponent } from './text-edit/text-edit.component';
 import { AdminGuard } from '../core/auth/guards/admin.guard';
-import { UpsertOrganisationComponent } from '../organisations/upsert-organisation/upsert-organisation.component';
+import { CollectionsListComponent } from './collections-list/collections-list.component';
 
 const routes: Routes = [
   {
@@ -13,16 +13,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'redigera-texter',
-        pathMatch: 'full'
+        component: CollectionsListComponent,
       },
       {
         path: 'redigera-texter',
         component: TextEditComponent,
       },
       {
-        path: 'skapa-utskott',
-        component: UpsertOrganisationComponent,
+        path: 'redigera/:collection',
+        component: CollectionsListComponent,
       },
     ]
   }

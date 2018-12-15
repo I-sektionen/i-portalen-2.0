@@ -1,3 +1,11 @@
+<h3 *ngIf="title">
+  <span *ngIf="!editing">
+    Skapa {{title}}
+  </span>
+    <span *ngIf="editing">
+    Redigera {{title}}
+  </span>
+</h3>
 <form *ngIf="form" (ngSubmit)="submit()" [formGroup]="form">
 
   <!--Form Fields-->
@@ -10,5 +18,12 @@
   <ng-content></ng-content>
 
   <!--Submit-->
-  <button mat-raised-button color="primary" [disabled]="form.invalid">Skapa</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid">
+    <span *ngIf="!editing">
+      Skapa {{title}}
+    </span>
+    <span *ngIf="editing">
+      Spara ändringar
+    </span>
+  </button>
 </form>

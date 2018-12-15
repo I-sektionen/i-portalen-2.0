@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { OrganisationService } from '../shared/organisation.service';
 import { DynamicFormField } from '../../dynamic-forms/shared/dynamic-form.model';
-import { Observable } from 'rxjs/index';
 import { OrganisationDynamicFormService } from '../shared/organisation-dynamic-form.service';
+import { Organisation } from '../shared/organisation.model';
 
 @Component({
   selector: 'app-upsert-organisation',
   templateUrl: './upsert-organisation.component.html',
   styleUrls: ['./upsert-organisation.component.scss']
 })
-export class UpsertOrganisationComponent implements OnInit {
+export class UpsertOrganisationComponent implements OnChanges {
+
+  @Input() organisation: Organisation;
 
   organisationFormFields: DynamicFormField<any>[];
 
@@ -18,17 +20,17 @@ export class UpsertOrganisationComponent implements OnInit {
     private organisationService: OrganisationService
   ) { }
 
-  ngOnInit() {
-    this.organisationDynamicFormService.getDynamicFormFields().then(formFields => {
+  ngOnChanges() {
+    this.organisationDynamicFormService.getDynamicFormFields(this.organisation).then(formFields => {
       this.organisationFormFields = formFields;
     });
   }
 
   submit(organisation) {
-    this.organisationService.insertOrganisation(organisation).then(() => {
-      console.log('Created organisation', organisation);
-    }).catch(err => {
-      console.log('Error creating organisation', err, organisation);
-    });
+    if (this.organisation) {
+      this.organisationService.updateOrganisation(this.organisation.id, organisation);
+    } else {
+      this.organisationService.insertOrganisation(organisation);
+    }
   }
 }

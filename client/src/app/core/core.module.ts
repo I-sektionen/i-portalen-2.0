@@ -11,7 +11,7 @@ import {
   MatListModule,
   MatMenuModule,
   MatFormFieldModule,
-  MatInputModule, MatCardModule,
+  MatInputModule, MatCardModule, MatSnackBarModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
@@ -25,12 +25,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UsersModule } from '../users/users.module';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 import { StorageService } from './storage/storage.service';
+import { FeedbackService } from './feedback/feedback.service';
 
 @NgModule({
   declarations: [NavComponent, FooterComponent, TextComponent],
   entryComponents: [],
   exports: [NavComponent, TextComponent],
-  providers: [AuthService, DatabaseService, StorageService, TextService],
+  providers: [AuthService, DatabaseService, StorageService, TextService, FeedbackService],
   imports: [
     // Angular
     CommonModule,
@@ -50,6 +51,7 @@ import { StorageService } from './storage/storage.service';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatSnackBarModule,
 
     // Custom
     FirebaseModule,

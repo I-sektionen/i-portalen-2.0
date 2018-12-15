@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Role, User } from './user.model';
 import { DatabaseService } from '../../core/database/database.service';
 import { AuthService } from '../../core/auth/auth.service';
-import { switchMap, map, shareReplay } from 'rxjs/operators';
+import { switchMap, tap, shareReplay } from 'rxjs/operators';
 import { QueryFn } from '@angular/fire/firestore';
 
 @Injectable({
@@ -38,16 +38,12 @@ export class UserService {
   setUser() {
     this.user$ = this.authService.authUser.pipe(
       switchMap(authUser => {
-        if (authUser) {
-          return this.databaseService.get(this.path, authUser.uid);
-        } else {
-          return of(null);
-        }
+        return authUser ? this.databaseService.get(this.path, authUser.uid) : of(null);
       }),
     );
 
     this.isAdmin$ = this.user.pipe(
-      map(user => user && user.role === Role.Admin),
+      switchMap(user => of(user && user.role === Role.Admin)),
       shareReplay(),
     );
   }
