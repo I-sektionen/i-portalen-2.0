@@ -30,6 +30,7 @@ export class OrganisationDynamicFormService implements DynamicForm {
           key: 'name',
           value: organisation ? organisation.name : '',
           validators: [Validators.required],
+          disabled: organisation ? true : false,
           width: 60,
         }),
         new DropdownFormField({

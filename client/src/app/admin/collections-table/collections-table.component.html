@@ -32,7 +32,17 @@
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Namn</th>
-    <td mat-cell *matCellDef="let item">{{item.name}}</td>
+    <td mat-cell *matCellDef="let item">{{item.name ? item.name : item.lastName + ', ' + item.firstName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="liuId">
+    <th mat-header-cell *matHeaderCellDef>LiU-ID</th>
+    <td mat-cell *matCellDef="let item">{{item.liuId}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="role">
+    <th mat-header-cell *matHeaderCellDef>Roll</th>
+    <td mat-cell *matCellDef="let item">{{item.role}}</td>
   </ng-container>
 
   <ng-container matColumnDef="editItem">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs/index';
 import { OrganisationService } from '../../organisations/shared/organisation.service';
+import { UserService } from '../../users/shared/user.service';
 
 @Component({
   selector: 'app-collections-list',
@@ -22,15 +23,21 @@ export class CollectionsListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private userService: UserService,
     private organisationService: OrganisationService,
   ) { }
 
   ngOnInit() {
     this.collection = this.route.snapshot.params.collection;
     switch (this.collection) {
+      case 'users': {
+        this.dataSource = this.userService.listUsers();
+        this.displayedColumns = ['liuId', 'name', 'role'];
+        break;
+      }
       case 'organisations': {
         this.dataSource = this.organisationService.listOrganisations();
-        this.displayedColumns = ['id', 'name', 'editItem', 'deleteItem'];
+        this.displayedColumns = ['name', 'editItem', 'deleteItem'];
         break;
       }
       default: {

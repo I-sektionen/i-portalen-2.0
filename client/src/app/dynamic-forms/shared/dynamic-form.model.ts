@@ -13,6 +13,7 @@ interface Options<T> {
   value?: T;
   width?: number;
   validators?: ValidatorFn[];
+  disabled?: boolean;
 
   // Specific for some form fields
   type?: string; // used by InputFormField
@@ -32,6 +33,7 @@ export class DynamicFormField<T> {
   value: T;
   width: number;
   validators: ValidatorFn[];
+  disabled: boolean;
 
   constructor(options: Options<T>) {
     this.order = options.order;
@@ -40,6 +42,7 @@ export class DynamicFormField<T> {
     this.value = options.value || null;
     this.width = options.width || 100;
     this.validators = options.validators || [];
+    this.disabled = options.disabled || false;
   }
 }
 

@@ -3,7 +3,8 @@
 
     <!-- input -->
     <mat-form-field *ngSwitchCase="'input'">
-      <input matInput placeholder="{{formField.label}}" formControlName="{{formField.key}}" [type]="formField.type">
+      <input matInput
+             placeholder="{{formField.label}}" formControlName="{{formField.key}}" [type]="formField.type">
     </mat-form-field>
 
     <!-- textarea -->

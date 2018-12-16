@@ -1,16 +1,18 @@
-<div id="outer-div" fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div fxFlex="50" fxFlex.lt-md="100">
-    <app-collections-table
-      [dataSource]="dataSource | async"
-      [displayedColumns]="displayedColumns"
-      [(collection)]="collection"
-      [(itemToEdit)]="itemToEdit"
-    ></app-collections-table>
-  </div>
+<div id="outer-div">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <app-collections-table
+        [dataSource]="dataSource | async"
+        [displayedColumns]="displayedColumns"
+        [(collection)]="collection"
+        [(itemToEdit)]="itemToEdit"
+      ></app-collections-table>
+    </div>
 
-  <div *ngIf="collection" fxFlex="50" fxFlex.lt-md="100">
-    <div id="upsert-div" class="mat-elevation-z1">
-      <app-collections-upsert [collection]="collection" [item]="itemToEdit"></app-collections-upsert>
+    <div *ngIf="collection" fxFlex="50" fxFlex.lt-md="100">
+      <div id="upsert-div" class="mat-elevation-z1">
+        <app-collections-upsert [collection]="collection" [item]="itemToEdit"></app-collections-upsert>
+      </div>
     </div>
   </div>
 </div>

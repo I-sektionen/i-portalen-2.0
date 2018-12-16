@@ -19,7 +19,10 @@ export class DynamicFormService {
     const group = {};
 
     formFields.forEach(formField => {
-      group[formField.key] = new FormControl(formField.value, {validators: formField.validators});
+      group[formField.key] = new FormControl(
+      {value: formField.value, disabled: !!formField.disabled},
+      {validators: formField.validators}
+      );
     });
 
     return new FormGroup(group);
