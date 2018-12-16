@@ -13,7 +13,7 @@ export class UpsertOrganisationComponent implements OnChanges {
 
   @Input() organisation: Organisation;
 
-  organisationFormFields: DynamicFormField<any>[];
+  organisationFormFields: DynamicFormField[];
 
   constructor(
     private organisationDynamicFormService: OrganisationDynamicFormService,

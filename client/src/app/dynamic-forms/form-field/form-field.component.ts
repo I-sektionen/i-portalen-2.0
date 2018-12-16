@@ -13,7 +13,7 @@ import { DateAdapter } from '@angular/material';
 })
 export class FormFieldComponent {
 
-  @Input() formField: DynamicFormField<any>;
+  @Input() formField: DynamicFormField;
   @Input() form: FormGroup;
 
   fileName: string;

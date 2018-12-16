@@ -15,12 +15,12 @@ export class DynamicFormService {
     private userService: UserService,
   ) { }
 
-  getFormGroup(formFields: DynamicFormField<any>[]) {
+  getFormGroup(formFields: DynamicFormField[]) {
     const group = {};
 
     formFields.forEach(formField => {
       group[formField.key] = new FormControl(
-      {value: formField.value, disabled: !!formField.disabled},
+      {value: formField.value, disabled: formField.disabled},
       {validators: formField.validators}
       );
     });
@@ -34,7 +34,7 @@ export class DynamicFormService {
         take(2),
         map(users => {
           const usersSelectOptions = users.map(user => {
-            return {label: `${user.liuId}`, value: user.id};
+            return {label: `${user.liuId}`, value: user.id}; // TODO Add firstName + lastName
           });
           this.usersSelectOptions = usersSelectOptions;
           return usersSelectOptions;

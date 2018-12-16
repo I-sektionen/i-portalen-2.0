@@ -21,7 +21,7 @@ export class OrganisationDynamicFormService implements DynamicForm {
     private dynamicFormService: DynamicFormService
   ) { }
 
-  async getDynamicFormFields(organisation?: Organisation): Promise<DynamicFormField<any>[]> {
+  async getDynamicFormFields(organisation?: Organisation): Promise<DynamicFormField[]> {
     return this.dynamicFormService.getUsersSelectOptions().then(usersSelectOptions => {
       return [
         new InputFormField({
@@ -30,7 +30,7 @@ export class OrganisationDynamicFormService implements DynamicForm {
           key: 'name',
           value: organisation ? organisation.name : '',
           validators: [Validators.required],
-          disabled: organisation ? true : false,
+          disabled: !!organisation,
           width: 60,
         }),
         new DropdownFormField({
