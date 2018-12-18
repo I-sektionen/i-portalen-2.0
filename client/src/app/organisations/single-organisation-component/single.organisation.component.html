@@ -1,6 +1,6 @@
 <mat-card class="org-card outer-wrap">
 
-    <mat-card class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="32px" fxLayoutAlign="flex-start" style="max-height: 200px">
+    <mat-card class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start" style="max-height: 200px">
 
         <!-- Organisation icon box -->
         <div style="text-align: center" fxFlex="1 1 calc(33.3% - 32px)">
@@ -18,44 +18,35 @@
         </div> -->
 
     </mat-card>
-    <div class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <div class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
 
         <!-- Organisation description -->
         <mat-card fxFlex="2 1 calc(33.3% - 32px)">
+         <mat-card-title style="text-align: center">Om {{tiles[0].title}}</mat-card-title>
             <p class="org-text">{{tiles[2].text}}</p>
         </mat-card>
 
 
         <!-- Organisation member list -->
         <mat-card fxFlex="1 1 calc(33.3% - 32px)">
-            <mat-list>
-                <mat-list-item *ngFor=" let member of tiles[3].members">
-                    <div class="org-members-list">
-                        <p style="float: left">{{member.name}}</p>
-                        <p style="float: right">{{member.role}}</p>
-                    </div>
-                    <mat-divider></mat-divider>
-                </mat-list-item>
-            </mat-list>
+            <mat-card-title style="text-align: center">Medlemmar</mat-card-title>
+
+          <div *ngFor="let member of tiles[3].members">
+          <mat-expansion-panel style="background-color: rgba(255,255,255,0.2); border: none; box-shadow: none;" [hideToggle]="true" [expanded]="member.email!=''">
+            <mat-expansion-panel-header>
+              <div style="text-align: center; width: 100%">
+
+                <span style="float: left">{{member.name}}</span>
+                <span style="float: right">{{member.role}}</span>
+              </div>
+            </mat-expansion-panel-header>
+            <div *ngIf="member.email!=''">
+              <p><b>Kontakt:</b> {{member.email}}</p>
+            </div>
+          </mat-expansion-panel>
+            <hr>
+          </div>
         </mat-card>
 
     </div>
 </mat-card>
-
-<!-- <div class="card">
-        <mat-grid-list cols="12" rowHeight="111px" gutterSize="10px">
-            <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
-                <img src="{{tile.url}}" class="{{tile.class}}">
-                <p class="org-text">{{tile.text}}</p>
-                <mat-list>
-                    <mat-list-item *ngFor="let member of tile.members">
-                        <div class="org-members-list">
-                            <p style="float: left">{{member.name}}</p>
-                            <p style="float: right">{{member.role}}</p>
-                        </div>
-                        <mat-divider></mat-divider>
-                    </mat-list-item>
-                </mat-list>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </div> -->

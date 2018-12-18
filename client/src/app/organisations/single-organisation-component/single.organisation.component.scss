@@ -1,11 +1,11 @@
 .outer-wrap {    
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 0px;
 }
 
 .row {
-    margin: 20px;
+    margin: 10px;
 }
 
 .org-card {
@@ -39,5 +39,7 @@
 }
 
 .org-members-list {
-    width: 250px;
+  width: 90%;
+  margin: auto;
+  padding: 20px 6px 35px 6px;
 }
