@@ -1,8 +1,12 @@
 <h2 *ngIf="user">{{user.first_name+' '+user.last_name | titlecase}}</h2>
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
-  <mat-form-field>
+  <mat-form-field >
     <mat-select placeholder="Kön" [formControl]="userInformation.controls['gender']">
-      <mat-option *ngFor="let Gen of Gender" [value]="Gen" ]>Gem</mat-option>
+      <mat-option [value]="">--</mat-option>
+      <mat-option [value]="Man">Man</mat-option>
+      <mat-option [value]="Woman">Kvinna</mat-option>
+      <mat-option [value]="Other">Annat/icke-binär</mat-option>
+      <mat-option [value]="Unspecified">Vill ej ange</mat-option>
 
     </mat-select>
   </mat-form-field>
@@ -64,6 +68,8 @@
         Ort krävs.
       </mat-error>
     </mat-form-field>
+
+
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 
