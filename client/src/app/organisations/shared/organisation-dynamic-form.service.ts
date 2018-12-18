@@ -83,7 +83,9 @@ export class OrganisationDynamicFormService implements DynamicForm {
           order: 7,
           label: 'Datum',
           key: 'modified',
-          minDate: new Date(),
+          value: organisation ? organisation.modified.toDate() : new Date(),
+          validators: [Validators.required],
+          minDate: new Date(2018, 11, 1),
           maxDate: new Date(),
         })
       ];

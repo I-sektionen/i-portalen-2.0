@@ -19,5 +19,5 @@ export interface Organisation {
   imageUrl: string;
 
   // Traceability
-  modified?: string; // DATE/TIME + USER
+  modified?: any; // DATE/TIME + USER
 }
