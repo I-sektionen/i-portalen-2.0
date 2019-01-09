@@ -2,11 +2,11 @@
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
   <mat-form-field >
     <mat-select placeholder="Kön" [formControl]="userInformation.controls['gender']">
-      <mat-option [value]="">--</mat-option>
-      <mat-option [value]="Man">Man</mat-option>
-      <mat-option [value]="Woman">Kvinna</mat-option>
-      <mat-option [value]="Other">Annat/icke-binär</mat-option>
-      <mat-option [value]="Unspecified">Vill ej ange</mat-option>
+      <mat-option value="">--</mat-option>
+      <mat-option value="Man">Man</mat-option>
+      <mat-option value="Woman">Kvinna</mat-option>
+      <mat-option value="Other">Annat/icke-binär</mat-option>
+      <mat-option value="Unspecified">Vill ej ange</mat-option>
 
     </mat-select>
   </mat-form-field>
