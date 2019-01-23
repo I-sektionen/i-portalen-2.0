@@ -1,16 +1,16 @@
 <mat-card class="org-card outer-wrap">
 
-    <mat-card class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="32px"
-        fxLayoutAlign="flex-start" style="max-height: 200px">
+    <mat-card class="row org-title-icon-card" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="32px"
+         fxLayoutAlign="center center" style="max-height: 200px">
 
         <!-- Organisation icon box -->
-        <div style="text-align: center" fxFlex="1 1 calc(33.3% - 32px)">
+        <div fxFlex="1 1 calc(33.3% - 32px)">
             <img src="{{tiles[0].url}}" class="{{tiles[0].class}}">
         </div>
 
         <!-- Organisation title -->
-        <div style="vertical-align: middle" fxFlex="4 1 calc(33.3% - 32px)">
-            <h1 class="org-title">{{tiles[0].title}}</h1>
+        <div fxFlex="4 1 calc(33.3% - 32px)">
+            <h1 class="org-title" style="">{{tiles[0].title}}</h1>
         </div>
 
         <!--       Organisation header
