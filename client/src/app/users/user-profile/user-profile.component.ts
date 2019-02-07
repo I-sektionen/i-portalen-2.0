@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
 import {User} from '../shared/user.model';
-import {FormBuilder, FormGroup} from "@angular/forms";
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+//import {MatDialogRef} from "@angular/material";
 
 
 @Component({
@@ -16,18 +16,28 @@ export class UserProfileComponent implements OnInit {
   userObservable: Observable<User>;
   user:User;
   userInformation: FormGroup;
+  editing = false;
+
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder,
+    private fb: FormBuilder
+    //public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
-      'address':[''],
-      'city':[''],
-      'zipCode':[''],
+
+      'class' : [''],
+      'address':['', Validators.required],
+      'city':['', Validators.required],
+      'zip_code':['', Validators.required],
       'allergies':[''],
       'newspaper':[false],
+      'gender':[''],
+      'current_year':[''],
+
     });
+    this.userInformation.disable();
+
   }
 
   ngOnInit() {
@@ -40,20 +50,40 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'zipCode': user.zipCode});
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
+      this.userInformation.patchValue({'gender': user.gender});
+      this.userInformation.patchValue({'current_year': user.current_year});
     })
   }
 
+
   onSubmit(form) {
-   Object.keys(form.value).forEach(attribute =>
+    Object.keys(form.value).forEach(attribute =>
     {
       if(form.value[attribute] != null)
       {
         this.user[attribute] = form.value[attribute];
-
       }
     });
+    this.editFields();
+    this.userService.updateUser(this.user).then((function () {
+      console.log("Dina uppgifter har uppdaterats");
+    })).catch(function() {
+      console.log("failed");
+      this.editFields();
+    });
+  }
 
-    this.userService.updateUser(this.user);
-    console.log("Dina uppgifter har uppdaterats!");
+   editFields()
+  {
+    console.log("edit fields called");
+    if(this.editing)
+    {
+      this.userInformation.disable();
+      this.editing = false;
+    }
+    else {
+      this.userInformation.enable();
+      this.editing = true;
+    }
   }
 }

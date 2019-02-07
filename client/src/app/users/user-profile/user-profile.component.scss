@@ -21,14 +21,11 @@ h2 {
   max-width: 400px;
 }
 
-
-
 .shorter {
   max-width: 150px;
 }
 
 button{
-  margin: 30px 0;
   max-width: 180px;
 }
 
@@ -36,3 +33,34 @@ button{
   max-width: 200px;
   padding-right: 65px;
 }
+button.close {
+  margin: 0 0 0 auto;
+}
+/*
+margin left skall helst vara auto men får det inte att funka
+ */
+#close {
+  margin-right: 0;
+}
+
+/* this is another solution for edit mode
+
+input[disabled], mat-select[disabled] {
+  color: aqua;
+}
+
+*/
+
+
+::ng-deep .disabled-fields .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .disabled-fields .mat-select-arrow {
+  border-top:none;
+}
+
+//::ng-deep .disabled-fields .mat-form-field-label {
+// display:none!important;
+//}
+

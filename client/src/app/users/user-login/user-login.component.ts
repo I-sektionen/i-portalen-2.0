@@ -9,7 +9,9 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 })
 export class UserLoginComponent {
 
+  loginScreen: boolean = true;
   wrongCred = false;
+
   loginForm = new FormGroup({
     liuId: new FormControl('',
       [Validators.required],
@@ -37,11 +39,13 @@ export class UserLoginComponent {
       this.wrongCred = true;
     })
   }
+
   onChanges(): void {
 this.loginForm.valueChanges.subscribe(val => {
     this.wrongCred = false
   });
 }
+
 }
 
 
