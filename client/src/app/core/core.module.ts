@@ -8,28 +8,55 @@ import {
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule,
+  MatFormFieldModule,
+  MatInputModule, MatCardModule, MatSnackBarModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DatabaseService } from './database/database.service';
+import { FirebaseModule } from './firebase/firebase.module';
+import { TextComponent } from './text/text.component';
+import { TextService } from './text/text.service';
+import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UsersModule } from '../users/users.module';
+import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
+import { StorageService } from './storage/storage.service';
+import { FeedbackService } from './feedback/feedback.service';
 
 @NgModule({
-  declarations: [NavComponent, FooterComponent],
-  exports: [NavComponent],
-  providers: [AuthService],
+  declarations: [NavComponent, FooterComponent, TextComponent],
+  entryComponents: [],
+  exports: [NavComponent, TextComponent],
+  providers: [AuthService, DatabaseService, StorageService, TextService, FeedbackService],
   imports: [
+    // Angular
     CommonModule,
     FlexLayoutModule,
     RouterModule,
     LayoutModule,
+    ReactiveFormsModule,
+    MarkdownToHtmlModule,
+
+    // Material
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    DragDropModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatSnackBarModule,
+
+    // Custom
+    FirebaseModule,
+    SharedModule,
+    UsersModule,
   ]
 })
 export class CoreModule { }
