@@ -13,7 +13,7 @@ export class UserLoginComponent {
   loginScreen: boolean = true;
 
   loginForm = new FormGroup({
-    liu_id: new FormControl('',
+    liuId: new FormControl('',
       [Validators.required],
     ),
     password: new FormControl('',
@@ -25,8 +25,8 @@ export class UserLoginComponent {
     this.onChanges();
   }
 
-  get liu_id() {
-    return this.loginForm.get('liu_id');
+  get liuId() {
+    return this.loginForm.get('liuId');
   }
 
   get password() {
@@ -34,7 +34,7 @@ export class UserLoginComponent {
   }
 
   login() {
-    this.authService.loginLiUIDAndPassword(this.liu_id.value, this.password.value)
+    this.authService.loginLiUIDAndPassword(this.liuId.value, this.password.value)
     .catch( (err) => {
       this.wrongCred = true;
     })

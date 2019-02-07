@@ -1,21 +1,25 @@
+
 <h2 *ngIf="user">{{user.first_name+' '+user.last_name | titlecase}}</h2>
-<form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)" [formGroup]="userInformation">
+
+<form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)"
+      [formGroup]="userInformation">
+  <mat-dialog-content>
   <mat-form-field>
     <mat-select placeholder="Kön" [formControl]="userInformation.controls['gender']">
+      <mat-option value="">--</mat-option>
+      <mat-option value="Man">Man</mat-option>
+      <mat-option value="Woman">Kvinna</mat-option>
+      <mat-option value="Other">Annat/icke-binär</mat-option>
+      <mat-option value="Unspecified">Vill ej ange</mat-option>
 
-      <li *ngFor="let item of items; let i = index">
-        {{i}} {{item}}
-      </li>
-      <mat-option>--</mat-option>
-      <mat-option value="Dat Boi">Dat Boi
-      </mat-option>
     </mat-select>
   </mat-form-field>
 
 
   <table>
-    <mat-form-field  class="shorter medshort" >
-      <mat-select  placeholder="Nuvarande årskurs" [formControl]="userInformation.controls['current_year']">
+    <mat-form-field class="shorter medshort">
+      <mat-select placeholder="Nuvarande årskurs" [formControl]="userInformation.controls['current_year']">
+
         <mat-option value="">--</mat-option>
         <mat-option value="1">1</mat-option>
         <mat-option value="2">2</mat-option>
@@ -27,8 +31,8 @@
     </mat-form-field>
 
     <mat-form-field class="shorter">
-      <mat-select placeholder="Klass"   [formControl]="userInformation.controls['class']" >
-        <mat-option value="" >--</mat-option>
+      <mat-select placeholder="Klass" [formControl]="userInformation.controls['class']">
+        <mat-option value="">--</mat-option>
         <mat-option value="A">A</mat-option>
         <mat-option value="B">B</mat-option>
         <mat-option value="C">C</mat-option>
@@ -41,8 +45,8 @@
     </mat-form-field>
   </table>
 
-  <mat-form-field >
-    <input  matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
+  <mat-form-field>
+    <input matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
   </mat-form-field>
 
   <mat-form-field id="adress">
@@ -55,11 +59,13 @@
 
   <table>
     <mat-form-field class="shorter medshort">
+
       <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
       <mat-error *ngIf="userInformation.controls['zip_code'].touched &&
       userInformation.controls['zip_code'].hasError('required')">
         Postnummer krävs.
       </mat-error>
+
     </mat-form-field>
 
     <mat-form-field class="shorter">
@@ -69,13 +75,17 @@
         Ort krävs.
       </mat-error>
     </mat-form-field>
+
+
   </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
+</mat-dialog-content>
+<mat-dialog-actions>
 
-  <div>
-    <button *ngIf="editing" type="submit" mat-flat-button color="primary" >Spara</button>
-    <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
+  <button *ngIf="editing && userInformation.dirty" type="submit" mat-flat-button color="primary">Spara</button>
+  <button *ngIf="editing && !userInformation.dirty" mat-flat-button color="primary">Avbryt</button>
+  <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
+  <button type="button" mat-dialog-close mat-flat-button color="warn" class="close">Stäng</button>
 
-    <button type="button" mat-dialog-close mat-flat-button color="warn" id="close">Stäng</button>
-  </div>
+</mat-dialog-actions>
 </form>

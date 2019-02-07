@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FireAuthService } from '../firebase/fire-auth/fire-auth.service';
 import { Observable } from 'rxjs/index';
 import { User } from 'firebase';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AuthService {
 
   constructor(
     private firebaseAuthService: FireAuthService,
+    private router: Router,
   ) { }
 
   get isLoggedIn(): Observable<boolean> {
@@ -37,6 +39,8 @@ export class AuthService {
   }
 
   logout() {
-    return this.firebaseAuthService.logout();
+    return this.firebaseAuthService.logout().then(() => {
+      this.router.navigate(['']);
+    });
   }
 }

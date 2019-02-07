@@ -1,6 +1,6 @@
 <!-- Header -->
 <header>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="{{(isAdminPage | async) ? 'accent' : 'primary'}}">
     <button
       type="button"
       mat-icon-button
@@ -10,11 +10,11 @@
     <button mat-button routerLink="">
       <h1>I-Portalen</h1>
     </button>
+    <button *ngIf="isAdmin | async" mat-icon-button routerLink="admin">
+      <mat-icon>security</mat-icon>
+    </button>
     <span class="fill-remaining-space"></span>
     <span *ngIf="!(isLoggedIn | async)">
-      <!--<button mat-button routerLink="login">-->
-      <!--Logga in-->
-      <!--</button>-->
     <mat-menu #appMenu="matMenu">
       <app-user-login></app-user-login>
     </mat-menu>
@@ -26,9 +26,6 @@
     </span>
     <span *ngIf="isLoggedIn | async">
 
-      <button mat-icon-button>
-        <mat-icon>event_available</mat-icon>
-      </button>
       <button mat-icon-button>
         <mat-icon>event</mat-icon>
       </button>
@@ -85,7 +82,8 @@
                [attr.role]="(isMobile | async) ? 'dialog' : 'navigation'"
                [mode]="(isMobile | async) ? 'over' : 'side'"
                [opened]="!(isMobile | async)">
-    <mat-nav-list>
+    <!-- Default navigation options -->
+    <mat-nav-list *ngIf="!(isAdminPage | async)">
       <a mat-list-item routerLink="events">
         <mat-icon>event_note</mat-icon>
         Evenemang
@@ -106,6 +104,18 @@
       <a mat-list-item routerLink="">
         <mat-icon>exit_to_app</mat-icon>
         Logga ut
+      </a>
+    </mat-nav-list>
+
+    <!--Admin navigation options-->
+    <mat-nav-list *ngIf="isAdminPage | async">
+      <a mat-list-item routerLink="admin">
+        <mat-icon>storage</mat-icon>
+        Databas
+      </a>
+      <a mat-list-item routerLink="admin/redigera-texter">
+        <mat-icon>text_fields</mat-icon>
+        Redigera texter
       </a>
     </mat-nav-list>
   </mat-sidenav>

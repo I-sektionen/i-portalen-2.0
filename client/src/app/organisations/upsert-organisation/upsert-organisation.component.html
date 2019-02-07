@@ -1,0 +1,6 @@
+<app-dynamic-form
+  [formFields]="organisationFormFields"
+  [title]="'utskott'"
+  [editing]="!!organisation"
+  (ngSubmit)="submit($event)">
+</app-dynamic-form>
