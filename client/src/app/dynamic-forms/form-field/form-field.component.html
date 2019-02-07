@@ -1,0 +1,76 @@
+<div [formGroup]="form">
+  <div [ngSwitch]="formField.controlType">
+
+    <!-- input -->
+    <mat-form-field *ngSwitchCase="'input'">
+      <input matInput
+             placeholder="{{formField.label}}" formControlName="{{formField.key}}" [type]="formField.type">
+    </mat-form-field>
+
+    <!-- textarea -->
+    <mat-form-field *ngSwitchCase="'textarea'">
+      <textarea matInput placeholder="{{formField.label}}"
+                formControlName="{{formField.key}}" matTextareaAutosize></textarea>
+    </mat-form-field>
+
+    <!-- dropdown -->
+    <mat-form-field *ngSwitchCase="'dropdown'">
+      <mat-select placeholder="Ledare" [formControlName]="formField.key">
+        <mat-option *ngFor="let option of formField.selectOptions" [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--radiobutton-->
+    <div *ngSwitchCase="'radio'">
+      <mat-label>{{formField.label}}</mat-label><br>
+      <mat-radio-group *ngSwitchCase="'radio'" [formControlName]="formField.key">
+        <mat-radio-button *ngFor="let radio of formField.selectOptions" [value]="radio.value" color="{{formField.color}}">
+          {{radio.label}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <!--datepicker-->
+    <mat-form-field *ngSwitchCase="'datepicker'">
+      <input matInput placeholder="{{formField.label}}" [formControlName]="formField.key"
+             [matDatepicker]="datepicker" [min]="formField.minDate" [max]="formField.maxDate">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+
+    <!--fileupload-->
+    <div *ngSwitchCase="'fileupload'" fxLayout="row wrap" fxLayoutGap="16px grid">
+
+      <!--Upload button-->
+      <div fxFlex="50">
+        <button mat-raised-button (click)="file.click()" type="button" color="{{formField.color}}">
+          Ladda upp {{formField.label | lowercase}}
+        </button>
+        <input #file type="file" accept="image/*" style="display:none;" (change)="uploadFile($event)">
+      </div>
+
+      <!--Upload feedback-->
+      <div fxFlex="50" fxFlexAlign="center">
+        <div fxLayout="row">
+          <mat-icon *ngIf="!uploading && form.get(formField.key).value" color="{{formField.color}}">
+            check_circle_outline
+          </mat-icon>
+          <mat-icon *ngIf="!uploading && !form.get(formField.key).value">
+            highlight_off
+          </mat-icon>
+          <mat-icon *ngIf="uploading">
+            <mat-progress-spinner
+              [diameter]="22"
+              [mode]="'determinate'"
+              color="{{formField.color}}"
+              [value]="uploadPercentage">
+            </mat-progress-spinner>
+          </mat-icon>
+          <span>{{fileName}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,10 @@ import { Organisation } from './organisation.model';
 })
 export class OrganisationService {
 
-  private readonly path = 'organisations'; // collection path
+  private readonly path = 'organisations';
 
   constructor(
-    private databaseService: DatabaseService<Organisation> // database service
+    private databaseService: DatabaseService<Organisation>,
   ) { }
 
   insertOrganisation(organisation: Organisation) {

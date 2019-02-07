@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
     //public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
+
       'class' : [''],
       'address':['', Validators.required],
       'city':['', Validators.required],
@@ -46,7 +47,7 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'address': user.address});
       this.userInformation.patchValue({'newspaper': user.newspaper});
       this.userInformation.patchValue({'city': user.city});
-      this.userInformation.patchValue({'zip_code': user.zip_code});
+      this.userInformation.patchValue({'zipCode': user.zipCode});
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});

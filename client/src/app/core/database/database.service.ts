@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirestoreService } from '../firebase/firestore/firestore.service';
 import { QueryFn } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs/index';
+import { Observable } from 'rxjs/index';
 
 @Injectable({
   providedIn: 'root'

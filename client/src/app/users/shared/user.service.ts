@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { User } from './user.model';
+import { Role, User } from './user.model';
 import { DatabaseService } from '../../core/database/database.service';
 import { AuthService } from '../../core/auth/auth.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap, shareReplay } from 'rxjs/operators';
+import { QueryFn } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class UserService {
 
   private readonly path = 'users';
 
-  private userObservable: Observable<User>;
+  private user$: Observable<User>;
+  private isAdmin$: Observable<boolean>;
 
   constructor(
     private authService: AuthService,
@@ -21,23 +23,28 @@ export class UserService {
     this.setUser();
   }
 
-  get user() {
-    return this.userObservable;
-  }
-
   get uid() {
     return this.authService.uid;
   }
 
+  get user() {
+    return this.user$;
+  }
+
+  get isAdmin(): Observable<boolean> {
+    return this.isAdmin$;
+  }
+
   setUser() {
-    this.userObservable = this.authService.authUser.pipe(
+    this.user$ = this.authService.authUser.pipe(
       switchMap(authUser => {
-        if (authUser) {
-          return this.databaseService.get(this.path, authUser.uid);
-        } else {
-          return of(null);
-        }
-      })
+        return authUser ? this.databaseService.get(this.path, authUser.uid) : of(null);
+      }),
+    );
+
+    this.isAdmin$ = this.user.pipe(
+      switchMap(user => of(user && user.role === Role.Admin)),
+      shareReplay(),
     );
   }
 
@@ -45,4 +52,7 @@ export class UserService {
     return this.databaseService.update(this.path, this.uid, user);
   }
 
+  listUsers(queryFn?: QueryFn) {
+    return this.databaseService.list(this.path, queryFn);
+  }
 }

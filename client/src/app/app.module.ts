@@ -14,10 +14,12 @@ import { OrganisationsModule } from './organisations/organisations.module';
 import { SponsorsModule } from './sponsors/sponsors.module';
 import { UsersModule } from './users/users.module';
 import { HomeModule } from './home/home.module';
+import { FormFieldComponent } from './form-field/form-field.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormFieldComponent
   ],
   imports: [
     // Angular Modules

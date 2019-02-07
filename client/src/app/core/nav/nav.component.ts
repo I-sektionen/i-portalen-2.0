@@ -5,6 +5,9 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import {MatDialog} from '@angular/material';
 import {UserProfileComponent} from "../../users/user-profile/user-profile.component";
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, share } from 'rxjs/operators';
+import { UserService } from '../../users/shared/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,21 +16,31 @@ import {UserProfileComponent} from "../../users/user-profile/user-profile.compon
 })
 export class NavComponent implements OnInit {
 
-  isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches)
-    );
+  isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(result => result.matches),
+    share(),
+  );
 
   isLoggedIn: Observable<boolean>;
+  isAdmin: Observable<boolean>;
+  isAdminPage: Observable<boolean>;
 
   constructor(
     public dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
+    this.isAdmin = this.userService.isAdmin;
+    this.isAdminPage = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map((event: NavigationEnd) => event.urlAfterRedirects.indexOf('admin') !== -1),
+      share()
+    );
   }
 
   logout() {
