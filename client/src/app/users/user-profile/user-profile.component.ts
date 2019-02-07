@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});
-      this.userInformation.patchValue({'current_year': user.current_year});
+      this.userInformation.patchValue({'current_year': user.currentYear});
     })
   }
 
