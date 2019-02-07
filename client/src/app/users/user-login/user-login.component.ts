@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-login',
@@ -45,9 +45,11 @@ export class UserLoginComponent {
     });
   }
   reset() {
-    console.log(this.liu_id);
-    this.authService.sendPasswordResetEmail(this.liu_id.value);
+    this.authService.sendPasswordResetEmail(this.liuId.value).then(
+
+    ).catch((error) => {
+      this.wrongCred = true;
+    });
   }
 }
-
 

@@ -39,9 +39,6 @@ export class FireAuthService {
   sendPasswordResetEmail(email) {
     return this.auth.sendPasswordResetEmail(email);
   }
-  //.catch((err) => {
-  //       this.wrongCred = true;
-  //     });
 
   logout() {
     return this.auth.signOut();
