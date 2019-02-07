@@ -1,31 +1,34 @@
 <div class="center-content" (click)="$event.stopPropagation();" (keydown.tab)="$event.stopPropagation() ">
+    <!--loginscreen==true -> login, loginscren==false -> reset password -->
+    <form (ngSubmit)="(loginScreen) ? login() : reset()" [formGroup]="loginForm" >
 
-    <form (ngSubmit)="login()" [formGroup]="loginForm" >
-
-      <!--Email-->
-      <mat-form-field>
-        <input matInput placeholder="LiU-ID" formControlName="liu_id">
-        <mat-error *ngIf="liu_id.touched && liu_id.hasError('required')">
-          LiU-ID krävs.
-        </mat-error>
-      </mat-form-field>
+    <!--Email-->
+    <mat-form-field>
+      <input matInput placeholder="LiU-ID" formControlName="liuId">
+      <mat-error *ngIf="liuId.touched && liuId.hasError('required')">
+        LiU-ID krävs.
+      </mat-error>
+    </mat-form-field>
 
       <!--Password-->
-      <mat-form-field>
-        <input matInput placeholder="Lösenord" type="password" formControlName="password">
-        <mat-error *ngIf="password.touched && password.hasError('required')">
-          Lösenord krävs.
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Lösenord" type="password" formControlName="password">
+      <mat-error *ngIf="password.touched && password.hasError('required')">
+        Lösenord krävs.
+      </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="wrongCred"> Felaktiga användaruppgifter. </mat-error>                
+                      
+      <!--Forgot password-->
+      <a routerLink="" (click)="loginScreen = !loginScreen" class="btn btn-link">{{(loginScreen) ? "Glömt lösenordet?" : "Logga in"}}</a>
 
       <!--Submit-->
       <div class="login-button-div">
         <button
           mat-raised-button
           color="primary">
-          Logga in
+          {{(loginScreen) ? "Logga in" : "Skicka återställningslänk"}}
         </button>
       </div>
     </form>
-
 </div>

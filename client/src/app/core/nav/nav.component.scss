@@ -19,7 +19,7 @@ main {
   margin-top: $nav-height;
 }
 
-.mat-toolbar.mat-primary {
+.mat-toolbar {
   position: sticky;
   top: 0;
   height: $nav-height;
@@ -39,7 +39,16 @@ main {
   margin: 0;
   padding: 8px 24px;
 }
-
-.mat-menu {
-  width: 200px
+@media only screen and (min-width: 450px) { // desktop
+/deep/ .mat-menu-panel {
+  min-width: 350px !important;
+  max-width: 100% !important;
 }
+}
+@media only screen and (max-width: 450px) { // mobile
+/deep/ .mat-menu-panel {
+  min-width: 100vw !important;
+  max-width: 100% !important;
+}
+}
+

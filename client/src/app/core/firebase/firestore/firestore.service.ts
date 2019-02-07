@@ -14,7 +14,7 @@ import { take, map } from 'rxjs/operators';
 export class FirestoreService<Item> {
 
   constructor(
-    private afs: AngularFirestore,
+    private angularFirestore: AngularFirestore,
   ) { }
 
   insert(path: string, item: Item): Promise<any> {
@@ -54,11 +54,11 @@ export class FirestoreService<Item> {
   }
 
   doc(path: string, id: string): AngularFirestoreDocument<Item> {
-    return this.afs.doc(`${path}/${id}`);
+    return this.angularFirestore.doc(`${path}/${id}`);
   }
 
   col(path: string, queryFn?: QueryFn): AngularFirestoreCollection<Item> {
-    return this.afs.collection(path, queryFn);
+    return this.angularFirestore.collection(path, queryFn);
   }
 
   colWithIds(path: string, queryFn?: QueryFn): Observable<Item[]> {

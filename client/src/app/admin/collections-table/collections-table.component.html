@@ -1,0 +1,69 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+  <!-- Default -->
+  <ng-container matColumnDef="path">
+    <th mat-header-cell *matHeaderCellDef>Collection</th>
+    <td mat-cell *matCellDef="let item">{{item.path | titlecase}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="editCollection">
+    <th mat-header-cell *matHeaderCellDef>Redigera</th>
+    <td mat-cell *matCellDef="let item">
+      <a mat-icon-button routerLink="redigera/{{item.path}}">
+        <mat-icon>edit</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="add">
+    <th mat-header-cell *matHeaderCellDef>Skapa</th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button (click)="setCollection(item.path)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Firestore objects -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let item">{{item.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Namn</th>
+    <td mat-cell *matCellDef="let item">{{item.name ? item.name : item.lastName + ', ' + item.firstName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="liuId">
+    <th mat-header-cell *matHeaderCellDef>LiU-ID</th>
+    <td mat-cell *matCellDef="let item">{{item.liuId}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="role">
+    <th mat-header-cell *matHeaderCellDef>Roll</th>
+    <td mat-cell *matCellDef="let item">{{item.role}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="editItem">
+    <th mat-header-cell *matHeaderCellDef>Redigera</th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button (click)="setEditItem(item)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="deleteItem">
+    <th mat-header-cell *matHeaderCellDef>Radera</th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button (click)="deleteItem(item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

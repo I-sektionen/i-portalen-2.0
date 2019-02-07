@@ -10,20 +10,37 @@ import { OrganisationsListComponent } from './organisations-list-component/organ
 import { SingleOrganisationComponent } from './single-organisation-component/single.organisation.component';
 import { SharedModule } from '../shared/shared.module';
 import { CardComponent } from './card/card.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
+import { UpsertOrganisationComponent } from './upsert-organisation/upsert-organisation.component';
+import { OrganisationService } from './shared/organisation.service';
+import { OrganisationDynamicFormService } from './shared/organisation-dynamic-form.service';
 
 @NgModule({
-  declarations: [OrganisationsComponent, SingleOrganisationComponent, OrganisationsListComponent, CardComponent],
-  exports: [],
-  providers: [],
+  declarations: [OrganisationsComponent, UpsertOrganisationComponent,SingleOrganisationComponent, OrganisationsListComponent, CardComponent],
+  exports: [UpsertOrganisationComponent],
+  providers: [OrganisationService, OrganisationDynamicFormService],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+
+    // Material
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+
+    // Custom
     OrganisationsRoutingModule,
     SharedModule,
     MatExpansionModule,
     MatGridListModule,
     MatListModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    DynamicFormsModule
   ]
 })
 export class OrganisationsModule { }
