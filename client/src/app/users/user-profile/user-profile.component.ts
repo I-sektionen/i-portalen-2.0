@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
       'allergies':[''],
       'newspaper':[false],
       'gender':[''],
-      'current_year':[''],
+      'currentYear': [''],
 
     });
     this.userInformation.disable();
@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});
-      this.userInformation.patchValue({'current_year': user.currentYear});
+      this.userInformation.patchValue({'currentYear': user.currentYear});
     })
   }
 
@@ -64,6 +64,7 @@ export class UserProfileComponent implements OnInit {
         this.user[attribute] = form.value[attribute];
       }
     });
+
     this.editFields();
     this.userService.updateUser(this.user).then((function () {
       console.log("Dina uppgifter har uppdaterats");
