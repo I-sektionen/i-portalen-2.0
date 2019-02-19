@@ -59,9 +59,9 @@
   <table>
     <mat-form-field class="shorter medshort">
 
-      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
-      <mat-error *ngIf="userInformation.controls['zip_code'].touched &&
-      userInformation.controls['zip_code'].hasError('required')">
+      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zipCode']">
+      <mat-error *ngIf="userInformation.controls['zipCode'].touched &&
+      userInformation.controls['zipCode'].hasError('required')">
         Postnummer krävs.
       </mat-error>
 
