@@ -1,5 +1,64 @@
 @import '../../../styles.scss';
 
 #footer-div {
-  background-color: mat-color($accent); // mat-color($primary);
+  background-color: lighten(black,95); // mat-color($primary);
+  text-align: center;
+  padding-bottom:1.5em;
+  font-size:0.8em;
+}
+
+.footer-isektionen-logo {
+  height: 5em;
+  margin-top: 2em;
+  padding-bottom: 1em;
+  border: 0;
+}
+
+.footer-isektionen_logo_container {
+  text-align: center;
+}
+
+.footer-link-list {
+  margin-top: 1em;
+}
+
+.footer-list {
+  list-style: none;
+  color: mat-color($accent);
+  margin: 0;
+  border: 0;
+  padding-inline-start: 0;
+  padding-top:0.5em;
+}
+
+.footer-list li{
+  height:1.5em;
+}
+
+.footer-icon{
+  color: lighten(black,60); /*transparentize(mat-color($primary),0.5);*/
+}
+
+.footer-link {
+  color: lighten(black,60);
+  text-decoration: none;
+  font-weight: bolder;
+  -webkit-transition: color .35s ease-out;
+  -moz-transition: color .35s ease-out;
+  -o-transition: color .35s ease-out;
+  transition: color .35s ease-out;
+}
+
+.footer-link:hover{
+  color: lighten(black,10);
+}
+
+.footer-webgroup-tag {
+  color: lighten(black,70);
+}
+
+.footer-webgroup-tag-container {
+  padding-top: 2.5em;
+  font-size: 0.9em;
+  padding-bottom: 0.5em;
 }
