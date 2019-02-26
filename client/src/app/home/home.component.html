@@ -1,3 +1,15 @@
 <app-text [page]="'home'" [title]="'welcome'"></app-text>
 
-<P> Home branch</P>
+<P>Home branch</P>
+<form [formGroup]="filter">
+  <mat-form-field>
+    <input matInput placeholder="Sök" [formControl]="filter.controls['search']">
+  </mat-form-field>
+</form>
+<mat-chip-list>
+  <mat-chip>Webgroup</mat-chip>
+  <mat-chip>Git</mat-chip>
+  <mat-chip>Workshop</mat-chip>
+</mat-chip-list>
+
+<p *ngFor="let article of showedarticles">{{article.name}}</p>
