@@ -1,5 +1,4 @@
-
-<h2 *ngIf="user">{{user.first_name+' '+user.last_name | titlecase}}</h2>
+<h2 *ngIf="user">{{user.firstName + ' ' + user.lastName | titlecase}}</h2>
 
 <form *ngIf="user" [class.disabled-fields]="!editing" class="example-container" (ngSubmit)="onSubmit(userInformation)"
       [formGroup]="userInformation">
@@ -18,7 +17,7 @@
 
   <table>
     <mat-form-field class="shorter medshort">
-      <mat-select placeholder="Nuvarande årskurs" [formControl]="userInformation.controls['current_year']">
+      <mat-select placeholder="Nuvarande årskurs" [formControl]="userInformation.controls['currentYear']">
 
         <mat-option value="">--</mat-option>
         <mat-option value="1">1</mat-option>
@@ -39,16 +38,16 @@
         <mat-option value="D">D</mat-option>
         <mat-option value="E">E</mat-option>
         <mat-option value="F">F</mat-option>
-        <mat-option value="IA">IA</mat-option>
-        <mat-option value="IB">IB</mat-option>
+        <mat-option value="IiA">IiA</mat-option>
+        <mat-option value="IiB">IiB</mat-option>
       </mat-select>
     </mat-form-field>
   </table>
 
-  <mat-form-field>
+    <mat-form-field id="allergies">
     <input matInput placeholder="Allergier" [formControl]="userInformation.controls['allergies']">
   </mat-form-field>
-
+    <br>
   <mat-form-field id="adress">
     <input matInput placeholder="Adress" [formControl]="userInformation.controls['address']">
     <mat-error *ngIf="userInformation.controls['address'].touched &&
@@ -60,9 +59,9 @@
   <table>
     <mat-form-field class="shorter medshort">
 
-      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zip_code']">
-      <mat-error *ngIf="userInformation.controls['zip_code'].touched &&
-      userInformation.controls['zip_code'].hasError('required')">
+      <input matInput placeholder="Postnummer" [formControl]="userInformation.controls['zipCode']">
+      <mat-error *ngIf="userInformation.controls['zipCode'].touched &&
+      userInformation.controls['zipCode'].hasError('required')">
         Postnummer krävs.
       </mat-error>
 
@@ -83,7 +82,9 @@
 <mat-dialog-actions>
 
   <button *ngIf="editing && userInformation.dirty" type="submit" mat-flat-button color="primary">Spara</button>
-  <button *ngIf="editing && !userInformation.dirty" mat-flat-button color="primary">Avbryt</button>
+  <button *ngIf="editing && !userInformation.dirty" (click)="editing = !editing" mat-flat-button color="primary">
+    Avbryt
+  </button>
   <button *ngIf="!editing" (click)="editFields()" mat-flat-button color="primary">Ändra</button>
   <button type="button" mat-dialog-close mat-flat-button color="warn" class="close">Stäng</button>
 
