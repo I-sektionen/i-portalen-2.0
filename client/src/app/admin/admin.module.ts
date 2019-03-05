@@ -18,6 +18,7 @@ import { CollectionsListComponent } from './collections-list/collections-list.co
 import { OrganisationsModule } from '../organisations/organisations.module';
 import { CollectionsTableComponent } from './collections-table/collections-table.component';
 import { CollectionsUpsertComponent } from './collections-upsert/collections-upsert.component';
+import { SponsorsModule } from '../sponsors/sponsors.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CollectionsUpsertComponent } from './collections-upsert/collections-ups
     SharedModule,
     CoreModule,
     OrganisationsModule,
+    SponsorsModule,
 
     // Material
     MatFormFieldModule,

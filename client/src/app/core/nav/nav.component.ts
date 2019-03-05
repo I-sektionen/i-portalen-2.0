@@ -54,6 +54,5 @@ export class NavComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
-    //^^ Can be used to react to dialog exit
   }
 }

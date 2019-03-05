@@ -1,0 +1,7 @@
+<div id="sponsors">
+  <div class="sponsor" *ngFor="let sponsor of sponsors | async | shuffle">
+    <a href="{{sponsor.websiteUrl}}" target="_blank">
+      <img src="{{sponsor.logoUrl}}">
+    </a>
+  </div>
+</div>
