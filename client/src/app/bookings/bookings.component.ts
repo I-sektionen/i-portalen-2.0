@@ -23,6 +23,7 @@ export class BookingsComponent implements OnInit {
       element: document.getElementById("editor"),
       autofocus: true,
       hideIcons: ["fullscreen", "link", "side-by-side"],
+      spellChecker: false,
 
         /*toolbar: [{
           name: "bold",
@@ -33,10 +34,10 @@ export class BookingsComponent implements OnInit {
           "|", // Separator
         ],*/
 
-
       });
 
     this.simplemde.codemirror.on("change", () => this.testClick());
+    this.testClick();
   }
 
    onClick(){
