@@ -1,31 +1,27 @@
 <!-- Header -->
 <header>
-  <mat-toolbar color="{{(isAdminPage | async) ? 'accent' : 'primary'}}">
-    <button
-      type="button"
-      mat-icon-button
-      (click)="drawer.toggle()">
+  <mat-toolbar color="{{ (isAdminPage | async) ? 'accent' : 'primary' }}">
+    <button type="button" mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <button mat-button routerLink="" (click)="tester()">
       <h1>I-Portalen</h1>
     </button>
-    <button *ngIf="isAdmin | async" mat-icon-button routerLink="admin">
+    <button *ngIf="(isAdmin | async)" mat-icon-button routerLink="admin">
       <mat-icon>security</mat-icon>
     </button>
     <span class="fill-remaining-space"></span>
     <span *ngIf="!(isLoggedIn | async)">
-    <mat-menu #appMenu="matMenu">
-      <app-user-login></app-user-login>
-    </mat-menu>
+      <mat-menu #appMenu="matMenu">
+        <app-user-login></app-user-login>
+      </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="appMenu">
-      Logga in
-      <mat-icon>account_circle</mat-icon>
-    </button>
+      <button mat-button [matMenuTriggerFor]="appMenu">
+        Logga in
+        <mat-icon>account_circle</mat-icon>
+      </button>
     </span>
-    <span *ngIf="isLoggedIn | async">
-
+    <span *ngIf="(isLoggedIn | async)">
       <button mat-icon-button>
         <mat-icon>event</mat-icon>
       </button>
@@ -35,7 +31,7 @@
         <mat-icon>add</mat-icon>
       </button>
       <mat-menu #contentMenu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="create-post">
           <mat-icon>library_books</mat-icon>
           Nyhet
         </button>
@@ -78,10 +74,14 @@
 
 <!-- Sidenav -->
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" [fixedInViewport]="true"
-               [attr.role]="(isMobile | async) ? 'dialog' : 'navigation'"
-               [mode]="(isMobile | async) ? 'over' : 'side'"
-               [opened]="!(isMobile | async)">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [fixedInViewport]="true"
+    [attr.role]="(isMobile | async) ? 'dialog' : 'navigation'"
+    [mode]="(isMobile | async) ? 'over' : 'side'"
+    [opened]="!(isMobile | async)"
+  >
     <!-- Default navigation options -->
     <mat-nav-list *ngIf="!(isAdminPage | async)">
       <a mat-list-item routerLink="events">
@@ -108,7 +108,7 @@
     </mat-nav-list>
 
     <!--Admin navigation options-->
-    <mat-nav-list *ngIf="isAdminPage | async">
+    <mat-nav-list *ngIf="(isAdminPage | async)">
       <a mat-list-item routerLink="admin">
         <mat-icon>storage</mat-icon>
         Databas
