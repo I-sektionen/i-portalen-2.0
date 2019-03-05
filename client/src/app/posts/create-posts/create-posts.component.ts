@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import * as SimpleMDE from "simplemde";
 
 // import { SimpleMDE } from 'simplemde';
@@ -7,7 +7,8 @@ import * as SimpleMDE from "simplemde";
 @Component({
   selector: 'app-posts-create-posts',
   templateUrl: './create-posts.component.html',
-  styleUrls: ['./create-posts.component.scss']
+  styleUrls: ['./create-posts.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CreatePostsComponent implements OnInit {
 
@@ -54,7 +55,7 @@ export class CreatePostsComponent implements OnInit {
   }
 
   testClick(){
-    document.getElementById('content').innerHTML =
+    document.getElementById('create-posts-content').innerHTML =
       marked(this.simplemde.value());
   }
 

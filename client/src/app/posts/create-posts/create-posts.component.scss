@@ -1,20 +1,19 @@
-.content img{
+.create-posts-content img{
   display: inline-block;
   float: left;
   margin: 5px;
   max-width: 100px !important;
+
 }
 
-.content p{
-  color: green;
+.create-posts-content p{
+  color: black;
 }
 
-.content{
+.create-posts-content{
   border: blue 2px solid !important;
   color: black;
-
+  overflow:hidden;
 }
 
-img {
-  width: 50px;
-}
+
