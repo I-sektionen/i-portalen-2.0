@@ -1,40 +1,43 @@
 
 
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Editor for article</mat-card-title>
-    <mat-card-subtitle>Article</mat-card-subtitle>
-  </mat-card-header>
+  <mat-card class="example-card" style="width: 45%; float: left;">
+    <mat-card-header>
+      <mat-card-title>Editor for article</mat-card-title>
+      <mat-card-subtitle>Article</mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content>
-    <textarea id="editor">![](https://i.imgur.com/99onY9r.jpg)
+    <mat-card-content>
+      <textarea id="editor">![](https://i.imgur.com/99onY9r.jpg)
 
-# This is a header
+  # This is a header
 
-**This is bold text**
+  **This is bold text**
 
-*This is italic text*
+  *This is italic text*
 
-> This is a quote.
-> It can span multiple lines!
+  > This is a quote.
+  > It can span multiple lines!
 
-1. Numbered list item
-2. Numbered list item
-3. Numbered list item</textarea>
-
-
+  1. Numbered list item
+  2. Numbered list item
+  3. Numbered list item</textarea>
 
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button pointer mat-flat-button color="warn" (click) = "onClick()">Förhandsgranska</button>
-  </mat-card-actions>
 
-</mat-card>
 
-<p>Using custom mark-down parser: </p>
-<div id="content" (click)="testClick()" style="border: 1px solid red;">TRYCK PÅ MIG</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button pointer mat-flat-button color="warn" (click) = "onClick()">Förhandsgranska</button>
+    </mat-card-actions>
 
+  </mat-card>
+
+
+
+  <div style="width: 45%; float: right;">
+    <p>Using custom mark-down parser: </p>
+    <div class="content" id="content" (click)="testClick()" style="border: 1px solid red;">TRYCK PÅ MIG</div>
+  </div>
 
 
 

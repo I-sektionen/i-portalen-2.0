@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as SimpleMDE from "simplemde";
 
 // import { SimpleMDE } from 'simplemde';
 

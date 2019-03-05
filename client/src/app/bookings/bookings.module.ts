@@ -9,7 +9,8 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatDialogModule,
-  MatMenuModule, MatSidenavModule, MatListModule
+  MatMenuModule, MatSidenavModule, MatListModule,
+  MatTabsModule,
 } from '@angular/material';
 
 
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     BookingsRoutingModule,
     SharedModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
   ]
 })
 export class BookingsModule { }
