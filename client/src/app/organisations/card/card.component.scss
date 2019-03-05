@@ -1,16 +1,13 @@
-
-
-.card{
-
- /* position: relative;*/
+.card {
+  /* position: relative;*/
   /*display: inline-block;*/
   width: 150px;
- /* height: 200px;*/
+  /* height: 200px;*/
   margin: 13px;
   /*border: 2px solid red;*/
   /*border-radius: 10px;*/
-  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
-  overflow:hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 @media (max-width: 600px) {
@@ -20,39 +17,47 @@
     font-size: 9px;
   }
 }
-.card:hover{
+.card:hover {
   /*border-radius: 10px;*/
-  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.img-container{
-  //width: 200px;
+.img-container {
+  //width: 100%px;
+  //justify-content: center;
+  //align-content: center;
+  //vertical-align: middle;
   height: 150px;
   //margin: auto;
-  overflow:hidden;
+  //overflow: hidden;
 }
 
-img:hover{
+img {
+  margin: auto;
+  height: 100%;
+  width: auto;
+  overflow-y: hidden;
+}
+
+img:hover {
   transform: scale(1.02);
-  transition: .5s;
+  transition: 0.5s;
 }
 
 /*img {
   width: 200px;
   height: 250px;*/
-  /*object-fit: cover;*/
- /* overflow: hidden;
+/*object-fit: cover;*/
+/* overflow: hidden;
   /*height: auto;
   width: auto\9; /* ie8 */
- /* border-radius: 10px;
+/* border-radius: 10px;
 
 }*/
-
 
 .card-title {
   text-align: center;
   text-transform: capitalize;
 }
-
