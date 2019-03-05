@@ -7,10 +7,12 @@ import { SharedModule } from '../shared/shared.module';
 import { UpsertSponsorComponent } from './upsert-sponsor/upsert-sponsor.component';
 import { SponsorService } from './shared/sponsor.service';
 import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
+import { SponsorListComponent } from './sponsor-list/sponsor-list.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [SponsorsComponent, UpsertSponsorComponent],
-  exports: [UpsertSponsorComponent],
+  declarations: [SponsorsComponent, UpsertSponsorComponent, SponsorListComponent],
+  exports: [UpsertSponsorComponent, SponsorListComponent],
   providers: [SponsorService],
   imports: [
     CommonModule,

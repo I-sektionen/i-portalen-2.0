@@ -25,6 +25,13 @@ export class SponsorDynamicFormService implements DynamicForm {
         validators: [Validators.required],
         disabled: !!sponsor,
       }),
+      new InputFormField({
+        order: 2,
+        label: 'Webbsida',
+        key: 'websiteUrl',
+        value: sponsor ? sponsor.websiteUrl : '',
+        validators: [Validators.required],
+      }),
       new FileUploadFormField({
         order: 5,
         label: 'Bild',

@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HeroComponent } from './hero/hero.component';
+import { SponsorsModule } from '../sponsors/sponsors.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [HomeComponent, HeroComponent],
@@ -13,7 +15,9 @@ import { HeroComponent } from './hero/hero.component';
     CommonModule,
     SharedModule,
     CoreModule,
-    MDBBootstrapModule.forRoot()
+    SponsorsModule,
+    MDBBootstrapModule.forRoot(),
+    FlexLayoutModule,
   ]
 })
 export class HomeModule { }
