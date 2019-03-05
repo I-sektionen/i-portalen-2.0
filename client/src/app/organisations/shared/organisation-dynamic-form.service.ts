@@ -7,7 +7,6 @@ import {
 import { Area, Organisation } from './organisation.model';
 import { Validators } from '@angular/forms';
 import { DynamicFormService } from '../../dynamic-forms/shared/dynamic-form.service';
-import { OrganisationService } from './organisation.service';
 
 @Injectable({
   providedIn: 'root'
