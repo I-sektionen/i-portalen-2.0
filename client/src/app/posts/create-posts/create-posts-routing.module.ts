@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { PostsComponent } from "../posts/posts.component";
 import { CreatePostsComponent } from "./create-posts.component";
 
 const routes: Routes = [
   {
-    path: "posts",
+    path: "create-post",
     component: CreatePostsComponent
   }
 ];
