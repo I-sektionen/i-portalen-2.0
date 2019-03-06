@@ -14,10 +14,11 @@ import {
 import {FlexModule} from "@angular/flex-layout";
 
 import {MatChipsModule} from '@angular/material/chips';
-import {MatFormFieldModule, MatInputModule} from "@angular/material";
+
 import {ReactiveFormsModule} from "@angular/forms";
+import { HappeningCardComponent } from './happening-card/happening-card.component';
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, HappeningCardComponent],
   exports: [HomeComponent],
   imports: [
     CommonModule,
@@ -33,7 +34,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
     MatChipsModule,
     MatInputModule,
     ReactiveFormsModule,
