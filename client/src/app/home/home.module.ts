@@ -8,7 +8,7 @@ import {
   MatButtonModule,
   MatCardModule, MatDialogModule,
   MatFormFieldModule,
-  MatInputModule, MatSelectModule,
+  MatInputModule, MatPaginatorModule, MatSelectModule,
   MatSlideToggleModule
 } from "@angular/material";
 import {FlexModule} from "@angular/flex-layout";
@@ -38,7 +38,8 @@ import { HappeningCardComponent } from './happening-card/happening-card.componen
     MatChipsModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatPaginatorModule
   ]
 })
 export class HomeModule { }

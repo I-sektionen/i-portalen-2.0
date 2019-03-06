@@ -1,19 +1,21 @@
 <app-text [page]="'home'" [title]="'welcome'"></app-text>
 
 <P>Home branch</P>
+
+
 <div class="filter-container">
   <form [formGroup]="filter">
     <mat-form-field>
-      <input matInput placeholder="Sök" [formControl]="filter.controls['search']">
+      <input matInput placeholder="Sök" [formControl]="filter.controls['search']" type="search">
     </mat-form-field>
   </form>
   <mat-chip-list>
-    <mat-chip>Webgroup</mat-chip>
-    <mat-chip>Git</mat-chip>
-    <mat-chip>Workshop</mat-chip>
+    <mat-chip *ngFor="let tag of tags" [ngStyle]="{'background-color': tag.color}">{{tag.tag}}</mat-chip>
   </mat-chip-list>
 </div>
 
+<mat-paginator [length]="1337" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
+               (page)="pagechange($event)"></mat-paginator>
 
 <div class="" fxLayout="row wrap" fxLayoutGap="0.5%">
 

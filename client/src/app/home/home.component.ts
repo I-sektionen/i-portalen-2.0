@@ -13,6 +13,12 @@ export class HomeComponent implements OnInit {
   articles: Array<article>;
   showedarticles: Array<article> = [];
 
+
+  tags = [{tag: 'Lit', color: ''}, {tag: 'Sellout', color: ''}, {tag: 'AlbinSkaGå', color: ''}, {
+    tag: 'Dead',
+    color: ''
+  }];
+
   constructor(FB: FormBuilder, DB: DatabaseService<article>) {
     // Just for testing, put in seperate service in future
     DB.list('articles').subscribe(value => {
@@ -22,8 +28,7 @@ export class HomeComponent implements OnInit {
     this.filter = FB.group({
       'search': ['']
     });
-
-
+    this.tags.forEach(tag => tag.color = this.getRandomColor())
   }
 
   ngOnInit() {
@@ -39,6 +44,14 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  getRandomColor(): string {
+    var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
+  }
+
+  pagechange(event) {
+    console.log(event);
+  }
 }
 
 // Just for testing, put in diffrent file
