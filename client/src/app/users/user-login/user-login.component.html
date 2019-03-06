@@ -11,16 +11,16 @@
     </mat-form-field>
 
       <!--Password-->
-    <mat-form-field>
-      <input matInput placeholder="Lösenord" type="password" formControlName="password">
-      <mat-error *ngIf="password.touched && password.hasError('required')">
-        Lösenord krävs.
-      </mat-error>
-    </mat-form-field>
-    <mat-error *ngIf="wrongCred"> Felaktiga användaruppgifter. </mat-error>                
-                      
+      <mat-form-field *ngIf="loginScreen">
+        <input matInput placeholder="Lösenord" type="password" formControlName="password">
+        <mat-error *ngIf="password.touched && password.hasError('required')">
+          Lösenord krävs.
+        </mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="wrongCred"> Felaktiga användaruppgifter. </mat-error>
+
       <!--Forgot password-->
-      <a routerLink="" (click)="loginScreen = !loginScreen" class="btn btn-link">{{(loginScreen) ? "Glömt lösenordet?" : "Logga in"}}</a>
+      <a (click)="loginScreen = !loginScreen" class="">{{(loginScreen) ? "Glömt lösenordet?" : "Logga in"}}</a>
 
       <!--Submit-->
       <div class="login-button-div">

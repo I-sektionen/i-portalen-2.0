@@ -26,9 +26,16 @@ export class AuthService {
     return this.firebaseAuthService.authUser;
   }
 
-  loginLiUIDAndPassword(liuId: string, password: string) {
-    const email = `${liuId}@student.liu.se`;
-    return this.firebaseAuthService.loginEmailAndPassword(email, password);
+  getUserEmail(liu_id: string) {
+    return `${liu_id}@student.liu.se`;
+  }
+
+  loginLiUIDAndPassword(liu_id: string, password: string) {
+    return this.firebaseAuthService.loginEmailAndPassword(this.getUserEmail(liu_id), password);
+  }
+
+  sendPasswordResetEmail(liu_id: string) {
+    return this.firebaseAuthService.sendPasswordResetEmail(this.getUserEmail(liu_id));
   }
 
   logout() {

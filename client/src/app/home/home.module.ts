@@ -13,6 +13,9 @@ import {
 } from "@angular/material";
 import {FlexModule} from "@angular/flex-layout";
 
+import {MatChipsModule} from '@angular/material/chips';
+import {MatFormFieldModule, MatInputModule} from "@angular/material";
+import {ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   declarations: [HomeComponent],
   exports: [HomeComponent],
@@ -31,6 +34,10 @@ import {FlexModule} from "@angular/flex-layout";
     MatSlideToggleModule,
     MatSelectModule,
     MatDialogModule
+    MatChipsModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ]
 })
 export class HomeModule { }
