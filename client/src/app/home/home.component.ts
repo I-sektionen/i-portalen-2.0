@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
       .subscribe(value => {
         this.showedarticles = [];
         this.articles.forEach((article => {
-          if (article['name'].includes(value['search'])) {
+          if (article['name'].toLowerCase().includes(value['search'].toLowerCase())) {
             this.showedarticles.push(article);
           }
         }));
