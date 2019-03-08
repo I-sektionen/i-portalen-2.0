@@ -14,9 +14,8 @@ export class HomeComponent implements OnInit {
   showedarticles: Array<article> = [];
 
 
-  tags = [{tag: 'Lit', color: ''}, {tag: 'Sellout', color: ''}, {tag: 'AlbinSkaGå', color: ''}, {
-    tag: 'Dead',
-    color: ''
+  tags = [{tag: 'Lit'}, {tag: 'Sellout'}, {tag: 'AlbinSkaGå'}, {
+    tag: 'Dead'
   }];
 
   constructor(FB: FormBuilder, DB: DatabaseService<article>) {
@@ -28,7 +27,7 @@ export class HomeComponent implements OnInit {
     this.filter = FB.group({
       'search': ['']
     });
-    this.tags.forEach(tag => tag.color = this.getRandomColor())
+    this.tags.forEach(tag => tag['color'] = this.getRandomColor())
   }
 
   ngOnInit() {
