@@ -1,0 +1,6 @@
+<app-dynamic-form
+  [formFields]="heroFormFields"
+  [title]="'hero'"
+  [editing]="!!hero"
+  (ngSubmit)="submit($event)">
+</app-dynamic-form>

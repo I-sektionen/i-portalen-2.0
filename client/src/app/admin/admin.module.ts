@@ -16,6 +16,7 @@ import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CollectionsListComponent } from './collections-list/collections-list.component';
 import { OrganisationsModule } from '../organisations/organisations.module';
+import { HomeModule } from '../home/home.module';
 import { CollectionsTableComponent } from './collections-table/collections-table.component';
 import { CollectionsUpsertComponent } from './collections-upsert/collections-upsert.component';
 
@@ -40,6 +41,7 @@ import { CollectionsUpsertComponent } from './collections-upsert/collections-ups
     SharedModule,
     CoreModule,
     OrganisationsModule,
+    HomeModule,
 
     // Material
     MatFormFieldModule,

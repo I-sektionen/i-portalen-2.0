@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs/index';
 import { OrganisationService } from '../../organisations/shared/organisation.service';
 import { UserService } from '../../users/shared/user.service';
+import { HeroService } from '../../home/hero/shared/hero.service';
 
 @Component({
   selector: 'app-collections-list',
@@ -14,6 +15,7 @@ export class CollectionsListComponent implements OnInit {
   collections = [
     {path: 'users'},
     {path: 'organisations'},
+    {path: 'hero'}
   ];
 
   collection: string;
@@ -25,6 +27,7 @@ export class CollectionsListComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private organisationService: OrganisationService,
+    private heroService: HeroService
   ) { }
 
   ngOnInit() {
@@ -37,6 +40,11 @@ export class CollectionsListComponent implements OnInit {
       }
       case 'organisations': {
         this.dataSource = this.organisationService.listOrganisations();
+        this.displayedColumns = ['name', 'editItem', 'deleteItem'];
+        break;
+      }
+      case 'hero': {
+        this.dataSource = this.heroService.listHeros();
         this.displayedColumns = ['name', 'editItem', 'deleteItem'];
         break;
       }

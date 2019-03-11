@@ -32,6 +32,7 @@ export class CollectionsTableComponent implements OnInit {
 
   deleteItem(item) {
     this.databaseService.delete(this.collection, item.id);
+    console.log(this.collection);
   }
 
 }

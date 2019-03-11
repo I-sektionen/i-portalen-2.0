@@ -1,7 +1,50 @@
 <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.7.1.min.css?ver=4.7.1">
 
 <mdb-carousel class="carousel slide carousel-fade" [animation]="'slide'">
-  <mdb-carousel-item>
+
+    <mdb-carousel-item *ngFor="let element of dataSource | async">
+     <!-- <div ng-switch="!!link">
+        <a ng-href="{{link}}" ng-switch-when="true">linked</a>
+        <span ng-switch-when="false">notlinked</span>
+      </div>
+-->
+      <div *ngIf="!!element.linkUrl; else noLink">
+        <div>
+          <a [href]="element.linkUrl">
+            <div class="view w-100">
+              <img class="d-block w-100" [src]="element.imageUrl" alt="First slide">
+              <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+        <ng-template #noLink>
+            <div class="view w-100">
+            <img class="d-block w-100" [src]="element.imageUrl" alt="First slide">
+            <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+          </div>
+        </ng-template>
+
+
+
+
+
+
+      <!--
+
+      <a [href]="element.linkUrl">
+        <div class="view w-100">
+          <img class="d-block w-100" [src]="element.imageUrl" alt="First slide">
+          <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+        </div>
+      </a>-->
+      <!--<div class="carousel-caption">
+        <h3 class="h3-responsive">Light mask</h3>
+        <p>First text</p>
+      </div>-->
+    </mdb-carousel-item>
+  <!--<mdb-carousel-item>
     <div class="view w-100">
       <img class="d-block w-100" src="https://iportalen-us.s3.amazonaws.com:443/client/hero/Kopia%20av%20KARRIA%CC%88R-1.png" alt="First slide">
       <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
@@ -30,5 +73,5 @@
       <h3 class="h3-responsive">Slight mask</h3>
       <p>Third text</p>
     </div>
-  </mdb-carousel-item>
+  </mdb-carousel-item>-->
 </mdb-carousel>
