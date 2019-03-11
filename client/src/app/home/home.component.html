@@ -8,7 +8,7 @@
     </mat-form-field>
   </form>
   <mat-chip-list>
-    <mat-chip *ngFor="let tag of tags" color="primary">{{tag.tag}}</mat-chip>
+    <mat-chip *ngFor="let tag of tags" (selectionChange)="console.log()">{{tag.tag}}</mat-chip>
   </mat-chip-list>
 </div>
 

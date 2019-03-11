@@ -4,6 +4,7 @@ import {DatabaseService} from "../core/database/database.service";
 import { Router } from "@angular/router";
 import {query} from "@angular/animations";
 import {MatPaginatorIntl} from "@angular/material";
+import {DocumentSnapshot} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   filter: FormGroup;
   articles: Array<article>;
   showedarticles: Array<article> = [];
-
+  lastarticle: DocumentSnapshot<any>;
 
   tags = [{tag: 'Lit'}, {tag: 'Sellout'}, {tag: 'AlbinSkaGå'}, {
     tag: 'Dead'
