@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DatabaseService} from "../core/database/database.service";
 import { Router } from "@angular/router";
+import {query} from "@angular/animations";
+import {MatPaginatorIntl} from "@angular/material";
 
 @Component({
   selector: 'app-home',
@@ -18,9 +20,9 @@ export class HomeComponent implements OnInit {
     tag: 'Dead'
   }];
 
-  constructor(FB: FormBuilder, DB: DatabaseService<article>) {
+  constructor(private FB: FormBuilder, private DB: DatabaseService<article>) {
     // Just for testing, put in seperate service in future
-    DB.list('articles').subscribe(value => {
+    DB.list('articles', query => query.limit(25)).subscribe(value => {
       this.articles = value;
       this.showedarticles = value;
     });
@@ -48,12 +50,22 @@ export class HomeComponent implements OnInit {
     return '#' + ('000000' + color).slice(-6);
   }
 
-  pagechange(event) {
-    console.log(event);
+  pagechange(event: paginatorevent) {
+    this.DB.list('articles', query => query.limit(event.pageSize)).subscribe(value => {
+      this.articles = value;
+      this.showedarticles = value;
+    });
   }
 }
 
 // Just for testing, put in diffrent file
 export interface article {
   name: string
+}
+
+export interface paginatorevent {
+  previousPageIndex: number;
+  pageIndex: number;
+  pageSize: number;
+  length: number;
 }
