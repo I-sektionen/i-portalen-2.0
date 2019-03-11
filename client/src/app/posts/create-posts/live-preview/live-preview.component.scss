@@ -1,0 +1,24 @@
+/* Warning - This module has encapsulation set to none. All styles below will apply to everything, not only this component. */
+
+/* All styles below must begin with .live-preview */
+
+.live-preview img{
+  display: inline-block;
+  float: left;
+  margin: 5px;
+  max-width: 100px !important;
+
+}
+
+.live-preview-frame{
+  border: 1px solid black;
+}
+
+.live-preview h1{
+  color: red;
+}
+
+.live-preview{
+  overflow:hidden;
+}
+

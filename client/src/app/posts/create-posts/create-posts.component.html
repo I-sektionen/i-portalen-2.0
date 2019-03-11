@@ -29,7 +29,6 @@
   </mat-card-actions>
 </mat-card>
 
-<div style="width: 45%; float: right;">
-  <p>Using custom mark-down parser: </p>
-  <div class="create-posts-content" id="create-posts-content" (click)="testClick()" style="border: 1px solid red;">TRYCK PÅ MIG</div>
+<div>
+  <app-live-preview [data]="data"></app-live-preview>
 </div>

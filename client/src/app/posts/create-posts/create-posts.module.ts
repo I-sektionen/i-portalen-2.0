@@ -16,9 +16,11 @@ import {
 
 import { CreatePostsRoutingModule } from './create-posts-routing.module';
 import { CreatePostsComponent } from './create-posts.component';
+import { LivePreviewComponent } from './live-preview/live-preview.component';
+import { MarkdownToHtmlModule} from "markdown-to-html-pipe";
 
 @NgModule({
-  declarations: [CreatePostsComponent],
+  declarations: [CreatePostsComponent, LivePreviewComponent],
   exports: [],
   providers: [],
   imports: [
@@ -27,6 +29,7 @@ import { CreatePostsComponent } from './create-posts.component';
     MatCardModule,
     MatButtonModule,
     MatTabsModule,
+    MarkdownToHtmlModule
   ]
 })
 export class CreatePostsModule { }

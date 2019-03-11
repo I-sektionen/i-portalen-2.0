@@ -1,22 +1,18 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as SimpleMDE from "simplemde";
-
-// import { SimpleMDE } from 'simplemde';
-
 
 @Component({
   selector: 'app-posts-create-posts',
   templateUrl: './create-posts.component.html',
   styleUrls: ['./create-posts.component.scss'],
-  encapsulation: ViewEncapsulation.None
+ // encapsulation: ViewEncapsulation.None
 })
 export class CreatePostsComponent implements OnInit {
 
-  simplemde;// = new SimpleMDE({ element: document.getElementById("editor") });
+  simplemde;
   data;
-  constructor() {
-    // var simplemde = new SimpleMDE({ element: document.getElementById("editor") });
 
+  constructor() {
   }
 
   ngOnInit() {
@@ -26,43 +22,17 @@ export class CreatePostsComponent implements OnInit {
       hideIcons: ["fullscreen", "link", "side-by-side"],
       spellChecker: false,
 
-      /*toolbar: [{
-        name: "bold",
-        action: SimpleMDE.toggleBold,
-        className: "fa fa-bold",
-        title: "Bold (Ctrl+B)",
-      },
-        "|", // Separator
-      ],*/
-
     });
 
-    this.simplemde.codemirror.on("change", () => this.testClick());
-    this.testClick();
+    this.simplemde.codemirror.on("change", () => {
+      this.data = this.simplemde.value();
+    });
+    this.data = this.simplemde.value(); // OnInit
   }
 
   onClick(){
-    //var simplemde = new SimpleMDE({ element: document.getElementById("editor") });
-
-    //alert(this.simplemde.value());
-
     this.simplemde.togglePreview();
-
-    // document.getElementById('content').innerHTML = "HEJ";
-
-    /*document.getElementById('content').innerHTML =
-      marked('# Marked in the browser\n\nRendered by **marked**.');*/
   }
-
-  testClick(){
-    document.getElementById('create-posts-content').innerHTML =
-      marked(this.simplemde.value());
-  }
-
-  changeFunc(){
-    alert("Hello World!");
-  }
-
 }
 
 // https://www.npmjs.com/package/simplemde
