@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnChanges, OnDestroy, Output } from '@angular/core';
 import { DynamicFormService } from '../shared/dynamic-form.service';
-import { DynamicFormField } from '../shared/dynamic-form.model';
+import { DynamicFormField, FileUploadFormField } from '../shared/dynamic-form.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,8 +8,10 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss']
 })
-export class DynamicFormComponent implements OnChanges {
+export class DynamicFormComponent implements OnChanges, OnDestroy {
 
+  oldFilesDownloadUrls = [];
+  newFilesDownloadUrls = [];
   @Input() formFields: DynamicFormField[];
   @Input() editing: boolean;
   @Input() title: string;
@@ -30,7 +32,19 @@ export class DynamicFormComponent implements OnChanges {
     }
   }
 
+  // TODO: Handle refresh or new website?
+  ngOnDestroy() {
+    this.dynamicFormService.deleteFiles(this.newFilesDownloadUrls);
+  }
+
   submit() {
-    this.ngSubmit.emit(this.form.value);
+    const newFormValue = this.form.value;
+
+    // Clean up old files
+    this.dynamicFormService.deleteOldFiles(this.formFields, newFormValue, this.oldFilesDownloadUrls);
+    this.oldFilesDownloadUrls = [];
+    this.newFilesDownloadUrls = [];
+
+    this.ngSubmit.emit(newFormValue);
   }
 }

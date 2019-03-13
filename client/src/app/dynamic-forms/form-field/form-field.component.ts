@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { DynamicFormField } from '../shared/dynamic-form.model';
 import { FormGroup } from '@angular/forms';
 import { StorageService } from '../../core/storage/storage.service';
@@ -13,13 +13,16 @@ import { DateAdapter } from '@angular/material';
 })
 export class FormFieldComponent {
 
+  @Input() oldFilesDownloadUrls: string[];
+  @Output() oldFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Input() newFilesDownloadUrls: string[];
+  @Output() newFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
   @Input() formField: DynamicFormField;
   @Input() form: FormGroup;
 
   fileName: string;
   uploading = false;
   uploadPercentage = 0;
-  subscription: Subscription;
 
   constructor(
     private storageService: StorageService,
@@ -28,7 +31,7 @@ export class FormFieldComponent {
     dateAdapter.setLocale('sv-sv');
   }
 
-  uploadFile(event) {
+  uploadImageFile(event) {
     const file = event.target.files[0];
     if (file && file.type.indexOf('image') !== -1) {
       this.uploading = true;
@@ -50,7 +53,17 @@ export class FormFieldComponent {
   setDownloadUrl(uploadTask: AngularFireUploadTask) {
     uploadTask.then(done => {
       done.ref.getDownloadURL().then(url => {
+
+        // Download URLs for old files
+        if (this.form.get(this.formField.key).value) {
+          this.oldFilesDownloadUrls.push(this.form.get(this.formField.key).value);
+          this.oldFilesDownloadUrlsChange.emit(this.oldFilesDownloadUrls);
+        }
+
+        // Set download url as value in form
         this.form.get(this.formField.key).setValue(url);
+        this.newFilesDownloadUrls.push(url);
+        this.newFilesDownloadUrlsChange.emit(this.newFilesDownloadUrls);
         this.uploading = false;
       });
     }).catch(() => {

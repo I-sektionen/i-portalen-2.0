@@ -15,8 +15,12 @@ export class FireStorageService {
   }
 
   uploadFile(file: File, folder: string, fileName: string): AngularFireUploadTask {
-    const filePath = this.getPath(folder, fileName);
+    const filePath = this.getPath(folder, `${fileName}-${Date.now()}`);
     const ref = this.angularFireStorage.ref(filePath);
     return ref.put(file);
+  }
+
+  deleteFile(downloadUrl: string) {
+    return this.angularFireStorage.storage.refFromURL(downloadUrl).delete();
   }
 }
