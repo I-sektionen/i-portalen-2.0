@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { DynamicFormField, SelectOption } from './dynamic-form.model';
+import { DynamicFormField, FileUploadFormField, SelectOption } from './dynamic-form.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from '../../users/shared/user.service';
 import { map, take } from 'rxjs/operators';
+import { FireStorageService } from '../../core/firebase/fire-storage/fire-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class DynamicFormService {
 
   constructor(
     private userService: UserService,
+    private storageService: FireStorageService
   ) { }
 
   getFormGroup(formFields: DynamicFormField[]) {
@@ -26,6 +28,24 @@ export class DynamicFormService {
     });
 
     return new FormGroup(group);
+  }
+
+  deleteOldFiles(formFields, newFormValue, oldFilesDownloadUrls) {
+    formFields.forEach(formField => {
+      if (formField instanceof FileUploadFormField && formField.value) {
+        if (oldFilesDownloadUrls.indexOf(formField.value) > -1 && newFormValue[formField['key']] === formField.value) {
+          oldFilesDownloadUrls.splice(oldFilesDownloadUrls.indexOf(formField.value), 1);
+        }
+      }
+    });
+
+    this.deleteFiles(oldFilesDownloadUrls);
+  }
+
+  deleteFiles(downloadUrls) {
+    downloadUrls.forEach(downloadUrl => {
+      this.storageService.deleteFile(downloadUrl);
+    });
   }
 
   async getUsersSelectOptions(): Promise<SelectOption[]> {

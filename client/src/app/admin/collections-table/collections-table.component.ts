@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DatabaseService } from '../../core/database/database.service';
+import { FireStorageService } from '../../core/firebase/fire-storage/fire-storage.service';
 
 @Component({
   selector: 'app-collections-table',
@@ -16,7 +17,8 @@ export class CollectionsTableComponent implements OnInit {
   @Output() itemToEditChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private databaseService: DatabaseService<any>
+    private databaseService: DatabaseService<any>,
+    private storageService: FireStorageService
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,15 @@ export class CollectionsTableComponent implements OnInit {
   }
 
   deleteItem(item) {
+
+    // Delete any files in storage
+    Object.keys(item).forEach(key => {
+      if (typeof item[key] === 'string' && item[key].indexOf('firebasestorage') > -1) {
+        this.storageService.deleteFile(item[key]);
+      }
+    });
+
+    // Delete from firestore
     this.databaseService.delete(this.collection, item.id);
   }
 
