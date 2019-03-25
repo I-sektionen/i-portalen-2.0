@@ -1,37 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import * as SimpleMDE from "simplemde";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-posts-create-posts',
-  templateUrl: './create-posts.component.html',
-  styleUrls: ['./create-posts.component.scss'],
- // encapsulation: ViewEncapsulation.None
+  selector: "app-posts-create-posts",
+  templateUrl: "./create-posts.component.html",
+  styleUrls: ["./create-posts.component.scss"]
+  // encapsulation: ViewEncapsulation.None
 })
 export class CreatePostsComponent implements OnInit {
+  data: string;
 
-  simplemde;
-  data;
+  constructor() {}
+  ngOnInit() {}
 
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.simplemde = new SimpleMDE({
-      element: document.getElementById("editor"),
-      autofocus: true,
-      hideIcons: ["fullscreen", "link", "side-by-side"],
-      spellChecker: false,
-
-    });
-
-    this.simplemde.codemirror.on("change", () => {
-      this.data = this.simplemde.value();
-    });
-    this.data = this.simplemde.value(); // OnInit
-  }
-
-  onClick(){
-    this.simplemde.togglePreview();
+  dataChange(data) {
+    this.data = data;
   }
 }
 
