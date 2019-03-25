@@ -1,62 +1,75 @@
 <mat-card>
+  <img routerLink="/readmore" class="card-img" mat-card-image src="https://iportalen-us.s3.amazonaws.com/client/article/1077/attachments/Internship%20ad_STHLM%20spring%2020.jpg">
   <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
-    <mat-card-title><a routerLink="/iforum">{{ this.articleName }}</a></mat-card-title>
-    <mat-card-subtitle><span routerLink="/organisations/Ivent" class="organisation-span">Ivent</span>, 8 dagar, 15 timmar sedan</mat-card-subtitle>
 
-    <mat-card-subtitle class="icon-subtitle">
-      <i class="material-icons">calendar_today</i>
-      <span class="icon-subtitle">
-          <span class="tag-span">8 mars 2019</span>
-        </span>
-    </mat-card-subtitle>
-
-    <mat-card-subtitle class="icon-subtitle">
-      <i class="material-icons">access_time</i>
-      <span class="icon-subtitle">
-          <span class="tag-span">17:15</span>
-        </span>
-    </mat-card-subtitle>
-
-    <mat-card-subtitle class="icon-subtitle">
-      <i class="material-icons">location_on</i>
-      <span class="icon-subtitle">
-          <span class="tag-span">T1</span>
-        </span>
-    </mat-card-subtitle>
-
-    <mat-card-subtitle class="icon-subtitle">
-      <i class="material-icons">people</i>
-      <span class="icon-subtitle">
-          <span class="tag-span">12(60)</span>
-        </span>
-    </mat-card-subtitle>
-
-
-    <mat-card-subtitle class="icon-subtitle">
-      <i class="material-icons">error_outline</i>
-      <span class="icon-subtitle">
-          <span class="tag-span">5 dagar, 21 h</span>
-        </span>
-    </mat-card-subtitle>
-
-    <mat-card-subtitle class="icon-subtitle">
-      <i class="material-icons tag-icon">bookmark_border</i>
-      <span class="icon-subtitle">
-          <span class="tag-span">I-forum</span>
-        </span>
-    </mat-card-subtitle>
+  <div class="tag-item">Internship</div>
 
   </mat-card-header>
+
   <mat-card-content>
+
+
+    <div class="icon-row">
+      <mat-card-subtitle class="icon-subtitle">
+        <i class="material-icons">calendar_today</i>
+        <span class="icon-subtitle">
+          <span class="tag-span">8 mars 2019</span>
+        </span>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle class="icon-subtitle">
+        <i class="material-icons">access_time</i>
+        <span class="icon-subtitle">
+          <span class="tag-span">17:15</span>
+        </span>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle class="icon-subtitle">
+        <i class="material-icons">location_on</i>
+        <span class="icon-subtitle">
+          <span class="tag-span">T1</span>
+        </span>
+      </mat-card-subtitle>
+
+      <mat-card-subtitle class="icon-subtitle">
+        <i class="material-icons">people</i>
+        <span class="icon-subtitle">
+          <span class="tag-span">12(60)</span>
+        </span>
+      </mat-card-subtitle>
+
+
+      <mat-card-subtitle class="icon-subtitle">
+        <i class="material-icons">error_outline</i>
+        <span class="icon-subtitle">
+          <span class="tag-span">5 dagar, 21 h</span>
+        </span>
+      </mat-card-subtitle>
+    </div>
+
+    <mat-card-title><a routerLink="/iforum">{{ this.articleName }}</a></mat-card-title>
+
+
     <p>
       Vad har du drömt om att förändra med i-sektionen? Sväng förbi oss och berätta under vårens i-forum!
     </p>
   </mat-card-content>
 
-  <img routerLink="/readmore" class="card-img" mat-card-image src="https://i.ytimg.com/vi/QUyOXOsXGtA/maxresdefault.jpg">
+  <!-- <mat-card-subtitle><span routerLink="/organisations/Ivent" class="organisation-span">Ivent</span>, 8 dagar, 15 timmar sedan</mat-card-subtitle> -->
 
-  <mat-card-actions>
-    <button routerLink="/readmore" mat-raised-button color="primary">Läs mer</button>
-  </mat-card-actions>
+
+  <mat-card-footer>
+
+    <span class="footer-text">
+
+      <span class="organisation-item">
+        <span mat-card-avatar class="header-image"></span>
+        <mat-card-subtitle>Ivent</mat-card-subtitle>
+      </span>
+
+      <span class="date-item">
+        <mat-card-subtitle>2019-03-24</mat-card-subtitle>
+      </span>
+    </span>
+  </mat-card-footer>
 </mat-card>

@@ -6,7 +6,12 @@
 
 .header-image{
   background-image: url("https://i.ytimg.com/vi/QUyOXOsXGtA/maxresdefault.jpg");
+  width: 32px;
+  height: 32px;
   background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 10px 10px;
 }
 
 .icon-subtitle {
@@ -14,6 +19,7 @@
   display: inline-flex;
   vertical-align: middle;
   padding-right: 5px;
+  padding-left: 4px;
 }
 
 
@@ -28,8 +34,43 @@ a {
 
 .card-img:hover {
   cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 mat-card {
   margin: 10px;
 }
+.footer-text {
+  display: inline-block;
+}
+
+.organisation-item > mat-card-subtitle {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 16px;
+}
+.date-item {
+  vertical-align: middle;
+  margin-left: 285px;
+}
+.date-item > mat-card-subtitle{
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 16px;
+}
+
+.tag-item {
+  float: left;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0 15px;
+  background: #ededf3;
+  font-size: 15px;
+  color: darkgreen;
+  box-shadow: 2px 2px 2px #aaaaaa;
+  text-transform: uppercase;
+}
+
