@@ -16,7 +16,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [UserLoginComponent, UserProfileComponent ],
+  declarations: [UserLoginComponent, UserProfileComponent],
   exports: [UserLoginComponent],
   providers: [],
   imports: [

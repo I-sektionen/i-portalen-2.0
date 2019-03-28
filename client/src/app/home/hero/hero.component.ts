@@ -18,7 +18,6 @@ export class HeroComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = this.heroService.listHeros();
-    console.log(this.dataSource);
   }
 
 }

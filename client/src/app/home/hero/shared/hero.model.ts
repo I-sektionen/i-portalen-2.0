@@ -5,7 +5,7 @@ export interface Hero {
   name: string;
 
   // Elements
-  //description?: string;
+  // description?: string;
   linkUrl?: string;
   imageUrl: string;
 
