@@ -15,11 +15,12 @@ import { SponsorsModule } from './sponsors/sponsors.module';
 import { UsersModule } from './users/users.module';
 import { HomeModule } from './home/home.module';
 import { FormFieldComponent } from './form-field/form-field.component';
+import {VotingsModule} from "./votings/votings.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormFieldComponent
+    FormFieldComponent,
   ],
   imports: [
     // Angular Modules
@@ -37,6 +38,7 @@ import { FormFieldComponent } from './form-field/form-field.component';
     OrganisationsModule,
     SponsorsModule,
     UsersModule,
+    VotingsModule,
     AppRoutingModule, // import this one at the bottom of all custom modules
   ],
   providers: [],

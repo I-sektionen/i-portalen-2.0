@@ -19,6 +19,7 @@ import { OrganisationsModule } from '../organisations/organisations.module';
 import { CollectionsTableComponent } from './collections-table/collections-table.component';
 import { CollectionsUpsertComponent } from './collections-upsert/collections-upsert.component';
 import { SponsorsModule } from '../sponsors/sponsors.module';
+import {VotingsModule} from "../votings/votings.module";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SponsorsModule } from '../sponsors/sponsors.module';
     CoreModule,
     OrganisationsModule,
     SponsorsModule,
+    VotingsModule,
 
     // Material
     MatFormFieldModule,

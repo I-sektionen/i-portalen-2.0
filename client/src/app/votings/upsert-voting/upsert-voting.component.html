@@ -1,0 +1,6 @@
+<app-dynamic-form
+  [formFields]="votingFormFields"
+  [title]="'voting'"
+  [editing]="!!voting"
+  (ngSubmit)="submit($event)">
+</app-dynamic-form>
