@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HeroComponent } from './hero/hero.component';
+import { SponsorsModule } from '../sponsors/sponsors.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule} from "../app-routing.module";
 import {
   MatButtonModule,
@@ -13,20 +17,24 @@ import {
 } from "@angular/material";
 import {FlexModule} from "@angular/flex-layout";
 
+
 import {MatChipsModule} from '@angular/material/chips';
 
 import {ReactiveFormsModule} from "@angular/forms";
 import { HappeningCardComponent } from './happening-card/happening-card.component';
 @NgModule({
-  declarations: [HomeComponent, HappeningCardComponent],
+  declarations: [HomeComponent, HeroComponent, HappeningCardComponent],
+
   exports: [HomeComponent],
   imports: [
     CommonModule,
     SharedModule,
     CoreModule,
+    SponsorsModule,
+    MDBBootstrapModule.forRoot(),
+    FlexLayoutModule,
     FlexModule,
     AppRoutingModule,
-
     // Material
     MatCardModule,
     MatFormFieldModule,

@@ -3,6 +3,8 @@ import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
 import {User} from '../shared/user.model';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FeedbackService} from "../../core/feedback/feedback.service";
+import {FeedbackMessage, FeedbackType} from "../../core/feedback/feedback.model";
 //import {MatDialogRef} from "@angular/material";
 
 
@@ -21,7 +23,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private feedback: FeedbackService
     //public dialogRef: MatDialogRef<UserProfileComponent>
   ) {
     this.userInformation = fb.group({
@@ -29,11 +32,11 @@ export class UserProfileComponent implements OnInit {
       'class' : [''],
       'address':['', Validators.required],
       'city':['', Validators.required],
-      'zip_code':['', Validators.required],
+      'zipCode': ['', Validators.required],
       'allergies':[''],
       'newspaper':[false],
       'gender':[''],
-      'current_year':[''],
+      'currentYear': [''],
 
     });
     this.userInformation.disable();
@@ -51,7 +54,7 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'allergies': user.allergies});
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});
-      this.userInformation.patchValue({'current_year': user.currentYear});
+      this.userInformation.patchValue({'currentYear': user.currentYear});
     })
   }
 
@@ -64,24 +67,29 @@ export class UserProfileComponent implements OnInit {
         this.user[attribute] = form.value[attribute];
       }
     });
+
     this.editFields();
-    this.userService.updateUser(this.user).then((function () {
-      console.log("Dina uppgifter har uppdaterats");
-    })).catch(function() {
-      console.log("failed");
+    this.userService.updateUser(this.user).then(value => {
+      const config = {
+        message: FeedbackMessage.TextEdit,
+        type: FeedbackType.Primary
+      };
+      this.feedback.message(config);
+    }).catch(reason => {
+      const config = {
+        message: FeedbackMessage.DefaultError,
+        type: FeedbackType.Error
+      };
+      this.feedback.message(config);
       this.editFields();
     });
   }
 
-   editFields()
-  {
-    console.log("edit fields called");
-    if(this.editing)
-    {
+  editFields() {
+    if (this.editing) {
       this.userInformation.disable();
       this.editing = false;
-    }
-    else {
+    } else {
       this.userInformation.enable();
       this.editing = true;
     }

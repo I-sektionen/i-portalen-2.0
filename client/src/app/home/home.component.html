@@ -1,6 +1,19 @@
-<app-text [page]="'home'" [title]="'welcome'"></app-text>
 
-<P>Home branch</P>
+<div fxLayout="wrap row">
+  <div fxFlex="100">
+    <app-hero></app-hero>
+  </div>
+  <div fxFlex="80">
+    <app-text [page]="'home'" [title]="'welcome'"></app-text>
+  </div>
+  <div fxFlex="20">
+    <div>
+      <app-sponsor-list></app-sponsor-list>
+    </div>
+  </div>
+</div>
+
+
 <div class="filter-container">
   <form [formGroup]="filter">
     <mat-form-field>
@@ -20,4 +33,5 @@
   <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let article of showedarticles" [articleName]="article.name"></happening-card>
 
 </div>
+
 
