@@ -1,18 +1,45 @@
 <mat-card class="example-card" style="width: 49%; float: right;">
   <mat-card-header>
+
+
     <mat-card-title>Live preview</mat-card-title>
     <mat-card-subtitle>Article</mat-card-subtitle>
+
   </mat-card-header>
 
   <mat-card-content>
 
-    <div class="live-preview-frame">
-      
-      <span class="live-preview" [innerHTML] = "data | MarkdownToHtml" ></span>
-    </div>
 
+    <ng-container *ngIf="previewToggle">
+      <div class="live-preview-frame">
+
+      <h1> {{rubrik}} </h1>
+        {{time}} min sedan
+        <hr>
+        <span class="live-preview" [innerHTML] = "data | MarkdownToHtml" ></span>
+      </div>
+
+
+    </ng-container>
+
+    <ng-container *ngIf="!previewToggle">
+      <div class="live-preview-card">
+
+        <h1> {{rubrik}} </h1>
+        {{time}} min sedan
+        <hr>
+        This is the card view
+      </div>
+
+    </ng-container>
 
   </mat-card-content>
+
+  <mat-card-actions style="float: left">
+
+   <button pointer  mat-flat-button color="warn" (click) ="togglePreview()" >Toggle</button>
+
+  </mat-card-actions>
 
 </mat-card>
 

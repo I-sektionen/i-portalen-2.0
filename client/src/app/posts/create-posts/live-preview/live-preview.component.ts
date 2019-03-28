@@ -10,7 +10,16 @@ export class LivePreviewComponent implements OnInit {
 
   @Input() data: string;
 
+  rubrik: String = "Rubrik";
+  time: Number = 34;
+
+  previewToggle: Boolean = true;
+
   constructor() { }
+
+  togglePreview(){
+    this.previewToggle = !this.previewToggle;
+  }
 
   ngOnInit() {
   }
