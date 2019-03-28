@@ -1,0 +1,23 @@
+<div id="outer-div" class="mat-elevation-z1">
+  <div fxLayout="row wrap"  fxLayoutGap="16px grid">
+    <div fxFlex="calc(100/7)" fxFlex.xs="100" *ngFor="let weekDay of weekDays; let i = index">
+      <div>
+        <p><b>{{weekDay}}</b></p>
+      </div>
+      <div>
+        <p><b>{{dates[i]}}</b></p>
+      </div>
+      <div fxLayout="column wrap" fxLayoutGap="16px">
+        <div class="time-block-div">
+          08:00<br>12:59
+        </div>
+        <div class="time-block-div">
+          13:00<br>16:59
+        </div>
+        <div class="time-block-div">
+          17:00<br>23:59
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
