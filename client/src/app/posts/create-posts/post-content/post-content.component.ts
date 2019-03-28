@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 
 import * as SimpleMDE from "simplemde";
 
@@ -9,7 +9,7 @@ import * as SimpleMDE from "simplemde";
 })
 export class PostContentComponent implements OnInit {
   @Output() dataChange = new EventEmitter();
-  data: string;
+  @Input() data: string;
   simplemde;
 
   constructor() {}
@@ -26,7 +26,8 @@ export class PostContentComponent implements OnInit {
       this.data = this.simplemde.value();
       this.dataChange.emit(this.data);
     });
-    this.data = this.simplemde.value();
+
+    this.simplemde.value(this.data);
     this.dataChange.emit(this.data);
   }
 
