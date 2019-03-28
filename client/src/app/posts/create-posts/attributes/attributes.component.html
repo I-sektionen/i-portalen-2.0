@@ -1,3 +1,9 @@
-<p>
-  attributes works!
-</p>
+<mat-card>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Rubrik" [(ngModel)]="title" name="title" />
+    </mat-form-field>
+    {{ typeOne }}
+    <mat-slide-toggle [(ngModel)]="postType">{{ typeTwo }}</mat-slide-toggle>
+  </form>
+</mat-card>

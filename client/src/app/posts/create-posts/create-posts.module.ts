@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-//import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from "@angular/forms";
 import {
   MatInputModule,
   MatCardModule,
@@ -12,7 +12,9 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatListModule,
-  MatTabsModule
+  MatTabsModule,
+  MatFormFieldModule,
+  MatSlideToggleModule
 } from "@angular/material";
 
 import { CreatePostsRoutingModule } from "./create-posts-routing.module";
@@ -37,7 +39,11 @@ import { MarkdownToHtmlModule } from "markdown-to-html-pipe";
     MatCardModule,
     MatButtonModule,
     MatTabsModule,
-    MarkdownToHtmlModule
+    MatFormFieldModule,
+    MatInputModule,
+    MarkdownToHtmlModule,
+    MatSlideToggleModule,
+    FormsModule
   ]
 })
 export class CreatePostsModule {}
