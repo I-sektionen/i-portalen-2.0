@@ -1,11 +1,38 @@
 <div id="footer-div" fxLayout="row wrap">
-  <div fxFlex="33" [fxFlex.xs]="100">
-    <p>Left</p>
+  <div fxFlex="100" class="footer-isektionen-logo-container" [fxFlex.xs]="100">
+    <img class="footer-isektionen-logo" src="https://iportalen-us.s3.amazonaws.com/static/iportalen/isektionen_logo.png">
   </div>
-  <div fxFlex="33" [fxFlex.xs]="100">
-    <p>Middle</p>
+  <div fxFlex="11" [fxFlex.xs]="100">
   </div>
-  <div fxFlex="33" [fxFlex.xs]="100">
-    <p>Right</p>
+  <div fxFlex="26" class="footer-link-list" [fxFlex.xs]="100">
+    <mat-icon class="footer-icon">email</mat-icon>
+    <ul class="footer-list">
+      <li><a class="footer-link" href="mailto:inka@isektionen.se">Ansvarig utgivare: InKa</a></li>
+      <li><a class="footer-link" href="mailto:foretag@isektionen.se">Företagskontakt: NärU</a></li>
+      <li><a class="footer-link" href="mailto:webgroup@isektionen.se">Support: Webgroup</a></li>
+    </ul>
+  </div>
+  <div fxFlex="26" class="footer-link-list" [fxFlex.xs]="100">
+    <mat-icon class="footer-icon">group</mat-icon>
+    <ul class="footer-list">
+      <li><a class="footer-link" href="https://www.facebook.com/Industriell-ekonomi-Link%C3%B6ping-109690162408268/?fref=ts" target="_blank">Facebook</a></li>
+      <li><a class="footer-link" href="https://twitter.com/I_sektionen?lang=sv" target="_blank">Twitter</a></li>
+      <li><a class="footer-link" href="https://www.instagram.com/industriellekonomi_liu/" target="_blank">Instagram</a></li>
+      <li><a class="footer-link" href="https://www.linkedin.com/company/sektionen-för-industriell-ekonomi-linköping/about/" target="_blank">Linkedin</a></li>
+    </ul>
+
+
+  </div>
+  <div fxFlex="26" class="footer-link-list" [fxFlex.xs]="100">
+    <mat-icon class="footer-icon">info</mat-icon>
+    <ul class="footer-list">
+      <li><a class="footer-link" href="#" target="_blank">GDPR</a></li>
+      <li><a class="footer-link" href="http://www.isektionen.se/" target="_blank">isektionen.se</a></li>
+    </ul>
+  </div>
+  <div fxFlex="11" [fxFlex.xs]="100">
+  </div>
+  <div fxFlex="100" class="footer-webgroup-tag-container" [fxFlex.xs]="100">
+    <p class="footer-webgroup-tag">I-portalen är utvecklad med <span (mouseenter) ="footerMouseEnter()"  (mouseleave)="footerMouseLeave()">{{footerToken}}</span> av Webgroup</p>
   </div>
 </div>

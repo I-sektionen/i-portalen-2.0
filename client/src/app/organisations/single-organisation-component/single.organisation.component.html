@@ -1,0 +1,54 @@
+<mat-card class="org-card outer-wrap">
+
+    <mat-card class="row org-title-icon-card" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="32px"
+         fxLayoutAlign="center center" style="max-height: 200px">
+
+        <!-- Organisation icon box -->
+        <div fxFlex="1 1 calc(33.3% - 32px)">
+            <img src="{{tiles[0].url}}" class="{{tiles[0].class}}">
+        </div>
+
+        <!-- Organisation title -->
+        <div fxFlex="4 1 calc(33.3% - 32px)">
+            <h1 class="org-title" style="">{{tiles[0].title}}</h1>
+        </div>
+
+        <!--       Organisation header
+        <div class="org-card" fxFlex="2 1 calc(33.3% - 32px)">
+            <img src="{{tiles[1].url}}" class="{{tiles[1].class}}">
+        </div> -->
+
+    </mat-card>
+    <div class="row" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+
+        <!-- Organisation description -->
+        <mat-card fxFlex="2 1 calc(33.3% - 32px)">
+            <mat-card-title style="text-align: center">Om {{tiles[0].title}}</mat-card-title>
+            <p class="org-text">{{tiles[2].text}}</p>
+        </mat-card>
+
+
+        <!-- Organisation member list -->
+        <mat-card fxFlex="1 1 calc(33.3% - 32px)">
+            <mat-card-title style="text-align: center">Medlemmar</mat-card-title>
+
+            <div *ngFor="let member of tiles[3].members">
+                <mat-expansion-panel style="background-color: rgba(255,255,255,0.2); border: none; box-shadow: none;"
+                    [hideToggle]="true">
+                    <mat-expansion-panel-header>
+                        <div style="text-align: center; width: 100%">
+
+                            <span style="float: left">{{member.name}}</span>
+                            <span style="float: right">{{member.role}}</span>
+                        </div>
+                    </mat-expansion-panel-header>
+                    <div *ngIf="member.email!=''">
+                        <p><b>Kontakt:</b> {{member.email}}</p>
+                    </div>
+                </mat-expansion-panel>
+                <hr>
+            </div>
+        </mat-card>
+
+    </div>
+</mat-card>

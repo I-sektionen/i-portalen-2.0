@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+    import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  footerToken = "kärlek";
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  footerMouseEnter(){
+    this.footerToken = 'fulkod';
+  }
+
+  footerMouseLeave(){
+    this.footerToken = 'kärlek';
   }
 
 }

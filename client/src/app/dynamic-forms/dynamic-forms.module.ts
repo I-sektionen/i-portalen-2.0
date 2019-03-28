@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatRadioModule,
@@ -12,6 +12,7 @@ import {
 import { FormFieldComponent } from './form-field/form-field.component';
 import { UsersModule } from '../users/users.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FirebaseModule } from '../core/firebase/firebase.module';
 
 @NgModule({
   declarations: [DynamicFormComponent, FormFieldComponent],
@@ -35,6 +36,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
     // Custom
     UsersModule,
+    FirebaseModule
   ]
 })
 export class DynamicFormsModule { }

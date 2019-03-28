@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-login',
@@ -9,8 +9,8 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 })
 export class UserLoginComponent {
 
-  loginScreen: boolean = true;
   wrongCred = false;
+  loginScreen: boolean = true;
 
   loginForm = new FormGroup({
     liuId: new FormControl('',
@@ -39,13 +39,17 @@ export class UserLoginComponent {
       this.wrongCred = true;
     })
   }
-
   onChanges(): void {
-this.loginForm.valueChanges.subscribe(val => {
-    this.wrongCred = false
-  });
-}
+    this.loginForm.valueChanges.subscribe(val => {
+      this.wrongCred = false
+    });
+  }
+  reset() {
+    this.authService.sendPasswordResetEmail(this.liuId.value).then(
 
+    ).catch((error) => {
+      this.wrongCred = true;
+    });
+  }
 }
-
 

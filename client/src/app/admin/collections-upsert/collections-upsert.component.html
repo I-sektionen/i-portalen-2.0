@@ -5,4 +5,7 @@
   <div *ngSwitchCase="'users'">
     <p>Create user not implemented yet.</p>
   </div>
+  <div *ngSwitchCase="'sponsors'">
+    <app-upsert-sponsor [sponsor]="item"></app-upsert-sponsor>
+  </div>
 </div>

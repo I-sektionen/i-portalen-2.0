@@ -11,7 +11,10 @@
   <!--Form Fields-->
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div *ngFor="let formField of formFields" fxFlex="{{formField.width}}">
-      <app-form-field [formField]="formField" [form]="form"></app-form-field>
+      <app-form-field [formField]="formField" [form]="form"
+                      [(oldFilesDownloadUrls)]="oldFilesDownloadUrls" [(newFilesDownloadUrls)]="newFilesDownloadUrls">
+
+      </app-form-field>
     </div>
   </div>
 
