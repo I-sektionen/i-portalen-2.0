@@ -26,7 +26,8 @@ export class PostContentComponent implements OnInit {
       this.data = this.simplemde.value();
       this.dataChange.emit(this.data);
     });
-    this.data = this.simplemde.value(); // OnInit
+    this.data = this.simplemde.value();
+    this.dataChange.emit(this.data);
   }
 
   onClick() {

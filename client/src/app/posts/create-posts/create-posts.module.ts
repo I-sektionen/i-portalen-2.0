@@ -17,6 +17,7 @@ import {
 
 import { CreatePostsRoutingModule } from "./create-posts-routing.module";
 import { CreatePostsComponent } from "./create-posts.component";
+import { AttributesComponent } from "./attributes/attributes.component";
 import { PostContentComponent } from "./post-content/post-content.component";
 import { LivePreviewComponent } from "./live-preview/live-preview.component";
 import { MarkdownToHtmlModule } from "markdown-to-html-pipe";
@@ -25,7 +26,8 @@ import { MarkdownToHtmlModule } from "markdown-to-html-pipe";
   declarations: [
     CreatePostsComponent,
     LivePreviewComponent,
-    PostContentComponent
+    PostContentComponent,
+    AttributesComponent
   ],
   exports: [],
   providers: [],

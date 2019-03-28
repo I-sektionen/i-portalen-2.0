@@ -1,2 +1,13 @@
-<app-post-content (dataChange)="dataChange($event)"></app-post-content>
-<app-live-preview [data]="data"></app-live-preview>
+<mat-tab-group>
+  <mat-tab label="Attribut">
+    <ng-template matTabContent>
+      <app-attributes></app-attributes>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Text">
+    <ng-template matTabContent>
+      <app-post-content (dataChange)="dataChange($event)"></app-post-content>
+      <app-live-preview [data]="data"></app-live-preview>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
