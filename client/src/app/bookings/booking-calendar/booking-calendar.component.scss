@@ -3,11 +3,11 @@
   margin: 16px 0;
 }
 
-div {
-  text-align: center;
+.selected {
+  background-color: lightgreen!important;
 }
 
-.time-block-div {
-  background-color: gainsboro;
+.block {
+  background-color: lightblue;
   min-width: 100px;
 }

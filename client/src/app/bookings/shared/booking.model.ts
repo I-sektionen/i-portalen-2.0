@@ -8,13 +8,18 @@ export enum BookingType {
   Rollup = 'Rollup',
 }
 
+export interface DateBlock {
+  date: any;
+  block: number;
+}
+
 export interface Booking {
   id?: string;
   ownerId: string;
   type: BookingType;
 
-  date: any;
-  dateBlock: number;
+  dateBlocks: DateBlock[];
+
   isOrganisation: boolean;
   payed: boolean;
 

@@ -1,21 +1,19 @@
 <div id="outer-div" class="mat-elevation-z1">
   <div fxLayout="row wrap"  fxLayoutGap="16px grid">
     <div fxFlex="calc(100/7)" fxFlex.xs="100" *ngFor="let weekDay of weekDays; let i = index">
-      <div>
-        <p><b>{{weekDay}}</b></p>
+      <div class="center-content">
+        <b>{{weekDay}}</b>
       </div>
-      <div>
-        <p><b>{{dates[i]}}</b></p>
+      <div class="center-content">
+        <b>{{dates[i] | date: 'MM/d'}}</b>
       </div>
       <div fxLayout="column wrap" fxLayoutGap="16px">
-        <div class="time-block-div">
-          08:00<br>12:59
-        </div>
-        <div class="time-block-div">
-          13:00<br>16:59
-        </div>
-        <div class="time-block-div">
-          17:00<br>23:59
+        <div class="block" *ngFor="let block of [1,2,3]" (click)="select(dates[i], block)"
+             [ngClass]="{'selected': isSelected(dates[i], block)}"
+        >
+          <p *ngIf="block == 1">8:00<br>12:59</p>
+          <p *ngIf="block == 2">13:00<br>16:59</p>
+          <p *ngIf="block == 3">17:00<br>23:59</p>
         </div>
       </div>
     </div>
