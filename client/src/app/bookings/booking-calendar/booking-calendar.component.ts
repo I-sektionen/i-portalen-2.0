@@ -34,7 +34,6 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
 
     // Bookings
     this.bookingsSubscription = this.bookingService.listBookings(this.week, this.type).subscribe(bookings => {
-      console.log(bookings);
       this.bookings = bookings;
     });
 
