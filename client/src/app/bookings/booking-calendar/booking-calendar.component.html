@@ -1,7 +1,7 @@
 <div *ngIf="bookings" id="outer-div" class="mat-elevation-z1 center-content">
   <div fxLayout="row wrap"  fxLayoutGap="16px grid">
 
-    <div fxFlex="calc(100/7)" fxFlex.xs="100" *ngFor="let weekDay of weekDays; let i = index">
+    <div fxFlex="14.28" fxFlex.xs="50" *ngFor="let weekDay of weekDays.concat(weekDays); let i = index">
 
       <!--Day-->
       <div class="center-content">
@@ -20,8 +20,7 @@
              [ngClass]="{
              'selected': isSelected(dates[i], block),
              'booked': isBooked(dates[i], block),
-             'old': isOld(dates[i], block)}"
-        >
+             'old': isOld(dates[i], block)}">
           <p *ngIf="block == 1">8:00<br>12:59</p>
           <p *ngIf="block == 2">13:00<br>16:59</p>
           <p *ngIf="block == 3">17:00<br>23:59</p>

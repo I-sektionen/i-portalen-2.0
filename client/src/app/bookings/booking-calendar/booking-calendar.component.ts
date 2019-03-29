@@ -3,7 +3,7 @@ import { Booking, BookingType, DateBlock } from '../shared/booking.model';
 import { BookingService } from '../shared/booking.service';
 import * as moment from 'moment';
 import { UserService } from '../../users/shared/user.service';
-import { Observable, Subscription } from 'rxjs/index';
+import { Subscription } from 'rxjs/index';
 
 @Component({
   selector: 'app-booking-calendar',
@@ -14,7 +14,7 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
 
   today = new Date();
   weekDays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
-  dates = [];
+  dates: Date[] = [];
   selectedDateBlocks: DateBlock[] = [];
   bookings: Booking[];
   bookingsSubscription: Subscription;
@@ -34,6 +34,7 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
 
     // Bookings
     this.bookingsSubscription = this.bookingService.listBookings(this.week, this.type).subscribe(bookings => {
+      console.log(bookings);
       this.bookings = bookings;
     });
 
@@ -78,6 +79,7 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
   }
 
   select(date, block) {
+
     // Empty
     if (!this.isBookingsSelected()) {
       this.selectedDateBlocks.push({date: date, block: block});
@@ -102,8 +104,12 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
 
   isPreviousDateBlock(date, block) {
     const firstDateBlock = this.selectedDateBlocks[0];
+
+    // Same date
     if (date.getTime() === firstDateBlock.date.getTime()) {
       return block === firstDateBlock.block - 1;
+
+    // Previous date
     } else {
       const prevDate = moment(firstDateBlock.date).add(-1, 'day').toDate();
       return date.getTime() === prevDate.getTime() && firstDateBlock.block === 1 && block === 3;
@@ -112,8 +118,12 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
 
   isNextDateBlock(date, block) {
     const lastDateBlock = this.selectedDateBlocks[this.selectedDateBlocks.length - 1];
+
+    // Same date
     if (date.getTime() === lastDateBlock.date.getTime()) {
       return block === lastDateBlock.block + 1;
+
+    // Next date
     } else {
       const nextDate = moment(lastDateBlock.date).add(1, 'day').toDate();
       return date.getTime() === nextDate.getTime() && lastDateBlock.block === 3 && block === 1;
@@ -126,7 +136,7 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
   }
 
   isLastDateBlock(date, block) {
-    const lastDateBlock = this.selectedDateBlocks[this.selectedDateBlocks.length -1];
+    const lastDateBlock = this.selectedDateBlocks[this.selectedDateBlocks.length - 1];
     return lastDateBlock.date.getTime() === date.getTime() && lastDateBlock.block === block;
   }
 
@@ -135,13 +145,16 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
   }
 
   book() {
+
+    // Book
     if (this.isBookingsSelected()) {
       this.selectedDateBlocks.forEach(selectedDateBlock => {
         const booking: Booking = {
           ownerId: this.userService.uid,
           type: this.type,
           date: selectedDateBlock.date,
-          block: selectedDateBlock.block
+          block: selectedDateBlock.block,
+          // TODO: Add isOrganisation
         };
         this.bookingService.insertBooking(booking).then(res => {
           console.log('booked', booking, res);
@@ -150,5 +163,8 @@ export class BookingCalendarComponent implements OnChanges, OnDestroy {
         });
       });
     }
+
+    // Reset
+    this.selectedDateBlocks = [];
   }
 }

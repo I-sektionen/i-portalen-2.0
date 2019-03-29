@@ -29,8 +29,8 @@ export class BookingService {
 
   listBookings(week?: number, type?: BookingType) {
     if (week) {
-      const weekStart = moment().isoWeek(week).startOf('week').toDate();
-      const weekEnd = moment().isoWeek(week).endOf('week').toDate();
+      const weekStart = moment().isoWeek(week).startOf('week').add(1, 'day').toDate();
+      const weekEnd = moment().isoWeek(week + 1).endOf('week').add(1, 'day').toDate();
       return this.databaseService.list(this.path, ref => ref
         .where('type', '==', type)
         .where('date', '>=', weekStart)
@@ -46,7 +46,7 @@ export class BookingService {
 
   getDatesByWeekNumber(weekNumber) {
     const date = moment().isoWeek(weekNumber).startOf('week');
-    let weekLength = 7;
+    let weekLength = 14;
     const result = [];
     while (weekLength--) {
       date.add(1, 'day');
