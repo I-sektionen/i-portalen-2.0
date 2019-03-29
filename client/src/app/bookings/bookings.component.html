@@ -1,14 +1,1 @@
-<div class="center-content" style="margin-top: 16px;">
-  <mat-card>
-    <h1>Vad vill du boka?</h1>
-    <mat-radio-group [(ngModel)]="bookingType">
-      <mat-radio-button *ngFor="let type of bookingTypes | enum" [value]="type.value">
-        {{type.value}}
-      </mat-radio-button>
-    </mat-radio-group>
-  </mat-card>
-  <app-booking-calendar
-    [type]="bookingType" [week]="selectedWeek != null ? selectedWeek : today | date : 'w'"
-  ></app-booking-calendar>
-  <app-booking-week [week]="today | date : 'w'" (weekChange)="selectedWeek = $event"></app-booking-week>
-</div>
+<router-outlet></router-outlet>

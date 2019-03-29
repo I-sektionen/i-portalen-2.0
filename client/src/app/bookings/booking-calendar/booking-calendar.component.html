@@ -21,9 +21,9 @@
              'selected': isSelected(dates[i], block),
              'booked': isBooked(dates[i], block),
              'old': isOld(dates[i], block)}">
-          <p *ngIf="block == 1">8:00<br>12:59</p>
-          <p *ngIf="block == 2">13:00<br>16:59</p>
-          <p *ngIf="block == 3">17:00<br>23:59</p>
+          <p *ngIf="block == 1" class="block-text">8:00<br>12:59</p>
+          <p *ngIf="block == 2" class="block-text">13:00<br>16:59</p>
+          <p *ngIf="block == 3" class="block-text">17:00<br>23:59</p>
         </div>
       </div>
     </div>

@@ -9,11 +9,6 @@ import * as moment from 'moment';
 })
 export class BookingsComponent implements OnInit {
 
-  bookingTypes = BookingType;
-  bookingType: BookingType = BookingType.Car;
-  today = moment();
-  selectedWeek: number;
-
   constructor() { }
 
   ngOnInit() {

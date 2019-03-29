@@ -1,0 +1,10 @@
+<div id="outer-div">
+  <mat-card>
+    <h1>Vad vill du boka?</h1>
+    <mat-radio-group [(ngModel)]="type" (change)="updateType()">
+      <mat-radio-button *ngFor="let type of bookingTypes | enum" [value]="type.value">
+        {{type.value}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card>
+</div>
