@@ -7,7 +7,27 @@
   background-color: lightgreen!important;
 }
 
+.booked {
+  cursor: not-allowed!important;
+  background-color: indianred!important;
+}
+
+.old {
+  cursor: not-allowed!important;
+  background-color: lightgrey!important;
+}
+
+.booked+.old {
+  cursor: not-allowed!important;
+  background-color: #ffe6e6!important;
+}
+
 .block {
+  cursor: pointer;
   background-color: lightblue;
   min-width: 100px;
+}
+
+#book-button {
+  margin-top: 16px;
 }

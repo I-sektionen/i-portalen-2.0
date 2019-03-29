@@ -17,11 +17,10 @@ export interface Booking {
   id?: string;
   ownerId: string;
   type: BookingType;
-
-  dateBlocks: DateBlock[];
-
-  isOrganisation: boolean;
-  payed: boolean;
+  date: any;
+  block: number;
+  isOrganisation?: boolean;
+  payed?: boolean;
 
   // Traceability
   modified?: any;

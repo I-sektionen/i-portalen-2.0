@@ -1,43 +1,74 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { BookingType, DateBlock } from '../shared/booking.model';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
+import { Booking, BookingType, DateBlock } from '../shared/booking.model';
 import { BookingService } from '../shared/booking.service';
 import * as moment from 'moment';
+import { UserService } from '../../users/shared/user.service';
+import { Observable, Subscription } from 'rxjs/index';
 
 @Component({
   selector: 'app-booking-calendar',
   templateUrl: './booking-calendar.component.html',
   styleUrls: ['./booking-calendar.component.scss']
 })
-export class BookingCalendarComponent implements OnInit, OnChanges {
+export class BookingCalendarComponent implements OnChanges, OnDestroy {
 
+  today = new Date();
   weekDays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
   dates = [];
   selectedDateBlocks: DateBlock[] = [];
-  dateFormat = 'MM/DD';
+  bookings: Booking[];
+  bookingsSubscription: Subscription;
 
   @Input() type: BookingType;
   @Input() week: number;
 
   constructor(
     private bookingService: BookingService,
+    private userService: UserService,
   ) { }
 
-  ngOnInit() {
-  }
-
   ngOnChanges() {
-    this.dates = this.getWeekDaysByWeekNumber(this.week);
+
+    // Dates
+    this.dates = this.bookingService.getDatesByWeekNumber(this.week);
+
+    // Bookings
+    this.bookingsSubscription = this.bookingService.listBookings(this.week, this.type).subscribe(bookings => {
+      this.bookings = bookings;
+    });
+
+    // Reset
+    this.selectedDateBlocks = [];
   }
 
-  getWeekDaysByWeekNumber(weekNumber) {
-    const date = moment().isoWeek(weekNumber).startOf('week');
-    let weekLength = 7;
-    const result = [];
-    while (weekLength--) {
-      date.add(1, 'day');
-      result.push(date.toDate());
+  ngOnDestroy() {
+    this.bookingsSubscription.unsubscribe();
+  }
+
+  isBookable(date, block) {
+    return !this.isOld(date, block) && !this.isBooked(date, block);
+  }
+
+  isOld(date, block) {
+    const _date = new Date(date);
+    switch (block) {
+      case 1:
+        _date.setHours(8);
+        break;
+      case 2:
+        _date.setHours(13);
+        break;
+      case 3:
+        _date.setHours(17);
+        break;
     }
-    return result;
+    return _date.getTime() <= this.today.getTime();
+  }
+
+  isBooked(date, block) {
+    return this.bookings.find(booking => {
+      return booking.date.toDate().getTime() === date.getTime() && booking.block === block;
+    });
   }
 
   isSelected(date, block) {
@@ -48,7 +79,7 @@ export class BookingCalendarComponent implements OnInit, OnChanges {
 
   select(date, block) {
     // Empty
-    if (this.selectedDateBlocks.length === 0) {
+    if (!this.isBookingsSelected()) {
       this.selectedDateBlocks.push({date: date, block: block});
 
     // Next
@@ -97,5 +128,27 @@ export class BookingCalendarComponent implements OnInit, OnChanges {
   isLastDateBlock(date, block) {
     const lastDateBlock = this.selectedDateBlocks[this.selectedDateBlocks.length -1];
     return lastDateBlock.date.getTime() === date.getTime() && lastDateBlock.block === block;
+  }
+
+  isBookingsSelected() {
+    return this.selectedDateBlocks.length > 0;
+  }
+
+  book() {
+    if (this.isBookingsSelected()) {
+      this.selectedDateBlocks.forEach(selectedDateBlock => {
+        const booking: Booking = {
+          ownerId: this.userService.uid,
+          type: this.type,
+          date: selectedDateBlock.date,
+          block: selectedDateBlock.block
+        };
+        this.bookingService.insertBooking(booking).then(res => {
+          console.log('booked', booking, res);
+        }).catch(err => {
+          console.log(err);
+        });
+      });
+    }
   }
 }

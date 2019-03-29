@@ -1,15 +1,26 @@
-<div id="outer-div" class="mat-elevation-z1">
+<div *ngIf="bookings" id="outer-div" class="mat-elevation-z1 center-content">
   <div fxLayout="row wrap"  fxLayoutGap="16px grid">
+
     <div fxFlex="calc(100/7)" fxFlex.xs="100" *ngFor="let weekDay of weekDays; let i = index">
+
+      <!--Day-->
       <div class="center-content">
         <b>{{weekDay}}</b>
       </div>
+
+      <!--Date-->
       <div class="center-content">
-        <b>{{dates[i] | date: 'MM/d'}}</b>
+        <b>{{dates[i] | date: 'd/MM'}}</b>
       </div>
+
+      <!--Blocks-->
       <div fxLayout="column wrap" fxLayoutGap="16px">
-        <div class="block" *ngFor="let block of [1,2,3]" (click)="select(dates[i], block)"
-             [ngClass]="{'selected': isSelected(dates[i], block)}"
+        <div class="block" *ngFor="let block of [1,2,3]"
+             (click)="!isBookable(dates[i], block) || select(dates[i], block)"
+             [ngClass]="{
+             'selected': isSelected(dates[i], block),
+             'booked': isBooked(dates[i], block),
+             'old': isOld(dates[i], block)}"
         >
           <p *ngIf="block == 1">8:00<br>12:59</p>
           <p *ngIf="block == 2">13:00<br>16:59</p>
@@ -18,4 +29,8 @@
       </div>
     </div>
   </div>
+  <button id="book-button" mat-raised-button color="primary"
+          (click)="book()" [disabled]="!isBookingsSelected()">
+    Boka {{type}}
+  </button>
 </div>
