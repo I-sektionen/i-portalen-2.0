@@ -3,14 +3,6 @@
     <mat-form-field>
       <input matInput placeholder="Rubrik" [(ngModel)]="title" name="title" />
     </mat-form-field>
-    <p>
-      {{ typeOne }}
-      <mat-slide-toggle
-        [(ngModel)]="postTypeIsArticle"
-        name="postTypeIsArticle"
-        >{{ typeTwo }}</mat-slide-toggle
-      >
-    </p>
     <mat-form-field>
       <mat-label>Ingress</mat-label>
       <textarea
@@ -25,5 +17,38 @@
       ></textarea>
       <mat-hint align="end"> {{ ingress.length }} / 160</mat-hint>
     </mat-form-field>
+    <p>
+      <mat-label>Kategori</mat-label>
+      <mat-select
+        [(ngModel)]="choosenCategories"
+        name="choosenCategories"
+        multiple
+      >
+        <mat-select-trigger>
+          <mat-chip-list>
+            <mat-chip
+              *ngFor="let category of choosenCategories"
+              color="primary"
+              selected
+            >
+              {{ category.name }}
+            </mat-chip>
+          </mat-chip-list>
+        </mat-select-trigger>
+        <mat-option *ngFor="let category of categoryList" [value]="category">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </p>
+
+    <p>
+      {{ typeOne }}
+      <mat-slide-toggle
+        [(ngModel)]="postTypeIsArticle"
+        name="postTypeIsArticle"
+      >
+        {{ typeTwo }}
+      </mat-slide-toggle>
+    </p>
   </form>
 </mat-card>

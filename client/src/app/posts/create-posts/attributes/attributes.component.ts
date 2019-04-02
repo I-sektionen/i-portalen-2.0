@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-attributes',
@@ -12,6 +13,14 @@ export class AttributesComponent implements OnInit {
   typeTwo: string = 'Event';
   postTypeIsArticle: boolean = true;
   ingress: string = '';
+  choosenCategories: any[];
+  //categoryList: string[] = ['Artikel', 'Event', 'Annons', 'Workshop'];
+  categoryList: any[] = [
+    { name: 'Artikel', id: 1 },
+    { name: 'Event', id: 2 },
+    { name: 'Annons', id: 3 },
+    { name: 'Workshop', id: 4 }
+  ];
 
   constructor() {}
 

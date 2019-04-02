@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {
   MatInputModule,
   MatCardModule,
@@ -14,15 +14,18 @@ import {
   MatListModule,
   MatTabsModule,
   MatFormFieldModule,
-  MatSlideToggleModule
-} from "@angular/material";
+  MatSlideToggleModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatChipsModule
+} from '@angular/material';
 
-import { CreatePostsRoutingModule } from "./create-posts-routing.module";
-import { CreatePostsComponent } from "./create-posts.component";
-import { AttributesComponent } from "./attributes/attributes.component";
-import { PostContentComponent } from "./post-content/post-content.component";
-import { LivePreviewComponent } from "./live-preview/live-preview.component";
-import { MarkdownToHtmlModule } from "markdown-to-html-pipe";
+import { CreatePostsRoutingModule } from './create-posts-routing.module';
+import { CreatePostsComponent } from './create-posts.component';
+import { AttributesComponent } from './attributes/attributes.component';
+import { PostContentComponent } from './post-content/post-content.component';
+import { LivePreviewComponent } from './live-preview/live-preview.component';
+import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { MarkdownToHtmlModule } from "markdown-to-html-pipe";
     MatInputModule,
     MarkdownToHtmlModule,
     MatSlideToggleModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatChipsModule,
     FormsModule
   ]
 })
