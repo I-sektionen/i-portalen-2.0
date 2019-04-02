@@ -15,6 +15,7 @@ import { SponsorsModule } from './sponsors/sponsors.module';
 import { UsersModule } from './users/users.module';
 import { HomeModule } from './home/home.module';
 import { FormFieldComponent } from './form-field/form-field.component';
+import {AdminRoutingModule} from "./admin/admin-routing.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,9 @@ import { FormFieldComponent } from './form-field/form-field.component';
     // Angular Modules
     BrowserModule,
     BrowserAnimationsModule,
+
+    //temp
+    AdminRoutingModule,
 
     // Custom Modules
     CoreModule,

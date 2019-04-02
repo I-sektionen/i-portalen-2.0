@@ -19,6 +19,7 @@ import { OrganisationsModule } from '../organisations/organisations.module';
 import { CollectionsTableComponent } from './collections-table/collections-table.component';
 import { CollectionsUpsertComponent } from './collections-upsert/collections-upsert.component';
 import { SponsorsModule } from '../sponsors/sponsors.module';
+import {AppRoutingModule} from "../app-routing.module";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SponsorsModule } from '../sponsors/sponsors.module';
 
     // Other
     MarkdownToHtmlModule,
+    AppRoutingModule
   ]
 })
 export class AdminModule { }
