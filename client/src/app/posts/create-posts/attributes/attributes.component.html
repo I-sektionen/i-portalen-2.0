@@ -3,7 +3,27 @@
     <mat-form-field>
       <input matInput placeholder="Rubrik" [(ngModel)]="title" name="title" />
     </mat-form-field>
-    {{ typeOne }}
-    <mat-slide-toggle [(ngModel)]="postType">{{ typeTwo }}</mat-slide-toggle>
+    <p>
+      {{ typeOne }}
+      <mat-slide-toggle
+        [(ngModel)]="postTypeIsArticle"
+        name="postTypeIsArticle"
+        >{{ typeTwo }}</mat-slide-toggle
+      >
+    </p>
+    <mat-form-field>
+      <mat-label>Ingress</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="5"
+        [(ngModel)]="ingress"
+        name="ingress"
+        maxlength="160"
+      ></textarea>
+      <mat-hint align="end"> {{ ingress.length }} / 160</mat-hint>
+    </mat-form-field>
   </form>
 </mat-card>
