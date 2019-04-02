@@ -17,7 +17,8 @@ import {
   MatSlideToggleModule,
   MatOptionModule,
   MatSelectModule,
-  MatChipsModule
+  MatChipsModule,
+  MatDatepickerModule
 } from '@angular/material';
 
 import { CreatePostsRoutingModule } from './create-posts-routing.module';
@@ -26,6 +27,7 @@ import { AttributesComponent } from './attributes/attributes.component';
 import { PostContentComponent } from './post-content/post-content.component';
 import { LivePreviewComponent } from './live-preview/live-preview.component';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
     MatOptionModule,
     MatSelectModule,
     MatChipsModule,
-    FormsModule
+    MatDatepickerModule,
+    FormsModule,
+    NgxMaterialTimepickerModule
   ]
 })
 export class CreatePostsModule {}
