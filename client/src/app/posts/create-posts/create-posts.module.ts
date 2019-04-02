@@ -17,7 +17,8 @@ import {
   MatSlideToggleModule,
   MatOptionModule,
   MatSelectModule,
-  MatChipsModule
+  MatChipsModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { CreatePostsRoutingModule } from './create-posts-routing.module';
@@ -49,7 +50,9 @@ import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
     MatOptionModule,
     MatSelectModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CreatePostsModule {}
