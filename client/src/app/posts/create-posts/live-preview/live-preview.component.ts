@@ -1,4 +1,11 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 @Component({
   selector: 'app-live-preview',
@@ -7,20 +14,24 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class LivePreviewComponent implements OnInit {
-
   @Input() data: string;
+  @Output() fullscrenEmit = new EventEmitter();
 
-  rubrik: String = "Rubrik";
+  rubrik: String = 'Rubrik';
   time: Number = 34;
 
   previewToggle: Boolean = true;
+  fullscreenToggle: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  togglePreview(){
+  togglePreview() {
     this.previewToggle = !this.previewToggle;
   }
-
-  ngOnInit() {
+  toggleFullscren() {
+    this.fullscreenToggle = !this.fullscreenToggle;
+    this.fullscrenEmit.emit(this.fullscreenToggle);
   }
+
+  ngOnInit() {}
 }

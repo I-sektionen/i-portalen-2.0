@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePostsComponent implements OnInit {
   data: string;
+  fullscreenToggle: boolean = false;
 
   constructor() {}
   ngOnInit() {
@@ -18,6 +19,10 @@ export class CreatePostsComponent implements OnInit {
 
   dataChange(data) {
     this.data = data;
+  }
+
+  fullscrenEmit(toggle) {
+    this.fullscreenToggle = toggle;
   }
 }
 
