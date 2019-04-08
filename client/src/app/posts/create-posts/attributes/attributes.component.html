@@ -1,45 +1,112 @@
 <mat-card>
   <form>
-    <mat-form-field>
-      <input matInput placeholder="Rubrik" [(ngModel)]="title" name="title" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Ingress</mat-label>
-      <textarea
-        matInput
-        cdkTextareaAutosize
-        #autosize="cdkTextareaAutosize"
-        cdkAutosizeMinRows="2"
-        cdkAutosizeMaxRows="5"
-        [(ngModel)]="ingress"
-        name="ingress"
-        maxlength="160"
-      ></textarea>
-      <mat-hint align="end"> {{ ingress.length }} / 160</mat-hint>
-    </mat-form-field>
-    <p>
-      <mat-label>Kategori</mat-label>
-      <mat-select
-        [(ngModel)]="choosenCategories"
-        name="choosenCategories"
-        multiple
-      >
-        <mat-select-trigger>
-          <mat-chip-list>
-            <mat-chip
-              *ngFor="let category of choosenCategories"
-              color="primary"
-              selected
-            >
-              {{ category.name }}
-            </mat-chip>
-          </mat-chip-list>
-        </mat-select-trigger>
-        <mat-option *ngFor="let category of categoryList" [value]="category">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
-    </p>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Rubrik" [(ngModel)]="title" name="title" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Ingress</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          [(ngModel)]="ingress"
+          name="ingress"
+          maxlength="160"
+        ></textarea>
+        <mat-hint align="end"> {{ ingress.length }} / 160</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Kategori</mat-label>
+        <mat-select
+          [(ngModel)]="choosenCategories"
+          name="choosenCategories"
+          matInput
+          multiple
+        >
+          <mat-select-trigger>
+            <mat-chip-list>
+              <mat-chip
+                *ngFor="let category of choosenCategories"
+                color="primary"
+                selected
+              >
+                {{ category.name }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-select-trigger>
+          <mat-option *ngFor="let category of categoryList" [value]="category">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Publish date & time. TODO: Change date format-->
+
+    <div style="display: flex">
+      <mat-form-field>
+        <input matInput placeholder="Välj publiceringsdatum" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Publiceringstid"
+          [ngxTimepicker]="togglePublishTimepicker"
+          [disableClick]="false"
+          [format]="24"
+          readonly
+        />
+        <ngx-material-timepicker
+          #togglePublishTimepicker
+        ></ngx-material-timepicker>
+      </mat-form-field>
+      <ngx-material-timepicker-toggle
+        [for]="togglePublishTimepicker"
+        style="display:flex; vertical-align: bottom"
+      ></ngx-material-timepicker-toggle>
+    </div>
+
+    <!-- Unpublish date & time -->
+
+    <div style="display: flex">
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Välj avpubliceringsdatum"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Avpubliceringstid"
+          [ngxTimepicker]="toggleUnpublishTimepicker"
+          [disableClick]="false"
+          [format]="24"
+          readonly
+        />
+        <ngx-material-timepicker
+          #toggleUnpublishTimepicker
+        ></ngx-material-timepicker>
+      </mat-form-field>
+      <ngx-material-timepicker-toggle
+        [for]="toggleUnpublishTimepicker"
+        style="display:flex; vertical-align: bottom"
+      ></ngx-material-timepicker-toggle>
+    </div>
 
     <p>
       {{ typeOne }}
@@ -91,6 +158,7 @@
              </mat-progress-spinner>
            </mat-icon>
            <span>{{fileName}}</span>
+          <img [src]="url" height="200">
          </div>
        </div>
      </div>

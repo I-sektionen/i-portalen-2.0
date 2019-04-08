@@ -6,7 +6,7 @@ import {FormGroup} from "@angular/forms";
 
 
 import { StorageService } from '../../../core/storage/storage.service';
-import { AngularFireUploadTask } from '@angular/fire/storage';
+//import { AngularFireUploadTask } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-attributes',
@@ -34,16 +34,18 @@ export class AttributesComponent implements OnInit {
   ngOnInit() {}
 
 
-  @Input() oldFilesDownloadUrls: string[];
-  @Output() oldFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
-  @Input() newFilesDownloadUrls: string[];
-  @Output() newFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+ // @Input() oldFilesDownloadUrls: string[];
+ // @Output() oldFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+ // @Input() newFilesDownloadUrls: string[];
+ // @Output() newFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
   //@Input() formField: DynamicFormField;
-  @Input() form: FormGroup;
+ // @Input() form: FormGroup;
 
   fileName: string;
   uploading = false;
   uploadPercentage = 0;
+
+  url: any;
 
   uploadImageFile(event) {
     const file = event.target.files[0];
@@ -51,10 +53,20 @@ export class AttributesComponent implements OnInit {
       this.uploading = true;
       this.fileName = file.name;
 
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+      }
+
       const uploadTask = this.storageService.uploadFile(
         file, 'folderName',  this.fileName
       );
       this.trackUploadProgress(uploadTask);
+
+
      // this.setDownloadUrl(uploadTask);
     }
   }
