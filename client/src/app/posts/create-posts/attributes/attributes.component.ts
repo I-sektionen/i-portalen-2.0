@@ -41,6 +41,8 @@ export class AttributesComponent implements OnInit {
   //@Input() formField: DynamicFormField;
  // @Input() form: FormGroup;
 
+  @Output() eventEmitter = new EventEmitter();
+
   fileName: string;
   uploading = false;
   uploadPercentage = 0;
@@ -53,21 +55,20 @@ export class AttributesComponent implements OnInit {
       this.uploading = true;
       this.fileName = file.name;
 
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = reader.result;
-      }
 
       const uploadTask = this.storageService.uploadFile(
         file, 'folderName',  this.fileName
       );
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+        this.getDownloadUrl(uploadTask);
+      }
+
       this.trackUploadProgress(uploadTask);
-
-
-     // this.setDownloadUrl(uploadTask);
     }
   }
 
@@ -77,27 +78,11 @@ export class AttributesComponent implements OnInit {
     });
   }
 
-  /*setDownloadUrl(uploadTask: AngularFireUploadTask) {
-    alert("Hej");
+  getDownloadUrl(uploadTask: AngularFireUploadTask) {
     uploadTask.then(done => {
       done.ref.getDownloadURL().then(url => {
-
-        // Download URLs for old files
-        if (this.form.get(this.formField.key).value) {
-          this.oldFilesDownloadUrls.push(this.form.get(this.formField.key).value);
-          this.oldFilesDownloadUrlsChange.emit(this.oldFilesDownloadUrls);
-        }
-
-        // Set download url as value in form
-        this.form.get(this.formField.key).setValue(url);
-        this.newFilesDownloadUrls.push(url);
-        this.newFilesDownloadUrlsChange.emit(this.newFilesDownloadUrls);
-        this.uploading = false;
+        this.eventEmitter.emit(url);
       });
-    }).catch(() => {
-      this.uploading = false;
-      this.uploadPercentage = 0;
-      this.fileName = '';
     });
-  }*/
+  }
 }

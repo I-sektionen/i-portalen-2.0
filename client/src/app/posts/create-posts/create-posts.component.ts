@@ -7,14 +7,22 @@ import { Component, OnInit } from '@angular/core';
   // encapsulation: ViewEncapsulation.None
 })
 export class CreatePostsComponent implements OnInit {
+
+  constructor() {}
   data: string;
   fullscreenToggle: boolean = false;
 
-  constructor() {}
+  imgURL: string;
+
   ngOnInit() {
     //Pre-filled markdown text
     this.data =
       '![](https://i.imgur.com/99onY9r.jpg)\n\n# This is a header\n\n**This is bold text**\n\n*This is italic text*\n\n> This is a quote.\n> It can span multiple lines!\n\n1. Numbered list item\n2. Numbered list item\n3. Numbered list item';
+  }
+
+  eventEmitter(data) {
+    this.imgURL = data;
+    this.data += ('\n\n Your image: \n\n![](' + this.imgURL + ')');
   }
 
   dataChange(data) {
