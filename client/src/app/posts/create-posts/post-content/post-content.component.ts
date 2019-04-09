@@ -1,34 +1,35 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Post } from '../../shared/post.model';
 
-import * as SimpleMDE from "simplemde";
+import * as SimpleMDE from 'simplemde';
 
 @Component({
-  selector: "app-post-content",
-  templateUrl: "./post-content.component.html",
-  styleUrls: ["./post-content.component.scss"]
+  selector: 'app-post-content',
+  templateUrl: './post-content.component.html',
+  styleUrls: ['./post-content.component.scss']
 })
 export class PostContentComponent implements OnInit {
-  @Output() dataChange = new EventEmitter();
-  @Input() data: string;
+  @Output() postChange = new EventEmitter();
+  @Input() post: Post;
   simplemde;
 
   constructor() {}
 
   ngOnInit() {
     this.simplemde = new SimpleMDE({
-      element: document.getElementById("editor"),
+      element: document.getElementById('editor'),
       autofocus: true,
-      hideIcons: ["fullscreen", "link", "side-by-side"],
+      hideIcons: ['fullscreen', 'link', 'side-by-side'],
       spellChecker: false
     });
 
-    this.simplemde.codemirror.on("change", () => {
-      this.data = this.simplemde.value();
-      this.dataChange.emit(this.data);
+    this.simplemde.codemirror.on('change', () => {
+      this.post.text = this.simplemde.value();
+      this.postChange.emit(this.post);
     });
 
-    this.simplemde.value(this.data);
-    this.dataChange.emit(this.data);
+    this.simplemde.value(this.post.text);
+    this.postChange.emit(this.post);
   }
 
   onClick() {

@@ -1,175 +1,186 @@
 <mat-card>
-  <form>
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Rubrik" [(ngModel)]="title" name="title" />
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <mat-label>Ingress</mat-label>
-        <textarea
-          matInput
-          cdkTextareaAutosize
-          #autosize="cdkTextareaAutosize"
-          cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="5"
-          [(ngModel)]="ingress"
-          name="ingress"
-          maxlength="160"
-        ></textarea>
-        <mat-hint align="end"> {{ ingress.length }} / 160</mat-hint>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <mat-label>Kategori</mat-label>
-        <mat-select
-          [(ngModel)]="choosenCategories"
-          name="choosenCategories"
-          matInput
-          multiple
-        >
-          <mat-select-trigger>
-            <mat-chip-list>
-              <mat-chip
-                *ngFor="let category of choosenCategories"
-                color="primary"
-                selected
-              >
-                {{ category.name }}
-              </mat-chip>
-            </mat-chip-list>
-          </mat-select-trigger>
-          <mat-option *ngFor="let category of categoryList" [value]="category">
-            {{ category.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+  <mat-card-header>
+    Artikeluppgifter
+  </mat-card-header>
 
-    <!-- Publish date & time. TODO: Change date format-->
-
-    <div style="display: flex">
-      <mat-form-field>
-        <input matInput placeholder="Välj publiceringsdatum" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Publiceringstid"
-          [ngxTimepicker]="togglePublishTimepicker"
-          [disableClick]="false"
-          [format]="24"
-          readonly
-        />
-        <ngx-material-timepicker
-          #togglePublishTimepicker
-        ></ngx-material-timepicker>
-      </mat-form-field>
-      <ngx-material-timepicker-toggle
-        [for]="togglePublishTimepicker"
-        style="display:flex; vertical-align: bottom"
-      ></ngx-material-timepicker-toggle>
-    </div>
-
-    <!-- Unpublish date & time -->
-
-    <div style="display: flex">
-      <mat-form-field>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          placeholder="Välj avpubliceringsdatum"
-        />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Avpubliceringstid"
-          [ngxTimepicker]="toggleUnpublishTimepicker"
-          [disableClick]="false"
-          [format]="24"
-          readonly
-        />
-        <ngx-material-timepicker
-          #toggleUnpublishTimepicker
-        ></ngx-material-timepicker>
-      </mat-form-field>
-      <ngx-material-timepicker-toggle
-        [for]="toggleUnpublishTimepicker"
-        style="display:flex; vertical-align: bottom"
-      ></ngx-material-timepicker-toggle>
-    </div>
-
-    <p>
-      {{ typeOne }}
-      <mat-slide-toggle
-        [(ngModel)]="postTypeIsArticle"
-        name="postTypeIsArticle"
-      >
-        {{ typeTwo }}
-      </mat-slide-toggle>
-    </p>
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--fileupload-->
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-
-      <!--Upload button-->
-      <div fxFlex="50">
-        <button mat-raised-button (click)="file.click()" type="button" color="blue">
-          Ladda upp
-        </button>
-        <input #file type="file" accept="image/*" style="display:none;" (change)="uploadImageFile($event)">
+  <mat-card-content class="container">
+    <form>
+      <div class="row">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Rubrik"
+            [(ngModel)]="post.title"
+            name="title"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Ingress</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            [(ngModel)]="post.ingress"
+            name="ingress"
+            maxlength="160"
+          ></textarea>
+          <mat-hint align="end"> {{ post.ingress.length }} / 160</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Kategori</mat-label>
+          <mat-select
+            [(ngModel)]="post.choosenCategories"
+            name="choosenCategories"
+            matInput
+            multiple
+          >
+            <mat-select-trigger>
+              <mat-chip-list>
+                <mat-chip
+                  *ngFor="let category of post.choosenCategories"
+                  color="primary"
+                  selected
+                >
+                  {{ category.name }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-select-trigger>
+            <mat-option
+              *ngFor="let category of post.availableCategories"
+              [value]="category"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
 
-      <!--Upload feedback-->
-      <div fxFlex="50" fxFlexAlign="center">
-        <div fxLayout="row">
-          <mat-icon *ngIf="!uploading && form.get(formField.key).value" color="blue">
-             check_circle_outline
-           </mat-icon>
-           <mat-icon *ngIf="!uploading && !form.get(formField.key).value">
-             highlight_off
-           </mat-icon>
-           <mat-icon *ngIf="uploading">
-             <mat-progress-spinner
-               [diameter]="22"
-               [mode]="'determinate'"
-               color="green"
-               [value]="uploadPercentage">
-             </mat-progress-spinner>
-           </mat-icon>
-           <span>{{fileName}}</span>
-          <img [src]="url" height="200">
-         </div>
-       </div>
-     </div>
+      <!-- Publish date & time. TODO: Change date format-->
 
+      <div style="display: flex; flex-direction: row" class="row">
+        <mat-form-field>
+          <input matInput placeholder="Publiceringsdatum" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Publiceringstid"
+            [ngxTimepicker]="togglePublishTimepicker"
+            [disableClick]="false"
+            [format]="24"
+            readonly
+          />
+          <ngx-material-timepicker
+            #togglePublishTimepicker
+          ></ngx-material-timepicker>
+        </mat-form-field>
+        <ngx-material-timepicker-toggle
+          [for]="togglePublishTimepicker"
+          style="display:flex; vertical-align: bottom"
+        ></ngx-material-timepicker-toggle>
+      </div>
 
+      <!-- Unpublish date & time -->
 
+      <div style="display: flex; flex-direction: row" class="row">
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Avpubliceringsdatum"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Avpubliceringstid"
+            [ngxTimepicker]="toggleUnpublishTimepicker"
+            [disableClick]="false"
+            [format]="24"
+            readonly
+          />
+          <ngx-material-timepicker
+            #toggleUnpublishTimepicker
+          ></ngx-material-timepicker>
+        </mat-form-field>
+        <ngx-material-timepicker-toggle
+          [for]="toggleUnpublishTimepicker"
+          style="display:flex; vertical-align: bottom"
+        ></ngx-material-timepicker-toggle>
+      </div>
 
+      <div
+        style="display: flex; flex-direction: row; align-items: center"
+        class="row"
+      >
+        {{ typeOne }}
+        <mat-slide-toggle [(ngModel)]="post.isEvent" name="isEvent">
+        </mat-slide-toggle>
+        {{ typeTwo }}
+      </div>
 
+      <!--fileupload-->
+      <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <!--Upload button-->
+        <div fxFlex="50">
+          <button
+            mat-raised-button
+            (click)="file.click()"
+            type="button"
+            color="blue"
+          >
+            Ladda upp
+          </button>
+          <input
+            #file
+            type="file"
+            accept="image/*"
+            style="display:none;"
+            (change)="uploadImageFile($event)"
+          />
+        </div>
 
-
-   </form>
- </mat-card>
+        <!--Upload feedback-->
+        <div fxFlex="50" fxFlexAlign="center">
+          <div fxLayout="row">
+            <mat-icon *ngIf="!uploading" color="blue">
+              check_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="!uploading">
+              highlight_off
+            </mat-icon>
+            <mat-icon *ngIf="uploading">
+              <mat-progress-spinner
+                [diameter]="22"
+                [mode]="'determinate'"
+                color="green"
+                [value]="uploadPercentage"
+              >
+              </mat-progress-spinner>
+            </mat-icon>
+            <span>{{ fileName }}</span>
+            <img [src]="url" height="200" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

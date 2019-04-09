@@ -1,11 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AngularFireUploadTask} from "@angular/fire/storage";
-import {DynamicFormField} from "../../../dynamic-forms/shared/dynamic-form.model";
-import {FormGroup} from "@angular/forms";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularFireUploadTask } from '@angular/fire/storage';
+import { DynamicFormField } from '../../../dynamic-forms/shared/dynamic-form.model';
+import { FormGroup } from '@angular/forms';
+import { Post } from '../../shared/post.model';
 //import { FormControl } from '@angular/forms';
 
-
 import { StorageService } from '../../../core/storage/storage.service';
+import { PostContentComponent } from '../post-content/post-content.component';
 //import { AngularFireUploadTask } from '@angular/fire/storage';
 
 @Component({
@@ -14,32 +15,26 @@ import { StorageService } from '../../../core/storage/storage.service';
   styleUrls: ['./attributes.component.scss']
 })
 export class AttributesComponent implements OnInit {
-  title: string;
-  eventType: boolean = false;
+  @Output() postChange = new EventEmitter();
+  @Input() post: Post;
+
   typeOne: string = 'Artikel';
   typeTwo: string = 'Event';
-  postTypeIsArticle: boolean = true;
-  ingress: string = '';
-  choosenCategories: any[];
-  //categoryList: string[] = ['Artikel', 'Event', 'Annons', 'Workshop'];
-  categoryList: any[] = [
-    { name: 'Artikel', id: 1 },
-    { name: 'Event', id: 2 },
-    { name: 'Annons', id: 3 },
-    { name: 'Workshop', id: 4 }
-  ];
 
   constructor(private storageService: StorageService) {}
 
   ngOnInit() {}
 
+  ngOnChanges() {
+    this.postChange.emit(this.post);
+  }
 
- // @Input() oldFilesDownloadUrls: string[];
- // @Output() oldFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
- // @Input() newFilesDownloadUrls: string[];
- // @Output() newFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  // @Input() oldFilesDownloadUrls: string[];
+  // @Output() oldFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  // @Input() newFilesDownloadUrls: string[];
+  // @Output() newFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
   //@Input() formField: DynamicFormField;
- // @Input() form: FormGroup;
+  // @Input() form: FormGroup;
 
   @Output() eventEmitter = new EventEmitter();
 
@@ -57,16 +52,19 @@ export class AttributesComponent implements OnInit {
 
       const reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); // read file as post.text url
 
       const uploadTask = this.storageService.uploadFile(
-        file, 'folderName',  this.fileName
+        file,
+        'folderName',
+        this.fileName
       );
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = event => {
+        // called once readAsDataURL is completed
         this.url = reader.result;
         this.getDownloadUrl(uploadTask);
-      }
+      };
 
       this.trackUploadProgress(uploadTask);
     }

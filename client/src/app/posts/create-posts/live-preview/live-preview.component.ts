@@ -6,6 +6,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
+import { Post } from '../../shared/post.model';
 
 @Component({
   selector: 'app-live-preview',
@@ -14,7 +15,7 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class LivePreviewComponent implements OnInit {
-  @Input() data: string;
+  @Input() post: Post;
   @Output() fullscrenEmit = new EventEmitter();
 
   rubrik: String = 'Rubrik';

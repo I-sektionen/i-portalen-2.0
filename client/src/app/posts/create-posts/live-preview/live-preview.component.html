@@ -1,25 +1,28 @@
 <mat-card class="example-card" style="width: 49%; float: right;">
   <mat-card-header>
-    <mat-card-title>Live preview</mat-card-title>
-    <mat-card-subtitle>Article</mat-card-subtitle>
+    <mat-card-title>Förhandsvisning</mat-card-title>
+    <mat-card-subtitle>Artikel</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
     <ng-container *ngIf="previewToggle">
       <div class="live-preview-frame">
-        <h1>{{ rubrik }}</h1>
+        <h1>{{ post.title }}</h1>
         {{ time }} min sedan
         <hr />
-        <span class="live-preview" [innerHTML]="data | MarkdownToHtml"></span>
+        <span
+          class="live-preview"
+          [innerHTML]="post.text | MarkdownToHtml"
+        ></span>
       </div>
     </ng-container>
 
     <ng-container *ngIf="!previewToggle">
       <div class="live-preview-card">
-        <h1>{{ rubrik }}</h1>
+        <h1>{{ post.title }}</h1>
         {{ time }} min sedan
         <hr />
-        This is the card view
+        {{ post.ingress }}
       </div>
     </ng-container>
   </mat-card-content>

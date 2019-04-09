@@ -1,18 +1,22 @@
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Attribut">
     <ng-template matTabContent>
-      <app-attributes (eventEmitter)="eventEmitter($event)"></app-attributes>
+      <app-attributes
+        (eventEmitter)="eventEmitter($event)"
+        (postChange)="postChange($event)"
+        [post]="post"
+      ></app-attributes>
     </ng-template>
   </mat-tab>
   <mat-tab label="Text">
     <ng-template matTabContent>
       <app-post-content
         *ngIf="!fullscreenToggle"
-        [data]="data"
-        (dataChange)="dataChange($event)"
+        [post]="post"
+        (postChange)="postChange($event)"
       ></app-post-content>
       <app-live-preview
-        [data]="data"
+        [post]="post"
         (fullscrenEmit)="fullscrenEmit($event)"
       ></app-live-preview>
     </ng-template>
