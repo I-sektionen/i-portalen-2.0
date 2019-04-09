@@ -3,16 +3,45 @@ import { AngularFireUploadTask } from '@angular/fire/storage';
 import { DynamicFormField } from '../../../dynamic-forms/shared/dynamic-form.model';
 import { FormGroup } from '@angular/forms';
 import { Post } from '../../shared/post.model';
+
+import * as _moment from 'moment';
+import {
+  DateTimeAdapter,
+  OWL_DATE_TIME_FORMATS,
+  OWL_DATE_TIME_LOCALE
+} from 'ng-pick-datetime';
+import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+
 //import { FormControl } from '@angular/forms';
 
 import { StorageService } from '../../../core/storage/storage.service';
-import { PostContentComponent } from '../post-content/post-content.component';
 //import { AngularFireUploadTask } from '@angular/fire/storage';
+
+const moment = (_moment as any).default ? (_moment as any).default : _moment;
+
+export const MY_CUSTOM_FORMATS = {
+  parseInput: 'DD/MM/YYYY HH:MM',
+  fullPickerInput: 'DD/MM/YYYY HH:MM',
+  datePickerInput: 'DD/MM/YYYY',
+  timePickerInput: 'HH:MM',
+  monthYearLabel: 'MMM YYYY',
+  dateA11yLabel: 'DD/MM/YYYY',
+  monthYearA11yLabel: 'MMMM YYYY'
+};
 
 @Component({
   selector: 'app-attributes',
   templateUrl: './attributes.component.html',
-  styleUrls: ['./attributes.component.scss']
+  styleUrls: ['./attributes.component.scss'],
+  providers: [
+    {
+      provide: DateTimeAdapter,
+      useClass: MomentDateTimeAdapter,
+      deps: [OWL_DATE_TIME_LOCALE]
+    },
+
+    { provide: OWL_DATE_TIME_FORMATS, useValue: MY_CUSTOM_FORMATS }
+  ]
 })
 export class AttributesComponent implements OnInit {
   @Output() postChange = new EventEmitter();
@@ -20,6 +49,7 @@ export class AttributesComponent implements OnInit {
 
   typeOne: string = 'Artikel';
   typeTwo: string = 'Event';
+  minPublishDate: Date = new Date(Date.now());
 
   constructor(private storageService: StorageService) {}
 

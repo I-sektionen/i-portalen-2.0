@@ -29,6 +29,7 @@ import { PostContentComponent } from './post-content/post-content.component';
 import { LivePreviewComponent } from './live-preview/live-preview.component';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     FormsModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ]
 })
 export class CreatePostsModule {}

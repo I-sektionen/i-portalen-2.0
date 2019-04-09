@@ -65,7 +65,20 @@
 
       <div style="display: flex; flex-direction: row" class="row">
         <mat-form-field>
-          <input matInput placeholder="Publiceringsdatum" />
+          <label class="example-input-wrapper">
+            <input
+              matInput
+              placeholder="Publiceringsdatum"
+              [(ngModel)]="post.publishDate"
+              name="publishDate"
+              [min]="minPublishDate"
+              [owlDateTimeTrigger]="pd"
+              [owlDateTime]="pd"
+            />
+            <owl-date-time #pd></owl-date-time>
+          </label>
+        </mat-form-field>
+        <!-- <input matInput placeholder="Publiceringsdatum" />
           <mat-datepicker-toggle
             matSuffix
             [for]="picker"
@@ -89,13 +102,27 @@
         <ngx-material-timepicker-toggle
           [for]="togglePublishTimepicker"
           style="display:flex; vertical-align: bottom"
-        ></ngx-material-timepicker-toggle>
+        ></ngx-material-timepicker-toggle> -->
       </div>
 
       <!-- Unpublish date & time -->
 
       <div style="display: flex; flex-direction: row" class="row">
         <mat-form-field>
+          <label class="example-input-wrapper">
+            <input
+              matInput
+              placeholder="Avpubliceringsdatum"
+              [(ngModel)]="post.unpublishDate"
+              name="unpublishDate"
+              [min]="post.publishDate"
+              [owlDateTimeTrigger]="upd"
+              [owlDateTime]="upd"
+            />
+            <owl-date-time #upd></owl-date-time>
+          </label>
+        </mat-form-field>
+        <!-- <mat-form-field>
           <input
             matInput
             [matDatepicker]="picker"
@@ -124,7 +151,7 @@
         <ngx-material-timepicker-toggle
           [for]="toggleUnpublishTimepicker"
           style="display:flex; vertical-align: bottom"
-        ></ngx-material-timepicker-toggle>
+        ></ngx-material-timepicker-toggle> -->
       </div>
 
       <div
