@@ -15,6 +15,13 @@ import { SponsorsModule } from './sponsors/sponsors.module';
 import { UsersModule } from './users/users.module';
 import { HomeModule } from './home/home.module';
 import { FormFieldComponent } from './form-field/form-field.component';
+import {AdminRoutingModule} from "./admin/admin-routing.module";
+import {UsersRoutingModule} from "./users/users-routing.module";
+import {ArticlesRoutingModule} from "./articles/articles-routing.module";
+import {OrganisationsRoutingModule} from "./organisations/organisations-routing.module";
+import {SponsorsRoutingModule} from "./sponsors/sponsors-routing.module";
+import {BookingsRoutingModule} from "./bookings/bookings-routing.module";
+import {EventsRoutingModule} from "./events/events-routing.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +32,15 @@ import { FormFieldComponent } from './form-field/form-field.component';
     // Angular Modules
     BrowserModule,
     BrowserAnimationsModule,
+
+    // Temporary router fix
+    AdminRoutingModule,
+    UsersRoutingModule,
+    ArticlesRoutingModule,
+    OrganisationsRoutingModule,
+    SponsorsRoutingModule,
+    BookingsRoutingModule,
+    EventsRoutingModule,
 
     // Custom Modules
     CoreModule,
