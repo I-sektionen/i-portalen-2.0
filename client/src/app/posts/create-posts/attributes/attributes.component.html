@@ -169,12 +169,12 @@
         <!--Upload feedback-->
         <div fxFlex="50" fxFlexAlign="center">
           <div fxLayout="row">
-            <mat-icon *ngIf="!uploading" color="blue">
+            <mat-icon *ngIf="!uploading && uploadPercentage==100" color="primary">
               check_circle_outline
             </mat-icon>
-            <mat-icon *ngIf="!uploading">
+           <!-- <mat-icon *ngIf="!uploading">
               highlight_off
-            </mat-icon>
+            </mat-icon>-->
             <mat-icon *ngIf="uploading">
               <mat-progress-spinner
                 [diameter]="22"
