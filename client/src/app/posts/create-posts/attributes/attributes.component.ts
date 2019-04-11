@@ -82,7 +82,7 @@ export class AttributesComponent implements OnInit {
 
       reader.onload = event => {
         // called once readAsDataURL is completed
-        this.url = reader.result;
+       // this.url = reader.result;
         this.getDownloadUrl(uploadTask);
       };
 
@@ -99,6 +99,8 @@ export class AttributesComponent implements OnInit {
   getDownloadUrl(uploadTask: AngularFireUploadTask) {
     uploadTask.then(done => {
       done.ref.getDownloadURL().then(url => {
+        this.uploading = false;
+        this.url = url;
         this.post.imgURLs.push(url);
         //this.post.text += '\n\n Your image: \n\n![](' + url + ')';
         this.post.text += '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
