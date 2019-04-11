@@ -59,19 +59,9 @@ export class AttributesComponent implements OnInit {
     this.postChange.emit(this.post);
   }
 
-  // @Input() oldFilesDownloadUrls: string[];
-  // @Output() oldFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
-  // @Input() newFilesDownloadUrls: string[];
-  // @Output() newFilesDownloadUrlsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
-  //@Input() formField: DynamicFormField;
-  // @Input() form: FormGroup;
-
-  @Output() eventEmitter = new EventEmitter();
-
   fileName: string;
   uploading = false;
   uploadPercentage = 0;
-
   url: any;
 
   uploadImageFile(event) {
@@ -109,7 +99,8 @@ export class AttributesComponent implements OnInit {
   getDownloadUrl(uploadTask: AngularFireUploadTask) {
     uploadTask.then(done => {
       done.ref.getDownloadURL().then(url => {
-        this.eventEmitter.emit(url);
+        this.post.imgURLs.push(url);
+        this.post.text += '\n\n Your image: \n\n![](' + url + ')';
       });
     });
   }

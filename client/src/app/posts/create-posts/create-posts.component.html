@@ -2,7 +2,6 @@
   <mat-tab label="Attribut">
     <ng-template matTabContent>
       <app-attributes
-        (eventEmitter)="eventEmitter($event)"
         (postChange)="postChange($event)"
         [post]="post"
       ></app-attributes>
@@ -22,3 +21,5 @@
     </ng-template>
   </mat-tab>
 </mat-tab-group>
+<!-- 
+(eventEmitter)="eventEmitter($event)" -->

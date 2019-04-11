@@ -16,12 +16,12 @@ export class CreatePostsComponent implements OnInit {
   //imgURL: string;
 
   ngOnInit() {
-    //Pre-filled markdown text
     this.post = {
       ...this.post,
       ingress: '',
       title: '',
       isEvent: false,
+      //Pre-filled markdown text
       text:
         '![](https://i.imgur.com/99onY9r.jpg)\n\n# This is a header\n\n**This is bold text**\n\n*This is italic text*\n\n> This is a quote.\n> It can span multiple lines!\n\n1. Numbered list item\n2. Numbered list item\n3. Numbered list item',
       availableCategories: [
@@ -30,15 +30,9 @@ export class CreatePostsComponent implements OnInit {
         { name: 'Annons', id: 3 },
         { name: 'Workshop', id: 4 }
       ],
-      choosenCategories: []
+      choosenCategories: [],
+      imgURLs: []
     };
-    //Default attributes
-    //this.attributes.
-  }
-
-  eventEmitter(data: string) {
-    this.post.imgURLs.push(data);
-    this.post.text += '\n\n Your image: \n\n![](' + data + ')';
   }
 
   postChange(post: Post) {
