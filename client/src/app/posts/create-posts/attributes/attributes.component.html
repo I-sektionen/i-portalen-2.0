@@ -154,5 +154,14 @@
         </div>
       </div>
     </form>
+
+    <mat-list dense *ngIf="post.imgURLs.length !== 0">
+      <mat-label>Länkar till bilder</mat-label>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let url of post.imgURLs; index as i">
+        Bild {{ i + 1 }}: {{ url }}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
   </mat-card-content>
 </mat-card>

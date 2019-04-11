@@ -28,7 +28,6 @@ import { AttributesComponent } from './attributes/attributes.component';
 import { PostContentComponent } from './post-content/post-content.component';
 import { LivePreviewComponent } from './live-preview/live-preview.component';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
@@ -58,7 +57,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     FormsModule,
-    NgxMaterialTimepickerModule,
+    MatListModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule
   ]
