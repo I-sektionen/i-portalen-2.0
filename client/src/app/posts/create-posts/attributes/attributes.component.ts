@@ -100,7 +100,8 @@ export class AttributesComponent implements OnInit {
     uploadTask.then(done => {
       done.ref.getDownloadURL().then(url => {
         this.post.imgURLs.push(url);
-        this.post.text += '\n\n Your image: \n\n![](' + url + ')';
+        //this.post.text += '\n\n Your image: \n\n![](' + url + ')';
+        this.post.text += '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
       });
     });
   }
