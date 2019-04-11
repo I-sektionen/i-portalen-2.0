@@ -99,6 +99,7 @@
         </mat-form-field>
       </div>
 
+      <!-- Slider for isEvent -->
       <div
         style="display: flex; flex-direction: row; align-items: center"
         class="row"
@@ -108,6 +109,41 @@
         </mat-slide-toggle>
         {{ typeTwo }}
       </div>
+
+      <!-- Attributes only belonging to events -->
+      <ng-container *ngIf="post.isEvent">
+        <!-- Event starting time -->
+
+        <!-- Event finishing time -->
+
+        <!-- Last date for registering -->
+
+        <!-- Last date for unregistering -->
+
+        <!-- Extra registering deadline (for getting food etc.) -->
+
+        <div
+          *ngFor="let deadline of eventDeadlines"
+          style="display: flex; flex-direction: row"
+        >
+          <!--  {{ deadline.placeholder }} -->
+          {{ post.eventStartTime }}
+          <mat-form-field>
+            <label class="example-input-wrapper">
+              <input
+                matInput
+                placeholder="{{ deadline.placeholder }}"
+                [(ngModel)]="deadline.model"
+                name="name"
+                [min]="null"
+                [owlDateTimeTrigger]="test"
+                [owlDateTime]="test"
+              />
+              <owl-date-time #test></owl-date-time>
+            </label>
+          </mat-form-field>
+        </div>
+      </ng-container>
 
       <!--fileupload-->
       <div fxLayout="row wrap" fxLayoutGap="16px grid">

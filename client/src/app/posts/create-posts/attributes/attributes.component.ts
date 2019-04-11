@@ -50,6 +50,28 @@ export class AttributesComponent implements OnInit {
   typeOne: string = 'Artikel';
   typeTwo: string = 'Event';
   minPublishDate: Date = new Date(Date.now());
+  eventDeadlines: any = [
+    /* Event starting time */
+    {
+      placeholder: 'Starttid',
+      model: 'post.eventStartTime',
+      name: 'eventStartTime',
+      min: 'post.publishTime',
+      idName: 'est'
+    }
+
+    /* Event finishing time */
+    /* eventFinishTime: Date; */
+
+    /* Last date for registering */
+    /* lastRegisterDate: Date; */
+
+    /* Last date for unregistering */
+    /* lastUnregisterDate: Date; */
+
+    /* Extra registering deadline (for getting food etc.) */
+    /* extraRegisterDeadline: Date; */
+  ];
 
   constructor(private storageService: StorageService) {}
 
@@ -101,7 +123,8 @@ export class AttributesComponent implements OnInit {
       done.ref.getDownloadURL().then(url => {
         this.post.imgURLs.push(url);
         //this.post.text += '\n\n Your image: \n\n![](' + url + ')';
-        this.post.text += '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
+        this.post.text +=
+          '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
       });
     });
   }
