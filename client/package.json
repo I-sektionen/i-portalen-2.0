@@ -32,6 +32,7 @@
     "markdown-to-html-pipe": "^1.2.4",
     "ng-pick-datetime": "^7.0.0",
     "ng-pick-datetime-moment": "^1.0.8",
+    "ngx-material-timepicker": "^3.0.2",
     "rxjs": "~6.3.3",
     "simplemde": "^1.11.2",
     "zone.js": "~0.8.26"
