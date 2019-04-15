@@ -19,8 +19,10 @@ import {
   MatSelectModule,
   MatChipsModule,
   MatProgressSpinnerModule,
+  MatTableModule,
   MatDatepickerModule
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CreatePostsRoutingModule } from './create-posts-routing.module';
 import { CreatePostsComponent } from './create-posts.component';
@@ -56,10 +58,12 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     MatIconModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
-    FormsModule,
     MatListModule,
+    MatTableModule,
+    FormsModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    FlexLayoutModule
   ]
 })
 export class CreatePostsModule {}

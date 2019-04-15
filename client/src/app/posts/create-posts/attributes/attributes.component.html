@@ -1,12 +1,12 @@
 <mat-card class="container">
   <div fxLayout="column" fxLayoutAlign="start middle">
-    <mat-card-header>
+    <mat-card-title class="row">
       Artikeluppgifter
-    </mat-card-header>
+    </mat-card-title>
 
     <mat-card-content>
       <form>
-        <div fxLayout="row">
+        <div fxLayout="row" class="row">
           <mat-form-field>
             <input
               matInput
@@ -16,7 +16,7 @@
             />
           </mat-form-field>
         </div>
-        <div>
+        <div fxLayout="row">
           <mat-form-field>
             <mat-label>Ingress</mat-label>
             <textarea
@@ -32,7 +32,7 @@
             <mat-hint align="end"> {{ post.ingress.length }} / 160</mat-hint>
           </mat-form-field>
         </div>
-        <div>
+        <div fxLayout="row">
           <mat-form-field>
             <mat-label>Kategori</mat-label>
             <mat-select
@@ -63,8 +63,13 @@
         </div>
 
         <!-- Publish date & time. -->
-        <div fxFlex="35%" fxLayout="row" fxLayout.md="row">
-          <div fxFlex="40%">
+        <div
+          fxLayout="row"
+          fxLayout.md="row"
+          fxLayout.xs="column"
+          fxLayoutGap="12px"
+        >
+          <div fxFlex="1 1 calc(50% - 12px)">
             <mat-form-field>
               <label class="example-input-wrapper">
                 <input
@@ -82,7 +87,7 @@
           </div>
 
           <!-- Unpublish date & time -->
-          <div fxFlex="40%">
+          <div fxFlex="1 1 calc(50% - 12px)">
             <mat-form-field>
               <label class="example-input-wrapper">
                 <input
@@ -101,22 +106,37 @@
         </div>
 
         <!-- Slider for isEvent -->
-        <div
-          style="display: flex; flex-direction: row; align-items: center"
-          class="row"
-        >
-          {{ typeOne }}
-          <mat-slide-toggle [(ngModel)]="post.isEvent" name="isEvent">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1em">
+          <span *ngIf="post.isEvent">
+            {{ typeOne }}
+          </span>
+          <ins *ngIf="!post.isEvent">
+            {{ typeOne }}
+          </ins>
+          <mat-slide-toggle
+            [(ngModel)]="post.isEvent"
+            name="isEvent"
+            style="padding: 1em 0"
+          >
           </mat-slide-toggle>
-          {{ typeTwo }}
+          <p *ngIf="!post.isEvent">
+            {{ typeTwo }}
+          </p>
+          <ins *ngIf="post.isEvent">
+            {{ typeTwo }}
+          </ins>
         </div>
 
         <!-- Attributes only belonging to events -->
         <ng-container *ngIf="post.isEvent">
           <!-- Event starting time -->
-          <mat-label> Start- & sluttid för event </mat-label>
-          <div style="display: flex; flex-direction: row">
-            <mat-form-field>
+          <div
+            fxLayout="row"
+            fxLayout.md="row"
+            fxLayout.xs="column"
+            fxLayoutGap="12px"
+          >
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
               <label class="example-input-wrapper">
                 <input
                   matInput
@@ -130,11 +150,9 @@
                 <owl-date-time #est></owl-date-time>
               </label>
             </mat-form-field>
-          </div>
 
-          <!-- Event finishing time -->
-          <div style="display: flex; flex-direction: row">
-            <mat-form-field>
+            <!-- Event finishing time -->
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
               <label class="example-input-wrapper">
                 <input
                   matInput
@@ -151,8 +169,13 @@
           </div>
 
           <!-- Last date for registering -->
-          <div style="display: flex; flex-direction: row">
-            <mat-form-field>
+          <div
+            fxLayout="row"
+            fxLayout.md="row"
+            fxLayout.xs="column"
+            fxLayoutGap="12px"
+          >
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
               <label class="example-input-wrapper">
                 <input
                   matInput
@@ -169,11 +192,9 @@
                 ></owl-date-time>
               </label>
             </mat-form-field>
-          </div>
 
-          <!-- Last date for unregistering -->
-          <div style="display: flex; flex-direction: row">
-            <mat-form-field>
+            <!-- Last date for unregistering -->
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
               <label class="example-input-wrapper">
                 <input
                   matInput
@@ -191,10 +212,17 @@
 
           <!-- Extra registering deadline (for getting food etc.) -->
           <mat-label
-            >Extra registreringsstop (t.ex sista dag för att få mat)</mat-label
+            ><i
+              >Extra registreringsstop (t.ex sista dag för att få mat)</i
+            ></mat-label
           >
-          <div style="display: flex; flex-direction: row">
-            <mat-form-field>
+          <div
+            fxLayout="row"
+            fxLayout.md="row"
+            fxLayout.xs="column"
+            fxLayoutGap="12px"
+          >
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
               <label class="example-input-wrapper">
                 <input
                   matInput
@@ -208,19 +236,19 @@
                 <owl-date-time #erd></owl-date-time>
               </label>
             </mat-form-field>
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <input
+                matInput
+                placeholder="Anledning för extra deadline"
+                [(ngModel)]="post.extraRegisterReason"
+                name="extraRegisterReason"
+              />
+            </mat-form-field>
           </div>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Anledning för extra deadline"
-              [(ngModel)]="post.extraRegisterReason"
-              name="extraRegisterReason"
-            />
-          </mat-form-field>
         </ng-container>
 
         <!--fileupload-->
-        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxLayout="column" fxLayoutGap="16px grid" style="padding-top: 1em">
           <mat-label>Ladda upp egna bilder här</mat-label>
           <!--Upload button-->
           <div fxFlex="50">
@@ -263,7 +291,11 @@
                 </mat-progress-spinner>
               </mat-icon>
               <span>{{ fileName }}</span>
-              <img [src]="url" height="200" />
+              <img
+                *ngIf="!uploading && uploadPercentage == 100"
+                [src]="url"
+                height="200"
+              />
             </div>
           </div>
         </div>
