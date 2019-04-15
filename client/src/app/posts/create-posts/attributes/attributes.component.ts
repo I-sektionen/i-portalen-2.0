@@ -20,10 +20,10 @@ import { StorageService } from '../../../core/storage/storage.service';
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
 export const MY_CUSTOM_FORMATS = {
-  parseInput: 'DD/MM/YYYY HH:MM',
-  fullPickerInput: 'DD/MM/YYYY HH:MM',
+  parseInput: 'DD/MM/YYYY HH:mm',
+  fullPickerInput: 'DD/MM/YYYY HH:mm',
   datePickerInput: 'DD/MM/YYYY',
-  timePickerInput: 'HH:MM',
+  timePickerInput: 'HH:mm',
   monthYearLabel: 'MMM YYYY',
   dateA11yLabel: 'DD/MM/YYYY',
   monthYearA11yLabel: 'MMMM YYYY'
@@ -50,28 +50,6 @@ export class AttributesComponent implements OnInit {
   typeOne: string = 'Artikel';
   typeTwo: string = 'Event';
   minPublishDate: Date = new Date(Date.now());
-  eventDeadlines: any = [
-    /* Event starting time */
-    {
-      placeholder: 'Starttid',
-      model: 'post.eventStartTime',
-      name: 'eventStartTime',
-      min: 'post.publishTime',
-      idName: 'est'
-    }
-
-    /* Event finishing time */
-    /* eventFinishTime: Date; */
-
-    /* Last date for registering */
-    /* lastRegisterDate: Date; */
-
-    /* Last date for unregistering */
-    /* lastUnregisterDate: Date; */
-
-    /* Extra registering deadline (for getting food etc.) */
-    /* extraRegisterDeadline: Date; */
-  ];
 
   constructor(private storageService: StorageService) {}
 
@@ -104,7 +82,7 @@ export class AttributesComponent implements OnInit {
 
       reader.onload = event => {
         // called once readAsDataURL is completed
-       // this.url = reader.result;
+        // this.url = reader.result;
         this.getDownloadUrl(uploadTask);
       };
 

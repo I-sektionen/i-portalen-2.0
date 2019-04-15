@@ -113,40 +113,114 @@
       <!-- Attributes only belonging to events -->
       <ng-container *ngIf="post.isEvent">
         <!-- Event starting time -->
-
-        <!-- Event finishing time -->
-
-        <!-- Last date for registering -->
-
-        <!-- Last date for unregistering -->
-
-        <!-- Extra registering deadline (for getting food etc.) -->
-
-        <div
-          *ngFor="let deadline of eventDeadlines"
-          style="display: flex; flex-direction: row"
-        >
-          <!--  {{ deadline.placeholder }} -->
-          {{ post.eventStartTime }}
+        <mat-label> Start- & sluttid för event </mat-label>
+        <div style="display: flex; flex-direction: row">
           <mat-form-field>
             <label class="example-input-wrapper">
               <input
                 matInput
-                placeholder="{{ deadline.placeholder }}"
-                [(ngModel)]="deadline.model"
-                name="name"
-                [min]="null"
-                [owlDateTimeTrigger]="test"
-                [owlDateTime]="test"
+                placeholder="Starttid"
+                [(ngModel)]="post.eventStartTime"
+                name="eventStartTime"
+                [min]="post.publishTime"
+                [owlDateTimeTrigger]="est"
+                [owlDateTime]="est"
               />
-              <owl-date-time #test></owl-date-time>
+              <owl-date-time #est></owl-date-time>
             </label>
           </mat-form-field>
         </div>
+
+        <!-- Event finishing time -->
+        <div style="display: flex; flex-direction: row">
+          <mat-form-field>
+            <label class="example-input-wrapper">
+              <input
+                matInput
+                placeholder="Sluttid"
+                [(ngModel)]="post.eventFinishTime"
+                name="eventFinishTime"
+                [min]="post.publishTime"
+                [owlDateTimeTrigger]="eft"
+                [owlDateTime]="eft"
+              />
+              <owl-date-time #eft></owl-date-time>
+            </label>
+          </mat-form-field>
+        </div>
+
+        <!-- Last date for registering -->
+        <div style="display: flex; flex-direction: row">
+          <mat-form-field>
+            <label class="example-input-wrapper">
+              <input
+                matInput
+                placeholder="Sista dag för registering"
+                [(ngModel)]="post.lastRegisterDate"
+                name="lastRegisterDate"
+                [min]="post.publishTime"
+                [owlDateTimeTrigger]="lrd"
+                [owlDateTime]="lrd"
+              />
+              <owl-date-time
+                [startAt]="post.eventStartTime"
+                #lrd
+              ></owl-date-time>
+            </label>
+          </mat-form-field>
+        </div>
+
+        <!-- Last date for unregistering -->
+        <div style="display: flex; flex-direction: row">
+          <mat-form-field>
+            <label class="example-input-wrapper">
+              <input
+                matInput
+                placeholder="Sista dag för avregistering"
+                [(ngModel)]="post.lastUnregisterDate"
+                name="lastUnregisterDate"
+                [min]="post.publishTime"
+                [owlDateTimeTrigger]="lud"
+                [owlDateTime]="lud"
+              />
+              <owl-date-time #lud></owl-date-time>
+            </label>
+          </mat-form-field>
+        </div>
+
+        <!-- Extra registering deadline (for getting food etc.) -->
+        <mat-label
+          >Extra registreringsstop (t.ex sista dag för att få mat)</mat-label
+        >
+        <div style="display: flex; flex-direction: row">
+          <mat-form-field>
+            <label class="example-input-wrapper">
+              <input
+                matInput
+                placeholder="Extra deadline"
+                [(ngModel)]="post.extraRegisterDeadline"
+                name="extraRegisterDeadline"
+                [min]="post.publishTime"
+                [owlDateTimeTrigger]="erd"
+                [owlDateTime]="erd"
+              />
+              <owl-date-time #erd></owl-date-time>
+            </label>
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Anledning för extra deadline"
+            [(ngModel)]="post.extraRegisterReason"
+            name="extraRegisterReason"
+          />
+        </mat-form-field>
       </ng-container>
 
       <!--fileupload-->
       <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <mat-label>Ladda upp egna bilder här</mat-label>
         <!--Upload button-->
         <div fxFlex="50">
           <button
@@ -169,10 +243,13 @@
         <!--Upload feedback-->
         <div fxFlex="50" fxFlexAlign="center">
           <div fxLayout="row">
-            <mat-icon *ngIf="!uploading && uploadPercentage==100" color="primary">
+            <mat-icon
+              *ngIf="!uploading && uploadPercentage == 100"
+              color="primary"
+            >
               check_circle_outline
             </mat-icon>
-           <!-- <mat-icon *ngIf="!uploading">
+            <!-- <mat-icon *ngIf="!uploading">
               highlight_off
             </mat-icon>-->
             <mat-icon *ngIf="uploading">
