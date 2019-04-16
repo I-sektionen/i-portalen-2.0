@@ -7,27 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AdminModule } from './admin/admin.module';
-import { ArticlesModule } from './articles/articles.module';
-import { BookingsModule } from './bookings/bookings.module';
-import { EventsModule } from './events/events.module';
+import { ArticlesModule } from './posts/articles/articles.module';
+import { CreatePostsModule } from './posts/create-posts/create-posts.module';
+import { EventsModule } from './posts/events/events.module';
 import { OrganisationsModule } from './organisations/organisations.module';
 import { SponsorsModule } from './sponsors/sponsors.module';
 import { UsersModule } from './users/users.module';
 import { HomeModule } from './home/home.module';
 import { FormFieldComponent } from './form-field/form-field.component';
-import {AdminRoutingModule} from "./admin/admin-routing.module";
-import {UsersRoutingModule} from "./users/users-routing.module";
-import {ArticlesRoutingModule} from "./articles/articles-routing.module";
-import {OrganisationsRoutingModule} from "./organisations/organisations-routing.module";
-import {SponsorsRoutingModule} from "./sponsors/sponsors-routing.module";
-import {BookingsRoutingModule} from "./bookings/bookings-routing.module";
-import {EventsRoutingModule} from "./events/events-routing.module";
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { UsersRoutingModule } from './users/users-routing.module';
+import { CreatePostsRoutingModule } from './posts/create-posts/create-posts-routing.module';
+import { OrganisationsRoutingModule } from './organisations/organisations-routing.module';
+import { SponsorsRoutingModule } from './sponsors/sponsors-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FormFieldComponent
-  ],
+  declarations: [AppComponent, FormFieldComponent],
   imports: [
     // Angular Modules
     BrowserModule,
@@ -36,11 +31,9 @@ import {EventsRoutingModule} from "./events/events-routing.module";
     // Temporary router fix
     AdminRoutingModule,
     UsersRoutingModule,
-    ArticlesRoutingModule,
+    CreatePostsRoutingModule,
     OrganisationsRoutingModule,
     SponsorsRoutingModule,
-    BookingsRoutingModule,
-    EventsRoutingModule,
 
     // Custom Modules
     CoreModule,
@@ -48,14 +41,14 @@ import {EventsRoutingModule} from "./events/events-routing.module";
     HomeModule,
     AdminModule,
     ArticlesModule,
-    BookingsModule,
+    CreatePostsModule,
     EventsModule,
     OrganisationsModule,
     SponsorsModule,
     UsersModule,
-    AppRoutingModule, // import this one at the bottom of all custom modules
+    AppRoutingModule // import this one at the bottom of all custom modules
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
