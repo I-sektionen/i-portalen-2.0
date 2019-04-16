@@ -1,18 +1,18 @@
 @media only screen and (min-width: 450px) {
   // desktop
-  /deep/ .container {
+  /deep/ .attributes-container {
     max-width: 30em !important;
     min-width: 18em !important;
   }
 }
 @media only screen and (max-width: 450px) {
   // mobile
-  /deep/ .container {
+  /deep/ .attributes-container {
     min-width: 70vw !important;
     max-width: 80vw !important;
   }
 }
-.container {
+.attributes-container {
   padding: 1em 2.5em;
   margin: 1em;
 }

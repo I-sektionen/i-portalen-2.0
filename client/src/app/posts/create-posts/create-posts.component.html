@@ -10,17 +10,28 @@
   </mat-tab>
   <mat-tab label="Text">
     <ng-template matTabContent>
-      <app-post-content
-        *ngIf="!fullscreenToggle"
-        [post]="post"
-        (postChange)="postChange($event)"
-      ></app-post-content>
-      <app-live-preview
-        [post]="post"
-        (fullscrenEmit)="fullscrenEmit($event)"
-      ></app-live-preview>
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutAlign="stretch stretch"
+      >
+        <div
+          fxFlex="1 1 calc(50% - 1em)"
+          class="post-text-container left"
+          *ngIf="!fullscreenToggle"
+        >
+          <app-post-content
+            [post]="post"
+            (postChange)="postChange($event)"
+          ></app-post-content>
+        </div>
+        <div fxFlex="1 1 calc(50% - 1em)" class="post-text-container right">
+          <app-live-preview
+            [post]="post"
+            (fullscrenEmit)="fullscrenEmit($event)"
+          ></app-live-preview>
+        </div>
+      </div>
     </ng-template>
   </mat-tab>
 </mat-tab-group>
-<!-- 
-(eventEmitter)="eventEmitter($event)" -->

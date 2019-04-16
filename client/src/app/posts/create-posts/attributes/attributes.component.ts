@@ -102,7 +102,6 @@ export class AttributesComponent implements OnInit {
         this.uploading = false;
         this.url = url;
         this.post.imgURLs.push(url);
-        //this.post.text += '\n\n Your image: \n\n![](' + url + ')';
         this.post.text +=
           '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
       });

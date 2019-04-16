@@ -1,13 +1,12 @@
-<mat-card class="example-card" style="width: 49%; float: right;">
+<mat-card class="example-card">
   <mat-card-header>
     <mat-card-title>Förhandsvisning</mat-card-title>
-    <mat-card-subtitle>Artikel</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
     <ng-container *ngIf="previewToggle">
       <div class="live-preview-frame">
-      cd clie  <h1>{{ post.title }}</h1>
+        <h1>{{ post.title }}</h1>
         {{ time }} min sedan
         <hr />
         <span
@@ -27,13 +26,26 @@
     </ng-container>
   </mat-card-content>
 
-  <mat-card-actions style="float: left">
-    <button pointer mat-flat-button color="warn" (click)="togglePreview()">
-      Toggle short version
+  <mat-card-actions
+    fxLayout="row"
+    fxLayoutGap="1em"
+    fxLayoutAlign="start center"
+  >
+    <button
+      pointer
+      mat-flat-button
+      style="background-color: #B2DFDB"
+      (click)="togglePreview()"
+    >
+      Växla artikeltyp
     </button>
-    <button pointer mat-flat-button color="primary" (click)="toggleFullscren()">
-      Toggle fullscren
-      {{ fullscrenToggle }}
+    <button
+      pointer
+      mat-flat-button
+      style="background-color: #CFD8DC"
+      (click)="toggleFullscren()"
+    >
+      Växla helskärm
     </button>
   </mat-card-actions>
 </mat-card>
