@@ -15,6 +15,9 @@ import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 //import { FormControl } from '@angular/forms';
 
 import { StorageService } from '../../../core/storage/storage.service';
+import { FireStorageService } from '../../../core/firebase/fire-storage/fire-storage.service.ts';
+
+import {FirebaseStorage} from "@angular/fire";
 //import { AngularFireUploadTask } from '@angular/fire/storage';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
@@ -51,7 +54,7 @@ export class AttributesComponent implements OnInit {
   typeTwo: string = 'Event';
   minPublishDate: Date = new Date(Date.now());
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService, private fireStorageService: FireStorageService) {}
 
   ngOnInit() {}
 
@@ -106,5 +109,17 @@ export class AttributesComponent implements OnInit {
           '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
       });
     });
+  }
+
+
+  deleteImg(imgURL) {
+    this.fireStorageService.deleteFile(imgURL);
+
+
+
+    const index = this.post.imgURLs.indexOf(imgURL);
+    if (index > -1) {
+      this.post.imgURLs.splice(index, 1);
+    }
   }
 }
