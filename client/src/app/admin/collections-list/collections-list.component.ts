@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs/index';
 import { OrganisationService } from '../../organisations/shared/organisation.service';
 import { UserService } from '../../users/shared/user.service';
 import { SponsorService } from '../../sponsors/shared/sponsor.service';
-import {UtilityService} from "../../shared/utilities/utility.service";
+import {TagsService} from '../utilities/tags.service';
 
 @Component({
   selector: 'app-collections-list',
@@ -30,12 +30,10 @@ export class CollectionsListComponent implements OnInit {
     private userService: UserService,
     private organisationService: OrganisationService,
     private sponsorService: SponsorService,
-    private utilityService: UtilityService
+    private tagsService: TagsService
   ) { }
 
   ngOnInit() {
-    this.utilityService.listTags().subscribe(value => console.log(value));
-    this.userService.listUsers().subscribe(value => console.log(value));
     this.collection = this.route.snapshot.params.collection;
     switch (this.collection) {
       case 'users': {
@@ -54,8 +52,8 @@ export class CollectionsListComponent implements OnInit {
         break;
       }
       case 'tags': {
-        this.dataSource = this.utilityService.listTags();
-        this.displayedColumns = ['name'];
+        this.dataSource = this.tagsService.listTags();
+        this.displayedColumns = ['name', 'editItem', 'deleteTag'];
         break;
       }
       default: {

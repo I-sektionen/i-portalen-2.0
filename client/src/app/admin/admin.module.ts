@@ -20,6 +20,7 @@ import { CollectionsTableComponent } from './collections-table/collections-table
 import { CollectionsUpsertComponent } from './collections-upsert/collections-upsert.component';
 import { SponsorsModule } from '../sponsors/sponsors.module';
 import {AppRoutingModule} from "../app-routing.module";
+import { UpsertTagComponent } from './utilities/upsert-tag/upsert-tag.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {AppRoutingModule} from "../app-routing.module";
     TextEditComponent,
     CollectionsListComponent,
     CollectionsTableComponent,
-    CollectionsUpsertComponent
+    CollectionsUpsertComponent,
+    UpsertTagComponent
   ],
   exports: [],
   providers: [],
