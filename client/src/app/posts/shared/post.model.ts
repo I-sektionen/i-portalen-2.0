@@ -14,6 +14,7 @@ export interface Post {
   unpublishTime: Date;
   author: Organisation[];
   imgURLs: string[];
+  imgNames: string[];
 
   //Attributes belonging to even
   location: string;

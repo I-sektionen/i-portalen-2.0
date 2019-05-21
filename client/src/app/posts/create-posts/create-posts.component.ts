@@ -32,7 +32,8 @@ export class CreatePostsComponent implements OnInit {
         { name: 'Workshop', id: 4 }
       ],
       choosenCategories: [],
-      imgURLs: []
+      imgURLs: [],
+      imgNames: []
     };
   }
 

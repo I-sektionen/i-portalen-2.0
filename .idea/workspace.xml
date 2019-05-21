@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/posts/shared/post.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/posts/shared/post.model.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,46 +53,48 @@
     <session id="-283014542">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="10" />
+          <entry key="delete" value="1" />
+          <entry key="html" value="13" />
           <entry key="scss" value="5" />
-          <entry key="ts" value="11" />
+          <entry key="ts" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="10" />
+          <entry key="HTML" value="13" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="5" />
-          <entry key="TypeScript" value="11" />
+          <entry key="TypeScript" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.10" value="3" />
-          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="Angular2LanguageService" value="7" />
-          <entry key="TsLintLanguageService" value="5" />
+          <entry key="Angular2LanguageService" value="8" />
+          <entry key="TsLintLanguageService" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="435" />
+          <entry key="html" value="495" />
           <entry key="scss" value="292" />
-          <entry key="ts" value="631" />
+          <entry key="ts" value="930" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="435" />
+          <entry key="HTML" value="495" />
           <entry key="SCSS" value="292" />
-          <entry key="TypeScript" value="631" />
+          <entry key="TypeScript" value="930" />
         </counts>
       </usages-collector>
     </session>
@@ -100,44 +104,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="339">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="284" column="37" lean-forward="true" selection-start-line="284" selection-start-column="37" selection-end-line="284" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="115" column="45" selection-start-line="115" selection-start-column="39" selection-end-line="115" selection-end-column="45" />
+            <state relative-caret-position="390">
+              <caret line="128" column="27" lean-forward="true" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
               <folding>
                 <element signature="e#0#79#0" expanded="true" />
                 <element signature="e#574#645#0" expanded="true" />
@@ -147,10 +124,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="312" column="49" selection-start-line="312" selection-start-column="49" selection-end-line="312" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/posts/shared/post.model.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/core/firebase/fire-storage/fire-storage.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="43" lean-forward="true" selection-start-column="43" selection-end-column="43" />
+              <caret column="43" selection-start-column="43" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -191,6 +195,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>bookings</find>
+      <find>post</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -236,10 +241,12 @@
         <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.scss" />
         <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.scss" />
         <option value="$PROJECT_DIR$/client/src/app/core/firebase/fire-storage/fire-storage.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/posts/shared/post.model.ts" />
         <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/delete" />
         <option value="$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.ts" />
       </list>
     </option>
@@ -429,7 +436,26 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="posts" type="462c0819:PsiDirectoryNode" />
               <item name="create-posts" type="462c0819:PsiDirectoryNode" />
+              <item name="attributes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="i-portalen-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="i-portalen-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="posts" type="462c0819:PsiDirectoryNode" />
+              <item name="create-posts" type="462c0819:PsiDirectoryNode" />
               <item name="live-preview" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="i-portalen-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="i-portalen-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="posts" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -503,7 +529,8 @@
       <workItem from="1557157498699" duration="233000" />
       <workItem from="1557242506506" duration="564000" />
       <workItem from="1557310252658" duration="234000" />
-      <workItem from="1557760318364" duration="5095000" />
+      <workItem from="1557760318364" duration="6248000" />
+      <workItem from="1558452152678" duration="3145000" />
     </task>
     <task id="LOCAL-00001" summary="Expansion bar">
       <created>1543338649249</created>
@@ -530,7 +557,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81531000" />
+    <option name="totallyTimeSpent" value="85829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -543,9 +570,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.496063" visible="true" weight="0.25158563" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.496063" visible="true" weight="0.25158563" />
       <window_info id="Structure" order="1" sideWeight="0.503937" side_tool="true" weight="0.23255815" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -557,8 +583,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TypeScript" order="9" visible="true" weight="0.3" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4993234" weight="0.3048193" />
+      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4993234" visible="true" weight="0.3048193" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -577,16 +603,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Moved article creation to the correct directory." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/app/admin/admin.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/node_modules/@ngtools/webpack/src/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/organisations/organisations.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -775,6 +791,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/core/storage/storage.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/core/firebase/fire-storage/fire-storage.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="43" selection-start-column="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/core/footer/footer.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -792,65 +838,49 @@
     <entry file="file://$PROJECT_DIR$/client/src/app/core/footer/footer.component.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/core/storage/storage.service.ts">
+    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="435">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/core/firebase/fire-storage/fire-storage.service.ts">
+    <entry file="file://$PROJECT_DIR$/client/src/app/posts/shared/post.model.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="43" lean-forward="true" selection-start-column="43" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="240">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/live-preview/live-preview.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/create-posts.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="115" column="45" selection-start-line="115" selection-start-column="39" selection-end-line="115" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
-            <element signature="e#574#645#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="339">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="284" column="37" lean-forward="true" selection-start-line="284" selection-start-column="37" selection-end-line="284" selection-end-column="37" />
+        <state relative-caret-position="357">
+          <caret line="312" column="49" selection-start-line="312" selection-start-column="49" selection-end-line="312" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/delete">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="163" selection-start-line="1" selection-start-column="163" selection-end-line="1" selection-end-column="163" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/posts/create-posts/attributes/attributes.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="128" column="27" lean-forward="true" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+            <element signature="e#574#645#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

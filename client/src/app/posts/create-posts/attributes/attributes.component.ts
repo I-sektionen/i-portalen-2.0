@@ -15,7 +15,7 @@ import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 //import { FormControl } from '@angular/forms';
 
 import { StorageService } from '../../../core/storage/storage.service';
-import { FireStorageService } from '../../../core/firebase/fire-storage/fire-storage.service.ts';
+import { FireStorageService } from '../../../core/firebase/fire-storage/fire-storage.service';
 
 import {FirebaseStorage} from "@angular/fire";
 //import { AngularFireUploadTask } from '@angular/fire/storage';
@@ -105,6 +105,7 @@ export class AttributesComponent implements OnInit {
         this.uploading = false;
         this.url = url;
         this.post.imgURLs.push(url);
+        this.post.imgNames.push(this.fileName);
         this.post.text +=
           '\n\n Your image: \n\n <img src="' + url + '" width="50%">\n';
       });
@@ -115,11 +116,17 @@ export class AttributesComponent implements OnInit {
   deleteImg(imgURL) {
     this.fireStorageService.deleteFile(imgURL);
 
-
-
     const index = this.post.imgURLs.indexOf(imgURL);
     if (index > -1) {
       this.post.imgURLs.splice(index, 1);
+      this.post.imgNames.splice(index, 1);
+
+      let i = this.post.text.indexOf(imgURL)
+      let j = i
+      i = i - 10
+      j = j + imgURL.length + 14
+
+      this.post.text = this.post.text.replace(this.post.text.substring(i, j), '');
     }
   }
 }
