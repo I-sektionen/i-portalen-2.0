@@ -1,4 +1,4 @@
-import { ValidatorFn } from '@angular/forms';
+import {ValidatorFn} from '@angular/forms';
 
 export interface SelectOption {
   label: any;
@@ -110,6 +110,14 @@ export class DatePickerFormField extends DynamicFormField {
     super(options);
     this.minDate = options['minDate'];
     this.maxDate = options['maxDate'];
+  }
+}
+
+export class ColorPickerFormField extends DynamicFormField {
+  controlType = 'colorpicker';
+
+  constructor(options: Options) {
+    super(options);
   }
 }
 

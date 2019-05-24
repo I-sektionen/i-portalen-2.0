@@ -1,16 +1,28 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Tag} from "../tags.service";
+import {Component, Input, OnChanges} from '@angular/core';
+import {Tag, TagsService} from '../tags.service';
+import {TagsDynamicFormService} from '../tags-dynamic-form.service';
+import {DynamicFormField} from '../../../dynamic-forms/shared/dynamic-form.model';
 
 @Component({
   selector: 'app-upsert-tag',
   templateUrl: './upsert-tag.component.html',
   styleUrls: ['./upsert-tag.component.scss']
 })
-export class UpsertTagComponent implements OnInit {
+export class UpsertTagComponent implements OnChanges {
   @Input() tag: Tag;
-  constructor() { }
+  tagFormFields: DynamicFormField[];
 
-  ngOnInit() {
+  constructor(private tagsService: TagsService,
+              private tagDynamicFormService: TagsDynamicFormService) {
+  }
+
+  ngOnChanges() {
+    this.tagDynamicFormService.getDynamicFormFields(this.tag).then(formFields => {
+      this.tagFormFields = formFields;
+    });
+  }
+
+  submit() {
   }
 
 }

@@ -1,3 +1,6 @@
-<p>
-  upsert-tag works!
-</p>
+<app-dynamic-form
+  [formFields]="tagFormFields"
+  [title]="'utskott'"
+  [editing]="!!tag"
+  (ngSubmit)="submit()">
+</app-dynamic-form>
