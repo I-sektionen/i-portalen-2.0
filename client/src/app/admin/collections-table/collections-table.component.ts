@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DatabaseService} from '../../core/database/database.service';
 import {FireStorageService} from '../../core/firebase/fire-storage/fire-storage.service';
 import {Tag} from '../utilities/tags.service';
-import FieldValue = firebase.firestore.FieldValue;
-
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 @Component({
   selector: 'app-collections-table',
   templateUrl: './collections-table.component.html',
@@ -46,11 +46,11 @@ export class CollectionsTableComponent implements OnInit {
     this.databaseService.delete(this.collection, item.id);
   }
   deleteTag(tag: Tag) {
-    this.databaseService.update('tags', 'tags', {'tags': FieldValue.arrayRemove(tag)});
+    this.databaseService.update('tags', 'tags', {'tags': firebase.firestore.FieldValue.arrayRemove(tag)});
   }
 
   addTag(tag: Tag) {
-    this.databaseService.update('tags', 'tags', {'tags': FieldValue.arrayUnion(tag)});
+    this.databaseService.update('tags', 'tags', {'tags': firebase.firestore.FieldValue.arrayUnion(tag)});
   }
 
 }
