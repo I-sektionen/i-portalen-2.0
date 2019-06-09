@@ -27,6 +27,7 @@ import {SponsorsModule} from '../sponsors/sponsors.module';
 import {AppRoutingModule} from "../app-routing.module";
 import {UpsertTagComponent} from './utilities/upsert-tag/upsert-tag.component';
 import {DynamicFormsModule} from '../dynamic-forms/dynamic-forms.module';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {DynamicFormsModule} from '../dynamic-forms/dynamic-forms.module';
     // Other
     MarkdownToHtmlModule,
     AppRoutingModule,
+    ColorPickerModule,
     DynamicFormsModule
   ]
 })

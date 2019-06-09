@@ -23,6 +23,15 @@ export class TagsDynamicFormService {
           validators: [Validators.required],
           disabled: !!tag,
           width: 60,
+        }),
+        new InputFormField({
+          order: 2,
+          label: 'Färg (hex)',
+          key: 'color',
+          value: tag ? tag.color : '5A7A22',
+          validators: [Validators.required],
+          disabled: false,
+          width: 60,
         })];
     });
   }

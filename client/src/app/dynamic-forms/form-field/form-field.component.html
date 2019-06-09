@@ -42,7 +42,10 @@
 
     <!--colorpicker-->
     <mat-form-field *ngSwitchCase="'colorpicker'">
-      
+      <input [value]="col"
+             [style.background]="col"
+             [(colorPicker)]="col"
+             matInput [placeholder]="formField.label" [formControlName]="formField.key" [placeholder]="formField.label">
     </mat-form-field>
 
     <!--fileupload-->

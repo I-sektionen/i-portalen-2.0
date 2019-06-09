@@ -4,7 +4,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {UserService} from '../../users/shared/user.service';
 import {map, take} from 'rxjs/operators';
 import {FireStorageService} from '../../core/firebase/fire-storage/fire-storage.service';
-import {TagsService} from "../../admin/utilities/tags.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,6 @@ export class DynamicFormService {
   constructor(
     private userService: UserService,
     private storageService: FireStorageService,
-    private tagsService: TagsService
   ) { }
 
   getFormGroup(formFields: DynamicFormField[]) {
