@@ -27,7 +27,7 @@ import { SponsorsRoutingModule } from './sponsors/sponsors-routing.module';
     // Angular Modules
     BrowserModule,
     BrowserAnimationsModule,
-
+    
     // Temporary router fix
     AdminRoutingModule,
     UsersRoutingModule,

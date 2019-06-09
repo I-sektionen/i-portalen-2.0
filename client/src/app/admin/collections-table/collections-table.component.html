@@ -63,6 +63,24 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="deleteTag">
+    <th mat-header-cell *matHeaderCellDef>Radera</th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button (click)="deleteTag(item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addTag">
+    <th mat-header-cell *matHeaderCellDef>Skapa</th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button (click)="addTag(item)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

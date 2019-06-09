@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { DynamicFormField } from '../shared/dynamic-form.model';
-import { FormGroup } from '@angular/forms';
-import { StorageService } from '../../core/storage/storage.service';
-import { AngularFireUploadTask } from '@angular/fire/storage';
-import { Subscription } from 'rxjs/index';
-import { DateAdapter } from '@angular/material';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {DynamicFormField} from '../shared/dynamic-form.model';
+import {FormGroup} from '@angular/forms';
+import {StorageService} from '../../core/storage/storage.service';
+import {AngularFireUploadTask} from '@angular/fire/storage';
+import {DateAdapter} from '@angular/material';
 
 @Component({
   selector: 'app-form-field',
@@ -20,6 +19,7 @@ export class FormFieldComponent {
   @Input() formField: DynamicFormField;
   @Input() form: FormGroup;
 
+  col: string;
   fileName: string;
   uploading = false;
   uploadPercentage = 0;

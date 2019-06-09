@@ -40,6 +40,14 @@
       <mat-datepicker #datepicker></mat-datepicker>
     </mat-form-field>
 
+    <!--colorpicker-->
+    <mat-form-field *ngSwitchCase="'colorpicker'">
+      <input [value]="col"
+             [style.background]="col"
+             [(colorPicker)]="col"
+             matInput [placeholder]="formField.label" [formControlName]="formField.key" [placeholder]="formField.label">
+    </mat-form-field>
+
     <!--fileupload-->
     <div *ngSwitchCase="'fileupload'" fxLayout="row wrap" fxLayoutGap="16px grid">
 

@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DatabaseService } from '../../core/database/database.service';
-import { FireStorageService } from '../../core/firebase/fire-storage/fire-storage.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DatabaseService} from '../../core/database/database.service';
+import {FireStorageService} from '../../core/firebase/fire-storage/fire-storage.service';
+import {Tag} from '../utilities/tags.service';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-collections-table',
@@ -33,7 +36,6 @@ export class CollectionsTableComponent implements OnInit {
   }
 
   deleteItem(item) {
-
     // Delete any files in storage
     Object.keys(item).forEach(key => {
       if (typeof item[key] === 'string' && item[key].indexOf('firebasestorage') > -1) {
@@ -43,6 +45,9 @@ export class CollectionsTableComponent implements OnInit {
 
     // Delete from firestore
     this.databaseService.delete(this.collection, item.id);
+  }
+  deleteTag(tag: Tag) {
+    this.databaseService.update('tags', 'tags', {'tags': firebase.firestore.FieldValue.arrayRemove(tag)});
   }
 
 }
