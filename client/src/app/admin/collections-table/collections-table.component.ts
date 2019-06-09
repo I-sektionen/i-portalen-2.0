@@ -4,6 +4,7 @@ import {FireStorageService} from '../../core/firebase/fire-storage/fire-storage.
 import {Tag} from '../utilities/tags.service';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+
 @Component({
   selector: 'app-collections-table',
   templateUrl: './collections-table.component.html',
@@ -47,10 +48,6 @@ export class CollectionsTableComponent implements OnInit {
   }
   deleteTag(tag: Tag) {
     this.databaseService.update('tags', 'tags', {'tags': firebase.firestore.FieldValue.arrayRemove(tag)});
-  }
-
-  addTag(tag: Tag) {
-    this.databaseService.update('tags', 'tags', {'tags': firebase.firestore.FieldValue.arrayUnion(tag)});
   }
 
 }

@@ -1,6 +1,6 @@
 <app-dynamic-form
   [formFields]="tagFormFields"
-  [title]="'utskott'"
+  [title]="'tag'"
   [editing]="!!tag"
-  (ngSubmit)="submit()">
+  (ngSubmit)="submit($event)">
 </app-dynamic-form>

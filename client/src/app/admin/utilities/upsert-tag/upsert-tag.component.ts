@@ -22,7 +22,13 @@ export class UpsertTagComponent implements OnChanges {
     });
   }
 
-  submit() {
+  submit(tag: Tag) {
+    console.log(tag);
+    if (this.tag) {
+
+    } else {
+      this.tagsService.addTag(tag);
+    }
   }
 
 }
