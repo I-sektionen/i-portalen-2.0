@@ -1,0 +1,37 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Attribut">
+    <ng-template matTabContent>
+      <app-attributes
+        (postChange)="postChange($event)"
+        [post]="post"
+        style="display: flex; justify-content: center"
+      ></app-attributes>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Text">
+    <ng-template matTabContent>
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutAlign="stretch stretch"
+      >
+        <div
+          fxFlex="1 1 calc(50% - 1em)"
+          class="post-text-container left"
+          *ngIf="!fullscreenToggle"
+        >
+          <app-post-content
+            [post]="post"
+            (postChange)="postChange($event)"
+          ></app-post-content>
+        </div>
+        <div fxFlex="1 1 calc(50% - 1em)" class="post-text-container right">
+          <app-live-preview
+            [post]="post"
+            (fullscrenEmit)="fullscrenEmit($event)"
+          ></app-live-preview>
+        </div>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,314 @@
+<mat-card class="attributes-container">
+  <div fxLayout="column" fxLayoutAlign="start middle">
+    <mat-card-title class="row">
+      Artikeluppgifter
+    </mat-card-title>
+
+    <mat-card-content>
+      <form>
+        <div fxLayout="row" class="row">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Rubrik"
+              [(ngModel)]="post.title"
+              name="title"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field>
+            <mat-label>Ingress</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+              [(ngModel)]="post.ingress"
+              name="ingress"
+              maxlength="160"
+            ></textarea>
+            <mat-hint align="end"> {{ post.ingress.length }} / 160</mat-hint>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field>
+            <mat-label>Kategori</mat-label>
+            <mat-select
+              [(ngModel)]="post.choosenCategories"
+              name="choosenCategories"
+              matInput
+              multiple
+            >
+              <mat-select-trigger>
+                <mat-chip-list>
+                  <mat-chip
+                    *ngFor="let category of post.choosenCategories"
+                    color="primary"
+                    selected
+                  >
+                    {{ category.name }}
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let category of post.availableCategories"
+                [value]="category"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Publish date & time. -->
+        <div
+          fxLayout="row"
+          fxLayout.md="row"
+          fxLayout.xs="column"
+          fxLayoutGap="12px"
+        >
+          <div fxFlex="1 1 calc(50% - 12px)">
+            <mat-form-field>
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Publiceringsdatum"
+                  [(ngModel)]="post.publishDate"
+                  name="publishDate"
+                  [min]="minPublishDate"
+                  [owlDateTimeTrigger]="pd"
+                  [owlDateTime]="pd"
+                />
+                <owl-date-time #pd></owl-date-time>
+              </label>
+            </mat-form-field>
+          </div>
+
+          <!-- Unpublish date & time -->
+          <div fxFlex="1 1 calc(50% - 12px)">
+            <mat-form-field>
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Avpubliceringsdatum"
+                  [(ngModel)]="post.unpublishDate"
+                  name="unpublishDate"
+                  [min]="post.publishDate"
+                  [owlDateTimeTrigger]="upd"
+                  [owlDateTime]="upd"
+                />
+                <owl-date-time #upd></owl-date-time>
+              </label>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Slider for isEvent -->
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1em">
+          <span *ngIf="post.isEvent">
+            {{ typeOne }}
+          </span>
+          <ins *ngIf="!post.isEvent">
+            {{ typeOne }}
+          </ins>
+          <mat-slide-toggle
+            [(ngModel)]="post.isEvent"
+            name="isEvent"
+            style="padding: 1em 0"
+          >
+          </mat-slide-toggle>
+          <p *ngIf="!post.isEvent">
+            {{ typeTwo }}
+          </p>
+          <ins *ngIf="post.isEvent">
+            {{ typeTwo }}
+          </ins>
+        </div>
+
+        <!-- Attributes only belonging to events -->
+        <ng-container *ngIf="post.isEvent">
+          <!-- Event starting time -->
+          <div
+            fxLayout="row"
+            fxLayout.md="row"
+            fxLayout.xs="column"
+            fxLayoutGap="12px"
+          >
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Starttid"
+                  [(ngModel)]="post.eventStartTime"
+                  name="eventStartTime"
+                  [min]="post.publishTime"
+                  [owlDateTimeTrigger]="est"
+                  [owlDateTime]="est"
+                />
+                <owl-date-time #est></owl-date-time>
+              </label>
+            </mat-form-field>
+
+            <!-- Event finishing time -->
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Sluttid"
+                  [(ngModel)]="post.eventFinishTime"
+                  name="eventFinishTime"
+                  [min]="post.publishTime"
+                  [owlDateTimeTrigger]="eft"
+                  [owlDateTime]="eft"
+                />
+                <owl-date-time #eft></owl-date-time>
+              </label>
+            </mat-form-field>
+          </div>
+
+          <!-- Last date for registering -->
+          <div
+            fxLayout="row"
+            fxLayout.md="row"
+            fxLayout.xs="column"
+            fxLayoutGap="12px"
+          >
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Sista dag för registering"
+                  [(ngModel)]="post.lastRegisterDate"
+                  name="lastRegisterDate"
+                  [min]="post.publishTime"
+                  [owlDateTimeTrigger]="lrd"
+                  [owlDateTime]="lrd"
+                />
+                <owl-date-time
+                  [startAt]="post.eventStartTime"
+                  #lrd
+                ></owl-date-time>
+              </label>
+            </mat-form-field>
+
+            <!-- Last date for unregistering -->
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Sista dag för avregistering"
+                  [(ngModel)]="post.lastUnregisterDate"
+                  name="lastUnregisterDate"
+                  [min]="post.publishTime"
+                  [owlDateTimeTrigger]="lud"
+                  [owlDateTime]="lud"
+                />
+                <owl-date-time #lud></owl-date-time>
+              </label>
+            </mat-form-field>
+          </div>
+
+          <!-- Extra registering deadline (for getting food etc.) -->
+          <mat-label
+            ><i
+              >Extra registreringsstop (t.ex sista dag för att få mat)</i
+            ></mat-label
+          >
+          <div
+            fxLayout="row"
+            fxLayout.md="row"
+            fxLayout.xs="column"
+            fxLayoutGap="12px"
+          >
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <label class="example-input-wrapper">
+                <input
+                  matInput
+                  placeholder="Extra deadline"
+                  [(ngModel)]="post.extraRegisterDeadline"
+                  name="extraRegisterDeadline"
+                  [min]="post.publishTime"
+                  [owlDateTimeTrigger]="erd"
+                  [owlDateTime]="erd"
+                />
+                <owl-date-time #erd></owl-date-time>
+              </label>
+            </mat-form-field>
+            <mat-form-field fxFlex="1 1 calc(50% - 12px)">
+              <input
+                matInput
+                placeholder="Anledning för extra deadline"
+                [(ngModel)]="post.extraRegisterReason"
+                name="extraRegisterReason"
+              />
+            </mat-form-field>
+          </div>
+        </ng-container>
+
+        <!--fileupload-->
+        <div fxLayout="column" fxLayoutGap="16px grid" style="padding-top: 1em">
+          <mat-label>Ladda upp egna bilder här</mat-label>
+          <!--Upload button-->
+          <div fxFlex="50">
+            <button
+              mat-raised-button
+              (click)="file.click()"
+              type="button"
+              color="blue"
+            >
+              Ladda upp
+            </button>
+            <input
+              #file
+              type="file"
+              accept="image/*"
+              style="display:none;"
+              (change)="uploadImageFile($event)"
+            />
+          </div>
+
+          <!--Upload feedback-->
+          <div fxFlex="50" fxFlexAlign="center">
+            <div fxLayout="row">
+              <mat-icon
+                *ngIf="!uploading && uploadPercentage == 100"
+                color="primary"
+              >
+                check_circle_outline
+              </mat-icon>
+              <!-- <mat-icon *ngIf="!uploading">
+              highlight_off
+            </mat-icon>-->
+              <mat-icon *ngIf="uploading">
+                <mat-progress-spinner
+                  [diameter]="22"
+                  [mode]="'determinate'"
+                  color="green"
+                  [value]="uploadPercentage"
+                >
+                </mat-progress-spinner>
+              </mat-icon>
+              <span>{{ fileName }}</span>
+              <img
+                *ngIf="!uploading && uploadPercentage == 100"
+                [src]="url"
+                height="200"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <mat-list dense *ngIf="post.imgURLs.length !== 0">
+        <mat-label>Länkar till bilder</mat-label>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngFor="let url of post.imgURLs; index as i">
+          Bild {{ i + 1 }}: {{ url }}
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </div>
+</mat-card>
