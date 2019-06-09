@@ -21,6 +21,15 @@ export class TagsService {
     );
   }
 
+  updateTag(tag: Tag) {
+    this.databaseService.get('tags', 'tags').subscribe(value => {
+      const tags: Array<Tag> = value['tags'];
+      const newarr = tags.filter(item => item.name !== tag.name);
+      newarr.push(tag);
+      this.databaseService.update('tags', 'tags', {'tags': newarr});
+    });
+  }
+
   addTag(tag: Tag) {
     this.databaseService.update('tags', 'tags', {'tags': firebase.firestore.FieldValue.arrayUnion(tag)});
   }
