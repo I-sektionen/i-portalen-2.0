@@ -291,11 +291,13 @@
                 </mat-progress-spinner>
               </mat-icon>
               <span>{{ fileName }}</span>
+
               <img
                 *ngIf="!uploading && uploadPercentage == 100"
                 [src]="url"
                 height="200"
               />
+
             </div>
           </div>
         </div>
@@ -305,9 +307,13 @@
         <mat-label>Länkar till bilder</mat-label>
         <mat-divider></mat-divider>
         <mat-list-item *ngFor="let url of post.imgURLs; index as i">
-          Bild {{ i + 1 }}: {{ url }}
+
+          <b> Bild {{ i + 1 }}: </b> {{ post.imgNames[i] }}
           <mat-divider></mat-divider>
+          <button (click)="deleteImg(url)">Delete</button>
+
         </mat-list-item>
+
       </mat-list>
     </mat-card-content>
   </div>
