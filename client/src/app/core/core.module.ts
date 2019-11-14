@@ -22,7 +22,7 @@ import { TextComponent } from './text/text.component';
 import { TextService } from './text/text.service';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from '../features/users/users.module';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 import { StorageService } from './storage/storage.service';
 import { FeedbackService } from './feedback/feedback.service';

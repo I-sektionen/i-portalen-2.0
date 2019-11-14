@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from '../../../users/shared/user.service';
+import { UserService } from '../../../features/users/shared/user.service';
 import { tap, take } from 'rxjs/operators';
 import { FeedbackService } from '../../feedback/feedback.service';
 import { FeedbackMessage, FeedbackType } from '../../feedback/feedback.model';
