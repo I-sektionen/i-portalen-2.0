@@ -5,6 +5,7 @@ import { OrganisationService } from '../../organisations/shared/organisation.ser
 import { UserService } from '../../users/shared/user.service';
 import { SponsorService } from '../../sponsors/shared/sponsor.service';
 import {TagsService} from '../utilities/tags.service';
+import {FaqService} from '../../faq/shared/faq.service';
 
 @Component({
   selector: 'app-collections-list',
@@ -17,7 +18,8 @@ export class CollectionsListComponent implements OnInit {
     {path: 'users'},
     {path: 'organisations'},
     {path: 'sponsors'},
-    {path: 'tags'}
+    {path: 'tags'},
+    {path: 'faq'}
   ];
 
   collection: string;
@@ -30,7 +32,8 @@ export class CollectionsListComponent implements OnInit {
     private userService: UserService,
     private organisationService: OrganisationService,
     private sponsorService: SponsorService,
-    private tagsService: TagsService
+    private tagsService: TagsService,
+    private faqService: FaqService
   ) { }
 
   ngOnInit() {
@@ -57,7 +60,7 @@ export class CollectionsListComponent implements OnInit {
         break;
       }
       case 'faq': {
-        this.dataSource = this.tagsService.listTags();
+        this.dataSource = this.faqService.listQuestions();
         this.displayedColumns = ['name', 'editItem', 'deleteItem'];
         break;
       }

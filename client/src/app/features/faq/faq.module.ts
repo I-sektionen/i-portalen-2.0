@@ -5,13 +5,14 @@ import {OrganisationsRoutingModule} from '../organisations/organisations-routing
 import {SharedModule} from '../../shared/shared.module';
 import {FaqService} from './shared/faq.service';
 import { FaqDashboardComponent } from './faq-dashboard/faq-dashboard.component';
+import {FaqRoutingModule} from './faq-routing.module';
 
 @NgModule({
   declarations: [FaqComponent, FaqDashboardComponent],
   imports: [
     CommonModule,
-    OrganisationsRoutingModule,
     SharedModule,
+    FaqRoutingModule
   ],
   providers: [FaqService]
 })

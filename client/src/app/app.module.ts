@@ -19,6 +19,8 @@ import { UsersRoutingModule } from './features/users/users-routing.module';
 import { CreatePostsRoutingModule } from './features/posts/create-posts/create-posts-routing.module';
 import { OrganisationsRoutingModule } from './features/organisations/organisations-routing.module';
 import { SponsorsRoutingModule } from './features/sponsors/sponsors-routing.module';
+import {FaqRoutingModule} from './features/faq/faq-routing.module';
+import {FaqModule} from './features/faq/faq.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +35,7 @@ import { SponsorsRoutingModule } from './features/sponsors/sponsors-routing.modu
     CreatePostsRoutingModule,
     OrganisationsRoutingModule,
     SponsorsRoutingModule,
+    FaqRoutingModule,
 
     // Custom Modules
     CoreModule,
@@ -45,7 +48,8 @@ import { SponsorsRoutingModule } from './features/sponsors/sponsors-routing.modu
     OrganisationsModule,
     SponsorsModule,
     UsersModule,
-    AppRoutingModule // import this one at the bottom of all custom modules
+    FaqModule,
+    AppRoutingModule, // import this one at the bottom of all custom modules
   ],
   providers: [],
   bootstrap: [AppComponent]
