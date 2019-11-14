@@ -1,21 +1,11 @@
+
+<h1>FAQ</h1>
 <mat-accordion>
-
-  <mat-expansion-panel>
+  <mat-expansion-panel *ngFor="let question of faq">
     <mat-expansion-panel-header>
-      This is the expansion 1 title
+      {{question.question}}
     </mat-expansion-panel-header>
-
-    This the expansion 1 content
-
-  </mat-expansion-panel>
-
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      This is the expansion 2 title
-    </mat-expansion-panel-header>
-
-    This the expansion 2 content
-
+    {{question.answer}}
   </mat-expansion-panel>
 
 </mat-accordion>
