@@ -5,7 +5,7 @@ import { MatGridListModule, MatListModule, MatCardModule, MatButtonModule, MatFo
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { OrganisationsRoutingModule } from './organisations-routing.module';
 import { OrganisationsComponent } from './organisations.component';
-import { OrganisationsListComponent } from './organisations-list-component/organisations.list.component'
+import { OrganisationsListComponent } from './organisations-list-component/organisations.list.component';
 import { SingleOrganisationComponent } from './single-organisation-component/single.organisation.component';
 import { SharedModule } from '../../shared/shared.module';
 import { CardComponent } from './card/card.component';
