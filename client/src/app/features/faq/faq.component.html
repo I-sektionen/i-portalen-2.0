@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<h1>FAQ</h1>
+<div *ngFor="let test of questions">
+{{test}}
+</div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let category of category">
+    <mat-expansion-panel-header>
+      {{category}}
+    </mat-expansion-panel-header>
+    <mat-accordion>
+      <div *ngFor="let question of faq">
+      <mat-expansion-panel *ngIf="question.category === category">
+        <mat-expansion-panel-header>
+          {{question.question}}
+        </mat-expansion-panel-header>
+        {{question.answer}}
+      </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </mat-expansion-panel>
+</mat-accordion>
+
