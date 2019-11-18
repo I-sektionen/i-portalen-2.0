@@ -20,6 +20,8 @@ import { UsersRoutingModule } from './users/users-routing.module';
 import { CreatePostsRoutingModule } from './posts/create-posts/create-posts-routing.module';
 import { OrganisationsRoutingModule } from './organisations/organisations-routing.module';
 import { SponsorsRoutingModule } from './sponsors/sponsors-routing.module';
+import {BookingsRoutingModule} from './bookings/bookings-routing.module';
+import {BookingsModule} from './bookings/bookings.module';
 
 @NgModule({
   declarations: [AppComponent, FormFieldComponent],
@@ -27,13 +29,14 @@ import { SponsorsRoutingModule } from './sponsors/sponsors-routing.module';
     // Angular Modules
     BrowserModule,
     BrowserAnimationsModule,
-    
+
     // Temporary router fix
     AdminRoutingModule,
     UsersRoutingModule,
     CreatePostsRoutingModule,
     OrganisationsRoutingModule,
     SponsorsRoutingModule,
+    BookingsRoutingModule,
 
     // Custom Modules
     CoreModule,
@@ -45,6 +48,7 @@ import { SponsorsRoutingModule } from './sponsors/sponsors-routing.module';
     EventsModule,
     OrganisationsModule,
     SponsorsModule,
+    BookingsModule,
     UsersModule,
     AppRoutingModule // import this one at the bottom of all custom modules
   ],
