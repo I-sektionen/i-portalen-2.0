@@ -1,0 +1,9 @@
+<div class="center-content">
+  <div id="outer-div">
+    <app-booking-type [(type)]="bookingType"></app-booking-type>
+    <app-booking-calendar
+      [type]="bookingType" [week]="selectedWeek != null ? selectedWeek : today | date : 'w'"
+    ></app-booking-calendar>
+    <app-booking-week [week]="today | date : 'w'" (weekChange)="selectedWeek = $event"></app-booking-week>
+  </div>
+</div>
