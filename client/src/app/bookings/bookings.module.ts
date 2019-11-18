@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { BookingCalendarComponent } from './booking-calendar/booking-calendar.component';
 import { BookingWeekComponent } from './booking-week/booking-week.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BookingTypComponent } from './booking-typ/booking-typ.component';
 import { BookingTypeComponent } from './booking-type/booking-type.component';
 import { BookingPageComponent } from './booking-page/booking-page.component';
 

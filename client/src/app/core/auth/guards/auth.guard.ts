@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
       tap(isLoggedIn => {
         if (!isLoggedIn) {
           this.feedbackService.message(
-            {message: FeedbackMessage.Auth, type: FeedbackType.Error}
+            {message: FeedbackMessage.DefaultError, type: FeedbackType.Error}
           );
         }
       })
