@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./faq-dashboard.component.scss']
 })
 export class FaqDashboardComponent implements OnInit {
-
+  x = false;
   constructor() { }
 
   ngOnInit() {
   }
+ click() {
+    this.x = !this.x;
+ }
 
 }
+
+
