@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Faq} from './shared/faq.model';
+import {FaqQuestion} from './shared/faq.model';
 import {FaqService} from './shared/faq.service';
 
 @Component({
@@ -8,14 +8,25 @@ import {FaqService} from './shared/faq.service';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
-  faq = Faq;
-  category: String[] = ['1', '2'];
-  questions = this.faqService.listQuestions()[0];
-
+  questions: FaqQuestion[] = [];
   constructor(
   private faqService: FaqService
   ) { }
 
   ngOnInit() {
+    this.faqService.listQuestions().subscribe((questions: FaqQuestion[]) => {
+      this.questions = questions;
+    });
   }
+
+  getCategory(): String[] {
+    const category: String[] = [];
+    for (const cat of this.questions) {
+      if (!category.includes(cat.category)) {
+        category.push(cat.category);
+      }
+    }
+    return category;
+  }
+
 }

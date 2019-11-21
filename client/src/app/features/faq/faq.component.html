@@ -1,14 +1,12 @@
 <h1>FAQ</h1>
-<div *ngFor="let test of questions">
-{{test}}
-</div>
+
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let category of category">
+  <mat-expansion-panel *ngFor="let category of getCategory()">
     <mat-expansion-panel-header>
       {{category}}
     </mat-expansion-panel-header>
     <mat-accordion>
-      <div *ngFor="let question of faq">
+      <div *ngFor="let question of questions">
       <mat-expansion-panel *ngIf="question.category === category">
         <mat-expansion-panel-header>
           {{question.question}}
