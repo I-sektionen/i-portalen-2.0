@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Faq} from '../shared/faq.model';
+
 
 @Component({
   selector: 'app-faq-dashboard',
@@ -8,7 +8,6 @@ import {Faq} from '../shared/faq.model';
 })
 
 export class FaqDashboardComponent implements OnInit {
-  faq = Faq;
 
   constructor() { }
 
