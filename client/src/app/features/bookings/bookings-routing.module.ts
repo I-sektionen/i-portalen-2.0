@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BookingsComponent } from './bookings.component';
 import { BookingPageComponent } from './booking-page/booking-page.component';
-import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { AuthGuard } from '../../core/auth/guards/auth.guard';
 
 const routes: Routes = [
   {

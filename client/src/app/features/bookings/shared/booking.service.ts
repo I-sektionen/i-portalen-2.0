@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatabaseService } from '../../core/database/database.service';
+import { DatabaseService } from '../../../core/database/database.service';
 import { Booking, BookingType } from './booking.model';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';

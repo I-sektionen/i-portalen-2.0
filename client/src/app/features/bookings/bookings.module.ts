@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { BookingsRoutingModule } from './bookings-routing.module';
 import { BookingsComponent } from './bookings.component';
-import { SharedModule } from '../shared/shared.module';
-import { FirebaseModule } from '../core/firebase/firebase.module';
+import { SharedModule } from '../../shared/shared.module';
+import { FirebaseModule } from '../../core/firebase/firebase.module';
 import { MatButtonModule, MatCardModule, MatRadioModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { BookingCalendarComponent } from './booking-calendar/booking-calendar.component';
