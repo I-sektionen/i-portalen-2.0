@@ -26,18 +26,24 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // Include theme styles for core and each component used in your app.
 @include angular-material-theme($theme);
 
-
-
+/***********************/
+/*Owl Date Time Picker */
+/***********************/
+@import '~ng-pick-datetime/assets/style/picker.min.css';
 
 /***********************/
 /* GLOBAL STYLES BELOW */
 /***********************/
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 /* REUSABLE CLASSES */
 
@@ -48,18 +54,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex-direction: column;
 }
 
-
 .fill-remaining-space {
   /*This fills the remaining space, by using flexbox.
  Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
 
-
 /* SNACKBAR STYLES */
 .snackbar {
   color: white;
-  margin-bottom: 8px!important;
+  margin-bottom: 8px !important;
 }
 
 .primarySnackbar {

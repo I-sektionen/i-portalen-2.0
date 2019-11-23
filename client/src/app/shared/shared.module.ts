@@ -12,6 +12,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './table/table.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
 import { SafePipe } from './pipes/safe.pipe';
+import { ShufflePipe } from './pipes/shuffle.pipe';
+import { ObjectValuesPipe } from './pipes/object-values.pipe';
+import { ObjectKeysPipe } from './pipes/object-keys.pipe';
+import { EnumPipe } from './pipes/enum.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { SafePipe } from './pipes/safe.pipe';
 
     // Pipes
     GroupByPipe,
-    SafePipe
+    SafePipe,
+    ShufflePipe,
+    ObjectValuesPipe,
+    ObjectKeysPipe,
+    EnumPipe
   ],
   exports: [
     PageNotFoundComponent,
@@ -35,6 +43,10 @@ import { SafePipe } from './pipes/safe.pipe';
     TableComponent,
     GroupByPipe,
     SafePipe,
+    ShufflePipe,
+    ObjectValuesPipe,
+    ObjectKeysPipe,
+    EnumPipe
   ],
   providers: [],
   imports: [

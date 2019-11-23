@@ -1,0 +1,14 @@
+<div [ngSwitch]="collection">
+  <div *ngSwitchCase="'organisations'">
+    <app-upsert-organisation [organisation]="item"></app-upsert-organisation>
+  </div>
+  <div *ngSwitchCase="'users'">
+    <p>Create user not implemented yet.</p>
+  </div>
+  <div *ngSwitchCase="'sponsors'">
+    <app-upsert-sponsor [sponsor]="item"></app-upsert-sponsor>
+  </div>
+  <div *ngSwitchCase="'tags'">
+    <app-upsert-tag [tag]="item"></app-upsert-tag>
+  </div>
+</div>

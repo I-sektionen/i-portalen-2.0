@@ -1,0 +1,51 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Förhandsvisning</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <ng-container *ngIf="previewToggle">
+      <div class="live-preview-frame">
+        <h1>{{ post.title }}</h1>
+        {{ time }} min sedan
+        <hr />
+        <span
+          class="live-preview"
+          [innerHTML]="post.text | MarkdownToHtml"
+        ></span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!previewToggle">
+      <div class="live-preview-card">
+        <h1>{{ post.title }}</h1>
+        {{ time }} min sedan
+        <hr />
+        {{ post.ingress }}
+      </div>
+    </ng-container>
+  </mat-card-content>
+
+  <mat-card-actions
+    fxLayout="row"
+    fxLayoutGap="1em"
+    fxLayoutAlign="start center"
+  >
+    <button
+      pointer
+      mat-flat-button
+      style="background-color: #B2DFDB"
+      (click)="togglePreview()"
+    >
+      Växla artikeltyp
+    </button>
+    <button
+      pointer
+      mat-flat-button
+      style="background-color: #CFD8DC"
+      (click)="toggleFullscren()"
+    >
+      Växla helskärm
+    </button>
+  </mat-card-actions>
+</mat-card>

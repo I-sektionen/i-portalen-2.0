@@ -1,0 +1,28 @@
+/* Warning - This module has encapsulation set to none. All styles below will apply to everything, not only this component. */
+
+/* All styles below must begin with .create-posts-content */
+
+/*.create-posts-content img{
+  display: inline-block;
+  float: left;
+  margin: 5px;
+  max-width: 100px !important;
+
+}
+
+.create-posts-content p{
+  color: black;
+}
+
+.create-posts-content{
+  border: blue 2px solid !important;
+  color: black;
+  overflow:hidden;
+}
+*/
+
+//This code moved to child: live-preview
+
+.post-text-container {
+  padding: 1em;
+}

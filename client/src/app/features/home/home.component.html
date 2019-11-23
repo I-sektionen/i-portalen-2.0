@@ -1,0 +1,37 @@
+
+<div fxLayout="wrap row">
+  <div fxFlex="100">
+    <app-hero></app-hero>
+  </div>
+  <div fxFlex="80">
+    <app-text [page]="'home'" [title]="'welcome'"></app-text>
+  </div>
+  <div fxFlex="20">
+    <div>
+      <app-sponsor-list></app-sponsor-list>
+    </div>
+  </div>
+</div>
+
+
+<div class="filter-container">
+  <form [formGroup]="filter">
+    <mat-form-field>
+      <input matInput placeholder="Sök" [formControl]="filter.controls['search']" type="search">
+    </mat-form-field>
+  </form>
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of tags" (selectionChange)="console.log()">{{tag.tag}}</mat-chip>
+  </mat-chip-list>
+</div>
+
+<mat-paginator [length]="1337" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
+               (page)="pagechange($event)"></mat-paginator>
+
+<div class="" fxLayout="row wrap" fxLayoutGap="0.5%">
+
+  <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let article of showedarticles" [articleName]="article.name"></happening-card>
+
+</div>
+
+

@@ -1,0 +1,37 @@
+#outer-div {
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.selected {
+  background-color: lightgreen!important;
+}
+
+.booked {
+  cursor: not-allowed!important;
+  background-color: indianred!important;
+}
+
+.old {
+  cursor: not-allowed!important;
+  background-color: lightgrey!important;
+}
+
+.booked+.old {
+  cursor: not-allowed!important;
+  background-color: #ffe6e6!important;
+}
+
+.block {
+  cursor: pointer;
+  background-color: lightblue;
+  min-width: 100px;
+}
+
+.block-text {
+  margin-left: 8px;
+}
+
+#book-button {
+  margin-top: 16px;
+}
