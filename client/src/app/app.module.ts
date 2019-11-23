@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import {FaqRoutingModule} from './features/faq/faq-routing.module';
+import {FaqModule} from './features/faq/faq.module';
 import { AdminModule } from './admin/admin.module';
 import { ArticlesModule } from './posts/articles/articles.module';
 import { CreatePostsModule } from './posts/create-posts/create-posts.module';
@@ -24,7 +26,7 @@ import {BookingsRoutingModule} from './bookings/bookings-routing.module';
 import {BookingsModule} from './bookings/bookings.module';
 
 @NgModule({
-  declarations: [AppComponent, FormFieldComponent],
+  declarations: [AppComponent],
   imports: [
     // Angular Modules
     BrowserModule,
@@ -36,6 +38,7 @@ import {BookingsModule} from './bookings/bookings.module';
     CreatePostsRoutingModule,
     OrganisationsRoutingModule,
     SponsorsRoutingModule,
+    FaqRoutingModule,
     BookingsRoutingModule,
 
     // Custom Modules
@@ -50,7 +53,8 @@ import {BookingsModule} from './bookings/bookings.module';
     SponsorsModule,
     BookingsModule,
     UsersModule,
-    AppRoutingModule // import this one at the bottom of all custom modules
+    FaqModule,
+    AppRoutingModule, // import this one at the bottom of all custom modules
   ],
   providers: [],
   bootstrap: [AppComponent]
