@@ -1,0 +1,15 @@
+td.mat-column-add, td.mat-column-deleteItem, td.mat-column-deleteTag {
+  flex: 0 0 50px;
+  width: 50px;
+}
+
+td.mat-column-editCollection, td.mat-column-editItem {
+  flex: 0 0 300px;
+  width: 80px;
+}
+
+table {
+  width: 100%;
+}
+
+/*# sourceMappingURL=collections-table.component.css.map */

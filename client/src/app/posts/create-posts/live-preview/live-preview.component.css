@@ -1,0 +1,21 @@
+/* Warning - This module has encapsulation set to none. All styles below will apply to everything, not only this component. */
+/* All styles below must begin with .live-preview */
+.live-preview img {
+  display: block;
+  margin: 5px;
+  max-width: 500px !important;
+}
+
+.live-preview-frame {
+  border: 1px solid lightgrey;
+}
+
+.live-preview h1 {
+  color: black;
+}
+
+.live-preview {
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=live-preview.component.css.map */
