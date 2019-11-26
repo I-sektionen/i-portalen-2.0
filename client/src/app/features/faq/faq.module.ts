@@ -6,9 +6,10 @@ import {SharedModule} from '../../shared/shared.module';
 import {FaqService} from './shared/faq.service';
 import { FaqDashboardComponent } from './faq-dashboard/faq-dashboard.component';
 import {FaqRoutingModule} from './faq-routing.module';
+import { QuestanswComponent } from './faq-dashboard/questansw/questansw.component';
 
 @NgModule({
-  declarations: [FaqComponent, FaqDashboardComponent],
+  declarations: [FaqComponent, FaqDashboardComponent, QuestanswComponent],
   imports: [
     CommonModule,
     SharedModule,

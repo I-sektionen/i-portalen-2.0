@@ -1,8 +1,14 @@
 <div id="categories">
-  <button (click)="click()">
+ <!-- <h2>
     Kategori 1
-  </button>
-  <div id="questions" *ngIf="x">
+  </h2>
+
+  <h4 (click)="click()">
+    Fråga 1
+  </h4>
+  <div id="answers" *ngIf="x">
     test
-  </div>
+  </div> -->
+  <app-questansw [answer]="test_1" [question]="fraga_1"></app-questansw>
+  <app-questansw [answer]="test_2" [question]="fraga_2"></app-questansw>
 </div>
