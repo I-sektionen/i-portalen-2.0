@@ -29,4 +29,11 @@ export class FaqComponent implements OnInit {
     return category;
   }
 
+  closePanels() {
+    for (const item of this.questions) {
+      if (item.expanded === true) {
+        item.expanded = false;
+      }
+    }
+  }
 }
