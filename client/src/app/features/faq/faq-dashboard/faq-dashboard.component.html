@@ -1,37 +1,34 @@
 <h1>
-  <p>
     FAQ
-
-  </p>
 </h1>
 
-<mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Ämne
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>Fråga</p>
-  </mat-expansion-panel>
-</mat-accordion>
+ <mat-list *ngFor="let item of subjects">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{item.subject}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <!-- This is the tree node template for leaf nodes -->
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-    <!-- use a disabled button to provide padding for tree leaf -->
-    <button mat-icon-button disabled></button>
-    {{node.name}}
-  </mat-tree-node>
-  <!-- This is the tree node template for expandable nodes -->
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle
-            [attr.aria-label]="'toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
-    </button>
-    {{node.name}}
-  </mat-tree-node>
-</mat-tree>
+      <mat-list *ngFor="let item of questions">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{item.question}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              {{item.answer}}
+            </mat-expansion-panel>
+          </mat-accordion>
+      </mat-list>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+ </mat-list>
+
+
+

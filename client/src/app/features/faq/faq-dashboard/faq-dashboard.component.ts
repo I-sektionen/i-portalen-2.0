@@ -7,17 +7,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./faq-dashboard.component.scss']
 })
 
-
-
 export class FaqDashboardComponent implements OnInit {
 
+  panelOpenState = false;
 
+  subjects = [
+    {subject: 'Ämne 1'},
+    {subject: 'Ämne 2'},
+    {subject: 'Ämne 3'}
+    ];
 
-  answers: [{'svar 1', 'svar 2', 'svar 3'}];
-  questions: [{'fråga 1', 'fråga 2', 'fråga 3'}]
-
-  questions = [{question: [], answers: []}];
-  subjects = [{question: []}];
+  questions = [
+    {
+      question: 'Fråga 1',
+      answer: 'Svar 1'
+    },
+    {
+      question: 'Fråga 2',
+      answer: 'Svar 2'
+    },
+    {
+      question: 'Fråga 3',
+      answer: 'Svar 3'
+    }
+  ];
 
 
   constructor() { }
@@ -26,3 +39,4 @@ export class FaqDashboardComponent implements OnInit {
   }
 
 }
+
