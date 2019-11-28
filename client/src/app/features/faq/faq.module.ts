@@ -18,3 +18,4 @@ import {FaqRoutingModule} from './faq-routing.module';
 })
 export class FaqModule { }
 
+
