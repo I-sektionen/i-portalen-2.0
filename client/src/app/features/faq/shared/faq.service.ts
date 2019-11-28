@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {DatabaseService} from '../../../core/database/database.service';
 import {FaqQuestion} from './faq.model';
-import {Sponsor} from '../../sponsors/shared/sponsor.model';
 
 @Injectable({
   providedIn: 'root'
