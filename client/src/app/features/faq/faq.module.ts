@@ -17,3 +17,4 @@ import {FaqRoutingModule} from './faq-routing.module';
   providers: [FaqService]
 })
 export class FaqModule { }
+
