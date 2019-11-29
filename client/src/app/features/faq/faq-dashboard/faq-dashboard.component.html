@@ -1,3 +1,18 @@
-<p>
-  faq-dashboard works!
-</p>
+<div>
+
+
+<h1>FAQ</h1>
+<div *ngFor="let element of questions">
+  <div id="question" (click)="click(element)">
+    {{element.question}}
+  </div>
+  <div id="answer" *ngIf="element.clicked">
+    {{element.answer}}
+  </div>
+</div>
+
+
+
+
+
+</div>
