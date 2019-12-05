@@ -16,6 +16,7 @@ export class FaqService {
     return this.databaseService.list(this.path);
   }
 
+
   deleteQuestion(id) {
     return this.databaseService.delete(this.path, id);
   }

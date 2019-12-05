@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<h1>FAQ</h1>
+<div class="center-content">
+<mat-accordion class="center-content">
+  <mat-expansion-panel *ngFor="let category of getCategory()" (closed)="closePanels()">
+    <mat-expansion-panel-header>
+      {{category}}
+    </mat-expansion-panel-header>
+    <mat-accordion>
+      <div *ngFor="let question of questions">
+      <mat-expansion-panel (afterExpand)="question.expanded=true" (closed)="question.expanded=false"
+                           *ngIf="question.category === category" [expanded]="!!question.expanded">
+        <mat-expansion-panel-header collapsedHeight="60px">
+          {{question.question}}
+        </mat-expansion-panel-header>
+        {{question.answer}}
+      </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
