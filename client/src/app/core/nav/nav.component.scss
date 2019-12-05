@@ -25,28 +25,28 @@ main {
   height: $nav-height;
 }
 
-/deep/ mat-nav-list > a > div > mat-icon {
+::ng-deep mat-nav-list > a > div > mat-icon {
   margin: 0 24px 0 8px;
 }
 
 
-/deep/ mat-nav-list > a > div{
+::ng-deep mat-nav-list > a > div{
   font-size: 15px;
 }
 
-/deep/ mat-nav-list > h3 {
+::ng-deep mat-nav-list > h3 {
   font-size: 17px;
   margin: 0;
   padding: 8px 24px;
 }
 @media only screen and (min-width: 450px) { // desktop
-/deep/ .mat-menu-panel {
+  ::ng-deep .mat-menu-panel {
   min-width: 350px !important;
   max-width: 100% !important;
 }
 }
 @media only screen and (max-width: 450px) { // mobile
-/deep/ .mat-menu-panel {
+  ::ng-deep .mat-menu-panel {
   min-width: 100vw !important;
   max-width: 100% !important;
 }

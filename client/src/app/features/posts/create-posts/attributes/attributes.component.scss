@@ -1,13 +1,13 @@
 @media only screen and (min-width: 450px) {
   // desktop
-  /deep/ .attributes-container {
+  ::ng-deep .attributes-container {
     max-width: 30em !important;
     min-width: 18em !important;
   }
 }
 @media only screen and (max-width: 450px) {
   // mobile
-  /deep/ .attributes-container {
+  ::ng-deep .attributes-container {
     min-width: 70vw !important;
     max-width: 80vw !important;
   }
@@ -25,11 +25,6 @@ mat-form-field {
   width: 100%;
 }
 
-/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
-  background-color: #49c5b6;
-}
-/deep/
-  .mat-slide-toggle.mat-checked:not(.mat-disabled)
-  .mat-slide-toggle-thumb {
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
   background-color: #49c5b6;
 }
