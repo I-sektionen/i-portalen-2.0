@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {DatabaseService} from "../../core/database/database.service";
-import { Router } from "@angular/router";
-import {query} from "@angular/animations";
-import {MatPaginatorIntl} from "@angular/material";
-import {DocumentSnapshot} from "@angular/fire/firestore";
-import {Post} from "../posts/shared/post.model";
-import {Tag, TagsService} from "../admin/utilities/tags.service";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {DatabaseService} from '../../core/database/database.service';
+import { Router } from '@angular/router';
+import {query} from '@angular/animations';
+import {MatPaginatorIntl} from '@angular/material';
+import {DocumentSnapshot} from '@angular/fire/firestore';
+import {Post} from '../posts/shared/post.model';
+import {Tag, TagsService} from '../admin/utilities/tags.service';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     this.filter.valueChanges
       .subscribe(value => {
         this.showedarticles = [];
-        this.post.forEach((post => {
+        this.posts.forEach((post => {
           if (post.title.toLowerCase().includes(value['search'].toLowerCase())) {
             this.showedarticles.push(post);
           }
