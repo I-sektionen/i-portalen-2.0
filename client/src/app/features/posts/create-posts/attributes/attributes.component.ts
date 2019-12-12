@@ -18,6 +18,7 @@ import { StorageService } from '../../../../core/storage/storage.service';
 import { FireStorageService } from '../../../../core/firebase/fire-storage/fire-storage.service';
 
 import {FirebaseStorage} from "@angular/fire";
+import {DatabaseService} from "../../../../core/database/database.service";
 //import { AngularFireUploadTask } from '@angular/fire/storage';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
@@ -54,7 +55,7 @@ export class AttributesComponent implements OnInit {
   typeTwo: string = 'Event';
   minPublishDate: Date = new Date(Date.now());
 
-  constructor(private storageService: StorageService, private fireStorageService: FireStorageService) {}
+  constructor(private storageService: StorageService, private fireStorageService: FireStorageService, private dataBaseService: DatabaseService<Post>) {}
 
   ngOnInit() {}
 
@@ -66,6 +67,10 @@ export class AttributesComponent implements OnInit {
   uploading = false;
   uploadPercentage = 0;
   url: any;
+
+  publish() {
+    this.dataBaseService.insert('posts', this.post);
+  }
 
   uploadImageFile(event) {
     const file = event.target.files[0];

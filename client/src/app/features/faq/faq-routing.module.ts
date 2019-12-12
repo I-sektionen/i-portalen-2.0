@@ -8,7 +8,7 @@ const routes: Routes = [
     path: 'faq',
     component: FaqComponent,
     children: [
-      {path: '', component: FaqDashboardComponent}
+      {path: '', component: FaqDashboardComponent},
     ]
   }
 ];
