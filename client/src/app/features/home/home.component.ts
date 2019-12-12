@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     this.filter.valueChanges
       .subscribe(value => {
         this.showedarticles = [];
-        this.post.forEach((post => {
+        this.posts.forEach((post => {
           if (post.title.toLowerCase().includes(value['search'].toLowerCase())) {
             this.showedarticles.push(post);
           }
