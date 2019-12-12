@@ -121,10 +121,17 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <article>
+
       <!-- Content -->
       <main>
-        <ng-content></ng-content>
+        <div class="container">
+
+        <ng-content class="content"></ng-content>
+        <app-sponsor-list class="sponsors"></app-sponsor-list>
+        </div>
+
       </main>
+
 
       <!--Footer-->
       <footer>

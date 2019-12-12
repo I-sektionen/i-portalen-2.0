@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Post} from "../../posts/shared/post.model";
 
 @Component({
   selector: 'happening-card',
@@ -6,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./happening-card.component.scss']
 })
 export class HappeningCardComponent implements OnInit {
-  @Input("articleName") articleName: string;
+  @Input("post") post: Post;
 
   constructor() { }
 
