@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import {query} from "@angular/animations";
 import {MatPaginatorIntl} from "@angular/material";
 import {DocumentSnapshot} from "@angular/fire/firestore";
+import {Post} from "../posts/shared/post.model";
 
 @Component({
   selector: 'app-home',
@@ -13,24 +14,24 @@ import {DocumentSnapshot} from "@angular/fire/firestore";
 })
 export class HomeComponent implements OnInit {
   filter: FormGroup;
-  articles: Array<article>;
-  showedarticles: Array<article> = [];
+  posts: Post[];
+  showedarticles: Post[] = [];
   lastarticle: DocumentSnapshot<any>;
 
   tags = [{tag: 'Lit'}, {tag: 'Sellout'}, {tag: 'AlbinSkaGå'}, {
     tag: 'Dead'
   }];
 
-  constructor(private FB: FormBuilder, private DB: DatabaseService<article>) {
+  constructor(private FB: FormBuilder, private DB: DatabaseService<Post>) {
     // Just for testing, put in seperate service in future
-    DB.list('articles', query => query.limit(25)).subscribe(value => {
-      this.articles = value;
-      this.showedarticles = value;
+    DB.list('posts', query => query.limit(25)).subscribe(posts_from_database => {
+      this.posts = posts_from_database;
+      this.showedarticles = posts_from_database;
     });
     this.filter = FB.group({
       'search': ['']
     });
-    this.tags.forEach(tag => tag['color'] = this.getRandomColor())
+    this.tags.forEach(tag => tag['color'] = this.getRandomColor());
   }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
     this.filter.valueChanges
       .subscribe(value => {
         this.showedarticles = [];
-        this.articles.forEach((article => {
+        this.posts.forEach((article => {
           if (article['name'].toLowerCase().includes(value['search'].toLowerCase())) {
             this.showedarticles.push(article);
           }
@@ -52,16 +53,11 @@ export class HomeComponent implements OnInit {
   }
 
   pagechange(event: paginatorevent) {
-    this.DB.list('articles', query => query.limit(event.pageSize)).subscribe(value => {
-      this.articles = value;
+    this.DB.list('posts', query => query.limit(event.pageSize)).subscribe(value => {
+      this.posts = value;
       this.showedarticles = value;
     });
   }
-}
-
-// Just for testing, put in diffrent file
-export interface article {
-  name: string
 }
 
 export interface paginatorevent {
