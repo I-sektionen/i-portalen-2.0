@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   showedarticles: Post[] = [];
   lastarticle: DocumentSnapshot<any>;
 
-  tags: Tag = [];
+  tags: Tag[] = [];
 
   constructor(private FB: FormBuilder,
               private DB: DatabaseService<Post>,
