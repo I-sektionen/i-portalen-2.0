@@ -6,6 +6,7 @@ import {query} from "@angular/animations";
 import {MatPaginatorIntl} from "@angular/material";
 import {DocumentSnapshot} from "@angular/fire/firestore";
 import {Post} from "../posts/shared/post.model";
+import {Tag, TagsService} from "../admin/utilities/tags.service";
 
 @Component({
   selector: 'app-home',
@@ -18,11 +19,11 @@ export class HomeComponent implements OnInit {
   showedarticles: Post[] = [];
   lastarticle: DocumentSnapshot<any>;
 
-  tags = [{tag: 'Lit'}, {tag: 'Sellout'}, {tag: 'AlbinSkaGå'}, {
-    tag: 'Dead'
-  }];
+  tags: Tag = [];
 
-  constructor(private FB: FormBuilder, private DB: DatabaseService<Post>) {
+  constructor(private FB: FormBuilder,
+              private DB: DatabaseService<Post>,
+              private tagService: TagsService) {
     // Just for testing, put in seperate service in future
     DB.list('posts', query => query.limit(25)).subscribe(posts_from_database => {
       this.posts = posts_from_database;
@@ -31,7 +32,6 @@ export class HomeComponent implements OnInit {
     this.filter = FB.group({
       'search': ['']
     });
-    this.tags.forEach(tag => tag['color'] = this.getRandomColor());
   }
 
   ngOnInit() {
@@ -39,30 +39,23 @@ export class HomeComponent implements OnInit {
     this.filter.valueChanges
       .subscribe(value => {
         this.showedarticles = [];
-        this.posts.forEach((article => {
-          if (article['name'].toLowerCase().includes(value['search'].toLowerCase())) {
-            this.showedarticles.push(article);
+        this.post.forEach((post => {
+          if (post.title.toLowerCase().includes(value['search'].toLowerCase())) {
+            this.showedarticles.push(post);
           }
         }));
       });
+
+
+
+    this.tagService.listTags().subscribe(value => this.tags = value);
   }
 
-  getRandomColor(): string {
-    var color = Math.floor(0x1000000 * Math.random()).toString(16);
-    return '#' + ('000000' + color).slice(-6);
-  }
 
-  pagechange(event: paginatorevent) {
+  pagechange() {
     this.DB.list('posts', query => query.limit(event.pageSize)).subscribe(value => {
       this.posts = value;
       this.showedarticles = value;
     });
   }
-}
-
-export interface paginatorevent {
-  previousPageIndex: number;
-  pageIndex: number;
-  pageSize: number;
-  length: number;
 }
