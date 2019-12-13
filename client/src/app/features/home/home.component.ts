@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {DatabaseService} from '../../core/database/database.service';
 import { Router } from '@angular/router';
-import {query} from '@angular/animations';
 import {MatPaginatorIntl} from '@angular/material';
 import {DocumentSnapshot} from '@angular/fire/firestore';
 import {Post} from '../posts/shared/post.model';
@@ -53,7 +52,7 @@ export class HomeComponent implements OnInit {
 
 
   pagechange() {
-    this.DB.list('posts', query => query.limit(event.pageSize)).subscribe(value => {
+    this.DB.list('posts', query => query.limit(25)).subscribe(value => {
       this.posts = value;
       this.showedarticles = value;
     });
