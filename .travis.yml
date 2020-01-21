@@ -12,5 +12,5 @@ script:
 deploy:
   skip_cleanup: true
   provider: firebase
-  token: "$FIREBASE_TOKEN"
+  token: "1//0cTm31b2ncbVaCgYIARAAGAwSNwF-L9Ir85mAFUH1eXexq2ypW9q-CFVj4G8TQVYs4966f3zrVol82zv1Plu0USeEFbb87Zemmf4"
     secure: ""
