@@ -1,9 +1,7 @@
 language: node_js
 node_js:
   - "11.0"
-branches:
-  only:
-    - host
+
 before_script:
   - npm install -g @angular/cli
 script:
