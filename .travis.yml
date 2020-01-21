@@ -13,5 +13,7 @@ script:
 deploy:
   skip_cleanup: true
   provider: firebase
+  on:
+    branch: host
   token:
     secure: "1//0cNGPxEJoO99aCgYIARAAGAwSNwF-L9Irrz3jASsczqPt3yzWTah4NLS6Qi--MttZ1wJo1HBCB4w87KXgASbZ3k6mTxGQV3YqaPQ"
