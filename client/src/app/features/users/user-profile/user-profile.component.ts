@@ -44,6 +44,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.hasPermission('do_x').then(
+      value => console.log(value)
+    );
     this.userService.user.subscribe(user =>
     {
       this.user = user;

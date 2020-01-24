@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirestoreService } from '../firebase/firestore/firestore.service';
-import { QueryFn } from '@angular/fire/firestore';
+import {AngularFirestoreCollection, QueryFn} from '@angular/fire/firestore';
 import { Observable } from 'rxjs/index';
 
 @Injectable({
@@ -38,5 +38,9 @@ export class DatabaseService<Item> {
 
   check(path: string, key: string, value: string): Observable<boolean> {
     return this.firestoreService.check(path, key, value);
+  }
+
+  col(path: string, queryFn?: QueryFn): AngularFirestoreCollection<Item> {
+    return this.firestoreService.col(path, queryFn);
   }
 }

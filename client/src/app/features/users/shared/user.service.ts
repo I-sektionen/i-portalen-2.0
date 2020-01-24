@@ -4,7 +4,7 @@ import { Role, User } from './user.model';
 import { DatabaseService } from '../../../core/database/database.service';
 import { AuthService } from '../../../core/auth/auth.service';
 import { switchMap, tap, shareReplay } from 'rxjs/operators';
-import { QueryFn } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, QueryFn, QuerySnapshot} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,16 @@ export class UserService {
 
   get isAdmin(): Observable<boolean> {
     return this.isAdmin$;
+  }
+
+  async hasPermission(action: string): Promise<boolean> {
+    const doc: QuerySnapshot<object> = await this.databaseService.col('perm_groups', ref => ref
+      .where('members', 'array-contains', 'user_x'))
+      .get().toPromise();
+    if (doc.empty) {
+      return false;
+    }
+    return !!doc.docs.find(value => value.get('permissions').includes(action));
   }
 
   setUser() {
