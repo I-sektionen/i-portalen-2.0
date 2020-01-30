@@ -1,7 +1,14 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input, Inject} from '@angular/core';
 import { Post } from '../../shared/post.model';
 
 import * as SimpleMDE from 'simplemde';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
+
+export interface DialogData {
+  post: Post;
+}
 
 @Component({
   selector: 'app-post-content',
@@ -13,7 +20,7 @@ export class PostContentComponent implements OnInit {
   @Input() post: Post;
   simplemde;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.simplemde = new SimpleMDE({
@@ -35,4 +42,25 @@ export class PostContentComponent implements OnInit {
   onClick() {
     this.simplemde.togglePreview();
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '550px',
+      data: {post: this.post}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+}
+
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+
 }
