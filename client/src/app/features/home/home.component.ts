@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   lastarticle: DocumentSnapshot<any>;
 
   tags: Tag[] = [];
+  console: any;
 
   constructor(private FB: FormBuilder,
               private DB: DatabaseService<Post>,
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
 
 
 
-    this.tagService.listTags().subscribe(value => this.tags = value);
+    this.tagService.listTags().subscribe(value => {this.tags = value; console.log(value); });
   }
 
 
