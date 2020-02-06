@@ -22,9 +22,17 @@
       </button>
     </span>
     <span *ngIf="(isLoggedIn | async)">
+
+                       <button mat-icon-button [matMenuTriggerFor]="contentMenu">
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <mat-menu #contentMenu="matMenu">
+      </mat-menu>
+
       <button mat-icon-button>
         <mat-icon>event</mat-icon>
       </button>
+
 
       <!--Content-->
       <button mat-icon-button [matMenuTriggerFor]="contentMenu">
@@ -58,10 +66,6 @@
           <!--routerLink="profile" is only used for testing-->
           <mat-icon>person</mat-icon>
           Profilsida
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications</mat-icon>
-          Notifikationer
         </button>
         <button mat-menu-item (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
