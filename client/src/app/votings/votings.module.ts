@@ -6,9 +6,10 @@ import { VotingsComponent } from './votings/votings.component';
 import { UpsertVotingComponent } from './upsert-voting/upsert-voting.component';
 import {SharedModule} from "../shared/shared.module";
 import {DynamicFormsModule} from "../dynamic-forms/dynamic-forms.module";
+import { VotingsDashboardComponent } from './votings-dashboard/votings-dashboard.component';
 
 @NgModule({
-  declarations: [VotingsComponent, UpsertVotingComponent],
+  declarations: [VotingsComponent, UpsertVotingComponent, VotingsDashboardComponent],
   exports: [UpsertVotingComponent],
   imports: [
     CommonModule,
