@@ -1,5 +1,13 @@
+<div fxLayout="wrap row">
+  <div fxFlex="100">
+    <app-hero></app-hero>
+  </div>
+  <div fxFlex="80">
+    <app-text [page]="'home'" [title]="'welcome'"></app-text>
+  </div>
 
-<app-hero></app-hero>
+</div>
+
 
 <div class="filter-container">
   <form [formGroup]="filter">
@@ -8,19 +16,17 @@
     </mat-form-field>
   </form>
   <mat-chip-list>
-    <mat-chip *ngFor="let tag of tags"  [ngStyle]="{'background-color': tag.color}"> {{tag.name}}</mat-chip>
+    <mat-chip *ngFor="let tag of tags" (selectionChange)="console.log()">{{tag.tag}}</mat-chip>
   </mat-chip-list>
 </div>
 
 <mat-paginator [length]="1337" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
-               (page)="pagechange()"></mat-paginator>
+               (page)="pagechange($event)"></mat-paginator>
 
+<div class="" fxLayout="row wrap" fxLayoutGap="0.5%">
 
-<div class="contentcontainer">
-  <div class="cards"  fxLayout="row wrap" fxLayoutGap="0.5%">
-    <happening-card fxFlex="50" fxFlex.gt-xs="45" *ngFor="let article of showedarticles" [post]="article"></happening-card>
-  </div>
-  <app-sponsor-list class="sponsors"></app-sponsor-list>
+  <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let article of showedarticles" [post]="article"></happening-card>
 
 </div>
+
 
