@@ -23,16 +23,18 @@
     </span>
     <span *ngIf="(isLoggedIn | async)">
 
-                       <button mat-icon-button [matMenuTriggerFor]="contentMenu">
+      <!--Notifications-->
+     <button mat-icon-button [matMenuTriggerFor]="notficationMenu">
         <mat-icon>notifications</mat-icon>
       </button>
-      <mat-menu #contentMenu="matMenu">
+      <mat-menu #notficationMenu="matMenu">
       </mat-menu>
 
-      <button mat-icon-button>
+      <button mat-icon-button [matMenuTriggerFor]="eventMenu">
         <mat-icon>event</mat-icon>
       </button>
-
+      <mat-menu #eventMenu="matMenu">
+      </mat-menu>
 
       <!--Content-->
       <button mat-icon-button [matMenuTriggerFor]="contentMenu">
