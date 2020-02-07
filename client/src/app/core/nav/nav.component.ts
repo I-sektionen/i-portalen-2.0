@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import {MatDialog} from '@angular/material';
-import {UserProfileComponent} from "../../features/users/user-profile/user-profile.component";
+import {UserProfileComponent} from '../../features/users/user-profile/user-profile.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, share } from 'rxjs/operators';
 import { UserService } from '../../features/users/shared/user.service';
+import {NotificationsService} from './notifications.service';
+import {NotificationsModel} from "./notifications.model";
 
 @Component({
   selector: 'app-nav',
@@ -15,12 +17,12 @@ import { UserService } from '../../features/users/shared/user.service';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
+  notifications: NotificationsModel[] = [];
 
   isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
     share(),
   );
-
   isLoggedIn: Observable<boolean>;
   isAdmin: Observable<boolean>;
   isAdminPage: Observable<boolean>;
@@ -30,10 +32,15 @@ export class NavComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
+    this.notificationsService.listQuestions().subscribe((notifications: NotificationsModel[]) => {
+      this.notifications = notifications;
+    });
+
     this.isLoggedIn = this.authService.isLoggedIn;
     this.isAdmin = this.userService.isAdmin;
     this.isAdminPage = this.router.events.pipe(
