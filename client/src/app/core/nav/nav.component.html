@@ -29,7 +29,9 @@
       </button>
       <mat-menu #notficationMenu="matMenu">
         <ul>
-          {{notifications[0].title}}
+          <li *ngFor="let notification of notifications">
+        {{notification.title}}
+          </li>
         </ul>
       </mat-menu>
 

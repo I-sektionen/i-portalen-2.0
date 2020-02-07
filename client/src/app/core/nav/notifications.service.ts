@@ -7,16 +7,13 @@ import {NotificationsModel} from './notifications.model';
   providedIn: 'root'
 })
 export class NotificationsService {
-  private readonly path = 'users/IELYXV7MNIWivHrLO470DlYPHdJ3/notifications'
-
   constructor(
     private databaseService: DatabaseService<NotificationsModel>,
     private authService: AuthService
   ) { }
 
-  listQuestions() {
-    return this.databaseService.list(this.path);
+  listNotifications() {
+      return this.databaseService.list('users/' + this.authService.uid + '/notifications');
+    }
   }
-}
-
 

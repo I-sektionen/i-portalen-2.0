@@ -9,7 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter, share } from 'rxjs/operators';
 import { UserService } from '../../features/users/shared/user.service';
 import {NotificationsService} from './notifications.service';
-import {NotificationsModel} from "./notifications.model";
+import {NotificationsModel} from './notifications.model';
 
 @Component({
   selector: 'app-nav',
@@ -37,10 +37,6 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.notificationsService.listQuestions().subscribe((notifications: NotificationsModel[]) => {
-      this.notifications = notifications;
-    });
-
     this.isLoggedIn = this.authService.isLoggedIn;
     this.isAdmin = this.userService.isAdmin;
     this.isAdminPage = this.router.events.pipe(
@@ -48,6 +44,7 @@ export class NavComponent implements OnInit {
       map((event: NavigationEnd) => event.urlAfterRedirects.indexOf('admin') !== -1),
       share()
     );
+    this.getNotifications();
   }
 
   logout() {
@@ -60,6 +57,15 @@ export class NavComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  getNotifications() {
+    this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn === true) {
+        this.notificationsService.listNotifications().subscribe((notifications: NotificationsModel[]) => {
+          this.notifications = notifications;
+        });
+      }
     });
   }
 }
