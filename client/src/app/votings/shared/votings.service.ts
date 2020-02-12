@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {DatabaseService} from "../../core/database/database.service";
-import {Voting} from "./votings.model";
+import {DatabaseService} from '../../core/database/database.service';
+import {Voting} from './votings.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VotingsService {
 
-    private readonly path = 'votings';
+  private readonly path = 'votings';
 
   constructor(private databaseService: DatabaseService<Voting>) { }
 
