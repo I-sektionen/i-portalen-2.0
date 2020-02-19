@@ -27,17 +27,18 @@
      <button mat-icon-button [matMenuTriggerFor]="notficationMenu">
         <mat-icon>notifications</mat-icon>
       </button>
-      <mat-menu #notficationMenu="matMenu">
+      <mat-menu #notficationMenu="matMenu" >
+        <div class="horizontal-scroll">
         <div *ngFor="let notification of notifications">
            <a href="{{notification.link}}" style="text-decoration: none;">
-            <button mat-menu-item>
-              <mat-icon>notifications</mat-icon>
-              {{notification.title}},
-              {{notification.body}},
-              {{notification.timestamp.toDate() | date: 'dd MMM hh:mm'}}
+            <button mat-menu-item class="normal-line-height">
+              <b>{{notification.title}}</b> <br>
+                {{notification.body}},
+                {{notification.timestamp.toDate() | date: 'dd MMM hh:mm'}}
             </button>
           </a>
         </div>
+          </div>
       </mat-menu>
 
       <button mat-icon-button [matMenuTriggerFor]="eventMenu">
