@@ -7,7 +7,12 @@ const db = admin.firestore();
 
 //New Article
 export const firebaseOnCreateArticle = functions.firestore.document('articles/{articleId}').onCreate((snapshot,context) => {
-       addNotification(snapshot.data()!.name, snapshot.data()!.name, "events", snapshot.data()!.name)
+       addNotification(snapshot.data()!.name, snapshot.data()!.name, "articles", "Ny artikel")
+  return null});
+
+//New Event
+export const firebaseOnCreateEvents = functions.firestore.document('events/{eventId}').onCreate((snapshot,context) => {
+  addNotification(snapshot.data()!.name, snapshot.data()!.name, "events", "Nytt event")
   return null});
 
 
