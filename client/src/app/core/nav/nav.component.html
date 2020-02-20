@@ -32,8 +32,9 @@
         <div *ngFor="let notification of notifications">
            <a href="{{notification.link}}" style="text-decoration: none;">
             <button mat-menu-item class="normal-line-height">
+               <mat-icon>notifications</mat-icon>
               <b>{{notification.title}}</b> <br>
-                {{notification.body}},
+                {{notification.body}} <br>
                 {{notification.timestamp.toDate() | date: 'dd MMM hh:mm'}}
             </button>
           </a>
