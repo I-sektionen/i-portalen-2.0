@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { VotingsService } from "../shared/votings.service";
+import { VotingsService } from '../shared/votings.service';
+import {Voting} from '../shared/votings.model';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-votings',
@@ -12,12 +15,11 @@ export class VotingsComponent implements OnInit {
   @Input() votingAlternative;
   @Input() userId;
 
-
   constructor(private votingsService: VotingsService) { }
-
-  ngOnInit() {
-
-  }
-  upvote() {
+  ngOnInit() { }
+  push(path: string, name: string, id: string) {
+    if (name !== '' && id !== '') {
+      return this.votingsService.insertVoting(path, {name, id});
+    }
   }
 }

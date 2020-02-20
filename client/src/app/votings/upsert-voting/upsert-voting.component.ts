@@ -31,7 +31,7 @@ export class UpsertVotingComponent implements OnChanges {
     if (this.voting) {
       this.votingsService.updateVoting(this.voting.id, voting);
     } else {
-      this.votingsService.insertVoting(voting);
+      this.votingsService.insertVoting('votings', voting); // 'votings' ska tas bort
     }
   }
 }

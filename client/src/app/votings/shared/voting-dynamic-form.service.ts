@@ -4,7 +4,7 @@ import {
   InputFormField
 } from '../../dynamic-forms/shared/dynamic-form.model';
 import {Voting} from "./votings.model";
-import{ Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
