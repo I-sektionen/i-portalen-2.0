@@ -7,7 +7,7 @@ import {Voting} from './votings.model';
 })
 export class VotingsService {
 
-    private readonly path = 'votings';
+  private readonly path = 'votings';
 
   constructor(private databaseService: DatabaseService<Voting>) { }
 
