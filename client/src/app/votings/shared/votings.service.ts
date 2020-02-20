@@ -11,12 +11,12 @@ export class VotingsService {
 
   constructor(private databaseService: DatabaseService<Voting>) { }
 
-  insertVoting(path: string, voting: Voting) { // ändra funktionen så att alla villkor inte behöver skickas med
-    if (path !== null) {
-      return this.databaseService.insert(path, voting);
-    } else {
+  insertVoting(voting: Voting) {
       return this.databaseService.insert(this.path, voting);
-    }
+  }
+
+  insertVote(path: string, voting: Voting) {
+    return this.databaseService.insert(path, voting);
   }
 
   updateVoting(id, voting: Voting) {

@@ -19,7 +19,7 @@ export class VotingsComponent implements OnInit {
   ngOnInit() { }
   push(path: string, name: string, id: string) {
     if (name !== '' && id !== '') {
-      return this.votingsService.insertVoting(path, {name, id});
+      return this.votingsService.insertVote(path, {name, id});
     }
   }
 }
