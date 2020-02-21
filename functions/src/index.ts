@@ -2,19 +2,22 @@ import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import Timestamp = admin.firestore.Timestamp;
 
+//posts, not accepted posts, denied post
 try {admin.initializeApp(functions.config().firebase);} catch(e) {}
 const db = admin.firestore();
 
-//New Article
-export const firebaseOnCreateArticle = functions.firestore.document('articles/{articleId}').onCreate((snapshot,context) => {
-       addNotification(snapshot.data()!.name, snapshot.data()!.name, "articles", "Ny artikel")
-  return null});
+//kolla varje timme
+//const publishDated: string[] = [];
 
-//New Event
-export const firebaseOnCreateEvents = functions.firestore.document('events/{eventId}').onCreate((snapshot,context) => {
-  addNotification(snapshot.data()!.name, snapshot.data()!.name, "events", "Nytt event")
-  return null});
+//New created post
+export const firebaseOnCreatePost = functions.firestore.document('posts/{postId}').onCreate((snapshot,context) => {
+    addNotification("notAccepted", snapshot.data()!.type, "events", "title")
+    return null});
 
+//Value in post is changed
+export const firebaseOnUpdatePost = functions.firestore.document('posts/{postId}').onUpdate((change, context) => {
+    addNotification("notAccepted", change.after.data()!.type, "events", "title")
+return null});
 
 
 // adds a notification with to the users who follows follow.
