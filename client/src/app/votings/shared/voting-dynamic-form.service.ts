@@ -1,10 +1,6 @@
-import { Injectable } from '@angular/core';
-import {
-  DynamicForm, DynamicFormField,
-  InputFormField
-} from '../../dynamic-forms/shared/dynamic-form.model';
-import {Voting} from "./votings.model";
-import { Validators } from '@angular/forms';
+import {Injectable} from '@angular/core';
+import {DynamicForm, DynamicFormField, InputFormField} from '../../dynamic-forms/shared/dynamic-form.model';
+import {Voting} from './poll.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +8,8 @@ import { Validators } from '@angular/forms';
 export class VotingDynamicFormService implements DynamicForm {
 
 
-  constructor() { }
+  constructor() {
+  }
 
   async getDynamicFormFields(voting?: Voting): Promise<DynamicFormField[]> {
     return [

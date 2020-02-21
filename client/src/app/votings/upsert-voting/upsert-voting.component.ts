@@ -1,8 +1,8 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {Voting} from "../shared/votings.model";
-import {DynamicFormField} from "../../dynamic-forms/shared/dynamic-form.model";
-import {VotingsService} from "../shared/votings.service";
-import {VotingDynamicFormService} from "../shared/voting-dynamic-form.service";
+import {Component, Input, OnChanges} from '@angular/core';
+import {Voting} from '../shared/poll.model';
+import {DynamicFormField} from '../../dynamic-forms/shared/dynamic-form.model';
+import {VoteService} from '../shared/vote.service';
+import {VotingDynamicFormService} from '../shared/voting-dynamic-form.service';
 
 @Component({
   selector: 'app-upsert-voting',
@@ -18,7 +18,7 @@ export class UpsertVotingComponent implements OnChanges {
 
   constructor(
     private votingDynamicFormService: VotingDynamicFormService,
-    private votingsService: VotingsService
+    private votingsService: VoteService
   ) { }
 
   ngOnChanges() {

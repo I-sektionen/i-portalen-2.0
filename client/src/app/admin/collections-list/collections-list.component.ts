@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs/index';
-import { OrganisationService } from '../../organisations/shared/organisation.service';
-import { UserService } from '../../users/shared/user.service';
-import { SponsorService } from '../../sponsors/shared/sponsor.service';
-import {VotingsService} from "../../votings/shared/votings.service";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Observable, of} from 'rxjs/index';
+import {OrganisationService} from '../../organisations/shared/organisation.service';
+import {UserService} from '../../users/shared/user.service';
+import {SponsorService} from '../../sponsors/shared/sponsor.service';
+import {VoteService} from '../../votings/shared/vote.service';
 
 @Component({
   selector: 'app-collections-list',
@@ -30,7 +30,7 @@ export class CollectionsListComponent implements OnInit {
     private userService: UserService,
     private organisationService: OrganisationService,
     private sponsorService: SponsorService,
-    private votingsService: VotingsService,
+    private votingsService: VoteService,
   ) { }
 
   ngOnInit() {

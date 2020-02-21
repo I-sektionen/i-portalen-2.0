@@ -1,10 +1,10 @@
 <div id="content">
-  <form class="create_voting" [formGroup]="createVotingsForm" (ngSubmit)="onSubmit(createVotingsForm.value)">
+  <form (ngSubmit)="onSubmit(createPollForm.value)" [formGroup]="createPollForm" class="create_voting">
     <h3>Rubrik</h3>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Huvudrubrik</mat-label>
-        <input formControlName="heading" matInput placeholder="Ska I-sektionen...?" required>
+        <input formControlName="heading" matInput placeholder="Omröstning" required>
         <mat-icon matSuffix>notes</mat-icon>
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
@@ -50,9 +50,9 @@
     </p>
     <h3>Val av resultatvisning</h3>
     <p>
-      <mat-form-field appearance="outline" class="wide" required>
+      <mat-form-field appearance="outline" class="wide">
         <mat-label>Resultatvisning</mat-label>
-        <mat-select formControlName="resultAcces">
+        <mat-select formControlName="resultAcces" required>
           <mat-option *ngFor="let type of typeList" [value]="type">
             {{type}}
           </mat-option>
@@ -61,9 +61,9 @@
     </p>
     <h3>Val för publicering</h3>
     <p>
-      <mat-form-field appearance="outline" class="wide" required>
+      <mat-form-field appearance="outline" class="wide">
         <mat-label>Publiceringsalternativ</mat-label>
-        <mat-select formControlName="publishOptions">
+        <mat-select formControlName="publishOptions" required>
           <mat-option *ngFor="let type of publishTypeList" [value]="type">
             {{type}}
           </mat-option>
@@ -71,37 +71,30 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-checkbox formControlName="verification">Använd verifieringskod</mat-checkbox>
-
-    </p>    <!--Bör kanske ligga vid varje fråga-->
-    <p>
-      <mat-checkbox formControlName="anonymous">Anonym omröstning</mat-checkbox>
-    </p>
-    <p>
-      <mat-checkbox formControlName="usePublishDate">Använd publiceringsdatum</mat-checkbox>
-    </p>
-    <p>
-      <mat-form-field class="example-full-width" appearance="outline">
+      <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>Publiceringsdatum</mat-label>
-        <input formControlName="publishDate" matInput [matDatepicker]="pdp" required>
-        <mat-datepicker-toggle matSuffix [for]="pdp"></mat-datepicker-toggle>
+        <input [matDatepicker]="pdp" formControlName="publishDate" matInput required>
+        <mat-datepicker-toggle [for]="pdp" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #pdp></mat-datepicker>
       </mat-form-field>
     </p>
-
     <p>
-      <mat-form-field class="example-full-width" appearance="outline">
+      <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>Avpubliceringsdatum</mat-label>
-        <input formControlName="unpublishDate" matInput [matDatepicker]="updp" required>
-        <mat-datepicker-toggle matSuffix [for]="updp"></mat-datepicker-toggle>
+        <input [matDatepicker]="updp" formControlName="unpublishDate" matInput required>
+        <mat-datepicker-toggle [for]="updp" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #updp></mat-datepicker>
       </mat-form-field>
+    </p>
+    <p>
+      <mat-checkbox formControlName="verification">Använd verifieringskod</mat-checkbox>
+
     </p>
     <h3>Val av event</h3>
     <p>
       <mat-form-field appearance="outline" class="wide">
         <mat-label>Event</mat-label>
-        <mat-select formControlName="eventType" required>
+        <mat-select formControlName="event" required>
           <mat-option *ngFor="let event of eventList" [value]="event">
             {{event}}
           </mat-option>
@@ -109,6 +102,5 @@
       </mat-form-field>
     </p>
     <button mat-raised-button type="submit">Submit</button>
-
   </form>
 </div>

@@ -1,0 +1,59 @@
+<div id="content">
+  <form (ngSubmit)="onSubmit(createPollQForm.value)" [formGroup]="createPollQForm" class="create_voting">
+    <h3>Fråga</h3>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Fråga</mat-label>
+        <input formControlName="question" matInput placeholder="Ska I-sektionen...?" required>
+        <mat-icon matSuffix>notes</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <h1></h1>
+    <h3>Beskrivning av röstning</h3>
+    <p>
+      <mat-form-field appearance="outline" class="wide">
+        <mat-label>Beskrivning</mat-label>
+        <textarea formControlName="desc" matInput placeholder="Vi har länge funderat på..." required></textarea>
+        <mat-icon matSuffix>notes</mat-icon>
+        <mat-hint>Hint.</mat-hint>
+      </mat-form-field>
+    </p>
+    <h3>Val av resultatåtkomst</h3>
+    <p>
+      <mat-form-field appearance="outline" class="wide">
+        <mat-label>Resultatåtkomst</mat-label>
+        <mat-select formControlName="resultAccesType" required>
+          <mat-option *ngFor="let accesType of accesList" [value]="accesType">
+            {{accesType}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <h3>Utvalda användare för resultatvisning</h3>
+    <p>
+      <mat-form-field appearance="outline" class="wide">
+        <mat-label>Utvalda användare</mat-label>
+        <textarea formControlName="extendedUsers" matInput placeholder="albja367, pesan837"></textarea>
+        <mat-icon matSuffix>notes</mat-icon>
+        <mat-hint>Använd Liu-id, skilj varje användare åt med komma.</mat-hint>
+      </mat-form-field>
+    </p>
+    <h3>Val av resultatvisning</h3>
+    <p>
+      <mat-form-field appearance="outline" class="wide">
+        <mat-label>Resultatvisning</mat-label>
+        <mat-select formControlName="resultAcces" required>
+          <mat-option *ngFor="let type of typeList" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-checkbox formControlName="anonymous">Anonym omröstning</mat-checkbox>
+    </p>
+    <button mat-raised-button type="submit">Submit</button>
+
+  </form>
+</div>

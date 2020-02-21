@@ -1,21 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {VotingsService} from '../shared/votings.service';
-import {Voting} from '../shared/votings.model';
 import {OrganisationService} from '../../organisations/shared/organisation.service';
 import {Organisation} from '../../organisations/shared/organisation.model';
 import {Observable} from 'rxjs';
+import {PollService} from '../shared/poll.service';
 
 @Component({
-  selector: 'app-create-voting',
-  templateUrl: './create-voting.component.html',
-  styleUrls: ['./create-voting.component.scss']
+  selector: 'app-create-poll',
+  templateUrl: './create-poll.component.html',
+  styleUrls: ['./create-poll.component.scss']
 })
-export class CreateVotingComponent implements OnInit {
+export class CreatePollComponent implements OnInit {
   disabled = false;
-  voting: Voting;
 
-  createVotingsForm = new FormGroup({
+  createPollForm = new FormGroup({
     heading: new FormControl(''),
     desc: new FormControl(''),
     admins: new FormControl([]),
@@ -24,11 +22,9 @@ export class CreateVotingComponent implements OnInit {
     resultAcces: new FormControl(''),
     publishOptions: new FormControl(''),
     verification: new FormControl(false),
-    anonymous: new FormControl(true),
-    usePublishDate: new FormControl(true),
     publishDate: new FormControl(''),
     unpublishDate: new FormControl(''),
-    eventType: new FormControl(false),
+    event: new FormControl(false),
   });
 
   private adminList: Observable<Organisation[]>;
@@ -43,56 +39,59 @@ export class CreateVotingComponent implements OnInit {
     'Gör resultat synliga efter man röstat',
     'Gör resultat synliga när omröstningen är stängd'];
   publishTypeList: string[] = [
-    'Visa när event startar',
     'Visa när admin startar omröstning',
+    'Visa när event startar',
     'Starta vid förspecifierad tid'];
   eventList: string[] = [
     'Vårmötet',
     'Vintermötet',
     'webgroupmötet'];
 
-  constructor(private votingsService: VotingsService, private organisationService: OrganisationService) {
-    this.createVotingsForm.get('usePublishDate').valueChanges.subscribe((useDates) => {
-      if (useDates) {
-        this.createVotingsForm.get('publishDate').enable();
-        this.createVotingsForm.get('unpublishDate').enable();
+  constructor(private pollService: PollService, private organisationService: OrganisationService) {
+    this.createPollForm.get('publishOptions').valueChanges.subscribe((publisOptions) => {
+      if (publisOptions === 'Starta vid förspecifierad tid') {
+        this.createPollForm.get('publishDate').enable();
+        this.createPollForm.get('unpublishDate').enable();
       } else {
-        this.createVotingsForm.get('publishDate').disable();
-        this.createVotingsForm.get('unpublishDate').disable();
+        this.createPollForm.get('publishDate').disable();
+        this.createPollForm.get('unpublishDate').disable();
       }
     });
     this.adminList = organisationService.listOrganisations();
   }
 
   ngOnInit() {
+    this.createPollForm.get('publishDate').disable();
+    this.createPollForm.get('unpublishDate').disable();
   }
 
   onSubmit(form) {
     const letters = /[abcdefghijklmnopqrstuv]/;
     const numbers = /^[0-9]+$/;
-    const users = form.extendedUsers.replace(/ /g, '').split(',');
-    users.forEach(user => (user.length === 8) ? alert('En eller flera utvalda användare har för kort eller långt Liu ID') :
-      (letters.test(user.substring(0, 4))) ? alert('En eller flera utvalda användare har fel format på Liu ID') :
-        (numbers.test(user.substring(5, 7))) ? alert('En eller flera utvalda användare har fel format på Liu ID') :
-          alert('Right input'));
-    this.votingsService.insertVoting({
+    const users = form.extendedUsers ? form.extendedUsers.replace(/ /g, '').toLowerCase().split(',') : '';
+    if (users) {
+      users.forEach(user => (user.length !== 8) ? alert('En eller flera utvalda användare har för kort eller långt Liu ID') :
+        (!letters.test(user.substring(0, 5))) ? alert('En eller flera utvalda användare har fel format på Liu ID') :
+          (!numbers.test(user.substring(5, 8))) ? alert('En eller flera utvalda användare har fel format på Liu ID') :
+            alert('Right input'));
+    }
+
+    this.pollService.insertPoll({
       admins: form.admins,
-      anonymous: form.anonymous,
       createdBy: '',
       desc: form.desc,
-      eventType: form.eventType,
+      event: form.event,
       extendedUsers: users,
       heading: form.heading,
       id: '',
-      publishDate: form.publishDate,
       publishOptions: form.publishOptions,
       resultAcces: form.resultAcces,
       resultAccesType: form.resultAccesType,
-      unpublishDate: form.unpublishDate,
-      verification: form.verification,
-      usePublishDate: form.usePublishDate
+      publishDate: form.publishDate ? form.publishDate : null,
+      unpublishDate: form.unpublishDate ? form.unpublishDate : null,
+      verification: form.verification ? form.verification : false,
     });
-    this.createVotingsForm.reset();
+    this.createPollForm.reset();
   }
 
 }

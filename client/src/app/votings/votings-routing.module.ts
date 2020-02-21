@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {VotingsComponent} from './votings/votings.component';
-import {CreateVotingComponent} from './create-voting/create-voting.component';
+import {CreatePollComponent} from './create-poll/create-poll.component';
+import {CreatePollqComponent} from './create-pollq/create-pollq.component';
 
 
 const routes: Routes = [
@@ -10,8 +11,12 @@ const routes: Routes = [
     component: VotingsComponent,
   },
   {
-    path: 'create_voting',
-    component: CreateVotingComponent,
+    path: 'create_poll',
+    component: CreatePollComponent,
+  },
+  {
+    path: 'create_poll_question',
+    component: CreatePollqComponent,
   }
 ];
 
