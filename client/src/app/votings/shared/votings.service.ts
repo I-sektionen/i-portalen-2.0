@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DatabaseService} from '../../core/database/database.service';
 import {Voting} from './votings.model';
 
@@ -12,7 +12,7 @@ export class VotingsService {
   constructor(private databaseService: DatabaseService<Voting>) { }
 
   insertVoting(voting: Voting) {
-      return this.databaseService.insert(this.path, voting);
+    return this.databaseService.insert('votings', voting);
   }
 
   insertVote(path: string, voting: Voting) {
