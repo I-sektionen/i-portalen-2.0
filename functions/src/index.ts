@@ -1,55 +1,39 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import Timestamp = admin.firestore.Timestamp;
-
+import {addNotificationToFollow, addNotificationToUser, paths, notificationGroupType, followNotAccepted} from "./notifications";
 //posts, not accepted posts, denied post
 try {admin.initializeApp(functions.config().firebase);} catch(e) {}
 const db = admin.firestore();
 
 //New created post => notifications to admins
-export const firebaseOnCreateNotAcceptedPost = functions.firestore.document('notAcceptedPosts/{notAcceptedPostId}').onCreate((snapshot,context) => {
-    addNotificationToFollow("notAccepted", "test", "events", "Ny post att acceptera")
+export const firebaseOnCreateNotAcceptedPost = functions.firestore.document(paths.notAcceptedPosts).onCreate((snapshot,context) => {
+    db.collection(paths.notificationGroup).where(notificationGroupType, '==', snapshot.data()!.type).get().then(dataSnapshot => {
+        dataSnapshot.forEach(data => {
+            addNotificationToFollow(followNotAccepted, data.data().notAcceptedBody, data.data().link,  snapshot.data()!.organisation);
+        });
+    }).catch(err => console.error(err))
     return null});
 
 //New post is public => notifications to the once who follow the post organisation
-export const firebaseOnPublishedPost = functions.firestore.document('posts/{postId}').onCreate((snapshot,context) => {
-    addNotificationToFollow(snapshot.data()!.organisation, snapshot.data()!.type, "events", "ny post")
+export const firebaseOnPublishedPost = functions.firestore.document(paths.posts).onCreate((snapshot,context) => {
+    db.collection(paths.notificationGroup).where(notificationGroupType, '==', snapshot.data()!.type).get().then(dataSnapshot => {
+        dataSnapshot.forEach(data => {
+    addNotificationToFollow(snapshot.data()!.organisation, data.data().newPostBody, data.data().link,  snapshot.data()!.organisation);
+        });
+    }).catch(err => console.error(err))
     return null});
 
 //Denied status is changed
-export const firebaseOnUpdatePost = functions.firestore.document('notAcceptedPosts/{notAcceptedPostId}').onUpdate((change, context) => {
+export const firebaseOnUpdatePost = functions.firestore.document(paths.notAcceptedPosts).onUpdate((change, context) => {
     if (change.after.data()!.denied !== change.before.data()!.denied) {
+        db.collection(paths.notificationGroup).where(notificationGroupType, '==', change.after.data()!.type).get().then(dataSnapshot => {
+            dataSnapshot.forEach(data => {
         if (change.after.data()!.denied === false) {
-            addNotificationToFollow("notAccepted", "test", "events", "Ny post att acceptera")
+            addNotificationToFollow(followNotAccepted, data.data().notAcceptedBody, data.data().link, change.after.data()!.organisation)
         } else {
-            addNotificationToUser(change.after.data()!.publisher, "testBody", "events", "hoppasTitle")
-        }
-    }
+            addNotificationToUser(change.after.data()!.publisher, data.data().deniedBody, data.data().link, "Tyvärr")
+        };
+            });
+        }).catch(err => console.error(err))
+    };
 return null});
-
-
-// adds a notification with to the users who follows follow.
-function addNotificationToFollow(follow: String, body: String, link: String, title: String) {
-  db.collection('users/').where("follow", 'array-contains', follow).get().then(dataSnapshot => {
-    dataSnapshot.forEach(data => {
-      db.collection('users/').doc(data.id).collection('notifications').add({body: body, link: link, timestamp: Timestamp.now(), title:title}).catch(err => console.error(err))
-    })
-  }).catch(err => console.error(err))
-};
-
-//adds a notification to the user with liuid liuid
-function addNotificationToUser(liuid: String, body: String, link: String, title: String) {
-    db.collection('users/').where("liuId", '==', liuid).get().then(dataSnapshot => {
-        dataSnapshot.forEach(data => {
-            db.collection('users/').doc(data.id).collection('notifications').add({body: body, link: link, timestamp: Timestamp.now(), title:title}).catch(err => console.error(err))
-        })
-    }).catch(err => console.error(err))
-};
-
-/*
-export const scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
-
-    console.log('This will be run every 5 minutes!');
-    return null;
-});
- */
