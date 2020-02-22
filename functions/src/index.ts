@@ -6,9 +6,6 @@ import Timestamp = admin.firestore.Timestamp;
 try {admin.initializeApp(functions.config().firebase);} catch(e) {}
 const db = admin.firestore();
 
-//kolla varje timme
-//const publishDated: string[] = [];
-
 //New created post => notifications to admins
 export const firebaseOnCreateNotAcceptedPost = functions.firestore.document('notAcceptedPosts/{notAcceptedPostId}').onCreate((snapshot,context) => {
     addNotificationToFollow("notAccepted", "test", "events", "Ny post att acceptera")
@@ -21,10 +18,12 @@ export const firebaseOnPublishedPost = functions.firestore.document('posts/{post
 
 //Denied status is changed
 export const firebaseOnUpdatePost = functions.firestore.document('notAcceptedPosts/{notAcceptedPostId}').onUpdate((change, context) => {
-    if(change.after.data()!.denied === false) {
-        addNotificationToFollow("notAccepted", "test", "events", "Ny post att acceptera")
-    } else {
-        addNotificationToUser("wilri858", "testBody", "events", "hoppasTitle")
+    if (change.after.data()!.denied !== change.before.data()!.denied) {
+        if (change.after.data()!.denied === false) {
+            addNotificationToFollow("notAccepted", "test", "events", "Ny post att acceptera")
+        } else {
+            addNotificationToUser(change.after.data()!.publisher, "testBody", "events", "hoppasTitle")
+        }
     }
 return null});
 
@@ -38,6 +37,7 @@ function addNotificationToFollow(follow: String, body: String, link: String, tit
   }).catch(err => console.error(err))
 };
 
+//adds a notification to the user with liuid liuid
 function addNotificationToUser(liuid: String, body: String, link: String, title: String) {
     db.collection('users/').where("liuId", '==', liuid).get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
@@ -46,7 +46,10 @@ function addNotificationToUser(liuid: String, body: String, link: String, title:
     }).catch(err => console.error(err))
 };
 
+/*
+export const scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
 
-
-//ska lyssna på ändringar i public => notifikation till de som förljer
-//ska lyssna på ändringar i denied => notifikation för den som publicerade/de som kan acceptera
+    console.log('This will be run every 5 minutes!');
+    return null;
+});
+ */
