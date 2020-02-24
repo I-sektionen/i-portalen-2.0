@@ -18,6 +18,8 @@ import {NotificationsModel} from './notifications.model';
 })
 export class NavComponent implements OnInit {
   notifications: NotificationsModel[] = [];
+  newNotifications = false;
+  notificationIcon = 'notification';
 
   isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
@@ -33,7 +35,7 @@ export class NavComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
   ) { }
 
   ngOnInit() {
@@ -65,7 +67,21 @@ export class NavComponent implements OnInit {
         this.notificationsService.listNotifications().subscribe((notifications: NotificationsModel[]) => {
           this.notifications = notifications;
         });
+        this.notificationsService.getUserData().subscribe(newNotifications => {
+          if (newNotifications.newNotifications) {
+            this.notificationIcon = 'notifications_active';
+            this.newNotifications = true;
+          } else {
+            this.notificationIcon = 'notifications';
+            this.newNotifications = false;
+          }
+        });
       }
     });
+  }
+  setNewNotificationsToFalse() {
+    if (this.newNotifications === true) {
+      this.notificationsService.setNewNotificationsToFalse();
+    }
   }
 }

@@ -7,3 +7,13 @@ export interface NotificationsModel {
   link: string;
   timestamp: Timestamp;
 }
+export interface UserData {
+  follow: string[];
+  liuID: string;
+  name: string;
+  newNotifications: boolean;
+  role: string;
+}
+export interface NewNotification {
+  newNotifications: boolean;
+}
