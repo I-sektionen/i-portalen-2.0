@@ -8,20 +8,20 @@ import {NewNotification, NotificationsModel, UserData} from './notifications.mod
 })
 export class NotificationsService {
   constructor(
-    private databaseService: DatabaseService<NotificationsModel>,
-    private databaseService2: DatabaseService<UserData>,
-    private databaseService3: DatabaseService<(NewNotification)>,
+    private databaseServiceNotificationsModel: DatabaseService<NotificationsModel>,
+    private databaseServiceUserData: DatabaseService<UserData>,
+    private databaseServiceNewNotification: DatabaseService<(NewNotification)>,
     private authService: AuthService
   ) { }
 
   listNotifications() {
-      return this.databaseService.list('users/' + this.authService.uid + '/notifications');
+      return this.databaseServiceNotificationsModel.list('users/' + this.authService.uid + '/notifications');
     }
     getUserData() {
-    return this.databaseService2.get('users', this.authService.uid);
+    return this.databaseServiceUserData.get('users', this.authService.uid);
     }
    setNewNotificationsToFalse() {
-    this.databaseService3.update('users', this.authService.uid, {newNotifications: false});
+    this.databaseServiceNewNotification.update('users', this.authService.uid, {newNotifications: false});
 }
   }
 
