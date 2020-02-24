@@ -14,6 +14,3 @@ export interface UserData {
   newNotifications: boolean;
   role: string;
 }
-export interface NewNotification {
-  newNotifications: boolean;
-}
