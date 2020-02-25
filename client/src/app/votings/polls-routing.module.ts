@@ -1,14 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {VotingsComponent} from './votings/votings.component';
+import {VoteComponent} from './votings/vote.component';
 import {CreatePollComponent} from './create-poll/create-poll.component';
 import {CreatePollqComponent} from './create-pollq/create-pollq.component';
+import {PollDashboardComponent} from './poll-dashboard/poll-dashboard.component';
 
 
 const routes: Routes = [
   {
-    path: 'votings',
-    component: VotingsComponent,
+    path: 'polls',
+    component: VoteComponent,
   },
   {
     path: 'create_poll',
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'create_poll_question',
     component: CreatePollqComponent,
+  },
+  {
+    path: 'poll_dashboard',
+    component: PollDashboardComponent,
   }
 ];
 
@@ -24,4 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VotingsRoutingModule { }
+export class PollsRoutingModule {
+}

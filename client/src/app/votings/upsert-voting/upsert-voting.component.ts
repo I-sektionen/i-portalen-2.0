@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {Voting} from '../shared/poll.model';
+import {Poll} from '../shared/poll.model';
 import {DynamicFormField} from '../../dynamic-forms/shared/dynamic-form.model';
 import {VoteService} from '../shared/vote.service';
 import {VotingDynamicFormService} from '../shared/voting-dynamic-form.service';
@@ -11,7 +11,7 @@ import {VotingDynamicFormService} from '../shared/voting-dynamic-form.service';
 })
 export class UpsertVotingComponent implements OnChanges {
 
-  @Input() voting: Voting;
+  @Input() voting: Poll;
 
   votingFormFields: DynamicFormField[];
 
@@ -27,11 +27,11 @@ export class UpsertVotingComponent implements OnChanges {
     });
   }
 
-  submit(voting) {
+  /*submit(voting) {
     if (this.voting) {
       this.votingsService.updateVoting(this.voting.id, voting);
     } else {
       this.votingsService.insertVoting(voting);
     }
-  }
+  }*/
 }

@@ -4,10 +4,10 @@ import {VoteService} from '../shared/vote.service';
 
 @Component({
   selector: 'app-votings',
-  templateUrl: './votings.component.html',
-  styleUrls: ['./votings.component.scss']
+  templateUrl: './vote.component.html',
+  styleUrls: ['./vote.component.scss']
 })
-export class VotingsComponent implements OnInit {
+export class VoteComponent implements OnInit {
 
   constructor(private votingsService: VoteService) {
   }

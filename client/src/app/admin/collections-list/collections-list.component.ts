@@ -52,7 +52,7 @@ export class CollectionsListComponent implements OnInit {
         break;
       }
       case 'votings': {
-        this.dataSource = this.votingsService.listVotings();
+        this.dataSource = this.votingsService.listVotes();
         this.displayedColumns = ['name', 'editItem', 'deleteItem'];
         break;
       }

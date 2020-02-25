@@ -48,8 +48,8 @@ export class CreatePollComponent implements OnInit {
     'webgroupmötet'];
 
   constructor(private pollService: PollService, private organisationService: OrganisationService) {
-    this.createPollForm.get('publishOptions').valueChanges.subscribe((publisOptions) => {
-      if (publisOptions === 'Starta vid förspecifierad tid') {
+    this.createPollForm.get('publishOptions').valueChanges.subscribe((publishOptions) => {
+      if (publishOptions === 'Starta vid förspecifierad tid') {
         this.createPollForm.get('publishDate').enable();
         this.createPollForm.get('unpublishDate').enable();
       } else {
