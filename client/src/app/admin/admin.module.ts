@@ -9,6 +9,7 @@ import {TextEditComponent} from './text-edit/text-edit.component';
 import {
   MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
   MatDividerModule,
   MatExpansionModule,
   MatFormFieldModule,
@@ -25,7 +26,11 @@ import {CollectionsTableComponent} from './collections-table/collections-table.c
 import {CollectionsUpsertComponent} from './collections-upsert/collections-upsert.component';
 import {SponsorsModule} from '../sponsors/sponsors.module';
 import {PollsModule} from '../votings/polls.module';
-import {PollAdminComponent} from './poll-admin/poll-admin.component';
+import {PollAdminComponent} from './polls/poll-admin/poll-admin.component';
+import {CreatePollComponent} from './polls/create-poll/create-poll.component';
+import {CreatePollqComponent} from './polls/create-pollq/create-pollq.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import {PollAdminComponent} from './poll-admin/poll-admin.component';
     CollectionsListComponent,
     CollectionsTableComponent,
     CollectionsUpsertComponent,
-    PollAdminComponent
+    PollAdminComponent,
+    CreatePollComponent,
+    CreatePollqComponent
   ],
   exports: [],
   providers: [],
@@ -64,6 +71,9 @@ import {PollAdminComponent} from './poll-admin/poll-admin.component';
 
     // Other
     MarkdownToHtmlModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
   ]
 })
 export class AdminModule { }

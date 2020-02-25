@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Poll} from '../../votings/shared/poll.model';
-import {PollService} from '../../votings/shared/poll.service';
+import {Poll} from '../../../votings/shared/poll.model';
+import {PollService} from '../../../votings/shared/poll.service';
 
 @Component({
   selector: 'app-poll-admin',

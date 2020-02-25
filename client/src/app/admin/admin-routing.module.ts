@@ -4,7 +4,9 @@ import {AdminComponent} from './admin.component';
 import {TextEditComponent} from './text-edit/text-edit.component';
 import {AdminGuard} from '../core/auth/guards/admin.guard';
 import {CollectionsListComponent} from './collections-list/collections-list.component';
-import {PollAdminComponent} from './poll-admin/poll-admin.component';
+import {PollAdminComponent} from './polls/poll-admin/poll-admin.component';
+import {CreatePollComponent} from './polls/create-poll/create-poll.component';
+import {CreatePollqComponent} from './polls/create-pollq/create-pollq.component';
 
 const routes: Routes = [
   {
@@ -27,7 +29,15 @@ const routes: Routes = [
       {
         path: 'poll_admin',
         component: PollAdminComponent,
-      }
+      },
+      {
+        path: 'create_poll',
+        component: CreatePollComponent,
+      },
+      {
+        path: 'poll_admin/:id',
+        component: CreatePollqComponent,
+      },
     ]
   }
 ];

@@ -8,7 +8,6 @@ import {Pollq} from './pollq';
 })
 export class PollService {
   private readonly path = 'polls';
-
   constructor(private databaseService: DatabaseService<Poll>, private databasequestionService: DatabaseService<Pollq>) {
   }
 
@@ -34,23 +33,23 @@ export class PollService {
   }
 
   // Poll Question Service
-  insertPollQ(pollq: Pollq) {
-    return this.databasequestionService.insert(this.path, pollq);
+  insertPollQ(pollq: Pollq, pollId) {
+    return this.databasequestionService.insert(this.path + '/' + pollId + '/questions', pollq);
   }
 
-  updatePollQ(id, pollq: Pollq) {
-    return this.databasequestionService.update(this.path, id, pollq);
+  updatePollQ(id, pollq: Pollq, pollId) {
+    return this.databasequestionService.update(this.path + '/' + pollId + '/questions', id, pollq);
   }
 
-  getPollQ(id) {
-    return this.databasequestionService.get(this.path, id);
+  getPollQ(id, pollId) {
+    return this.databasequestionService.get(this.path + '/' + pollId + '/questions', id);
   }
 
-  listPollQs() {
-    return this.databasequestionService.list(this.path);
+  listPollQs(pollId) {
+    return this.databasequestionService.list(this.path + '/' + pollId + '/questions');
   }
 
-  deletePollQ(id) {
-    return this.databasequestionService.delete(this.path, id);
+  deletePollQ(id, pollId) {
+    return this.databasequestionService.delete(this.path + '/' + pollId + '/questions', id);
   }
 }
