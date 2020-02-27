@@ -13,7 +13,8 @@ import {DocumentSnapshot} from "@angular/fire/firestore";
 })
 export class HomeComponent implements OnInit {
   filter: FormGroup;
-  articles: Array<article>;
+  articles: article[];
+
   showedarticles: Array<article> = [];
   lastarticle: DocumentSnapshot<any>;
 
@@ -23,14 +24,17 @@ export class HomeComponent implements OnInit {
 
   constructor(private FB: FormBuilder, private DB: DatabaseService<article>) {
     // Just for testing, put in seperate service in future
-    DB.list('articles', query => query.limit(25)).subscribe(value => {
-      this.articles = value;
-      this.showedarticles = value;
+    DB.list('articles', query => query.limit(25)).subscribe((result: article[]) => {
+      console.log(result);
+      this.articles = result;
+
+      //this.approved = value;
+      this.showedarticles = result;
     });
     this.filter = FB.group({
       'search': ['']
     });
-    this.tags.forEach(tag => tag['color'] = this.getRandomColor())
+    this.tags.forEach(tag => tag['color'] = this.getRandomColor());
   }
 
   ngOnInit() {
@@ -39,7 +43,7 @@ export class HomeComponent implements OnInit {
       .subscribe(value => {
         this.showedarticles = [];
         this.articles.forEach((article => {
-          if (article['name'].toLowerCase().includes(value['search'].toLowerCase())) {
+          if (article['name'].toLowerCase().includes(value['search'].toLowerCase())) { //tolowercase konverterar till små bokstäver
             this.showedarticles.push(article);
           }
         }));
@@ -61,7 +65,8 @@ export class HomeComponent implements OnInit {
 
 // Just for testing, put in diffrent file
 export interface article {
-  name: string
+  name: string;
+  approved?: boolean;
 }
 
 export interface paginatorevent {

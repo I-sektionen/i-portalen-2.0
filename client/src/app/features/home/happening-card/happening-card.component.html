@@ -45,11 +45,11 @@
         </span>
       </mat-card-subtitle>
 
-    <mat-card-title><a routerLink="/iforum">{{ this.articleName }}</a></mat-card-title>
+    <mat-card-title><a routerLink="/iforum">{{ this.article.name }}</a></mat-card-title>
 
 
     <p>
-      Vad har du drömt om att förändra med i-sektionen? Sväng förbi oss och berätta under vårens i-forum!
+      Vad har du drömt om att förändra med i-sektionen? Sväng förbi oss och berätta under vårens i-forum LOLTYLER1!
     </p>
   </mat-card-content>
 
@@ -63,6 +63,11 @@
       <span class="organisation-item">
         <span mat-card-avatar class="header-image"></span>
         <mat-card-subtitle>Ivent</mat-card-subtitle>
+
+      </span>
+
+      <span class="approved">
+        <mat-card-subtitle> Artikel {{this.article.approved ? 'godkänd' : 'granskas'}} </mat-card-subtitle>
       </span>
 
       <span class="date-item">

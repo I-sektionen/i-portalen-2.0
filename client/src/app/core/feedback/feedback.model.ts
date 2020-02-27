@@ -3,7 +3,8 @@ export const enum FeedbackMessage {
   DefaultError = 'Något gick fel.',
   Login = 'Du har loggats in.',
   Admin = 'Du har inte tillåtelse att besöka den sidan.',
-  TextEdit = 'Text uppdaterad.'
+  TextEdit = 'Text uppdaterad.',
+  Publish = 'Artikeln har skickats in och inväntar nu godkännande från admins',
 }
 
 export const enum FeedbackType {
