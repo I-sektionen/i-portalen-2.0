@@ -1,5 +1,5 @@
 <mat-card>
-  <img routerLink="/readmore" class="card-img" mat-card-image src="https://iportalen-us.s3.amazonaws.com/client/article/1077/attachments/Internship%20ad_STHLM%20spring%2020.jpg">
+  <img routerLink="/article/{{post.id}}" class="card-img" mat-card-image src="https://iportalen-us.s3.amazonaws.com/client/article/1077/attachments/Internship%20ad_STHLM%20spring%2020.jpg">
   <mat-card-header>
 
   <div class="tag-item">{{post.tag}}</div>
@@ -45,7 +45,7 @@
         </span>
       </mat-card-subtitle>
 
-    <mat-card-title><a routerLink="/{{post.id}}">{{post.title}}</a></mat-card-title>
+    <mat-card-title><a routerLink="article/{{post.id}}">{{post.title}}</a></mat-card-title>
 
     <p>
       {{post.ingress}}
@@ -64,7 +64,7 @@
         <mat-card-subtitle>{{post.author}}</mat-card-subtitle>
       </span>
 
-      <span class="readmore"><a routerLink="/{{post.id}}">
+      <span class="readmore"><a routerLink="/article/{{post.id}}">
         <mat-card-subtitle class="readmore">Läs mer</mat-card-subtitle>
         </a>
       </span>
