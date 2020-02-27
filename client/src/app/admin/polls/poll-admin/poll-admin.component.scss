@@ -1,0 +1,14 @@
+#poll-component {
+  padding: 50px;
+}
+
+.poll {
+  margin: 5px;
+  min-width: 500px;
+  width: 25%;
+}
+
+#container {
+  display: flex;
+  flex-flow: row wrap;
+}
