@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {article} from '../home.component';
 
 @Component({
   selector: 'happening-card',
@@ -6,11 +7,14 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./happening-card.component.scss']
 })
 export class HappeningCardComponent implements OnInit {
-  @Input("articleName") articleName: string;
+  @Input() article: article;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
+
 
 }

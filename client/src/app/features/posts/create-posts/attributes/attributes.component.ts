@@ -1,24 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AngularFireUploadTask } from '@angular/fire/storage';
-import { DynamicFormField } from '../../../../shared/dynamic-forms/shared/dynamic-form.model';
-import { FormGroup } from '@angular/forms';
-import { Post } from '../../shared/post.model';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AngularFireUploadTask} from '@angular/fire/storage';
+import {Post} from '../../shared/post.model';
 
 import * as _moment from 'moment';
-import {
-  DateTimeAdapter,
-  OWL_DATE_TIME_FORMATS,
-  OWL_DATE_TIME_LOCALE
-} from 'ng-pick-datetime';
-import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+import {DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE} from 'ng-pick-datetime';
+import {MomentDateTimeAdapter} from 'ng-pick-datetime-moment';
+import {StorageService} from '../../../../core/storage/storage.service';
+import {FireStorageService} from '../../../../core/firebase/fire-storage/fire-storage.service';
+import {DatabaseService} from "../../../../core/database/database.service";
+import {FeedbackService} from "../../../../core/feedback/feedback.service";
+import {FeedbackMessage, FeedbackType} from "../../../../core/feedback/feedback.model";
+import {Router} from "@angular/router";
 
 //import { FormControl } from '@angular/forms';
-
-import { StorageService } from '../../../../core/storage/storage.service';
-import { FireStorageService } from '../../../../core/firebase/fire-storage/fire-storage.service';
-
-import {FirebaseStorage} from "@angular/fire";
-import {DatabaseService} from "../../../../core/database/database.service";
 //import { AngularFireUploadTask } from '@angular/fire/storage';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
@@ -54,8 +48,16 @@ export class AttributesComponent implements OnInit {
   typeOne: string = 'Artikel';
   typeTwo: string = 'Event';
   minPublishDate: Date = new Date(Date.now());
+  fileName: string;
+  uploading = false;
+  uploadPercentage = 0;
+  url: any;
 
-  constructor(private storageService: StorageService, private fireStorageService: FireStorageService, private dataBaseService: DatabaseService<Post>) {}
+  constructor(private storageService: StorageService,
+              private fireStorageService: FireStorageService,
+              private dataBaseService: DatabaseService<Post>,
+              private feedbackServ: FeedbackService,
+              private router: Router) {}
 
   ngOnInit() {}
 
@@ -63,13 +65,18 @@ export class AttributesComponent implements OnInit {
     this.postChange.emit(this.post);
   }
 
-  fileName: string;
-  uploading = false;
-  uploadPercentage = 0;
-  url: any;
 
-  publish() {
-    this.dataBaseService.insert('posts', this.post);
+
+  async publish() {
+    console.log('tjoooo');
+    try {
+      await this.dataBaseService.insert('posts', this.post);
+      this.feedbackServ.message({message: FeedbackMessage.Publish, type: FeedbackType.Primary});
+      await this.router.navigateByUrl('/');
+    } catch (e) {
+      this.feedbackServ.message({message: FeedbackMessage.DefaultError, type: FeedbackType.Error});
+    }
+
   }
 
   uploadImageFile(event) {
