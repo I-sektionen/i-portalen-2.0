@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import {MatDialog} from '@angular/material';
-import {UserProfileComponent} from "../../features/users/user-profile/user-profile.component";
+import {UserProfileComponent} from '../../features/users/user-profile/user-profile.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, share } from 'rxjs/operators';
 import { UserService } from '../../features/users/shared/user.service';

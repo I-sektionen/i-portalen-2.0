@@ -1,0 +1,23 @@
+<h1>
+  Mina artiklar
+</h1>
+<mat-list>
+  <h2 mat-subheader>Godtjända artiklar</h2>
+    <p *ngFor="let article of articles">
+      <mat-list-item *ngIf="article.state === 'ok'">
+        {{article.article}}
+      </mat-list-item>
+    </p>
+  <h2 mat-subheader>Ej godtjända artiklar</h2>
+  <p *ngFor="let article of articles">
+    <mat-list-item *ngIf="article.state === 'ej ok'">
+      {{article.article}}
+    </mat-list-item>
+  </p>
+  <h2 mat-subheader>Artiklar med kommentarer</h2>
+  <p *ngFor="let article of articles">
+    <mat-list-item *ngIf="article.state === 'kommenterad'">
+      {{article.article}}
+    </mat-list-item>
+  </p>
+</mat-list>

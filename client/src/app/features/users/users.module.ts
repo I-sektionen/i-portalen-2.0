@@ -14,9 +14,12 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MyPostsComponent } from './my-posts/my-posts.component';
+import {MatListModule} from '@angular/material/list';
+import { ApproveArticlesComponent } from './approve-articles/approve-articles.component';
 
 @NgModule({
-  declarations: [UserLoginComponent, UserProfileComponent ],
+  declarations: [UserLoginComponent, UserProfileComponent, MyPostsComponent, ApproveArticlesComponent ],
   exports: [UserLoginComponent],
   providers: [],
   imports: [
@@ -31,7 +34,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule
   ]
 })
 export class UsersModule { }
