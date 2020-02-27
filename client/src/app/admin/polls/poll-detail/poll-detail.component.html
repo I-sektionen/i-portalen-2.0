@@ -1,0 +1,12 @@
+<div *ngIf="(poll$ | async) as poll;">
+  <h1>{{poll.heading}}</h1>
+  <h3>{{poll.desc}}</h3>
+
+  <button mat-raised-button routerLink="create_poll_question">Lägg till fråga</button>
+  <button mat-raised-button routerLink="../">Tillbaka</button>
+
+
+  <div *ngFor="let pollQ of qList | async">
+    <h1>{{pollQ.question}}</h1>
+  </div>
+</div>

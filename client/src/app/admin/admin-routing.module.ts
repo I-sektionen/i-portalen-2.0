@@ -7,6 +7,7 @@ import {CollectionsListComponent} from './collections-list/collections-list.comp
 import {PollAdminComponent} from './polls/poll-admin/poll-admin.component';
 import {CreatePollComponent} from './polls/create-poll/create-poll.component';
 import {CreatePollqComponent} from './polls/create-pollq/create-pollq.component';
+import {PollDetailComponent} from './polls/poll-detail/poll-detail.component';
 
 const routes: Routes = [
   {
@@ -31,11 +32,15 @@ const routes: Routes = [
         component: PollAdminComponent,
       },
       {
-        path: 'create_poll',
+        path: 'poll_admin/create_poll',
         component: CreatePollComponent,
       },
       {
         path: 'poll_admin/:id',
+        component: PollDetailComponent,
+      },
+      {
+        path: 'poll_admin/:id/create_poll_question',
         component: CreatePollqComponent,
       },
     ]

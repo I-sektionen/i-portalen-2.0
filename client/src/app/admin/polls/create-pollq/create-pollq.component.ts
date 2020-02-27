@@ -51,6 +51,7 @@ export class CreatePollqComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.pollService.getPoll(this.id).subscribe(res => this.poll = res);
+    console.log(this.id);
   }
 
   onSubmit(form) {
@@ -66,8 +67,8 @@ export class CreatePollqComponent implements OnInit {
 
     this.pollService.insertPollQ({
       anonymous: false,
-      poll: '',
-      question: '',
+      poll: this.poll.id,
+      question: form.question,
       status: false,
       createdBy: '',
       desc: form.desc,

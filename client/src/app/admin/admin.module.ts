@@ -31,6 +31,7 @@ import {CreatePollComponent} from './polls/create-poll/create-poll.component';
 import {CreatePollqComponent} from './polls/create-pollq/create-pollq.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {PollDetailComponent} from './polls/poll-detail/poll-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     CollectionsUpsertComponent,
     PollAdminComponent,
     CreatePollComponent,
-    CreatePollqComponent
+    CreatePollqComponent,
+    PollDetailComponent
   ],
   exports: [],
   providers: [],

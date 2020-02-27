@@ -1,3 +1,6 @@
 <h3>Omröstningar</h3>
 
 <p *ngFor="let poll of pollList | async" routerLink="{{poll.id}}"> {{poll.heading}} </p>
+
+
+<button mat-flat-button routerLink="create_poll">Skapa poll</button>
