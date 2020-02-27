@@ -113,7 +113,7 @@
         <mat-icon>storage</mat-icon>
         Databas
       </a>
-      <a mat-list-item routerLink="admin/redigera-texter">
+      <a mat-list-item routerLink="admin/redigera-texter" *ngIf="(editText | async)">
         <mat-icon>text_fields</mat-icon>
         Redigera texter
       </a>

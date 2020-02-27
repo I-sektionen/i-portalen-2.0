@@ -8,6 +8,7 @@ import {UserProfileComponent} from "../../features/users/user-profile/user-profi
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, share } from 'rxjs/operators';
 import { UserService } from '../../features/users/shared/user.service';
+import {Permissions} from '../auth/permissions.enum';
 
 @Component({
   selector: 'app-nav',
@@ -24,6 +25,7 @@ export class NavComponent implements OnInit {
   isLoggedIn: Observable<boolean>;
   isAdmin: Observable<boolean>;
   isAdminPage: Observable<boolean>;
+  editText: Observable<boolean>;
 
   constructor(
     public dialog: MatDialog,
@@ -34,8 +36,9 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.editText = this.userService.hasPermission(Permissions.Edit_Texts);
     this.isLoggedIn = this.authService.isLoggedIn;
-    this.isAdmin = this.userService.isAdmin;
+    this.isAdmin = this.userService.hasPermission(Permissions.Open_Admin_Interface);
     this.isAdminPage = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map((event: NavigationEnd) => event.urlAfterRedirects.indexOf('admin') !== -1),

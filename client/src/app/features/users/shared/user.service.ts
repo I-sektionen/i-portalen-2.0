@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import { Role, User } from './user.model';
 import { DatabaseService } from '../../../core/database/database.service';
 import { AuthService } from '../../../core/auth/auth.service';
-import { switchMap, tap, shareReplay } from 'rxjs/operators';
+import {switchMap, tap, shareReplay, map} from 'rxjs/operators';
 import {AngularFirestore, AngularFirestoreCollection, QueryFn, QuerySnapshot} from '@angular/fire/firestore';
+import {Permissions} from '../../../core/auth/permissions.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import {AngularFirestore, AngularFirestoreCollection, QueryFn, QuerySnapshot} fr
 export class UserService {
 
   private readonly path = 'users';
+  private readonly perm_path = 'perm_groups';
 
   private user$: Observable<User>;
   private isAdmin$: Observable<boolean>;
@@ -35,16 +37,6 @@ export class UserService {
     return this.isAdmin$;
   }
 
-  async hasPermission(action: string): Promise<boolean> {
-    const doc: QuerySnapshot<object> = await this.databaseService.col('perm_groups', ref => ref
-      .where('members', 'array-contains', 'user_x'))
-      .get().toPromise();
-    if (doc.empty) {
-      return false;
-    }
-    return !!doc.docs.find(value => value.get('permissions').includes(action));
-  }
-
   setUser() {
     this.user$ = this.authService.authUser.pipe(
       switchMap(authUser => {
@@ -65,4 +57,25 @@ export class UserService {
   listUsers(queryFn?: QueryFn) {
     return this.databaseService.list(this.path, queryFn);
   }
+
+  hasPermission(action: Permissions): Observable<boolean> {
+    return this.authService.isLoggedIn.pipe(
+      switchMap(
+        (loggedIn) => {
+          if (loggedIn) {
+          return this.databaseService.col(this.perm_path, ref => ref
+            .where('members', 'array-contains', this.uid))
+            .get()
+            .pipe(
+              map(groups => !!groups.docs.find(value => {const perm = value.get('permissions');
+                return perm.includes(action) || perm.includes(Permissions.Super);
+              }))
+            );
+        }
+          return of(false);
+        }
+      )
+    );
+  }
+
 }

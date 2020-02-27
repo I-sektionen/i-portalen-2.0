@@ -4,12 +4,14 @@ import { AdminComponent } from './admin.component';
 import { TextEditComponent } from './text-edit/text-edit.component';
 import { AdminGuard } from '../../core/auth/guards/admin.guard';
 import { CollectionsListComponent } from './collections-list/collections-list.component';
+import {PermissionGuard} from '../../core/auth/guards/permission.guard';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AdminGuard],
+    canActivate: [PermissionGuard],
+    data: {action: 'open-admin-interface'},
     children: [
       {
         path: '',

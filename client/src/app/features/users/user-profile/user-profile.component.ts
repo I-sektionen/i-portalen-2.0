@@ -44,9 +44,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.hasPermission('do_x').then(
-      value => console.log(value)
-    );
+
     this.userService.user.subscribe(user =>
     {
       this.user = user;
@@ -58,7 +56,7 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});
       this.userInformation.patchValue({'currentYear': user.currentYear});
-    })
+    });
   }
 
 
