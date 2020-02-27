@@ -17,6 +17,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import {MatListModule} from '@angular/material/list';
 import { ApproveArticlesComponent } from './approve-articles/approve-articles.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
   declarations: [UserLoginComponent, UserProfileComponent, MyPostsComponent, ApproveArticlesComponent ],
@@ -26,6 +28,7 @@ import { ApproveArticlesComponent } from './approve-articles/approve-articles.co
     CommonModule,
     ReactiveFormsModule,
     UsersRoutingModule,
+    SharedModule,
 
     // Material
     MatCardModule,
@@ -35,7 +38,8 @@ import { ApproveArticlesComponent } from './approve-articles/approve-articles.co
     MatSlideToggleModule,
     MatSelectModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatPaginatorModule
   ]
 })
 export class UsersModule { }

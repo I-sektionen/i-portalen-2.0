@@ -1,23 +1,17 @@
-<h1>
-  Mina artiklar
-</h1>
-<mat-list>
-  <h2 mat-subheader>Godtjända artiklar</h2>
-    <p *ngFor="let article of articles">
-      <mat-list-item *ngIf="article.state === 'ok'">
-        {{article.article}}
-      </mat-list-item>
-    </p>
-  <h2 mat-subheader>Ej godtjända artiklar</h2>
-  <p *ngFor="let article of articles">
-    <mat-list-item *ngIf="article.state === 'ej ok'">
-      {{article.article}}
-    </mat-list-item>
-  </p>
-  <h2 mat-subheader>Artiklar med kommentarer</h2>
-  <p *ngFor="let article of articles">
-    <mat-list-item *ngIf="article.state === 'kommenterad'">
-      {{article.article}}
-    </mat-list-item>
-  </p>
-</mat-list>
+<div class="top">
+  <mat-form-field>
+    <input class="search" matInput placeholder="Sök" [formControl]="filter.controls['search']" type="search">
+  </mat-form-field>
+
+  <mat-paginator class="paginator" [length]="500" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
+                 (page)="pagechange($event)">
+
+  </mat-paginator>
+</div>
+
+
+<div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
+
+   <happening-card *ngFor="let article of articles" [article]="article"></happening-card>
+
+ </div>

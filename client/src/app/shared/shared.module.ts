@@ -13,6 +13,7 @@ import { TableComponent } from './table/table.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 import { ShufflePipe } from './pipes/shuffle.pipe';
+import {HappeningCardComponent} from "../features/home/happening-card/happening-card.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     TreeComponent,
     AddressFormComponent,
     TableComponent,
+    HappeningCardComponent,
 
     // Pipes
     GroupByPipe,
@@ -32,6 +34,7 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     PageNotFoundComponent,
     DragDropComponent,
     DashboardComponent,
+    HappeningCardComponent,
     TreeComponent,
     AddressFormComponent,
     TableComponent,

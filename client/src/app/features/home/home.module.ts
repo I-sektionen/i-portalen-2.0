@@ -23,7 +23,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HappeningCardComponent } from './happening-card/happening-card.component';
 @NgModule({
-  declarations: [HomeComponent, HeroComponent, HappeningCardComponent],
+  declarations: [HomeComponent, HeroComponent],
 
   exports: [HomeComponent],
   imports: [
