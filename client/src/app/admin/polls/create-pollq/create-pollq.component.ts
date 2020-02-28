@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {PollService} from '../../../votings/shared/poll.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Poll} from '../../../votings/shared/poll.model';
 import {Observable} from 'rxjs';
+import {FirestoreService} from '../../../core/firebase/firestore/firestore.service';
 
 @Component({
   selector: 'app-create-vote',
@@ -15,6 +16,7 @@ export class CreatePollqComponent implements OnInit {
 
   poll$: Observable<Poll>;
   id: string;
+  sum = 0;
 
   createPollQForm = new FormGroup({
     question: new FormControl(''),
@@ -46,7 +48,9 @@ export class CreatePollqComponent implements OnInit {
     'Vintermötet',
     'webgroupmötet'];
 
-  constructor(private pollService: PollService, private route: ActivatedRoute) {
+  constructor(private pollService: PollService,
+              private route: ActivatedRoute, private router: Router,
+              private firestoreService: FirestoreService<any>) {
   }
 
   ngOnInit() {
@@ -64,6 +68,10 @@ export class CreatePollqComponent implements OnInit {
           (!numbers.test(user.substring(5, 8))) ? alert('En eller flera utvalda användare har fel format på Liu ID') :
             alert('Right input'));
     }
+    this.poll$.subscribe(res => this.sum = res.questionSum + 1);
+    this.firestoreService.update('polls', this.id, {
+      questionSum: this.sum
+    });
 
     this.pollService.insertPollQ({
       anonymous: false,
@@ -77,15 +85,7 @@ export class CreatePollqComponent implements OnInit {
       resultAcces: form.resultAcces,
       resultAccesType: form.resultAccesType,
     }, this.id);
-    this.createPollQForm.reset({
-      anonymous: true,
-      question: '',
-      desc: '',
-      extendedUsers: '',
-      id: '',
-      resultAcces: '',
-      resultAccesType: '',
-    });
+    this.router.navigate([`../`], {relativeTo: this.route});
   }
 
 }

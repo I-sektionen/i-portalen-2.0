@@ -32,6 +32,10 @@ export class PollService {
     return this.databaseService.delete(this.path, id);
   }
 
+  upsertPoll(id, data) {
+    return this.databaseService.upsert(this.path, id, data);
+  }
+
   // Poll Question Service
   insertPollQ(pollq: Pollq, pollId) {
     return this.databasequestionService.insert(this.path + '/' + pollId + '/questions', pollq);

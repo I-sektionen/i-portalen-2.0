@@ -12,5 +12,5 @@ export interface Poll {
   unpublishDate?: string;
   event: string;
   createdBy: string;
-  questionSum: Number;
+  questionSum: number;
 }
