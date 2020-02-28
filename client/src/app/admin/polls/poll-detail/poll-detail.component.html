@@ -1,12 +1,31 @@
 <div *ngIf="(poll$ | async) as poll;">
-  <h1>{{poll.heading}}</h1>
-  <h3>{{poll.desc}}</h3>
-
+  <h3>{{poll.heading}}</h3>
+  <p><span class="bold">Beskrivning: </span>{{poll.desc}}</p>
+  <p><span class="bold">Skapad av:</span>{{poll.createdBy}}</p>
+  <p><span class="bold">Event: </span>{{poll.event}}</p>
+  <p><span class="bold">Resultatåtkomst: </span>{{poll.resultAcces}}</p>
+  <p><span class="bold">Resultatåtkomsttyp: </span>{{poll.resultAccesType}}</p>
+  <p><span class="bold">Använd verifiering: </span>{{poll.verification}}</p>
+  <p><span class="bold">Antal frågor: </span>{{poll.questionSum}}</p>
+  <div *ngIf="(poll.publishOptions==='Starta vid förspecifierad tid'); else publishDate">
+    <p><span class="bold">Publiceringsdatum: </span>{{poll.publishDate}}</p>
+    <p><span class="bold">Avpubliceringsdatum: </span>{{poll.unpublishDate}}</p>
+  </div>
+  <ng-template #publishDate><p><span class="bold">Publiceringsalternativ: </span>{{poll.publishOptions}}</p>
+  </ng-template>
   <button mat-raised-button routerLink="create_poll_question">Lägg till fråga</button>
   <button mat-raised-button routerLink="../">Tillbaka</button>
 
+  <h2>Frågor</h2>
+  <mat-card *ngFor="let pollQ of qList | async">
+    <h3>{{pollQ.question}}</h3>
+    <p>{{pollQ.anonymous}}</p>
+    <p>{{pollQ.createdBy}}</p>
+    <p>{{pollQ.desc}}</p>
+    <p>{{pollQ.resultAcces}}</p>
+    <p>{{pollQ.resultAccesType}}</p>
+    <p>{{pollQ.status}}</p>
+    <button (click)="deletePollQ(pollQ.id)" color="warn" mat-raised-button>Ta bort</button>
+  </mat-card>
 
-  <div *ngFor="let pollQ of qList | async">
-    <h1>{{pollQ.question}}</h1>
-  </div>
 </div>

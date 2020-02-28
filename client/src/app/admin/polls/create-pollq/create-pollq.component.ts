@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {PollService} from '../../../votings/shared/poll.service';
 import {ActivatedRoute} from '@angular/router';
 import {Poll} from '../../../votings/shared/poll.model';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-create-vote',
@@ -12,7 +13,7 @@ import {Poll} from '../../../votings/shared/poll.model';
 export class CreatePollqComponent implements OnInit {
   disabled = false;
 
-  poll: Poll;
+  poll$: Observable<Poll>;
   id: string;
 
   createPollQForm = new FormGroup({
@@ -50,8 +51,7 @@ export class CreatePollqComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.pollService.getPoll(this.id).subscribe(res => this.poll = res);
-    console.log(this.id);
+    this.poll$ = this.pollService.getPoll(this.id);
   }
 
   onSubmit(form) {
@@ -67,7 +67,7 @@ export class CreatePollqComponent implements OnInit {
 
     this.pollService.insertPollQ({
       anonymous: false,
-      poll: this.poll.id,
+      poll: this.id,
       question: form.question,
       status: false,
       createdBy: '',
@@ -77,7 +77,15 @@ export class CreatePollqComponent implements OnInit {
       resultAcces: form.resultAcces,
       resultAccesType: form.resultAccesType,
     }, this.id);
-    this.createPollQForm.reset();
+    this.createPollQForm.reset({
+      anonymous: true,
+      question: '',
+      desc: '',
+      extendedUsers: '',
+      id: '',
+      resultAcces: '',
+      resultAccesType: '',
+    });
   }
 
 }

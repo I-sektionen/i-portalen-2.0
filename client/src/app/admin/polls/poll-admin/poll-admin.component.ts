@@ -19,4 +19,8 @@ export class PollAdminComponent implements OnInit {
   ngOnInit() {
   }
 
+  public delete(id) {
+    this.pollService.deletePoll(id);
+  }
+
 }

@@ -24,4 +24,8 @@ export class PollDetailComponent implements OnInit {
     this.qList = this.pollService.listPollQs(this.id);
   }
 
+  deletePollQ(id) {
+    this.pollService.deletePollQ(id, this.id);
+  }
+
 }

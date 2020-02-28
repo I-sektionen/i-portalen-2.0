@@ -4,6 +4,7 @@ import {OrganisationService} from '../../../organisations/shared/organisation.se
 import {Organisation} from '../../../organisations/shared/organisation.model';
 import {Observable} from 'rxjs';
 import {PollService} from '../../../votings/shared/poll.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-poll',
@@ -47,7 +48,7 @@ export class CreatePollComponent implements OnInit {
     'Vintermötet',
     'webgroupmötet'];
 
-  constructor(private pollService: PollService, private organisationService: OrganisationService) {
+  constructor(private pollService: PollService, private organisationService: OrganisationService, private router: Router, private route: ActivatedRoute) {
     this.createPollForm.get('publishOptions').valueChanges.subscribe((publishOptions) => {
       if (publishOptions === 'Starta vid förspecifierad tid') {
         this.createPollForm.get('publishDate').enable();
@@ -90,8 +91,9 @@ export class CreatePollComponent implements OnInit {
       publishDate: form.publishDate ? form.publishDate : null,
       unpublishDate: form.unpublishDate ? form.unpublishDate : null,
       verification: form.verification ? form.verification : false,
+      questionSum: 0,
     });
-    this.createPollForm.reset();
+    this.router.navigate([`../`], {relativeTo: this.route});
   }
 
 }
