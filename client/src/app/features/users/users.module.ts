@@ -19,6 +19,7 @@ import {MatListModule} from '@angular/material/list';
 import { ApproveArticlesComponent } from './approve-articles/approve-articles.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {SharedModule} from "../../shared/shared.module";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [UserLoginComponent, UserProfileComponent, MyPostsComponent, ApproveArticlesComponent ],
@@ -29,6 +30,7 @@ import {SharedModule} from "../../shared/shared.module";
     ReactiveFormsModule,
     UsersRoutingModule,
     SharedModule,
+    FlexLayoutModule,
 
     // Material
     MatCardModule,
