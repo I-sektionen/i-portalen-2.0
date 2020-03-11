@@ -1,8 +1,8 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Poll} from '../shared/poll.model';
 import {DynamicFormField} from '../../dynamic-forms/shared/dynamic-form.model';
-import {VoteService} from '../shared/vote.service';
 import {VotingDynamicFormService} from '../shared/voting-dynamic-form.service';
+import {PollService} from '../shared/poll.service';
 
 @Component({
   selector: 'app-upsert-voting',
@@ -11,18 +11,18 @@ import {VotingDynamicFormService} from '../shared/voting-dynamic-form.service';
 })
 export class UpsertVotingComponent implements OnChanges {
 
-  @Input() voting: Poll;
+  @Input() poll: Poll;
 
   votingFormFields: DynamicFormField[];
 
 
   constructor(
     private votingDynamicFormService: VotingDynamicFormService,
-    private votingsService: VoteService
+    private pollService: PollService,
   ) { }
 
   ngOnChanges() {
-    this.votingDynamicFormService.getDynamicFormFields(this.voting).then(formFields => {
+    this.votingDynamicFormService.getDynamicFormFields(this.poll).then(formFields => {
       this.votingFormFields = formFields;
     });
   }

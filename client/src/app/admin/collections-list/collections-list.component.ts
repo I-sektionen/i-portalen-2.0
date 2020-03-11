@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable, of} from 'rxjs/index';
+import {Observable, of} from 'rxjs';
 import {OrganisationService} from '../../organisations/shared/organisation.service';
 import {UserService} from '../../users/shared/user.service';
 import {SponsorService} from '../../sponsors/shared/sponsor.service';
-import {VoteService} from '../../votings/shared/vote.service';
+import {PollService} from '../../votings/shared/poll.service';
 
 @Component({
   selector: 'app-collections-list',
@@ -17,7 +17,7 @@ export class CollectionsListComponent implements OnInit {
     {path: 'users'},
     {path: 'organisations'},
     {path: 'sponsors'},
-    {path: 'votings'}
+    {path: 'polls'}
   ];
 
   collection: string;
@@ -30,7 +30,7 @@ export class CollectionsListComponent implements OnInit {
     private userService: UserService,
     private organisationService: OrganisationService,
     private sponsorService: SponsorService,
-    private votingsService: VoteService,
+    private pollService: PollService,
   ) { }
 
   ngOnInit() {
@@ -51,8 +51,8 @@ export class CollectionsListComponent implements OnInit {
         this.displayedColumns = ['name', 'editItem', 'deleteItem'];
         break;
       }
-      case 'votings': {
-        this.dataSource = this.votingsService.listVotes();
+      case 'polls': {
+        this.dataSource = this.pollService.listPolls();
         this.displayedColumns = ['name', 'editItem', 'deleteItem'];
         break;
       }
