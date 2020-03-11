@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, EventEmitter, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {DatabaseService} from '../../core/database/database.service';
 import { Router } from '@angular/router';
 import {MatPaginatorIntl} from '@angular/material';
 import {DocumentSnapshot} from '@angular/fire/firestore';
 import {Post} from '../posts/shared/post.model';
 import {Tag, TagsService} from '../admin/utilities/tags.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,12 @@ import {Tag, TagsService} from '../admin/utilities/tags.service';
 })
 export class HomeComponent implements OnInit {
   filter: FormGroup;
-  posts: Post[];
+  choises = new FormControl();
+  posts: Post[] = [];
   showedarticles: Post[] = [];
   lastarticle: DocumentSnapshot<any>;
-
+  selected: any[] = [];
+  choiseList: string[] = ['test1', 'test2'];
   tags: Tag[] = [];
   console: any;
 
@@ -35,20 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Search draft
-    this.filter.valueChanges
-      .subscribe(value => {
-        this.showedarticles = [];
-        this.posts.forEach((post => {
-          if (post.title.toLowerCase().includes(value['search'].toLowerCase())) {
-            this.showedarticles.push(post);
-          }
-        }));
-      });
-
-
-
-    this.tagService.listTags().subscribe(value => {this.tags = value; console.log(value); });
+    this.tagService.listTags().subscribe(value => {this.tags = value; });
   }
 
 
@@ -58,4 +48,20 @@ export class HomeComponent implements OnInit {
       this.showedarticles = value;
     });
   }
+
+  isSelected(chip: any): boolean {
+    return this.selected.indexOf(chip) >= 0;
+  }
+
+  toggleChip(chip: any): void {
+    const i = this.selected.indexOf(chip);
+    if (i >= 0) {
+      this.selected.splice(i, 1);
+    } else {
+      this.selected.push(chip);
+    }
+  }
 }
+
+
+
