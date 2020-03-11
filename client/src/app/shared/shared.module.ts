@@ -13,6 +13,8 @@ import { TableComponent } from './table/table.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 import { ShufflePipe } from './pipes/shuffle.pipe';
+import { FilterPostTitlePipe } from './pipes/title-filter.pipe';
+import { TagFilterPipe } from './pipes/tag-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     // Pipes
     GroupByPipe,
     SafePipe,
-    ShufflePipe
+    ShufflePipe,
+    FilterPostTitlePipe,
+    TagFilterPipe
   ],
   exports: [
     PageNotFoundComponent,
@@ -37,7 +41,9 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     TableComponent,
     GroupByPipe,
     SafePipe,
-    ShufflePipe
+    ShufflePipe,
+    FilterPostTitlePipe,
+    TagFilterPipe
   ],
   providers: [],
   imports: [
