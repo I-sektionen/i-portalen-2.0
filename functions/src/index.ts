@@ -1,10 +1,11 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import {addNotificationToFollow, addNotificationToUser, paths, notificationGroupType, followNotAccepted} from "./notifications";
+import {addNotificationToFollow} from "./notifications";
 //posts, not accepted posts, denied post
 try {admin.initializeApp(functions.config().firebase);} catch(e) {}
 const db = admin.firestore();
 
+/*
 const onCreateArray = [{createPath: "posts", notificationGroupPath: 'notificationGroups/', notificationGroupType: 'type', createType: 'type', follow: 'organisation', notificationGroupBody: 'newPostBody', notificationGroupLink: 'link', title: 'organisation' },
     {createPath: "notAcceptedPosts", notificationGroupPath: 'notificationGroups/', notificationGroupType: 'type', createType: 'type', follow: 'followNotAccepted', notificationGroupBody: 'notAcceptedBody', notificationGroupLink: 'link', title: 'organisation' }]
 
@@ -35,3 +36,22 @@ export const firebaseOnUpdatePost = functions.firestore.document(paths.notAccept
         }).catch(err => console.error(err))
     };
 return null});
+*/
+interface Notification {
+    title: string;
+    body: string;
+    link: string;
+    follow: string;
+    collection: string;
+}
+export const onCreate = functions.firestore.document('/{collection}/{id}').onCreate((snapshot, context) => {
+    db.doc('notifications/onCreate').get().then(dataSnapshot => {
+        for(const notification of dataSnapshot.get('notificationList')) {
+            let json = JSON.stringify(notification);
+            let notificationObject: Notification = JSON.parse(json);
+            if (notificationObject.collection == context.params.collection){
+                addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
+            }
+        }
+    }).catch(err => console.error(err))
+    return null});
