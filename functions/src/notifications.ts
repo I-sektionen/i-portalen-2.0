@@ -20,10 +20,5 @@ export function addNotificationToUser(liuid: String, body: String, link: String,
     }).catch(err => console.error(err))
 };
 
-export const paths = {
-    notAcceptedPosts: 'notAcceptedPosts/{notAcceptedPostId}',
-    posts: 'posts/{postId}', notificationGroup: 'notificationGroups/'};
-export const notificationGroupType = 'type';
-export const followNotAccepted = 'notAccepted';
 
 
