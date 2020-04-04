@@ -37,6 +37,7 @@ export class UserProfileComponent implements OnInit {
       'newspaper':[false],
       'gender':[''],
       'currentYear': [''],
+      'follow': ['']
 
     });
     this.userInformation.disable();
