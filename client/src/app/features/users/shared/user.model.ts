@@ -65,3 +65,6 @@ export interface User {
   // Follow
   follow?: string[];
 }
+export interface FollowCategories {
+  categories?: string[];
+}
