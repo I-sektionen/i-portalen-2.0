@@ -16,7 +16,7 @@ import {FeedbackMessage, FeedbackType} from "../../../core/feedback/feedback.mod
 export class UserProfileComponent implements OnInit {
 
   userObservable: Observable<User>;
-  user:User;
+  user: User;
   userInformation: FormGroup;
   editing = false;
 
@@ -56,7 +56,8 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});
       this.userInformation.patchValue({'currentYear': user.currentYear});
-    })
+      this.userInformation.patchValue({'follow': user.follow});
+    });
   }
 
 
