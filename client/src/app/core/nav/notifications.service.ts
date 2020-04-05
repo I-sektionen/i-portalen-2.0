@@ -15,7 +15,9 @@ export class NotificationsService {
   ) { }
 
   listNotifications() {
-      return this.databaseServiceNotificationsModel.list('users/' + this.authService.uid + '/notifications');
+      return this.databaseServiceNotificationsModel.list('users/' + this.authService.uid + '/notifications', ref => {
+        return ref.orderBy('timestamp', 'desc').limitToLast(20);
+      });
     }
     getUserData() {
     return this.databaseServiceUserData.get('users', this.authService.uid);
