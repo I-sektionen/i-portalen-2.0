@@ -18,30 +18,36 @@ interface Notification {
 }
 export const onCreate1 = functions.firestore.document('/{collectionFirst}/{idFirst}').onCreate((snapshot, context) => {
     db.doc('notifications/onCreate').get().then(dataSnapshot => {
-        for(const notification of dataSnapshot.get('notificationList')) {
-            const json = JSON.stringify(notification);
-            const notificationObject: Notification = JSON.parse(json);
-           if (notificationObject.collectionFirst === context.params.collectionFirst) {
-               if (notificationObject.fieldConstraint === "") {
-                   addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
-               } else if (snapshot.get(notificationObject.fieldConstraint) == notificationObject.valueConstraint){
-                   addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
-               }
-           }
+        const categories = Object.keys(dataSnapshot.data()!);
+        for(const category of categories) {
+            for (const notification of dataSnapshot.get(category)) {
+                const json = JSON.stringify(notification);
+                const notificationObject: Notification = JSON.parse(json);
+                if (notificationObject.collectionFirst === context.params.collectionFirst) {
+                    if (notificationObject.fieldConstraint === "") {
+                        addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
+                    } else if (snapshot.get(notificationObject.fieldConstraint) == notificationObject.valueConstraint) {
+                        addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
+                    }
+                }
+            }
         }
     }).catch(err => console.error(err))
     return null});
 
 export const onCreate2 = functions.firestore.document('/{collectionFirst}/{idFirst}/{collectionSecond}/{idSecond}').onCreate((snapshot, context) => {
     db.doc('notifications/onCreate').get().then(dataSnapshot => {
-        for(const notification of dataSnapshot.get('notificationList')) {
-            const json = JSON.stringify(notification);
-            const notificationObject: Notification = JSON.parse(json);
-            if (((notificationObject.collectionFirst === context.params.collectionFirst) && (notificationObject.collectionSecond === context.params.collectionSecond)) && (notificationObject.id === context.params.idFirst)){
-                if (notificationObject.fieldConstraint === "") {
-                    addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
-                } else if (snapshot.get(notificationObject.fieldConstraint) == notificationObject.valueConstraint){
-                    addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
+        const categories = Object.keys(dataSnapshot.data()!);
+        for(const category of categories) {
+            for (const notification of dataSnapshot.get(category)) {
+                const json = JSON.stringify(notification);
+                const notificationObject: Notification = JSON.parse(json);
+                if (((notificationObject.collectionFirst === context.params.collectionFirst) && (notificationObject.collectionSecond === context.params.collectionSecond)) && (notificationObject.id === context.params.idFirst)) {
+                    if (notificationObject.fieldConstraint === "") {
+                        addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
+                    } else if (snapshot.get(notificationObject.fieldConstraint) == notificationObject.valueConstraint) {
+                        addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title)
+                    }
                 }
             }
         }
