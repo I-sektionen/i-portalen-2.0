@@ -10,7 +10,7 @@ export class NotificationsService {
   constructor(
     private databaseServiceNotificationsModel: DatabaseService<NotificationsModel>,
     private databaseServiceUserData: DatabaseService<UserData>,
-    private databaseServiceNewNotification: DatabaseService<{newNotification: boolean}>,
+    private databaseServiceNewNotification: DatabaseService<{newNotifications: boolean}>,
     private authService: AuthService
   ) { }
 
@@ -23,7 +23,7 @@ export class NotificationsService {
     return this.databaseServiceUserData.get('users', this.authService.uid);
     }
    setNewNotificationsToFalse() {
-    this.databaseServiceNewNotification.update('users', this.authService.uid, {newNotification: false});
+    this.databaseServiceNewNotification.update('users', this.authService.uid, {newNotifications: false});
 }
   }
 
