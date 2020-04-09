@@ -7,11 +7,15 @@ import {Post} from "../../posts/shared/post.model";
   styleUrls: ['./happening-card.component.scss']
 })
 export class HappeningCardComponent implements OnInit {
+
   @Input("post") post: Post;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
+
 
 }

@@ -1,0 +1,17 @@
+<div class="top">
+  <mat-form-field>
+    <input class="search" matInput placeholder="Sök" [formControl]="filter.controls['search']" type="search">
+  </mat-form-field>
+
+  <mat-paginator class="paginator" [length]="500" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
+                 (page)="pagechange($event)">
+
+  </mat-paginator>
+</div>
+
+
+<div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
+
+   <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let article of articles" [article]="article"></happening-card>
+
+ </div>

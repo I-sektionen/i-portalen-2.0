@@ -55,4 +55,5 @@ export class UserService {
   listUsers(queryFn?: QueryFn) {
     return this.databaseService.list(this.path, queryFn);
   }
+
 }

@@ -14,15 +14,23 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MyPostsComponent } from './my-posts/my-posts.component';
+import {MatListModule} from '@angular/material/list';
+import { ApproveArticlesComponent } from './approve-articles/approve-articles.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {SharedModule} from "../../shared/shared.module";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [UserLoginComponent, UserProfileComponent ],
+  declarations: [UserLoginComponent, UserProfileComponent, MyPostsComponent, ApproveArticlesComponent ],
   exports: [UserLoginComponent],
   providers: [],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     UsersRoutingModule,
+    SharedModule,
+    FlexLayoutModule,
 
     // Material
     MatCardModule,
@@ -31,7 +39,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule,
+    MatPaginatorModule
   ]
 })
 export class UsersModule { }
