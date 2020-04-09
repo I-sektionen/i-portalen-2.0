@@ -4,16 +4,6 @@ $nav-height: 70px;
   height: calc(100% - #{$nav-height});
 }
 
-article {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex-grow: 1;
-}
-
 .sidenav {
   width: 200px;
   margin-top: $nav-height;
@@ -52,3 +42,12 @@ main {
 }
 }
 
+.sponsors{
+  flex-basis: 30%;
+}
+.content{
+  flex-basis: 70%;
+}
+.contentcontainer{
+  display: flex;
+}

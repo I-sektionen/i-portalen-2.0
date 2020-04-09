@@ -1,5 +1,5 @@
 
- <!-- <div fxLayout="wrap row">
+<div fxLayout="wrap row">
   <div fxFlex="100">
     <app-hero></app-hero>
   </div>
@@ -14,30 +14,36 @@
 </div> -->
 
 
+
  <!--<div class="filter-container">
   <form [formGroup]="filter">
     <mat-form-field>
       <input matInput placeholder="Sök" [formControl]="filter.controls['search']" type="search">
     </mat-form-field>
   </form>
-  <mat-chip-list>
-    <mat-chip *ngFor="let tag of tags" (selectionChange)="console.log()">{{tag.tag}}</mat-chip>
+  <mat-chip-list [(ngModel)]="selected">
+    <mat-chip *ngFor="let tag of tags"  [ngStyle]="{'background-color': tag.color}" selectable="true" (click)="toggleChip(tag)"> {{tag.name}} </mat-chip>
   </mat-chip-list>
 </div> -->
-<div class="top">
   <mat-form-field>
-  <input class="search" matInput placeholder="Sök" [formControl]="filter.controls['search']" type="search">
+    <mat-label>Toppings</mat-label>
+    <mat-select [formControl]="choises" multiple>
+      <mat-option *ngFor="let choise of choiseList" [value]="choise">{{choise}}</mat-option>
+    </mat-select>
   </mat-form-field>
-  <mat-paginator class="paginator" [length]="500" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
-                 (page)="pagechange($event)">
 
-  </mat-paginator>
 </div>
 
+<mat-paginator [length]="1000" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]"
+               (page)="pagechange()"></mat-paginator>
 
- <div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
 
-  <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let article of articles" [article]="article"></happening-card>
+<div class="contentcontainer">
+  <div class="cards"  fxLayout="row wrap" fxLayoutGap="0.5%">
+    <happening-card fxFlex="50" fxFlex.gt-xs="45" *ngFor="let article of
+  (posts | FilterPostTitle: filter.get('search').value) " [post]="article"></happening-card>
+  </div>
+  <app-sponsor-list class="sponsors"></app-sponsor-list>
 
 </div>
 

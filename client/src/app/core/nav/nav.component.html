@@ -128,16 +128,16 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <article>
+
       <!-- Content -->
-      <main>
-        <ng-content></ng-content>
-      </main>
+        <div class="contentcontainer">
+
+        <ng-content class="content"></ng-content>
+        </div>
 
       <!--Footer-->
       <footer>
         <app-footer></app-footer>
       </footer>
-    </article>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -3,6 +3,7 @@ import {DatabaseService} from '../../../core/database/database.service';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class TagsService {
 
   }
 
-  listTags() {
+  listTags(): Observable<Tag[]> {
     return this.databaseService.get('tags', 'tags').pipe(
       map(value => value['tags'])
     );

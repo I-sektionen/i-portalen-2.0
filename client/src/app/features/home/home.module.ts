@@ -20,7 +20,7 @@ import {FlexModule} from "@angular/flex-layout";
 
 import {MatChipsModule} from '@angular/material/chips';
 
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HappeningCardComponent } from './happening-card/happening-card.component';
 @NgModule({
   declarations: [HomeComponent, HeroComponent],
@@ -48,7 +48,8 @@ import { HappeningCardComponent } from './happening-card/happening-card.componen
     ReactiveFormsModule,
     MatFormFieldModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

@@ -1,13 +1,11 @@
 import { Organisation } from '../../organisations/shared/organisation.model';
+import {Type} from '@angular/core';
 
 export interface Post {
-  id?: string;
-
-  //Gathered from the attributes component
-  //General Attributes
+  id: string;
+  type: string;
   title: string;
   ingress: string;
-  isEvent: boolean;
   choosenCategories: any[];
   availableCategories: any[];
   publishTime: Date;
@@ -15,8 +13,12 @@ export interface Post {
   author: Organisation[];
   imgURLs: string[];
   imgNames: string[];
+  text: string;
+}
 
-  //Attributes belonging to even
+export interface Article extends Post {
+}
+export interface Event extends Post {
   location: string;
   eventStartTime: Date;
   eventFinishTime: Date;
@@ -24,7 +26,8 @@ export interface Post {
   lastUnregisterDate: Date;
   extraRegisterDeadline: Date;
   extraRegisterReason: string;
+}
 
-  //Gathered from the create-post component
-  text: string;
+export interface ExJob extends Post {
+
 }

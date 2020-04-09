@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {article} from '../home.component';
+import {Post} from "../../posts/shared/post.model";
 
 @Component({
   selector: 'happening-card',
@@ -7,7 +7,8 @@ import {article} from '../home.component';
   styleUrls: ['./happening-card.component.scss']
 })
 export class HappeningCardComponent implements OnInit {
-  @Input() article: article;
+
+  @Input("post") post: Post;
 
   constructor() {
   }

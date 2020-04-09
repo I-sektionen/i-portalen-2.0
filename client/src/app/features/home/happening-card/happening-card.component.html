@@ -1,8 +1,8 @@
 <mat-card>
-  <img routerLink="/readmore" class="card-img" mat-card-image src="https://iportalen-us.s3.amazonaws.com/client/article/1077/attachments/Internship%20ad_STHLM%20spring%2020.jpg">
+  <img routerLink="/article/{{post.id}}" class="card-img" mat-card-image src="https://iportalen-us.s3.amazonaws.com/client/article/1077/attachments/Internship%20ad_STHLM%20spring%2020.jpg">
   <mat-card-header>
 
-  <div class="tag-item">Internship</div>
+  <div class="tag-item">{{post.tag}}</div>
 
   </mat-card-header>
 
@@ -12,7 +12,7 @@
       <mat-card-subtitle class="icon-subtitle">
         <i class="material-icons">calendar_today</i>
         <span class="icon-subtitle">
-          <span class="tag-span">8 mars 2019</span>
+          <span class="tag-span">15 Mars</span>
         </span>
       </mat-card-subtitle>
 
@@ -26,7 +26,7 @@
       <mat-card-subtitle class="icon-subtitle">
         <i class="material-icons">location_on</i>
         <span class="icon-subtitle">
-          <span class="tag-span">T1</span>
+          <span class="tag-span">{{post.location}}</span>
         </span>
       </mat-card-subtitle>
 
@@ -45,11 +45,11 @@
         </span>
       </mat-card-subtitle>
 
-    <mat-card-title><a routerLink="/iforum">{{ this.article.name }}</a></mat-card-title>
 
+    <mat-card-title><a routerLink="article/{{post.id}}">{{post.title}}</a></mat-card-title>
 
     <p>
-      Vad har du drömt om att förändra med i-sektionen? Sväng förbi oss och berätta under vårens i-forum LOLTYLER1!
+      {{post.ingress}}
     </p>
   </mat-card-content>
 
@@ -62,12 +62,13 @@
 
       <span class="organisation-item">
         <span mat-card-avatar class="header-image"></span>
-        <mat-card-subtitle>Ivent</mat-card-subtitle>
 
+        <mat-card-subtitle>{{post.author}}</mat-card-subtitle>
       </span>
 
-      <span class="approved">
-        <mat-card-subtitle> Artikel {{this.article.approved ? 'godkänd' : 'granskas'}} </mat-card-subtitle>
+      <span class="readmore"><a routerLink="/article/{{post.id}}">
+        <mat-card-subtitle class="readmore">Läs mer</mat-card-subtitle>
+        </a>
       </span>
 
       <span class="date-item">
