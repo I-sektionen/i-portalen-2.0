@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from './features/posts/shared/post.service';
+import {PostStatus} from './features/posts/shared/post-status.enum';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,7 @@ import {PostService} from './features/posts/shared/post.service';
 export class AppComponent implements OnInit {
   constructor(private postServ: PostService) {
   }
-
   ngOnInit(): void {
-    // this.postServ.list().subscribe(value => console.log(value));
+    this.postServ.list(PostStatus.Public).subscribe(value => console.log(value));
   }
 }

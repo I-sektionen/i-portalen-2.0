@@ -4,6 +4,7 @@ import {Post} from './post.model';
 import {map} from 'rxjs/operators';
 import {QueryFn} from '@angular/fire/firestore';
 import {PostStatus} from './post-status.enum';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class PostService {
     return status + this.suffix;
   }
 
-  list(status: PostStatus, queryFn?: QueryFn) {
+  list(status: PostStatus, queryFn?: QueryFn): Observable<Post[]> {
     return this.databaseService.list(this.getRelativePath(status), queryFn);
   }
 
