@@ -16,7 +16,7 @@ export class NotificationsService {
 
   listNotifications() {
       return this.databaseServiceNotificationsModel.list('users/' + this.authService.uid + '/notifications', ref => {
-        return ref.orderBy('timestamp', 'desc').limitToLast(20);
+        return ref.orderBy('timestamp', 'desc').limit(20);
       });
     }
     getUserData() {
