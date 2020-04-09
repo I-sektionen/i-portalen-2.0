@@ -15,7 +15,7 @@ export class PostService {
   private readonly suffix = 'posts';
 
   private getRelativePath(status: PostStatus) {
-    return status + this.suffix;
+    return status + '-' + this.suffix;
   }
 
   list(status: PostStatus, queryFn?: QueryFn): Observable<Post[]> {

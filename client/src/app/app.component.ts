@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
   constructor(private postServ: PostService) {
   }
   ngOnInit(): void {
-    this.postServ.list(PostStatus.Public).subscribe(value => console.log(value));
+    this.postServ.list(PostStatus.ApprovedWaiting).subscribe(value => console.log(value));
   }
 }
