@@ -30,11 +30,20 @@ export class FirestoreService<Item> {
   }
 
   get(path: string, id: string): Observable<Item> {
-    return this.doc(path, id).valueChanges();
+    return this.doc(path, id).snapshotChanges().pipe(
+      map(action => {
+        if (!action.payload.exists) {
+          return null;
+        }
+          const data = action.payload.data() as Item;
+          data['id'] = action.payload.id;
+          return data;
+      })
+    );
   }
 
   list(path: string, queryFn?: QueryFn): Observable<Item[]> {
-    return this.colWithIds(path, queryFn);
+    return this.col(path, queryFn).valueChanges({ idField: 'id' });
   }
 
   delete(path: string, id: string): Promise<void> {
@@ -61,15 +70,4 @@ export class FirestoreService<Item> {
     return this.angularFirestore.collection(path, queryFn);
   }
 
-  colWithIds(path: string, queryFn?: QueryFn): Observable<Item[]> {
-    return this.col(path, queryFn).snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data() as Item;
-          data['id'] = a.payload.doc.id;
-          return data;
-        });
-      })
-    );
-  }
 }

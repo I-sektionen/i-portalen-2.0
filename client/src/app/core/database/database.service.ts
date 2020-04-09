@@ -17,10 +17,6 @@ export class DatabaseService<Item> {
     return this.firestoreService.insert(path, item);
   }
 
-  col(path: string, queryFn?: QueryFn) {
-    return this.firestoreService.col(path, queryFn);
-}
-
   upsert(path: string, id: string, data: any): Promise<void> {
     return this.firestoreService.upsert(path, id, data);
   }
