@@ -20,7 +20,8 @@ import { OrganisationsRoutingModule } from './features/organisations/organisatio
 import { SponsorsRoutingModule } from './features/sponsors/sponsors-routing.module';
 import {FaqRoutingModule} from './features/faq/faq-routing.module';
 import {FaqModule} from './features/faq/faq.module';
-import {ArticlesRoutingModule} from './features/posts/articles-routing.module';
+import { ArticlesRoutingModule } from './features/posts/articles-routing.module';
+
 
 @NgModule({
   declarations: [AppComponent],

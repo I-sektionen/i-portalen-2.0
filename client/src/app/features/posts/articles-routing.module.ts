@@ -5,6 +5,7 @@ const routes: Routes = [
   // {path: 'article/:id', component: PostDetailsComponent}
   ];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
