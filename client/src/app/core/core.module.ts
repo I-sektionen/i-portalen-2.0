@@ -26,7 +26,7 @@ import { UsersModule } from '../features/users/users.module';
 import { MarkdownToHtmlModule } from 'markdown-to-html-pipe';
 import { StorageService } from './storage/storage.service';
 import { FeedbackService } from './feedback/feedback.service';
-import {SponsorsModule} from "../features/sponsors/sponsors.module";
+import {SponsorsModule} from '../features/sponsors/sponsors.module';
 
 @NgModule({
   declarations: [NavComponent, FooterComponent, TextComponent],
