@@ -16,6 +16,7 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
 import {HappeningCardComponent} from "../features/home/happening-card/happening-card.component";
 import { FilterPostTitlePipe } from './pipes/title-filter.pipe';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { TagFilterPipe } from './pipes/tag-filter.pipe';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    RouterModule
   ]
 })
 export class SharedModule { }
