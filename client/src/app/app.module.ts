@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AdminModule } from './features/admin/admin.module';
-import { ArticlesModule } from './features/posts/articles.module';
 import { CreatePostsModule } from './features/posts/create-posts/create-posts.module';
 import { EventsModule } from './features/posts/events/events.module';
 import { OrganisationsModule } from './features/organisations/organisations.module';
@@ -21,12 +20,10 @@ import { OrganisationsRoutingModule } from './features/organisations/organisatio
 import { SponsorsRoutingModule } from './features/sponsors/sponsors-routing.module';
 import {FaqRoutingModule} from './features/faq/faq-routing.module';
 import {FaqModule} from './features/faq/faq.module';
-import { PostDetailsComponent } from './features/posts/post-details/post-details.component';
-import {ArticlesRoutingModule} from "./features/posts/articles-routing.module";
-import { ArticlesComponent } from './features/posts/articles/articles.component';
+import {ArticlesRoutingModule} from './features/posts/articles-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, ArticlesComponent],
+  declarations: [AppComponent],
   imports: [
     // Angular Modules
     BrowserModule,
@@ -46,7 +43,6 @@ import { ArticlesComponent } from './features/posts/articles/articles.component'
     SharedModule,
     HomeModule,
     AdminModule,
-    ArticlesModule,
     CreatePostsModule,
     EventsModule,
     OrganisationsModule,

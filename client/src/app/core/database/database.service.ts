@@ -10,17 +10,23 @@ export class DatabaseService<Item> {
 
   constructor(
     private firestoreService: FirestoreService<Item>,
-  ) { }
+  ) {
+  }
 
   insert(path: string, item: Item): Promise<any> {
     return this.firestoreService.insert(path, item);
   }
+
+  col(path: string, queryFn?: QueryFn) {
+    return this.firestoreService.col(path, queryFn);
+}
 
   upsert(path: string, id: string, data: any): Promise<void> {
     return this.firestoreService.upsert(path, id, data);
   }
 
   update(path: string, id: string, item: Item): Promise<void> {
+
     return this.firestoreService.update(path, id, item);
   }
 
@@ -39,7 +45,9 @@ export class DatabaseService<Item> {
   check(path: string, key: string, value: string): Observable<boolean> {
     return this.firestoreService.check(path, key, value);
   }
+
   doc(path: string, id: string): AngularFirestoreDocument<Item> {
     return this.firestoreService.doc(path, id);
   }
+
 }
