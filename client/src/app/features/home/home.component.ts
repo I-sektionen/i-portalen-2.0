@@ -15,6 +15,7 @@ import {Tag, TagsService} from '../admin/utilities/tags.service';
 })
 export class HomeComponent implements OnInit {
   filter: FormGroup;
+
   choises = new FormControl();
   posts: Post[] = [];
   showedarticles: Post[] = [];
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
               private DB: DatabaseService<Post>,
               private tagService: TagsService) {
     // Just for testing, put in seperate service in future
+
     DB.list('posts', query => query.limit(25)).subscribe(posts_from_database => {
       this.posts = posts_from_database;
       this.showedarticles = posts_from_database;
@@ -48,6 +50,7 @@ export class HomeComponent implements OnInit {
       this.showedarticles = value;
     });
   }
+
 
   isSelected(chip: any): boolean {
     return this.selected.indexOf(chip) >= 0;

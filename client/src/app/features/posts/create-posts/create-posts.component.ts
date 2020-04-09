@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../shared/post.model';
 import { AttributesComponent } from './attributes/attributes.component';
+import {DatabaseService} from "../../../core/database/database.service";
 
 @Component({
   selector: 'app-posts-create-posts',
@@ -9,7 +10,7 @@ import { AttributesComponent } from './attributes/attributes.component';
   // encapsulation: ViewEncapsulation.None
 })
 export class CreatePostsComponent implements OnInit {
-  constructor() {}
+  constructor(private databaseService: DatabaseService<Post>) {}
   fullscreenToggle: boolean = false;
   post: Post;
 
@@ -25,6 +26,10 @@ export class CreatePostsComponent implements OnInit {
 
   fullscrenEmit(toggle: boolean) {
     this.fullscreenToggle = toggle;
+  }
+
+  upload() {
+    this.databaseService.insert('posts', this.post);
   }
 }
 

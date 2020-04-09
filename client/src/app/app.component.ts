@@ -6,6 +6,7 @@ import {PostStatus} from './features/posts/shared/post-status.enum';
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
+
 export class AppComponent implements OnInit {
   constructor(private postServ: PostService) {
   }
