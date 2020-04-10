@@ -9,5 +9,7 @@ export class AppComponent implements OnInit {
   constructor() {
   }
   ngOnInit(): void {
+    this.postServ.list(PostStatus.Public).subscribe(value => console.log(value));
+    this.postServ.get('test', PostStatus.Public).subscribe(value => console.log(value));
   }
 }
