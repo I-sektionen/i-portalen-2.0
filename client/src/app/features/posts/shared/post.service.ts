@@ -36,6 +36,6 @@ export class PostService {
   }
 
   rejectPost(post: Post) {
-
   }
+
 }

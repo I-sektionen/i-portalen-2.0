@@ -39,3 +39,4 @@ testem.log
 Thumbs.db
 
 /i-portalenVertEnv
+functions/node_modules

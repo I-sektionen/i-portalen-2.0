@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from './features/posts/shared/post.service';
-import {PostStatus} from './features/posts/shared/post-status.enum';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
+
 export class AppComponent implements OnInit {
-  constructor(private postServ: PostService) {
+  constructor() {
   }
   ngOnInit(): void {
     this.postServ.list(PostStatus.Public).subscribe(value => console.log(value));
