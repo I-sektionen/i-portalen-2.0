@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
+import {DatabaseService} from "../../../core/database/database.service";
 import { Observable } from 'rxjs';
-import {User} from '../shared/user.model';
+import {FollowCategories, User} from '../shared/user.model';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FeedbackService} from "../../../core/feedback/feedback.service";
 import {FeedbackMessage, FeedbackType} from "../../../core/feedback/feedback.model";
@@ -16,13 +17,15 @@ import {FeedbackMessage, FeedbackType} from "../../../core/feedback/feedback.mod
 export class UserProfileComponent implements OnInit {
 
   userObservable: Observable<User>;
-  user:User;
+  user: User;
   userInformation: FormGroup;
   editing = false;
+  followCategories: FollowCategories;
 
 
   constructor(
     private userService: UserService,
+    private followDatabaseService: DatabaseService<FollowCategories>,
     private fb: FormBuilder,
     private feedback: FeedbackService
     //public dialogRef: MatDialogRef<UserProfileComponent>
@@ -37,6 +40,7 @@ export class UserProfileComponent implements OnInit {
       'newspaper':[false],
       'gender':[''],
       'currentYear': [''],
+      'follow': ['']
 
     });
     this.userInformation.disable();
@@ -44,8 +48,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.user.subscribe(user =>
-    {
+    this.userService.user.subscribe(user => {
       this.user = user;
       this.userInformation.patchValue({'address': user.address});
       this.userInformation.patchValue({'newspaper': user.newspaper});
@@ -55,7 +58,11 @@ export class UserProfileComponent implements OnInit {
       this.userInformation.patchValue({'class': user.class});
       this.userInformation.patchValue({'gender': user.gender});
       this.userInformation.patchValue({'currentYear': user.currentYear});
-    })
+      this.userInformation.patchValue({'follow': user.follow});
+    });
+    this.followDatabaseService.get('notifications', 'FollowCategories').subscribe(categories => {
+      this.followCategories = categories;
+    });
   }
 
 

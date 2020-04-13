@@ -61,4 +61,10 @@ export interface User {
   // Traceability
   created: string; // DATE/TIME
   modified: string; // DATE/TIME + USER
+
+  // Follow
+  follow?: string[];
+}
+export interface FollowCategories {
+  categories?: string[];
 }

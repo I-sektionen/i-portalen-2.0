@@ -14,7 +14,6 @@
     </mat-select>
   </mat-form-field>
 
-
   <table>
     <mat-form-field class="shorter medshort">
       <mat-select placeholder="Nuvarande årskurs" [formControl]="userInformation.controls['currentYear']">
@@ -77,6 +76,13 @@
 
 
   </table>
+    <table>
+      <mat-form-field class="shorter medshort">
+        <mat-select multiple placeholder="Följ" [formControl]="userInformation.controls['follow']">
+          <mat-option *ngFor="let category of followCategories.categories" value='{{category}}'>{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </table>
   <mat-slide-toggle [formControl]="userInformation.controls['newspaper']">Ipkuré</mat-slide-toggle>
 </mat-dialog-content>
 <mat-dialog-actions>

@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import {MatDialog} from '@angular/material';
-import {UserProfileComponent} from "../../features/users/user-profile/user-profile.component";
+import {UserProfileComponent} from '../../features/users/user-profile/user-profile.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, share } from 'rxjs/operators';
 import { UserService } from '../../features/users/shared/user.service';
+import {NotificationsService} from './notifications.service';
+import {NotificationsModel} from './notifications.model';
 
 @Component({
   selector: 'app-nav',
@@ -15,12 +17,14 @@ import { UserService } from '../../features/users/shared/user.service';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
+  notifications: NotificationsModel[] = [];
+  newNotifications = false;
+  notificationIcon = 'notification';
 
   isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
     share(),
   );
-
   isLoggedIn: Observable<boolean>;
   isAdmin: Observable<boolean>;
   isAdminPage: Observable<boolean>;
@@ -30,7 +34,8 @@ export class NavComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notificationsService: NotificationsService,
   ) { }
 
   ngOnInit() {
@@ -41,6 +46,7 @@ export class NavComponent implements OnInit {
       map((event: NavigationEnd) => event.urlAfterRedirects.indexOf('admin') !== -1),
       share()
     );
+    this.getNotifications();
   }
 
   logout() {
@@ -54,5 +60,28 @@ export class NavComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+  getNotifications() {
+    this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn === true) {
+        this.notificationsService.listNotifications().subscribe((notifications: NotificationsModel[]) => {
+          this.notifications = notifications;
+        });
+        this.notificationsService.getUserData().subscribe(newNotifications => {
+          if (newNotifications.newNotifications) {
+            this.notificationIcon = 'notifications_active';
+            this.newNotifications = true;
+          } else {
+            this.notificationIcon = 'notifications';
+            this.newNotifications = false;
+          }
+        });
+      }
+    });
+  }
+  setNewNotificationsToFalse() {
+    if (this.newNotifications === true) {
+      this.notificationsService.setNewNotificationsToFalse();
+    }
   }
 }

@@ -22,9 +22,31 @@
       </button>
     </span>
     <span *ngIf="(isLoggedIn | async)">
-      <button mat-icon-button>
+
+      <!--Notifications-->
+     <button mat-icon-button [matMenuTriggerFor]="notficationMenu" (click)=setNewNotificationsToFalse()>
+        <mat-icon>{{notificationIcon}}</mat-icon>
+      </button>
+      <mat-menu #notficationMenu="matMenu" >
+        <div class="horizontal-scroll">
+        <div *ngFor="let notification of notifications">
+           <a href="{{notification.link}}" style="text-decoration: none;">
+            <button mat-menu-item class="normal-line-height">
+               <mat-icon>notifications</mat-icon>
+              <b>{{notification.title}}</b>
+                {{notification.body}} <br>
+                {{notification.timestamp.toDate() | date: 'dd MMM HH:mm'}}
+            </button>
+          </a>
+        </div>
+          </div>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="eventMenu">
         <mat-icon>event</mat-icon>
       </button>
+      <mat-menu #eventMenu="matMenu">
+      </mat-menu>
 
       <!--Content-->
       <button mat-icon-button [matMenuTriggerFor]="contentMenu">
@@ -58,10 +80,6 @@
           <!--routerLink="profile" is only used for testing-->
           <mat-icon>person</mat-icon>
           Profilsida
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications</mat-icon>
-          Notifikationer
         </button>
         <button mat-menu-item (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>

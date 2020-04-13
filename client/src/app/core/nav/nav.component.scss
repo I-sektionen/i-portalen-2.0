@@ -51,4 +51,11 @@ main {
   max-width: 100% !important;
 }
 }
+.horizontal-scroll{
+  overflow-y: scroll;
+  height: 200px;
+}
+.normal-line-height{
+  line-height: normal;
+}
 
