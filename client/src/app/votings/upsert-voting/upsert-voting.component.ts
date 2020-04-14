@@ -12,6 +12,7 @@ import {PollService} from '../shared/poll.service';
 export class UpsertVotingComponent implements OnChanges {
 
   @Input() poll: Poll;
+  @Input() id: string;
 
   votingFormFields: DynamicFormField[];
 
@@ -19,7 +20,8 @@ export class UpsertVotingComponent implements OnChanges {
   constructor(
     private votingDynamicFormService: VotingDynamicFormService,
     private pollService: PollService,
-  ) { }
+  ) {
+  }
 
   ngOnChanges() {
     this.votingDynamicFormService.getDynamicFormFields(this.poll).then(formFields => {
@@ -27,11 +29,11 @@ export class UpsertVotingComponent implements OnChanges {
     });
   }
 
-  /*submit(voting) {
-    if (this.voting) {
-      this.votingsService.updateVoting(this.voting.id, voting);
+  submit(voting) {
+    if (this.poll) {
+      this.pollService.updatePoll(this.poll.id, voting);
     } else {
-      this.votingsService.insertVoting(voting);
+      this.pollService.insertPoll(voting);
     }
-  }*/
+  }
 }

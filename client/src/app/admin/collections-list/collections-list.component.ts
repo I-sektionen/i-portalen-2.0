@@ -53,7 +53,7 @@ export class CollectionsListComponent implements OnInit {
       }
       case 'polls': {
         this.dataSource = this.pollService.listPolls();
-        this.displayedColumns = ['name', 'editItem', 'deleteItem'];
+        this.displayedColumns = ['name', 'editPoll', 'deleteItem'];
         break;
       }
       default: {
