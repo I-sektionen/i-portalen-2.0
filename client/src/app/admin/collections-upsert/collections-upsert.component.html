@@ -11,4 +11,7 @@
   <div *ngSwitchCase="'polls'">
     <app-upsert-voting [poll]="item"></app-upsert-voting>
   </div>
+  <div *ngSwitchCase="'pollq'">
+    <app-create-vote></app-create-vote>
+  </div>
 </div>

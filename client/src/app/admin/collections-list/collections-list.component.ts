@@ -17,7 +17,7 @@ export class CollectionsListComponent implements OnInit {
     {path: 'users'},
     {path: 'organisations'},
     {path: 'sponsors'},
-    {path: 'polls'}
+    {path: 'polls'},
   ];
 
   collection: string;
@@ -34,6 +34,7 @@ export class CollectionsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
     this.collection = this.route.snapshot.params.collection;
     switch (this.collection) {
       case 'users': {

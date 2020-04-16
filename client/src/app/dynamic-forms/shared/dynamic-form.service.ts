@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { DynamicFormField, FileUploadFormField, SelectOption } from './dynamic-form.model';
-import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from '../../users/shared/user.service';
-import { map, take } from 'rxjs/operators';
-import { FireStorageService } from '../../core/firebase/fire-storage/fire-storage.service';
+import {Injectable} from '@angular/core';
+import {DynamicFormField, FileUploadFormField, SelectOption} from './dynamic-form.model';
+import {FormControl, FormGroup} from '@angular/forms';
+import {UserService} from '../../users/shared/user.service';
+import {map, take} from 'rxjs/operators';
+import {FireStorageService} from '../../core/firebase/fire-storage/fire-storage.service';
+import {EventService} from '../../events/shared/event.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,11 @@ import { FireStorageService } from '../../core/firebase/fire-storage/fire-storag
 export class DynamicFormService {
 
   private usersSelectOptions: SelectOption[];
+  private eventsSelectOptions: SelectOption[];
 
   constructor(
     private userService: UserService,
+    private eventService: EventService,
     private storageService: FireStorageService
   ) { }
 
@@ -62,6 +65,23 @@ export class DynamicFormService {
       ).toPromise();
     } else {
       return this.usersSelectOptions;
+    }
+  }
+
+  async getEventSelectOptions(): Promise<SelectOption[]> {
+    if (!this.eventsSelectOptions) {
+      return this.eventService.listEvents(ref => ref.orderBy('date')).pipe(
+        take(2),
+        map(events => {
+          const eventsSelectOptions = events.map(event => {
+            return {label: `${event.name}`, value: event.name};
+          });
+          this.eventsSelectOptions = eventsSelectOptions;
+          return eventsSelectOptions;
+        })
+      ).toPromise();
+    } else {
+      return this.eventsSelectOptions;
     }
   }
 }

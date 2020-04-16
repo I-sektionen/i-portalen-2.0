@@ -28,8 +28,8 @@ const routes: Routes = [
         component: CollectionsListComponent,
       },
       {
-        path: 'redigera/:collection/redigera/:id',
-        component: CreatePollqComponent,
+        path: 'redigera/:collection/:id',
+        component: PollDetailComponent,
       },
       {
         path: 'poll_admin',

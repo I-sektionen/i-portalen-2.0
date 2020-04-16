@@ -57,7 +57,7 @@
   <ng-container matColumnDef="editPoll">
     <th *matHeaderCellDef mat-header-cell>Redigera</th>
     <td *matCellDef="let item" mat-cell>
-      <a mat-icon-button routerLink="redigera/{{item.id}}">
+      <a mat-icon-button routerLink="{{item.id}}">
         <mat-icon>edit</mat-icon>
       </a>
     </td>
