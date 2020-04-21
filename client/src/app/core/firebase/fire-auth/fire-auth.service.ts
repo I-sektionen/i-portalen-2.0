@@ -19,7 +19,7 @@ export class FireAuthService {
   }
 
   get uid() {
-    return this.auth.currentUser.uid;
+    return this.auth.currentUser ? this.auth.currentUser.uid : null;
   }
 
   get authUser() {

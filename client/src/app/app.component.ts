@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   constructor(private postServ: PostService) {
   }
   ngOnInit(): void {
-    this.postServ.list(PostStatus.Public).subscribe(value => console.log(value));
-    this.postServ.get('test', PostStatus.Public).subscribe(value => console.log(value));
+    this.postServ.listUsersPosts(PostStatus.Public, 25, 'created', 'desc').subscribe(value => console.log(value));
   }
 }
