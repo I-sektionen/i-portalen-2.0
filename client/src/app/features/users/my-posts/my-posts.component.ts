@@ -12,25 +12,21 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 
 export class MyPostsComponent implements OnInit {
-  filter: FormGroup;
   articles: Post[];
+  waitingArticles: Post[];
 
-  tags = [{tag: 'Lit'}, {tag: 'Sellout'}, {tag: 'AlbinSkaGå'}, {
-    tag: 'Dead'
-  }];
-
-  constructor(private FB: FormBuilder, private postService: PostService) {
-    // Just for testing, put in seperate service in future
-    this.postService.list(PostStatus.Public).subscribe((result: Post[]) => {
-      console.log(result);
-      this.articles = result;
-    });
-    this.filter = FB.group({
-      'search': ['']
-    });
+  constructor(private postService: PostService) {
   }
 
   ngOnInit() {
+    this.postService.listUsersPosts(PostStatus.Public, 50, 'created', 'desc').subscribe((result: Post[]) => {
+      console.log(result);
+      this.articles = result;
+    });
+    this.postService.listUsersPosts(PostStatus.WaitingToBeApproved, 50, 'created', 'desc').subscribe((result: Post[]) => {
+      console.log(result);
+      this.waitingArticles = result;
+    });
   }
 
 }
