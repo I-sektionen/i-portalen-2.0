@@ -62,30 +62,42 @@ export class NavComponent implements OnInit {
     });
   }
   getNotifications() {
-    // getting notifications
-  this.authService.isLoggedIn.pipe(switchMap((loggedIn, index) => {
-        if (loggedIn) {
-          return this.notificationsService.listNotifications();
-        }})
-    ).subscribe((notifications: NotificationsModel[]) => {
-      this.notifications = notifications;
-    });
-
-  // setting notification symbol
-    this.authService.isLoggedIn.pipe(switchMap((loggedIn, index) => {
-        if (loggedIn) {
-          return this.notificationsService.getUserData();
-        }})
-    ).subscribe(newNotifications => {
-      if (newNotifications.newNotifications) {
-        this.notificationIcon = 'notifications_active';
-        this.newNotifications = true;
+    let loggedIn = false;
+    const switchMap1 = this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
+      if (userLoggedIn) {
+        loggedIn = true;
+        return this.notificationsService.listNotifications();
       } else {
-        this.notificationIcon = 'notifications';
-        this.newNotifications = false;
+        return null;
       }
-    });
+    }));
+    const switchMap2 = this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
+      if (userLoggedIn) {
+        loggedIn = true;
+        return this.notificationsService.getUserData();
+      } else {
+        return null;
+      }
+    }));
+
+    if (loggedIn) {
+      // getting notifications
+      switchMap1.subscribe((notifications: NotificationsModel[]) => {
+        this.notifications = notifications;
+      });
+      // setting notification symbol
+      switchMap2.subscribe(newNotifications => {
+        if (newNotifications.newNotifications) {
+          this.notificationIcon = 'notifications_active';
+          this.newNotifications = true;
+        } else {
+          this.notificationIcon = 'notifications';
+          this.newNotifications = false;
+        }
+      });
+    }
   }
+
   setNewNotificationsToFalse() {
     if (this.newNotifications === true) {
       this.notificationsService.setNewNotificationsToFalse();
