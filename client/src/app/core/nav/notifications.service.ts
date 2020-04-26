@@ -7,6 +7,8 @@ import {NotificationsModel, UserData} from './notifications.model';
   providedIn: 'root'
 })
 export class NotificationsService {
+  userPath = 'users';
+  notificationTimestampField = 'timestamp';
   constructor(
     private databaseServiceNotificationsModel: DatabaseService<NotificationsModel>,
     private databaseServiceUserData: DatabaseService<UserData>,
@@ -15,15 +17,19 @@ export class NotificationsService {
   ) { }
 
   listNotifications() {
-      return this.databaseServiceNotificationsModel.list('users/' + this.authService.uid + '/notifications', ref => {
-        return ref.orderBy('timestamp', 'desc').limit(20);
+    const userNotificationPath = 'users/' + this.authService.uid + '/notifications';
+
+      return this.databaseServiceNotificationsModel
+        .list(userNotificationPath, ref => {
+
+        return ref.orderBy(this.notificationTimestampField, 'desc').limit(20);
       });
     }
     getUserData() {
-    return this.databaseServiceUserData.get('users', this.authService.uid);
+    return this.databaseServiceUserData.get(this.userPath, this.authService.uid);
     }
    setNewNotificationsToFalse() {
-    this.databaseServiceNewNotification.update('users', this.authService.uid, {newNotifications: false});
+    this.databaseServiceNewNotification.update(this.userPath, this.authService.uid, {newNotifications: false});
 }
   }
 
