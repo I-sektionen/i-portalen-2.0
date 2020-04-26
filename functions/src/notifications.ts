@@ -59,12 +59,12 @@ export function onCreateFunction1(db:FirebaseFirestore.Firestore, snapshot: Docu
                 const json = JSON.stringify(notification);
                 const notificationObject: OnCreateNotification = JSON.parse(json);
                 if (notificationObject.collectionFirst === context.params.collectionFirst) {
-                    if (notificationObject.fieldConstraint === "") {
-                        addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title, db)
-                    } else if (snapshot.get(notificationObject.fieldConstraint) == notificationObject.valueConstraint) {
-                        addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title, db)
-                    }
-                }
+                       if (notificationObject.fieldConstraint === "") {
+                            addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title, db)
+                       } else if (snapshot.get(notificationObject.fieldConstraint) === notificationObject.valueConstraint) {
+                            addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title, db)
+                     }
+                        }
             }
         }
     }).catch(err => console.error(err));
@@ -93,7 +93,7 @@ export function onCreateFunction2(db: FirebaseFirestore.Firestore, snapshot: Doc
                 if (((notificationObject.collectionFirst === context.params.collectionFirst) && (notificationObject.collectionSecond === context.params.collectionSecond)) && (notificationObject.id === context.params.idFirst)) {
                     if (notificationObject.fieldConstraint === "") {
                         addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title, db)
-                    } else if (snapshot.get(notificationObject.fieldConstraint) == notificationObject.valueConstraint) {
+                    } else if (snapshot.get(notificationObject.fieldConstraint) === notificationObject.valueConstraint) {
                         addNotificationToFollow(notificationObject.follow, notificationObject.body, notificationObject.link, notificationObject.title, db)
                     }
                 }
