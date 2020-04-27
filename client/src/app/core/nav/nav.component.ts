@@ -62,31 +62,25 @@ export class NavComponent implements OnInit {
     });
   }
   getNotifications() {
-    let loggedIn = false;
-    const switchMap1 = this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
+    // getting notifications
+    this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
       if (userLoggedIn) {
-        loggedIn = true;
         return this.notificationsService.listNotifications();
       } else {
         return null;
       }
-    }));
-    const switchMap2 = this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
+    })).subscribe((notifications: NotificationsModel[]) => {
+      this.notifications = notifications;
+    });
+
+    // setting notification symbol
+   this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
       if (userLoggedIn) {
-        loggedIn = true;
         return this.notificationsService.getUserData();
       } else {
         return null;
       }
-    }));
-
-    if (loggedIn) {
-      // getting notifications
-      switchMap1.subscribe((notifications: NotificationsModel[]) => {
-        this.notifications = notifications;
-      });
-      // setting notification symbol
-      switchMap2.subscribe(newNotifications => {
+    })).subscribe(newNotifications => {
         if (newNotifications.newNotifications) {
           this.notificationIcon = 'notifications_active';
           this.newNotifications = true;
@@ -96,7 +90,6 @@ export class NavComponent implements OnInit {
         }
       });
     }
-  }
 
   setNewNotificationsToFalse() {
     if (this.newNotifications === true) {
