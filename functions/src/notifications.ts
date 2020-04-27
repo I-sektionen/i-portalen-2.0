@@ -11,8 +11,10 @@ interface OnCreateNotification {
     collectionFirst: string;
     collectionSecond: string;
     id: string;
-    fieldConstraint: string;
-    valueConstraint: string;
+    fieldConstraint1: string;
+    valueConstraint1: string;
+    fieldConstraint2: string;
+    valueConstraint2: string;
 }
 interface onCreateIndividualNotification {
     title: string;
@@ -30,15 +32,15 @@ interface onCreateIndividualNotification {
             db.collection('users/').doc(data.id)
                 .collection('notifications')
                 .add({body: body, link: link, timestamp: Timestamp.now(), title:title})
-                .catch(err => console.error(err));
+                .catch(err => console.error(1 + err));
             const ref = db.collection('users/').doc(data.id);
                 ref.get().then(data2 =>{
                 if(data2.exists){
-                    ref.update({newNotifications: true}).catch(err => console.error(err))
+                    ref.update({newNotifications: true}).catch(err => console.error(2 + err))
                 }
-            }).catch(err => console.error(err))
+            }).catch(err => console.error(3 + err))
         })
-    }).catch(err => console.error(err))
+    }).catch(err => console.error(4 + err))
 }
 
  function addNotificationToUser(liuid: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore ) {
@@ -49,15 +51,15 @@ interface onCreateIndividualNotification {
             db.collection('users/').doc(data.id)
                 .collection('notifications')
                 .add({body: body, link: link, timestamp: Timestamp.now(), title:title})
-                .catch(err => console.error(err));
+                .catch(err => console.error(5 + err));
             const ref = db.collection('users/').doc(data.id);
             ref.get().then(data2 =>{
                 if(data2.exists){
-                    ref.update({newNotifications: true}).catch(err => console.error(err))
+                    ref.update({newNotifications: true}).catch(err => console.error(6 + err))
                 }
-            }).catch(err => console.error(err))
+            }).catch(err => console.error(7 + err))
         })
-    }).catch(err => console.error(err))
+    }).catch(err => console.error(8 + err))
 }
 
 export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventContext) {
@@ -70,22 +72,33 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                 const json = JSON.stringify(notification);
                 const notificationObject: OnCreateNotification = JSON.parse(json);
                 if (notificationObject.collectionFirst === context.params.collectionFirst) {
-                       if (notificationObject.fieldConstraint === "") {
-                            addNotificationToFollow(notificationObject.follow,
-                                notificationObject.body, notificationObject.link,
-                                notificationObject.title,
-                                db)
-                       } else if (snapshot.get(notificationObject.fieldConstraint) === notificationObject.valueConstraint) {
+                    if ((notificationObject.fieldConstraint1 === "") && (notificationObject.fieldConstraint2 === "")) {
+                        addNotificationToFollow(notificationObject.follow,
+                            notificationObject.body, notificationObject.link,
+                            notificationObject.title,
+                            db)
+                    } else if (notificationObject.fieldConstraint2 === "") {
+                        if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
                                 notificationObject.title,
                                 db)
-                     }
                         }
+                    } else {
+                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
+                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) {
+                            addNotificationToFollow(notificationObject.follow,
+                                notificationObject.body,
+                                notificationObject.link,
+                                notificationObject.title,
+                                db)
+                        }
+                    }
+                }
             }
         }
-    }).catch(err => console.error(err));
+    }).catch(err => console.error(9 + err));
 
     // onCreate individual
     db.doc('notifications/onCreateIndividual').get().then(dataSnapshot => {
@@ -94,7 +107,6 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
             for (const notification of dataSnapshot.get(category)) {
                 const json = JSON.stringify(notification);
                 const notificationObject: onCreateIndividualNotification = JSON.parse(json);
-                console.log(notificationObject);
                 if (notificationObject.collectionFirst === context.params.collectionFirst) {
                     addNotificationToUser(snapshot.get(String(notificationObject.fieldConstraint)),
                         notificationObject.body,
@@ -104,7 +116,7 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                 }
             }
         }
-    }).catch(err => console.error(err));
+    }).catch(err => console.error(10 + err));
 }
 
 export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventContext) {
@@ -119,13 +131,13 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                 if (((notificationObject.collectionFirst === context.params.collectionFirst) &&
                     (notificationObject.collectionSecond === context.params.collectionSecond)) &&
                     (notificationObject.id === context.params.idFirst)) {
-                    if (notificationObject.fieldConstraint === "") {
+                    if (notificationObject.fieldConstraint1 === "") {
                         addNotificationToFollow(notificationObject.follow,
                             notificationObject.body,
                             notificationObject.link,
                             notificationObject.title,
                             db)
-                    } else if (snapshot.get(notificationObject.fieldConstraint) === notificationObject.valueConstraint) {
+                    } else if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
                         addNotificationToFollow(notificationObject.follow,
                             notificationObject.body,
                             notificationObject.link,
@@ -135,7 +147,7 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                 }
             }
         }
-    }).catch(err => console.error(err));
+    }).catch(err => console.error(11 + err));
 
     //onCreate individual
     db.doc('notifications/onCreateIndividual').get().then(dataSnapshot => {
@@ -159,5 +171,5 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                 }
             }
         }
-    }).catch(err => console.error(err));
+    }).catch(err => console.error(12 + err));
 }
