@@ -162,14 +162,10 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
     //onCreate individual
     db.doc('notifications/onCreateIndividual').get().then(dataSnapshot => {
         const categories = Object.keys(dataSnapshot.data()!);
-        console.log(categories);
         for(const category of categories) {
-            console.log(dataSnapshot.get(category));
             for (const notification of dataSnapshot.get(category)) {
                 const json = JSON.stringify(notification);
-                console.log(json);
                 const notificationObject: onCreateIndividualNotification = JSON.parse(json);
-                console.log(notificationObject);
                 if (((notificationObject.collectionFirst === context.params.collectionFirst) &&
                     (notificationObject.id === context.params.idFirst)) &&
                     (notificationObject.collectionSecond === String(context.params.collectionSecond))) {
