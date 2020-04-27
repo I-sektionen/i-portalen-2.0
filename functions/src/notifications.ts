@@ -131,18 +131,28 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                 if (((notificationObject.collectionFirst === context.params.collectionFirst) &&
                     (notificationObject.collectionSecond === context.params.collectionSecond)) &&
                     (notificationObject.id === context.params.idFirst)) {
-                    if (notificationObject.fieldConstraint1 === "") {
+                    if ((notificationObject.fieldConstraint1 === "") && (notificationObject.fieldConstraint2 === "")) {
                         addNotificationToFollow(notificationObject.follow,
-                            notificationObject.body,
-                            notificationObject.link,
+                            notificationObject.body, notificationObject.link,
                             notificationObject.title,
                             db)
-                    } else if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
-                        addNotificationToFollow(notificationObject.follow,
-                            notificationObject.body,
-                            notificationObject.link,
-                            notificationObject.title,
-                            db)
+                    } else if (notificationObject.fieldConstraint2 === "") {
+                        if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
+                            addNotificationToFollow(notificationObject.follow,
+                                notificationObject.body,
+                                notificationObject.link,
+                                notificationObject.title,
+                                db)
+                        }
+                    } else {
+                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
+                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) {
+                            addNotificationToFollow(notificationObject.follow,
+                                notificationObject.body,
+                                notificationObject.link,
+                                notificationObject.title,
+                                db)
+                        }
                     }
                 }
             }
