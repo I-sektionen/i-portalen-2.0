@@ -24,7 +24,7 @@ interface onCreateIndividualNotification {
     fieldConstraint: string;
 }
 
- function addNotificationToFollow(follow: String, body: String, link: String, title: String, db:FirebaseFirestore.Firestore ) {
+ function addNotificationToFollow(follow: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore ) {
     db.collection('users/').where("follow", 'array-contains', follow).get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
             db.collection('users/').doc(data.id).collection('notifications').add({body: body, link: link, timestamp: Timestamp.now(), title:title}).catch(err => console.error(err));
@@ -38,7 +38,7 @@ interface onCreateIndividualNotification {
     }).catch(err => console.error(err))
 }
 
- function addNotificationToUser(liuid: String, body: String, link: String, title: String, db:FirebaseFirestore.Firestore ) {
+ function addNotificationToUser(liuid: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore ) {
     db.collection('users/').where("liuId", '==', liuid).get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
             db.collection('users/').doc(data.id).collection('notifications').add({body: body, link: link, timestamp: Timestamp.now(), title:title}).catch(err => console.error(err));
@@ -51,7 +51,8 @@ interface onCreateIndividualNotification {
         })
     }).catch(err => console.error(err))
 }
-export function onCreateFunction1(db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot, context: EventContext) {
+export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventContext) {
+    const db = admin.firestore();
     db.doc('notifications/onCreate').get().then(dataSnapshot => {
         const categories = Object.keys(dataSnapshot.data()!);
         for(const category of categories) {
@@ -83,7 +84,8 @@ export function onCreateFunction1(db:FirebaseFirestore.Firestore, snapshot: Docu
     }).catch(err => console.error(err));
 }
 
-export function onCreateFunction2(db: FirebaseFirestore.Firestore, snapshot: DocumentSnapshot, context: EventContext) {
+export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventContext) {
+    const db = admin.firestore();
     db.doc('notifications/onCreate').get().then(dataSnapshot => {
         const categories = Object.keys(dataSnapshot.data()!);
         for(const category of categories) {
