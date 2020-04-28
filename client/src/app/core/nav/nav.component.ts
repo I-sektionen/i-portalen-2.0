@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import {MatDialog} from '@angular/material';
 import {UserProfileComponent} from '../../features/users/user-profile/user-profile.component';
@@ -19,7 +19,7 @@ import {NotificationsModel} from './notifications.model';
 export class NavComponent implements OnInit {
   notifications: NotificationsModel[] = [];
   newNotifications = false;
-  notificationIcon = 'notification';
+  notificationIcon = 'notifications';
 
   isMobile: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
@@ -62,23 +62,35 @@ export class NavComponent implements OnInit {
     });
   }
   getNotifications() {
-    this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
-      if (isLoggedIn === true) {
-        this.notificationsService.listNotifications().subscribe((notifications: NotificationsModel[]) => {
-          this.notifications = notifications;
-        });
-        this.notificationsService.getUserData().subscribe(newNotifications => {
-          if (newNotifications.newNotifications) {
-            this.notificationIcon = 'notifications_active';
-            this.newNotifications = true;
-          } else {
-            this.notificationIcon = 'notifications';
-            this.newNotifications = false;
-          }
-        });
+    // getting notifications
+    this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
+      if (userLoggedIn) {
+        return this.notificationsService.listNotifications();
+      } else {
+        return null;
       }
+    })).subscribe((notifications: NotificationsModel[]) => {
+      this.notifications = notifications;
     });
-  }
+
+    // setting notification symbol
+   this.isLoggedIn.pipe(switchMap((userLoggedIn, index) => {
+      if (userLoggedIn) {
+        return this.notificationsService.getUserData();
+      } else {
+        return null;
+      }
+    })).subscribe(newNotifications => {
+        if (newNotifications.newNotifications) {
+          this.notificationIcon = 'notifications_active';
+          this.newNotifications = true;
+        } else {
+          this.notificationIcon = 'notifications';
+          this.newNotifications = false;
+        }
+      });
+    }
+
   setNewNotificationsToFalse() {
     if (this.newNotifications === true) {
       this.notificationsService.setNewNotificationsToFalse();

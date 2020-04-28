@@ -29,6 +29,10 @@
       </button>
       <mat-menu #notficationMenu="matMenu" >
         <div class="horizontal-scroll">
+          <p *ngIf="notifications.length < 1">
+            Du har inga notifikationer. <br>
+            Se "Följ" under Profilsidan.
+          </p>
         <div *ngFor="let notification of notifications">
            <a href="{{notification.link}}" style="text-decoration: none;">
             <button mat-menu-item class="normal-line-height">
