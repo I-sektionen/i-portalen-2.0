@@ -26,12 +26,15 @@ interface onCreateIndividualNotification {
     fieldConstraint: string;
 }
 
- function addNotificationToFollow(follow: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore ) {
+ function addNotificationToFollow(follow: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
     db.collection('users/').where("follow", 'array-contains', follow).get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
             db.collection('users/').doc(data.id)
                 .collection('notifications')
-                .add({body: body, link: link, timestamp: Timestamp.now(), title:title})
+                .add({body: getFunctionValue(snapshot, body),
+                    link: getFunctionValue(snapshot, link),
+                    timestamp: Timestamp.now(),
+                    title:getFunctionValue(snapshot, title)})
                 .catch(err => console.error(1 + err));
             const ref = db.collection('users/').doc(data.id);
                 ref.get().then(data2 =>{
@@ -43,14 +46,17 @@ interface onCreateIndividualNotification {
     }).catch(err => console.error(4 + err))
 }
 
- function addNotificationToUser(liuid: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore ) {
+ function addNotificationToUser(liuid: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
     db.collection('users/')
         .where("liuId", '==', liuid)
         .get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
             db.collection('users/').doc(data.id)
                 .collection('notifications')
-                .add({body: body, link: link, timestamp: Timestamp.now(), title:title})
+                .add({body: getFunctionValue(snapshot, body),
+                    link: getFunctionValue(snapshot, link),
+                    timestamp: Timestamp.now(),
+                    title:getFunctionValue(snapshot, title)})
                 .catch(err => console.error(5 + err));
             const ref = db.collection('users/').doc(data.id);
             ref.get().then(data2 =>{
@@ -76,14 +82,14 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                         addNotificationToFollow(notificationObject.follow,
                             notificationObject.body, notificationObject.link,
                             notificationObject.title,
-                            db)
+                            db, snapshot)
                     } else if (notificationObject.fieldConstraint2 === "") {
                         if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
                                 notificationObject.title,
-                                db)
+                                db, snapshot)
                         }
                     } else {
                         if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
@@ -92,7 +98,7 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                                 notificationObject.body,
                                 notificationObject.link,
                                 notificationObject.title,
-                                db)
+                                db, snapshot)
                         }
                     }
                 }
@@ -112,7 +118,7 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                         notificationObject.body,
                         notificationObject.link,
                         notificationObject.title,
-                        db)
+                        db, snapshot)
                 }
             }
         }
@@ -135,14 +141,14 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                         addNotificationToFollow(notificationObject.follow,
                             notificationObject.body, notificationObject.link,
                             notificationObject.title,
-                            db)
+                            db, snapshot)
                     } else if (notificationObject.fieldConstraint2 === "") {
                         if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
                                 notificationObject.title,
-                                db)
+                                db, snapshot)
                         }
                     } else {
                         if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
@@ -151,7 +157,7 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                                 notificationObject.body,
                                 notificationObject.link,
                                 notificationObject.title,
-                                db)
+                                db, snapshot)
                         }
                     }
                 }
@@ -173,9 +179,16 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                         notificationObject.body,
                         notificationObject.link,
                         notificationObject.title,
-                        db)
+                        db, snapshot)
                 }
             }
         }
     }).catch(err => console.error(12 + err));
+}
+export function getFunctionValue(snapshot: DocumentSnapshot, string: string) {
+    const newString = string.replace(/(f\{.*?\})/gi, (match) => {
+        const valueString = match.substr(2, match.length - 3);
+        return snapshot.get(valueString);
+    });
+    return newString
 }
