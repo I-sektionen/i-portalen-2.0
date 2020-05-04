@@ -26,8 +26,10 @@ interface onCreateIndividualNotification {
     fieldConstraint: string;
 }
 
- function addNotificationToFollow(follow: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
-    db.collection('users/').where("follow", 'array-contains', follow).get().then(dataSnapshot => {
+function addNotificationToFollow(follow: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
+    const following = getFunctionValue(snapshot, follow);
+    console.log(getFunctionValue(snapshot, follow));
+    db.collection('users/').where("follow", 'array-contains', following).get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
             db.collection('users/').doc(data.id)
                 .collection('notifications')
@@ -37,7 +39,7 @@ interface onCreateIndividualNotification {
                     title:getFunctionValue(snapshot, title)})
                 .catch(err => console.error(1 + err));
             const ref = db.collection('users/').doc(data.id);
-                ref.get().then(data2 =>{
+            ref.get().then(data2 =>{
                 if(data2.exists){
                     ref.update({newNotifications: true}).catch(err => console.error(2 + err))
                 }
@@ -46,7 +48,7 @@ interface onCreateIndividualNotification {
     }).catch(err => console.error(4 + err))
 }
 
- function addNotificationToUser(liuid: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
+function addNotificationToUser(liuid: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
     db.collection('users/')
         .where("liuId", '==', liuid)
         .get().then(dataSnapshot => {
@@ -84,8 +86,7 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                             notificationObject.title,
                             db, snapshot)
                     } else if (notificationObject.fieldConstraint2 === "") {
-                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) ||
-                            (snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1))) {
+                        if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
@@ -93,10 +94,8 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                                 db, snapshot)
                         }
                     } else {
-                        if (((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
-                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) ||
-                            ((snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1)) &&
-                                (snapshot.get(notificationObject.fieldConstraint2).includes(notificationObject.valueConstraint2)))) {
+                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
+                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
@@ -146,8 +145,7 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                             notificationObject.title,
                             db, snapshot)
                     } else if (notificationObject.fieldConstraint2 === "") {
-                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) ||
-                            (snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1))) {
+                        if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
@@ -155,10 +153,8 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                                 db, snapshot)
                         }
                     } else {
-                        if (((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
-                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) ||
-                            ((snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1)) &&
-                                (snapshot.get(notificationObject.fieldConstraint2).includes(notificationObject.valueConstraint2)))) {
+                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
+                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
