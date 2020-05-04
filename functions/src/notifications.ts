@@ -28,7 +28,6 @@ interface onCreateIndividualNotification {
 
 function addNotificationToFollow(follow: string, body: string, link: string, title: string, db:FirebaseFirestore.Firestore, snapshot: DocumentSnapshot) {
     const following = getFunctionValue(snapshot, follow);
-    console.log(getFunctionValue(snapshot, follow));
     db.collection('users/').where("follow", 'array-contains', following).get().then(dataSnapshot => {
         dataSnapshot.forEach(data => {
             db.collection('users/').doc(data.id)
@@ -86,7 +85,8 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                             notificationObject.title,
                             db, snapshot)
                     } else if (notificationObject.fieldConstraint2 === "") {
-                        if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
+                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) ||
+                        (snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1))){
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
@@ -94,8 +94,10 @@ export function onCreateFunction1(snapshot: DocumentSnapshot, context: EventCont
                                 db, snapshot)
                         }
                     } else {
-                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
-                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) {
+                        if (((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
+                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) ||
+                            ((snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1)) &&
+                            (snapshot.get(notificationObject.fieldConstraint2).includes(notificationObject.valueConstraint2)))) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
@@ -145,7 +147,8 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                             notificationObject.title,
                             db, snapshot)
                     } else if (notificationObject.fieldConstraint2 === "") {
-                        if (snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) {
+                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) ||
+                            (snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1))) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
@@ -153,8 +156,10 @@ export function onCreateFunction2(snapshot: DocumentSnapshot, context: EventCont
                                 db, snapshot)
                         }
                     } else {
-                        if ((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
-                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) {
+                        if (((snapshot.get(notificationObject.fieldConstraint1) === notificationObject.valueConstraint1) &&
+                            (snapshot.get(notificationObject.fieldConstraint2) === notificationObject.valueConstraint2)) ||
+                            ((snapshot.get(notificationObject.fieldConstraint1).includes(notificationObject.valueConstraint1)) &&
+                                (snapshot.get(notificationObject.fieldConstraint2).includes(notificationObject.valueConstraint2)))) {
                             addNotificationToFollow(notificationObject.follow,
                                 notificationObject.body,
                                 notificationObject.link,
