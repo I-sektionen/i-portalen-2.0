@@ -5,6 +5,7 @@ export const enum FeedbackMessage {
   Admin = 'Du har inte tillåtelse att besöka den sidan.',
   TextEdit = 'Text uppdaterad.',
   Publish = 'Artikeln har skickats in och inväntar nu godkännande från admins',
+  Approved = 'Inlägget godkännt'
 }
 
 export const enum FeedbackType {

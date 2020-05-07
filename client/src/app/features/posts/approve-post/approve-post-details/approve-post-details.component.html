@@ -1,0 +1,9 @@
+<div *ngIf="($post | async) as post">
+  Lägg in post details component här. för post: {{post.id}}
+
+<p>
+  <button mat-raised-button color="primary" (click)="approve(post)">Godkänn</button>
+  <button mat-raised-button color="accent" (click)="revision(post)">Kommentara för revidering</button>
+  <button mat-raised-button color="warn">Avslå</button>
+</p>
+</div>

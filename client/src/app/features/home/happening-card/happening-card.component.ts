@@ -9,11 +9,13 @@ import {Post} from '../../posts/shared/post.model';
 export class HappeningCardComponent implements OnInit {
 
   @Input() post: Post;
+  @Input() link: string;
 
   constructor() {
   }
 
   ngOnInit() {
+    console.log(this.link);
   }
 
 

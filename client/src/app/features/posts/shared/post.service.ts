@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {DatabaseService} from '../../../core/database/database.service';
 import {Post} from './post.model';
-import {QueryFn} from '@angular/fire/firestore';
+import {AngularFirestore, QueryFn} from '@angular/fire/firestore';
 import {PostStatus} from './post-status.enum';
 import {Observable, of} from 'rxjs';
 import {UserService} from '../../users/shared/user.service';
@@ -14,7 +14,8 @@ import {switchMap} from 'rxjs/operators';
 })
 export class PostService {
   constructor(private databaseService: DatabaseService<Post>,
-              private authServ: AuthService) {
+              private authServ: AuthService,
+              private AF: AngularFirestore) {
   }
   private readonly suffix = 'posts';
 
@@ -30,8 +31,11 @@ export class PostService {
     return this.databaseService.insert(this.getRelativePath(PostStatus.WaitingToBeApproved), post);
   }
 
-  approvePost(post: Post) {
-
+  async approvePost(post: Post) {
+    const batch = this.AF.firestore.batch();
+    batch.set(this.AF.collection(this.getRelativePath(PostStatus.ApprovedWaiting)).doc(post.id).ref, post);
+    batch.delete(this.AF.collection(this.getRelativePath(PostStatus.WaitingToBeApproved)).doc(post.id).ref);
+    return batch.commit();
   }
 
   rejectPost(post: Post) {

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AdminModule } from './features/admin/admin.module';
-import { CreatePostsModule } from './features/posts/create-posts/create-posts.module';
+import { CreatePostsModule } from './features/posts/create-posts.module';
 import { EventsModule } from './features/posts/events/events.module';
 import { OrganisationsModule } from './features/organisations/organisations.module';
 import { SponsorsModule } from './features/sponsors/sponsors.module';
