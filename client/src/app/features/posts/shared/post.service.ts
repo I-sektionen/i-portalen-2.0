@@ -4,20 +4,21 @@ import {Post} from './post.model';
 import {AngularFirestore, QueryFn} from '@angular/fire/firestore';
 import {PostStatus} from './post-status.enum';
 import {Observable, of} from 'rxjs';
-import {UserService} from '../../users/shared/user.service';
-import OrderByDirection = firebase.firestore.OrderByDirection;
 import {AuthService} from '../../../core/auth/auth.service';
 import {switchMap} from 'rxjs/operators';
+import OrderByDirection = firebase.firestore.OrderByDirection;
+import {Revision} from '../approve-post/post-revision/revision.model';
+import {Paths} from '../../../core/database/paths.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   constructor(private databaseService: DatabaseService<Post>,
-              private authServ: AuthService,
-              private AF: AngularFirestore) {
+              private authServ: AuthService
+  ) {
   }
-  private readonly suffix = 'posts';
+  private readonly suffix = Paths.Posts;
 
   list(status: PostStatus, queryFn?: QueryFn): Observable<Post[]> {
     return this.databaseService.list(this.getRelativePath(status), queryFn);
@@ -32,13 +33,11 @@ export class PostService {
   }
 
   async approvePost(post: Post) {
-    const batch = this.AF.firestore.batch();
-    batch.set(this.AF.collection(this.getRelativePath(PostStatus.ApprovedWaiting)).doc(post.id).ref, post);
-    batch.delete(this.AF.collection(this.getRelativePath(PostStatus.WaitingToBeApproved)).doc(post.id).ref);
-    return batch.commit();
+    return this.changeStatus(post.id, PostStatus.WaitingToBeApproved, PostStatus.WaitingToBeApproved);
   }
 
   rejectPost(post: Post) {
+    return this.changeStatus(post.id, PostStatus.WaitingToBeApproved, PostStatus.Denied);
   }
 
   listUsersPosts(status: PostStatus, limit: number, orderBy: string, direction?: OrderByDirection): Observable<Post[]> {
@@ -59,6 +58,10 @@ export class PostService {
 
   private getRelativePath(status: PostStatus) {
     return status + '-' + this.suffix;
+  }
+
+  private changeStatus(postID: string, currentStatus: PostStatus, targetStatus: PostStatus, data?: Post) {
+    return this.databaseService.move(postID, this.getRelativePath(currentStatus), this.getRelativePath(targetStatus), data);
   }
 
 }
