@@ -13,6 +13,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 
 export class MyPostsComponent implements OnInit {
   articles: Post[];
+  approvedWaitingArticles: Post[];
   waitingArticles: Post[];
 
   constructor(private postService: PostService) {
@@ -22,6 +23,10 @@ export class MyPostsComponent implements OnInit {
     this.postService.listUsersPosts(PostStatus.Public, 50, 'created', 'desc').subscribe((result: Post[]) => {
       console.log(result);
       this.articles = result;
+    });
+    this.postService.listUsersPosts(PostStatus.ApprovedWaiting, 50, 'created', 'desc').subscribe((result: Post[]) => {
+      console.log(result);
+      this.approvedWaitingArticles = result;
     });
     this.postService.listUsersPosts(PostStatus.WaitingToBeApproved, 50, 'created', 'desc').subscribe((result: Post[]) => {
       console.log(result);
