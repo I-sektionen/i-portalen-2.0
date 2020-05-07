@@ -3,6 +3,7 @@ import { FirestoreService } from '../firebase/firestore/firestore.service';
 import { QueryFn } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/index';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,5 +39,30 @@ export class DatabaseService<Item> {
 
   check(path: string, key: string, value: string): Observable<boolean> {
     return this.firestoreService.check(path, key, value);
+  }
+
+  // Data is optional. If no data is provided the function simply reads the document before deletion.
+  move(id: string, origin: string, destination: string, data?: Item) {
+    const create = this.firestoreService.col(destination).doc(id).ref;
+    const del = this.firestoreService.col(origin).doc(id).ref;
+
+    if (data) {
+      const batch = this.firestoreService.batch;
+      batch.set(create, data);
+      batch.delete(del);
+      return batch.commit();
+    }
+
+    const moveTransaction = transaction => {
+      return transaction.get(del).then((doc) => {
+        if (!doc.exists) {
+          throw Error('Document does not exist!');
+        }
+        transaction.set(create, doc.data());
+        transaction.delete(del);
+      });
+    };
+
+    return this.firestoreService.runTransaction(moveTransaction);
   }
 }

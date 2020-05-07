@@ -15,7 +15,8 @@ export class FirestoreService<Item> {
 
   constructor(
     private angularFirestore: AngularFirestore,
-  ) { }
+  ) {
+  }
 
   insert(path: string, item: Item): Promise<any> {
     return this.col(path).add(item);
@@ -71,5 +72,13 @@ export class FirestoreService<Item> {
         });
       })
     );
+  }
+
+  get batch() {
+    return this.angularFirestore.firestore.batch();
+  }
+
+  runTransaction<T>(fn: (transaction) => Promise<T>) {
+    return this.angularFirestore.firestore.runTransaction<T>(fn);
   }
 }
