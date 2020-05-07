@@ -8,9 +8,8 @@ import {PostService} from './features/posts/shared/post.service';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private postServ: PostService) {
+  constructor() {
   }
   ngOnInit(): void {
-    this.postServ.listUsersPosts(PostStatus.Public, 25, 'created', 'desc').subscribe(value => console.log(value));
   }
 }

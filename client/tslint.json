@@ -60,7 +60,7 @@
     "no-empty-interface": false,
     "no-eval": true,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-misused-new": true,
@@ -117,7 +117,7 @@
       "check-separator",
       "check-type"
     ],
-    
+
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
