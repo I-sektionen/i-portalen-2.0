@@ -70,4 +70,11 @@ export class FirestoreService<Item> {
     return this.angularFirestore.collection(path, queryFn);
   }
 
+  get batch() {
+    return this.angularFirestore.firestore.batch();
+  }
+
+  runTransaction<T>(fn: (transaction) => Promise<T>) {
+    return this.angularFirestore.firestore.runTransaction<T>(fn);
+  }
 }
