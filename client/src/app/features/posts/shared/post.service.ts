@@ -33,7 +33,7 @@ export class PostService {
   }
 
   async approvePost(post: Post) {
-    return this.changeStatus(post.id, PostStatus.WaitingToBeApproved, PostStatus.WaitingToBeApproved);
+    return this.changeStatus(post.id, PostStatus.WaitingToBeApproved, PostStatus.ApprovedWaiting);
   }
 
   rejectPost(post: Post) {
