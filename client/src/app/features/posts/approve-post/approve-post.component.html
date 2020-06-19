@@ -1,5 +1,20 @@
-<mat-list-item> <h5> Väntar på publikation </h5> </mat-list-item>
-<div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
-  <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let post of posts$ | async" [post]="post" link="/admin/granska-detaljer/{{post.id}}"></happening-card>
+<h1> Granska inlägg </h1>
+<mat-list>
+  <mat-list-item> <h2> Inlägg att godkänna </h2> </mat-list-item>
+  <div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
+    <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let post of waitingPosts | async" [post]="post" link="/admin/granska-detaljer/{{post.id}}"></happening-card>
+  </div>
 
-</div>
+  <mat-list-item> <h2> Godkända inlägg </h2> </mat-list-item>
+  <mat-list-item> <h3> Väntar på publikation </h3> </mat-list-item>
+  <div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
+    <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let post of posts$ | async" [post]="post" link="/admin/granska-detaljer/{{post.id}}"></happening-card>
+  </div>
+
+  <mat-list-item> <h3> Publika inlägg </h3> </mat-list-item>
+  <div class="content" fxLayout="row wrap" fxLayoutGap="0.5%">
+    <happening-card fxFlex="100" fxFlex.gt-xs="45" *ngFor="let post of publicPosts | async" [post]="post" link="/admin/granska-detaljer/{{post.id}}"></happening-card>
+  </div>
+
+</mat-list>
+

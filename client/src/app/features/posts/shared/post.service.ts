@@ -52,8 +52,6 @@ export class PostService {
         }
       )
     );
-
-
   }
 
   private getRelativePath(status: PostStatus) {

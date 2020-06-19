@@ -42,6 +42,7 @@ a {
 mat-card {
   margin: 10px;
 }
+
 .footer-text {
   display: inline-block;
 }
@@ -60,9 +61,10 @@ mat-card {
   vertical-align: middle;
   margin-left: 100px;
 }
+
 .date-item > mat-card-subtitle{
   display: inline-block;
-  margin-left: 12px;
+  /*margin-left: 12px;*/
   font-size: 16px;
 }
 .readmore {
@@ -81,4 +83,6 @@ mat-card {
   box-shadow: 2px 2px 2px #aaaaaa;
   text-transform: uppercase;
 }
+
+
 

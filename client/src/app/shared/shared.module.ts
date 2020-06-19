@@ -13,7 +13,7 @@ import { TableComponent } from './table/table.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 import { ShufflePipe } from './pipes/shuffle.pipe';
-import {HappeningCardComponent} from "../features/home/happening-card/happening-card.component";
+import {HappeningCardComponent} from '../features/home/happening-card/happening-card.component';
 import { FilterPostTitlePipe } from './pipes/title-filter.pipe';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
 import {RouterModule} from '@angular/router';
